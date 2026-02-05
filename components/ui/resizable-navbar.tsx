@@ -1,0 +1,250 @@
+"use client";
+import { cn } from "@/lib/utils";
+import { IconMenu2, IconX } from "@tabler/icons-react";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "motion/react";
+import logo from "../../public/assets/insurath.png";
+import React, { useRef, useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import {IconCaretDownFilled} from "@tabler/icons-react";
+
+interface NavChildItem {
+  name: string;
+  link: string;
+}
+
+interface NavItem {
+  name: string;
+  link?: string;          // normal links
+  children?: NavChildItem[]; // dropdown
+}
+
+
+interface NavbarProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+interface NavBodyProps {
+  children: React.ReactNode;
+  className?: string;
+  visible?: boolean;
+}
+
+interface MobileNavProps {
+  children: React.ReactNode;
+  className?: string;
+  visible?: boolean;
+}
+
+interface MobileNavHeaderProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+interface MobileNavMenuProps {
+  children: React.ReactNode;
+  className?: string;
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export const Navbar = ({ children, className }: NavbarProps) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollY } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const [visible, setVisible] = useState<boolean>(false);
+
+  useMotionValueEvent(scrollY, "change", (latest: number) => {
+    if (latest > 100) {
+      setVisible(true);
+    } else {
+      setVisible(false);
+    }
+  });
+
+  return (
+    <motion.div
+      ref={ref}
+      className={cn(`fixed inset-x-0 top-5 z-60 w-full border-2 transition-all duration-300 ease-out ${visible ? "bg-white/80 border-white backdrop-blur-md shadow-lg" : "border-transparent"} rounded-full mx-auto max-w-360`, className)}
+    >
+      {React.Children.map(children, (child) =>
+        React.isValidElement(child)
+          ? React.cloneElement(
+              child as React.ReactElement<{ visible?: boolean }>,
+              { visible },
+            )
+          : child,
+      )}
+    </motion.div>
+  );
+};
+
+export const NavBody = ({ children }: NavBodyProps) => {
+  return (
+    <div className="relative flex-row items-center justify-between self-start px-4 py-2 lg:flex">
+      {children}
+    </div>
+  );
+};
+
+export const NavItems = ({ items }: { items: NavItem[] }) => {
+  const [open, setOpen] = useState<number | null>(null);
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollY } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const [visible, setVisible] = useState<boolean>(false);
+
+  useMotionValueEvent(scrollY, "change", (latest: number) => {
+    if (latest > 100) {
+      setVisible(true);
+    } else {
+      setVisible(false);
+    }
+  });
+  return (
+    <div className="absolute inset-0 hidden lg:flex items-center justify-center gap-2">
+      {items.map((item, idx) => (
+        <div
+          key={item.name}
+          className="relative"
+          onMouseEnter={() => setOpen(idx)}
+          onMouseLeave={() => setOpen(null)}
+        >
+          {item.link ? (
+            <div ref={ref}>
+              <Link
+                href={item.link}
+                className={`px-4 py-2 text-lg ${visible ? "text-slate-900":"text-white"} font-bold cursor-pointer`}
+              >
+                {item.name}
+              </Link>
+            </div>
+          ) : (
+            <span className={`px-4 py-2 text-lg ${visible ? "text-slate-900":"text-white"} font-bold cursor-pointer flex items-center gap-1`}>
+              {item.name} <IconCaretDownFilled/>
+            </span>
+          )}
+          {/* Dropdown */}
+          <AnimatePresence>
+            {item.children && open === idx && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                className="absolute left-1/2 top-full mt-2 w-60 -translate-x-1/2 rounded-xl bg-white shadow-xl border"
+              >
+                {item.children.map((child) => (
+                  <Link
+                    key={child.name}
+                    href={child.link}
+                    className="block px-4 py-3 text-lg hover:bg-neutral-100 hover:text-[#E18126] font-bold"
+                  >
+                    {child.name}
+                  </Link>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
+  return (
+    <motion.div
+      animate={{
+        backdropFilter: visible ? "blur(10px)" : "none",
+        boxShadow: visible
+          ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
+          : "none",
+        width: visible ? "90%" : "100%",
+        paddingRight: visible ? "12px" : "0px",
+        paddingLeft: visible ? "12px" : "0px",
+        borderRadius: visible ? "4px" : "2rem",
+        y: visible ? 20 : 0,
+      }}
+      transition={{
+        type: "spring",
+        stiffness: 200,
+        damping: 50,
+      }}
+      className={cn(
+        "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-transparent px-0 py-2 lg:hidden",
+        visible && "bg-white/80 dark:bg-neutral-950/80",
+        className,
+      )}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+export const MobileNavHeader = ({
+  children,
+  className,
+}: MobileNavHeaderProps) => {
+  return (
+    <div
+      className={cn(
+        "flex w-full flex-row items-center justify-between",
+        className,
+      )}
+    >
+      {children}
+    </div>
+  );
+};
+
+export const MobileNavMenu = ({
+  children,
+  className,
+  isOpen,
+}: MobileNavMenuProps) => {
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className={cn(
+            "absolute inset-x-0 top-16 z-50 flex w-full flex-col items-start justify-start gap-4 rounded-lg bg-white px-4 py-8 shadow-[0_0_24px_rgba(34,42,53,0.06),0_1px_1px_rgba(0,0,0,0.05),0_0_0_1px_rgba(34,42,53,0.04),0_0_4px_rgba(34,42,53,0.08),0_16px_68px_rgba(47,48,55,0.05),0_1px_0_rgba(255,255,255,0.1)_inset] dark:bg-neutral-950",
+            className,
+          )}
+        >
+          {children}
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};
+
+export const MobileNavToggle = ({
+  isOpen,
+  onClick,
+}: {
+  isOpen: boolean;
+  onClick: () => void;
+}) => {
+  return isOpen ? (
+    <IconX className="text-black dark:text-white" onClick={onClick} />
+  ) : (
+    <IconMenu2 className="text-black dark:text-white" onClick={onClick} />
+  );
+};
+
+export const NavbarLogo = () => {
+  return (
+    <Link href="/" className="relative z-20 flex items-center"
+    >
+      <Image src={logo} alt="Insurath" height={100} />
+    </Link>
+  );
+};
