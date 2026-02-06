@@ -39,10 +39,10 @@ export default function CardCarousel({ items }: Props) {
         setCardWidth(wrapperW);
       } else if (viewportW < 1024) {
         setVisibleCards(1);
-        setCardWidth((wrapperW - GAP) / 2);
+        setCardWidth((wrapperW));
       } else {
-        setVisibleCards(2);
-        setCardWidth((wrapperW - GAP * 2) / 2);
+        setVisibleCards(1);
+        setCardWidth((wrapperW));
       }
     };
 
@@ -136,7 +136,7 @@ export default function CardCarousel({ items }: Props) {
           className="flex gap-6 py-4 overflow-hidden snap-x snap-mandatory scroll-smooth"
         >
           {clonedItems.map((item, index) => (
-            <div key={index} className="shrink-0 snap-start rounded-xl border-2 border-[#E18126] bg-transparent p-6 shadow-lg hover:bg-radial-gradient transition relative group overflow-hidden"
+            <div key={index} className="shrink-0 snap-start rounded-4xl border-2 border-[#E18126] bg-transparent p-6 shadow-lg hover:bg-radial-gradient transition relative group overflow-hidden"
               style={{ width: cardWidth }}
               onMouseMove={(e) => {
                 const rect = e.currentTarget.getBoundingClientRect();
@@ -159,6 +159,9 @@ export default function CardCarousel({ items }: Props) {
                   )`,
                 }}
               />
+              <div className="absolute w-30 h-25 bg-[#E18126] right-0 top-0 rounded-bl-[6rem] flex items-center justify-center">
+                <img src="/assets/inverted_coma.png" alt="comma" className="h-15 w-15"/>
+              </div>
               <div className="mb-2">
                 <h5 className="text-base md:text-2xl text-slate-900 font-semibold mb-1">
                   {item.name}

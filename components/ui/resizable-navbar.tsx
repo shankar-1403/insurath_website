@@ -68,7 +68,7 @@ export const Navbar = ({ children, className }: NavbarProps) => {
   return (
     <motion.div
       ref={ref}
-      className={cn(`fixed inset-x-0 top-5 z-60 w-full border-2 transition-all duration-300 ease-out ${visible ? "bg-white/80 border-white backdrop-blur-md shadow-lg" : "border-transparent"} rounded-full mx-auto max-w-360`, className)}
+      className={cn(`fixed inset-x-0 top-5 z-60 w-full border-2 transition-all duration-300 ease-out ${visible ? "bg-white/80 border-white backdrop-blur-md shadow-lg" : "border-transparent"} rounded-full mx-auto max-w-340`, className)}
     >
       {React.Children.map(children, (child) =>
         React.isValidElement(child)
@@ -107,7 +107,7 @@ export const NavItems = ({ items }: { items: NavItem[] }) => {
     }
   });
   return (
-    <div className="absolute inset-0 hidden lg:flex items-center justify-center gap-2">
+    <div className="absolute inset-0 hidden lg:flex items-center justify-center gap-8">
       {items.map((item, idx) => (
         <div
           key={item.name}
@@ -119,14 +119,27 @@ export const NavItems = ({ items }: { items: NavItem[] }) => {
             <div ref={ref}>
               <Link
                 href={item.link}
-                className={`px-4 py-2 text-lg ${visible ? "text-slate-900":"text-white"} font-bold cursor-pointer`}
+                className={`px-4 py-2 text-lg ${visible ? "text-blue-950 hover:text-[#E18126]":"text-white hover:text-[#E18126]"} font-bold cursor-pointer`}
               >
-                {item.name}
+                <div className="group relative cursor-pointer text-left text-lg py-3 flex items-center justify-between">
+                  <span>{item.name}</span>
+
+                  <span className="absolute left-0 bottom-0 h-0.5 w-full" />
+
+                  <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-[#E18126] transition-all duration-300 ease-out group-hover:w-full" />
+                </div>
               </Link>
             </div>
           ) : (
-            <span className={`px-4 py-2 text-lg ${visible ? "text-slate-900":"text-white"} font-bold cursor-pointer flex items-center gap-1`}>
-              {item.name} <IconCaretDownFilled/>
+            <span className={`px-4 py-2 text-lg ${visible ? "text-blue-950 hover:text-[#E18126]":"text-white hover:text-[#E18126]"} font-bold cursor-pointer flex items-center gap-1`}>
+              <div className="group relative cursor-pointer text-left text-lg py-3 flex gap-2 items-center">
+                  <span>{item.name}</span>
+                  <div>
+                  <IconCaretDownFilled className="w-4 h-4" />
+                  </div>
+                  <span className="absolute left-0 bottom-0 h-0.5 w-full" />
+                  <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-[#E18126] transition-all duration-300 ease-out group-hover:w-full" />
+              </div>
             </span>
           )}
           {/* Dropdown */}
@@ -244,7 +257,7 @@ export const NavbarLogo = () => {
   return (
     <Link href="/" className="relative z-20 flex items-center"
     >
-      <Image src={logo} alt="Insurath" height={100} />
+      <Image src={logo} alt="Insurath" height={90} />
     </Link>
   );
 };

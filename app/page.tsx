@@ -2,7 +2,7 @@
 
 import MainNavbar from "@/components/layouts/navbar";
 import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
-import {IconShieldFilled,IconCoins,IconCash,IconArrowRight} from "@tabler/icons-react";
+import {IconShieldFilled,IconCoins,IconCash,IconArrowRight,IconCheckbox} from "@tabler/icons-react";
 import { motion } from "motion/react";
 import { NumberTicker } from "@/components/ui/number-ticker";
 import Link from "next/link";
@@ -12,30 +12,26 @@ import { Marquee } from "@/components/ui/marquee";
 import { cn } from "@/lib/utils";
 import Footer from "@/components/layouts/footer";
 import { DotPattern } from "@/components/ui/dot-pattern";
-import customer from "@/public/assets/customers.png";
-import claims from "@/public/assets/claims.png";
-import choose from "@/public/assets/why_choose.png";
-import partners from "@/public/assets/partners.png";
-import settlement from "@/public/assets/settlement_ratios.png";
-import customer_support from "@/public/assets/customer_support.png";
-import customer_rating from "@/public/assets/customer_rating.png";
-import health_insurance from "@/public/assets/health_insurance.png";
-import life_insurance from "@/public/assets/life_insurance.png";
-import business_insurance from "@/public/assets/business_insurance.png";
-import travel_insurance from "@/public/assets/travel_insurance.png";
-import car_insurance from "@/public/assets/car_insurance.png";
-import bike_insurance from "@/public/assets/bike_insurance.png";
+import health_insurance from "@/public/assets/health.png";
+import life_insurance from "@/public/assets/life.png";
+import business_insurance from "@/public/assets/business.png";
+import travel_insurance from "@/public/assets/travel.png";
+import car_insurance from "@/public/assets/car.png";
+import bike_insurance from "@/public/assets/bike.png";
 import Image from "next/image";
+import { PointerHighlight } from "@/components/ui/pointer-highlight";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import { FocusCards } from "@/components/ui/focus-cards";
 
 const CompaniesCard = ({data}: {data: string}) => {
   return (
     <figure
       className={cn(
-        "relative w-64 h-30 cursor-pointer overflow-hidden rounded-4xl border p-4 border-slate-900 hover:shadow-lg hover:scale-105 transition-transform duration-300",
+        "relative w-64 h-30 overflow-hidden rounded-4xl border p-4 border-blue-950 hover:shadow-lg hover:scale-105 transition-transform duration-300",
       )}
     >
       <div className="flex items-center justify-center h-full">
-        <p className="text-2xl text-slate-900 font-bold text-center">{data}</p>
+        <Image src={data} alt={'Image'} width={120} height={120} />
       </div>
     </figure>
   )
@@ -51,6 +47,15 @@ export default function Home() {
     { name: "Business Insurance", image: business_insurance, description: "Comprehensive business insurance protecting your company assets, employees, and operations.",rating:"4.9",review:"450",link:"/" },
   ];
 
+  const chooseUs = [
+    {number:"01",title:"100% Secure & Trusted", description:"Your data is protected with bank-level security and we are licensed by IRDAI."},
+    {number:"02",title:"Instant Quotes", description:"Get quotes from 25+ insurance companies in just 2 minutes."},
+    {number:"03",title:"Expert Support", description:"Our insurance experts guide you through every step of the process."},
+    {number:"04",title:"Best Prices", description:"Compare and save up to 40% on your insurance premiums."},
+    {number:"05",title:"Customer First", description:"We prioritize your needs and provide 24/7 customer support."},
+    {number:"06",title:"Fast Claims", description:"Quick and hassle-free claim settlement process."},
+  ]
+
   const customers = [
     { name: "Rajesh Kumar", designation:"Software Engineer", rating: 5, description: "I was skeptical about online insurance until I tried Insurath. My wife needed emergency surgery last year, and I was worried about the claim process. But Insurath made it so smooth - they even called me to check if everything was okay. The claim was settled in just 3 days, and I didn't have to run around with documents. Now I've insured my entire family with them." },
     { name: "Priya Sharma", designation:"Business Owner", rating: 5, description: "When I started my textile business 5 years ago, I didn't understand insurance at all. Insurath's team spent 2 hours explaining different policies to me in simple Hindi. They helped me choose the right coverage for my factory and showroom. Last year, when there was a fire in our warehouse, their claim process was so quick that I could restart operations within a week." },
@@ -62,7 +67,7 @@ export default function Home() {
     { name: "Kavita Nair", designation:"Homemaker", rating: 5, description: "I never understood insurance until my neighbor told me about Insurath. Their agent explained everything so clearly that even I could understand. I started with a small health insurance for ₹1,200 per month. When my daughter had to be hospitalized for dengue, the entire bill of ₹45,000 was covered. I didn't have to worry about money during such a stressful time. Now I've also taken life insurance for my husband." },
   ] 
 
-  const companies = [{title:"SBI Life"},{title:"HDFC Life"},{title:"ICICI Prudential"},{title:"Max Bupa"},{title:"Bajaj Allianz"},{title:"Tata AIG"},{title:"Aditya Birla"},{title:"Reliance General"}];
+  const companies = [{image:"/assets/hdfclife.png"},{image:"/assets/icici.png"}, {image:"/assets/lic.png"}, {image:"/assets/sbilife.png"}, {image:"/assets/tataaig.png"}, {image:"/assets/maxlife.png"},{image:"/assets/kotak.png"},{image:"/assets/future.png"},];
 
   return (
     <>
@@ -91,10 +96,10 @@ export default function Home() {
         }} className="absolute top-120 left-20 rotate-10">
         <IconCash size={100} color="#E18126" opacity={0.1} />
       </motion.div>
-      <div className="bg-linear-to-br from-[#0B111F] via-[#025877] to-[#884001] h-auto pt-50 pb-20">
-        <div className="max-w-360 mx-auto">
+      <div className="bg-linear-to-br from-blue-950 via-[#1186B7] to-[#884001] h-screen pt-50 pb-20">
+        <div className="max-w-340 mx-auto">
           <div className="flex gap-6">
-            <div className="w-[60%]">
+            <motion.div initial={{ x: -30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-[60%]">
               <div className="flex items-center justify-start mb-2">
                 <div className="rounded-full border border-black/5 bg-neutral-100">
                   <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 uppercase">
@@ -103,16 +108,16 @@ export default function Home() {
                 </div>
               </div>
               <div className="flex flex-col items-start justify-center gap-10">
-                <h1 className="text-left text-white text-7xl font-bold">Insurance Made<br/><span className="text-[#E18126]">Simple & Affordable</span></h1>
-                <p className="text-left text-white text-2xl">Get expert guidance and find the perfect insurance policies from top companies. <span className="text-[#E18126]">Protect what matters most to you</span> with personalized recommendations and comprehensive coverage.</p>
+                <h1 className="text-left text-white text-7xl font-bold text-shadow-lg">Insurance Made<br/><span className="text-[#E18126]">Simple & Affordable</span></h1>
+                <p className="text-left text-white text-2xl text-shadow-lg">Get expert guidance and find the perfect insurance policies from top companies. <span className="text-[#E18126]">Protect what matters most to you</span> with personalized recommendations and comprehensive coverage.</p>
               </div>
               <div className="flex gap-6 mt-20">
                 <div>
-                  <button className="text-lg bg-[#E18126] text-white px-6 py-3 rounded-4xl font-bold">Learn More</button>
+                  <InteractiveHoverButton>Learn More</InteractiveHoverButton>
                 </div>
               </div>
-            </div>
-            <div className="w-[40%]">
+            </motion.div>
+            <motion.div initial={{ x: 30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-[40%]">
               <form action="submit" className="bg-white shadow-lg rounded-4xl p-6">
                 <h2 className="text-3xl font-bold mb-4">Request a Free Quote</h2>
                 <div className="flex flex-col gap-4">
@@ -131,202 +136,241 @@ export default function Home() {
                   <button type="submit" className="bg-[#E18126] text-white px-4 py-2 rounded-4xl font-bold mt-4">Get Expert Consultation</button>
                 </div>  
               </form>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
-      <div className="h-auto py-10">
-        <div className="max-w-360 mx-auto flex justify-center items-center flex-col gap-10">
-          <div className="grid grid-cols-6 gap-4">
-              <div className="bg-white/80 border border-[#E18126] backdrop-blur-2xl rounded-4xl p-6 text-center overflow-hidden">
-                <Image src={customer} priority className="h-65" alt={"customers"}/>
-                <NumberTicker value={50} className="text-4xl font-bold text-[#E18126]"/><span className="text-4xl font-bold text-[#E18126]">k+</span>
-                <p className="text-base font-bold">Happy Customers</p>
-              </div>
-            <div className="bg-white/80 border border-[#E18126] backdrop-blur-2xl rounded-4xl p-6 text-center overflow-hidden">
-              <Image src={claims} priority className="h-65" alt={"claims"}/>
-              <NumberTicker value={500} className="text-4xl font-bold text-[#E18126]"/>
-              <p className="text-base font-bold">Claims Settled</p>
-            </div>
-            <div className="bg-white/80 border border-[#E18126] backdrop-blur-2xl rounded-4xl p-6 text-center overflow-hidden">
-              <Image src={partners} priority className="h-65" alt={"partners"}/>
-              <NumberTicker value={25} className="text-4xl font-bold text-[#E18126]"/>
-              <p className="text-base font-bold">Insurance Partners</p>
-            </div>
-            <div className="bg-white/80 border border-[#E18126] backdrop-blur-2xl rounded-4xl p-6 text-center overflow-hidden">
-              <Image src={settlement} priority className="h-65" alt={"settlement"}/>
-              <NumberTicker value={25} className="text-4xl font-bold text-[#E18126]"/><span className="text-4xl font-bold text-[#E18126]">%</span>
-              <p className="text-base font-bold">Claim Settlement Ratio</p>
-            </div>
-            <div className="bg-white/80 border border-[#E18126] backdrop-blur-2xl rounded-4xl p-6 text-center overflow-hidden">
-              <Image src={customer_support} priority className="h-65" alt={"customer_support"}/>
-              <NumberTicker value={24} className="text-4xl font-bold text-[#E18126]"/><span  className="text-4xl font-bold text-[#E18126]">/</span><NumberTicker value={7} className="text-4xl font-bold text-[#E18126]"/>
-              <p className="text-base font-bold">Customer Support</p>
-            </div>
-            <div className="bg-white/80 border border-[#E18126] backdrop-blur-2xl rounded-4xl p-6 text-center overflow-hidden">
-              <Image src={customer_rating} priority className="h-65" alt={"customer_ratings"}/>
-              <NumberTicker value={48} className="text-4xl font-bold text-[#E18126]"/>
-              <p className="text-base font-bold">Customer Rating</p>
-            </div>
-          </div>
+      <div className="h-screen py-20">
+        <div className="absolute w-full pointer-events-none select-none">
+          <img src={'/assets/element.png'} alt="element" className="w-full"/>
         </div>
-      </div>
-      <div className="bg-slate-950 h-auto py-20">
-        <div className="max-w-360 mx-auto flex justify-center items-center flex-col gap-10">
-          <div className="flex items-center justify-center">
-            <div className="rounded-full border border-black/5 bg-neutral-100">
-              <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 uppercase">
-                <span className="flex gap-1 font-bold">Comprehensive Coverage</span>
-              </AnimatedShinyText>
-            </div>
-          </div>
-          <div>
-            <div className="flex flex-col gap-6 max-w-5xl mx-auto">
-              <div>
-                <h3 className="text-center text-white text-6xl font-bold mb-4">Choose Your Insurance Protection</h3>
+        <div className="max-w-340 mx-auto flex justify-center items-center gap-40">
+          <motion.div initial={{ x: -30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-[40%]">
+            <div>
+              <div className="relative ml-30 h-130 w-130 overflow-hidden rounded-br-full rounded-tr-full rounded-bl-full">
+                <Image src="/assets/aboutus_one.png" alt="about_us_one" priority fill className="object-cover"/>
               </div>
-              <div>
-                <p className="text-center text-white text-2xl">We offer a comprehensive range of insurance products to protect what matters most to you.Compare and choose the best plan for your needs.</p>
+              <div className="absolute rounded-br-full h-60 w-60 overflow-hidden rounded-tl-full rounded-bl-full -mt-50">
+                <Image src={"/assets/aboutus_two.png"} alt="about_us_two" priority fill className="object-cover"/>
               </div>
-            </div>
-            <div className="grid grid-cols-6 gap-4 mt-10">
-              {services.map((service) => (
-                <motion.div initial={{ y: 20, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 1, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} key={service.name} className="col-span-2 bg-white/10 backdrop-blur-2xl rounded-4xl p-6 hover:bg-white/20 transition cursor-pointer">
-                  <div className="flex items-center justify-center">
-                    <Image alt={service.name} src={service.image} priority className="h-60 w-50"/>
+              <motion.div animate={{ x: [0, 40, 0] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", }} className="absolute bg-white h-auto w-70 overflow-hidden rounded-tr-4xl rounded-bl-4xl -mt-20 ml-90 p-2">
+                <div className="border-2 border-[#E18126] flex gap-4 rounded-tr-4xl rounded-bl-4xl px-4 py-6">
+                  <div>
+                    <span className="text-[#E18126] text-6xl font-bold">15</span>
                   </div>
-                  <div className="h-30">
-                    <h4 className="text-2xl font-bold mb-2 text-white">{service.name}</h4>
-                    <p className="text-white text-lg">{service.description}</p>
+                  <div>
+                    <span className="text-xl text-blue-950 font-bold">Years of Experience</span>
                   </div>
-                  <div className="flex items-center mt-8">
-                      <svg className="w-5 h-5 text-[#E18126]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/></svg>
-                      <p className="ms-2 text-sm font-bold text-white">{service.rating}</p>
-                      <span className="w-1 h-1 mx-1.5 bg-[#E18126] rounded-full"></span>
-                      <span className="text-sm font-medium text-white underline hover:no-underline">{service.review} reviews</span>
-                  </div>
-                  <Link href={service.link}>
-                    <button className="bg-[#E18126] text-white px-4 py-2 rounded-full mt-4 hover:bg-[#c06a1a] transition cursor-pointer">Read More</button>
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="h-auto py-20">
-        <div className="max-w-360 relative mx-auto py-10">
-          <div className="flex flex-col gap-6 mb-8">
-            <h4 className="text-6xl font-bold">Why Choose Insurath?</h4>
-            <p className="text-2xl">We are committed to providing you with the best insurance experience with our innovative platform and exceptional service.</p>
-          </div>
-          <div className="flex gap-8 w-full">
-            <div className="w-[50%] flex flex-col gap-6">
-              <Image src={choose} priority className="h-160 rounded-4xl" alt={"choose insurath"}/>
-              <motion.div className="absolute bottom-2 left-3 bg-white/80 border-white backdrop-blur-md p-4 rounded-4xl shadow-lg">
-                <p className="text-lg font-bold text-[#E18126]">Join 50,000+ Satisfied Customers</p>
+                </div>
               </motion.div>
             </div>
-            <div className="w-[50%]">
-              <ul className="flex flex-col gap-4">
-                <motion.li initial={{ x: -20, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 0.4, ease: "easeOut" }} viewport={{ once: true }} className="flex items-start gap-2 border border-[#E18126] rounded-4xl p-4">
-                  <IconShieldFilled className="w-6 h-6 text-[#E18126]"/>
-                  <div>
-                    <p className="text-lg font-bold">100% Secure & Trusted</p>
-                    <p className="text-lg">Your data is protected with bank-level security and we are licensed by IRDAI.</p>
-                  </div>
-                </motion.li>
-                <motion.li initial={{ x: -30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 0.4, ease: "easeOut" }} viewport={{ once: true }} className="flex items-start gap-2 border border-[#E18126] rounded-4xl p-4">
-                  <IconShieldFilled className="w-6 h-6 text-[#E18126]"/>
-                  <div>
-                    <p className="text-lg font-bold">Instant Quotes</p>
-                    <p className="text-lg">Get quotes from 25+ insurance companies in just 2 minutes.</p>
-                  </div>
-                </motion.li>
-                <motion.li initial={{ x: -40, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 0.4, ease: "easeOut" }} viewport={{ once: true }} className="flex items-start gap-2 border border-[#E18126] rounded-4xl p-4">
-                  <IconShieldFilled className="w-6 h-6 text-[#E18126]"/>
-                  <div>
-                    <p className="text-lg font-bold">Expert Support</p>
-                    <p className="text-lg">Our insurance experts guide you through every step of the process.</p>
-                  </div>
-                </motion.li>
-                <motion.li initial={{ x: -50, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 0.4, ease: "easeOut" }} viewport={{ once: true }} className="flex items-start gap-2 border border-[#E18126] rounded-4xl p-4">
-                  <IconShieldFilled className="w-6 h-6 text-[#E18126]"/>
-                  <div>
-                    <p className="text-lg font-bold">Best Prices</p>
-                    <p className="text-lg">Compare and save up to 40% on your insurance premiums.</p>
-                  </div>
-                </motion.li>
-                <motion.li initial={{ x: -60, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 0.4, ease: "easeOut" }} viewport={{ once: true }} className="flex items-start gap-2 border border-[#E18126] rounded-4xl p-4">
-                  <IconShieldFilled className="w-6 h-6 text-[#E18126]"/>
-                  <div>
-                    <p className="text-lg font-bold">Customer First</p>
-                    <p className="text-lg">We prioritize your needs and provide 24/7 customer support.</p>
-                  </div>
-                </motion.li>
-                 <motion.li initial={{ x: -70, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 0.4, ease: "easeOut" }} viewport={{ once: true }} className="flex items-start gap-2 border border-[#E18126] rounded-4xl p-4">
-                  <IconShieldFilled className="w-6 h-6 text-[#E18126]"/>
-                  <div>
-                    <p className="text-lg font-bold">Fast Claims</p>
-                    <p className="text-lg">Quick and hassle-free claim settlement process.</p>
-                  </div>
-                </motion.li>
-              </ul>
+          </motion.div>
+          <motion.div initial={{ x: 30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-[60%]">
+            <p className="uppercase font-bold text-gray-600 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl mb-4">About Company</p>
+            <h2 className="text-5xl leading-16 font-bold mb-6 text-blue-950">Providing the best insurance policy to customers</h2>
+            <p className="text-lg leading-10 text-gray-700 mb-8">At Insurath, we are dedicated to providing our customers with the best insurance policies that meet their unique needs. With a wide range of options and personalized service, we strive to ensure that our customers have the coverage they need to protect what matters most.</p>
+            <div className="flex flex-col gap-4 mb-6">
+              <div className="flex gap-3 items-center">
+                <div>
+                  <IconCheckbox size={20} color="#E18126"/>
+                </div>
+                <div>
+                  <p className="text-lg text-blue-950 font-bold">Large number of insurance policies</p>
+                </div>
+              </div>
+              <div className="flex gap-3 items-center">
+                <div>
+                  <IconCheckbox size={20} color="#E18126"/>
+                </div>
+                <div>
+                  <p className="text-lg text-blue-950 font-bold">Experience & qualified agents</p>
+                </div>
+              </div>
+              <div className="flex gap-3 items-center">
+                <div>
+                  <IconCheckbox size={20} color="#E18126"/>
+                </div>
+                <div>
+                  <p className="text-lg text-blue-950 font-bold">Free insurance quotes</p>
+                </div>
+              </div>
             </div>
-          </div>
+            <button className="bg-[#E18126] text-white px-6 py-2 rounded-4xl font-bold mt-4 hover:cursor-pointer">Discover More</button>
+          </motion.div>
         </div>
       </div>
-      <div className="relative py-20 px-10 bg-slate-900 w-full overflow-hidden rounded-4xl max-w-360 mx-auto">
-        <div className="flex">
-          <div className="w-[70%]">
-            <div className="flex flex-col justify-center gap-4">
-              <h5 className="text-5xl text-white font-bold mb-6">Ready to Get Started?</h5>
-              <p className="text-2xl text-white">Join thousands of satisfied customers who trust Insurath for their insurance needs.</p>
+      <div className="bg-white h-auto py-20">
+        <div className="max-w-340 mx-auto flex justify-center items-center flex-col">
+          <div className="max-w-3xl mx-auto mb-8">
+            <div className="flex items-center justify-center">
+              <p className="uppercase font-bold text-gray-600 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl mb-4">Comprehensive Coverage</p>
+            </div>
+            <div>
+              <div className="flex flex-col gap-6 max-w-4xl mx-auto">
+                <div>
+                  <h3 className="text-center text-blue-950 text-5xl font-bold mb-4 flex justify-center gap-3">Choose Your{" "}<PointerHighlight pointerClassName="text-[#E18126]">Insurance Protection</PointerHighlight></h3>
+                </div>
+                <div>
+                  <p className="text-center text-lg leading-10 text-gray-700">We offer a comprehensive range of insurance products to protect what matters most to you.Compare and choose the best plan for your needs.</p>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="w-[30%] flex items-center justify-end">
-            <div className="group relative w-60 cursor-pointer text-left text-lg text-white py-3 flex items-center justify-between">
-              <span>Get Started</span>
-              <IconArrowRight color="#E18126" className="w-5 h-5"/>
-
-              <span className="absolute left-0 bottom-0 h-0.5 w-full bg-white" />
-
-              <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-[#E18126] transition-all duration-300 ease-out group-hover:w-full" />
-            </div>
-          </div>
+          <FocusCards cards={services} />
         </div>
-        <LightRays />
       </div>
-      <div className="py-20">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex flex-col justify-center gap-6 mb-6">
-            <h5 className="text-6xl font-bold text-center">What Our Customers Say</h5>
-            <p className="text-2xl text-center">Don&apos;t just take our word for it. Here&apos;s what our satisfied customers have to say about their experience with Insurath.</p>
+      <div className="h-auto">
+        <div className="max-w-340 relative mx-auto py-20">
+          <div className="flex flex-col gap-6 mb-8 max-w-3xl mx-auto">
+            <h4 className="text-5xl text-blue-950 font-bold text-center">Why Choose Insurath?</h4>
+            <p className="text-lg leading-10 text-center">We are committed to providing you with the best insurance experience with our innovative platform and exceptional service.</p>
+          </div>
+          <div className="grid grid-cols-3 gap-6">
+            {chooseUs.map((item) => (
+              <motion.div initial={{ y: 20, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 1, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} key={item.title} className="col-span-1 p-6 transition border-t-3 border-l-3  rounded-br-4xl rounded-tr-4xl rounded-bl-4xl border-[#E18126]">
+                <div className="flex gap-3">
+                  <div className="flex items-center">
+                    <span className="font-bold text-7xl text-[#E18126]">{item.number}</span>
+                  </div>
+                <div>
+                  <p className="text-xl font-bold mb-2">{item.title}</p>
+                  <p className="text-base">{item.description}</p>
+                </div>
+              </div>
+            </motion.div>
+            ))}
           </div>
         </div>
-        <div className="max-w-360 mx-auto">
-          <CardCarousel items={customers} />
+        <div className="pb-10">
+          <div className="relative p-10 bg-linear-to-br from-[#1185b7] from-20% via-[#07587b] via-50%  to-blue-950 to-90% w-full overflow-hidden rounded-4xl max-w-340 mx-auto">
+            <div className="flex">
+              <div className="w-[70%]">
+                <div className="flex flex-col justify-center gap-4">
+                  <h5 className="text-5xl text-white font-bold mb-4">Ready to Get Started?</h5>
+                  <p className="text-lg text-white">Join thousands of satisfied customers who trust Insurath for their insurance needs.</p>
+                </div>
+              </div>
+              <div className="w-[30%] flex items-center justify-end">
+                <div className="group relative w-60 cursor-pointer text-left text-lg text-white py-3 flex items-center justify-between">
+                  <span>Get Started</span>
+                  <IconArrowRight color="#E18126" className="w-5 h-5"/>
+
+                  <span className="absolute left-0 bottom-0 h-0.5 w-full bg-white" />
+
+                  <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-[#E18126] transition-all duration-300 ease-out group-hover:w-full" />
+                </div>
+              </div>
+            </div>
+            <LightRays />
+          </div>
         </div>
       </div>
       <div className="py-20 bg-white">
-        <div className="max-w-360 mx-auto">
-          <div className="flex flex-col gap-6 justify-center mb-14">
-            <div className="flex justify-center">
-              <div className="rounded-full border border-black/5 bg-slate-900">
-                <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 uppercase">
-                  <span className="flex gap-1 font-bold text-white">Trusted Partners</span>
-                </AnimatedShinyText>
+        <div className="max-w-340 mx-auto">
+          <div className="flex">
+            <div className="w-[40%]">
+              <div className="flex flex-col justify-center gap-6 mb-6">
+                <p className="uppercase font-bold text-gray-600 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl mb-4">About Company</p>
+                <h5 className="text-5xl font-bold text-blue-950 leading-16">What they&apos;re talking about us?</h5>
+                <p className="text-lg leading-10">Don&apos;t just take our word for it. Here&apos;s what our satisfied customers have to say about their experience with Insurath.</p>
               </div>
             </div>
-            <div className="max-w-4xl mx-auto flex flex-col gap-6">
-              <h5 className="text-6xl font-bold text-center leading-18">Trusted by Leading<br/><span className="text-[#E18126]">Insurance Companies</span></h5>
-              <p className="text-2xl text-center">We partner with India&apos;s most trusted insurance companies to bring you the best coverage options at competitive prices.</p>
+            <div className="w-[60%]">
+              <CardCarousel items={customers} />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="bg-linear-to-br from-[#1185b7] from-20% via-[#07587b] via-50%  to-blue-950 to-90% py-10">
+        <div className="max-w-340 mx-auto">
+          <div className="flex gap-6 items-center justify-between">
+            <div className="flex flex-col justify-center">
+              <div className="flex justify-center">
+                <img src={'/assets/happy_customers.png'} alt="Happy Customers" className="h-full"/>
+              </div>
+              <div className="flex flex-col items-center justify-center">
+                <div className="flex">
+                  <NumberTicker value={50000} className="text-white text-4xl font-bold"/><span className="text-white text-4xl font-bold">+</span>
+                </div>
+                <p className="text-white text-base">Happy Customers</p>
+              </div>
+            </div>
+            <div className="flex flex-col justify-center">
+              <div className="flex justify-center">
+                <img src={'/assets/claims_settled.png'} alt="Claims Settled" className="h-full"/>
+              </div>
+              <div className="flex flex-col items-center justify-center">
+                <div className="flex">
+                  <NumberTicker value={500} className="text-white text-4xl font-bold"/><span className="text-white text-4xl font-bold">+</span>
+                </div>
+                <p className="text-white text-base">Claims Settled</p>
+              </div>
+            </div>
+            <div className="flex flex-col justify-center">
+              <div className="flex justify-center">
+                <img src={'/assets/insurance_partners.png'} alt="Insurance Partners" className="h-full"/>
+              </div>
+              <div className="flex flex-col items-center justify-center">
+                <div className="flex">
+                  <NumberTicker value={25} className="text-white text-4xl font-bold"/><span className="text-white text-4xl font-bold">+</span>
+                </div>
+                <p className="text-white text-base">Insurance Partners</p>
+              </div>
+            </div>
+            <div className="flex flex-col justify-center">
+              <div className="flex justify-center">
+                <img src={'/assets/claim_settlement_ratio.png'} alt="Claim Settlement Ratio" className="h-full"/>
+              </div>
+              <div className="flex flex-col items-center justify-center">
+                <div className="flex">
+                  <NumberTicker value={92} className="text-white text-4xl font-bold"/><span className="text-white text-4xl font-bold">+</span>
+                </div>
+                <p className="text-white text-base">Claim Settlement Ratio</p>
+              </div>
+            </div>
+            <div className="flex flex-col justify-center">
+              <div className="flex justify-center">
+                <img src={'/assets/customer_support.png'} alt="Customer Support" className="h-full"/>
+              </div>
+              <div className="flex flex-col items-center justify-center">
+                <div className="flex">
+                  <NumberTicker value={24} className="text-white text-4xl font-bold"/><span className="text-white text-4xl font-bold">/</span><NumberTicker value={7} className="text-white text-4xl font-bold"/>
+                </div>
+                <p className="text-white text-base">Customer Support</p>
+              </div>
+            </div>
+            <div className="flex flex-col justify-center">
+              <div className="flex justify-center">
+                <img src={'/assets/customer_rating.png'} alt="Customer Rating" className="h-full"/>
+              </div>
+              <div className="flex flex-col items-center justify-center">
+                <div className="flex">
+                  <NumberTicker value={48} className="text-white text-4xl font-bold"/><span className="text-white text-4xl font-bold">+</span>
+                </div>
+                <p className="text-white text-base">Customer Rating</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="bg-white relative">
+        <div className="absolute w-full z-10 pointer-events-none select-none">
+          <img src={'/assets/element_two.png'} alt="element" className="w-full"/>
+        </div>
+        <div className="py-20 max-w-340 mx-auto">
+          <div className="flex flex-col gap-6 justify-center mb-14">
+            <div className="flex justify-center">
+              <p className="uppercase font-bold text-gray-600 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl mb-4">Trusted Partners</p>
+            </div>
+            <div className="max-w-3xl mx-auto flex flex-col gap-6">
+              <h5 className="text-5xl font-bold text-blue-950 leading-16 text-center">Trusted by Leading<br/><span className="text-[#E18126]">Insurance Companies</span></h5>
+              <p className="text-lg leading-10 text-center">We partner with India&apos;s most trusted insurance companies to bring you the best coverage options at competitive prices.</p>
             </div>
           </div>
           <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
-            <Marquee pauseOnHover className="[--duration:20s]">
+            <Marquee pauseOnHover className="[--duration:50s]">
               {companies.map((data,index) => (
-                <CompaniesCard key={index+1} data={data.title} {...data} />
+                <CompaniesCard key={index+1} data={data.image} {...data} />
               ))}
             </Marquee>
             <div className="from-background pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-linear-to-r"></div>
@@ -334,16 +378,16 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="relative py-20 overflow-hidden">
+      <div className="relative pt-20 pb-40 overflow-hidden">
         {/* content */}
-        <div className="relative z-10 flex gap-10 max-w-360 mx-auto">
+        <div className="relative z-10 flex gap-10 max-w-340 mx-auto">
           <div className="w-1/2">
             <div className="flex flex-col gap-6 mb-8">
-              <h5 className="text-6xl font-bold">
+              <h5 className="text-5xl leading-18 font-bold">
                 Get Expert Insurance <br />
                 <span className="text-[#E18126]">Consultation Today</span>
               </h5>
-              <p className="text-2xl text-justify">Don&apos;t wait to protect what matters most. <span className="text-[#E18126]">Get personalized guidance</span> from our insurance experts and find the perfect coverage for your needs.</p>
+              <p className="text-lg leading-10 text-justify">Don&apos;t wait to protect what matters most. <span className="text-[#E18126]">Get personalized guidance</span> from our insurance experts and find the perfect coverage for your needs.</p>
             </div>
             <div className="flex flex-col gap-2">
               <div className="bg-transparent border border-[#E18126] rounded-4xl p-5">
@@ -409,13 +453,12 @@ export default function Home() {
           </div>
         </div>
 
-        {/* dot pattern background */}
         <DotPattern
-          width={18}
-          height={18}
-          cx={1.5}
-          cy={1.5}
-          cr={1.5}
+          width={16}
+          height={16}
+          cx={1}
+          cy={1}
+          cr={1}
           className={cn(
             "pointer-events-none absolute inset-0 z-0",
             "mask-[linear-gradient(to_bottom_right,white,transparent,transparent)]"

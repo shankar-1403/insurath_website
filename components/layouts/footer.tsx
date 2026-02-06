@@ -11,101 +11,7 @@ function Footer() {
     return (
         <>
         <footer className='bg-slate-900 pt-10'>
-            <div className='max-w-360 mx-auto py-6'>
-            <div className="flex gap-10">
-                <div className="w-[25%]">
-                    <div className='flex justify-start'>
-                        <Image src={Logo} alt="Insurath Logo" className="h-40" />
-                    </div>
-                    <p className='text-white text-lg'>India&apos;s leading insurance aggregator, helping millions find the best insurance coverage at the most competitive prices with transparent processes.</p>
-                </div>
-                <div className='w-[15%]'>
-                    <h5 className='text-xl text-white font-bold mb-10'>Insurance Products</h5>
-                    <ul className='flex flex-col gap-3'>
-                        <li>
-                            <Link className='text-white text-sm' href={'/products/health-insurance'}>Health Insurance</Link>
-                        </li>
-                        <li>
-                            <Link className='text-white text-sm' href={'/products/life-insurance'}>Life Insurance</Link>
-                        </li>
-                        <li>
-                            <Link className='text-white text-sm' href={'/products/car-insurance'}>Car Insurance</Link>
-                        </li>
-                        <li>
-                            <Link className='text-white text-sm' href={'/products/bike-insurance'}>Bike Insurance</Link>
-                        </li>
-                        <li>    
-                            <Link className='text-white text-sm' href={'/products/travel-insurance'}>Travel Insurance</Link>
-                        </li>
-                        <li>    
-                            <Link className='text-white text-sm' href={'/products/business-insurance'}>Business Insurance</Link>
-                        </li>
-                    </ul>
-                </div>
-                <div className='w-[15%]'>
-                    <h5 className='text-xl text-white font-bold mb-10'>Company</h5>
-                    <ul className='flex flex-col gap-3'>
-                        <li>
-                            <Link className='text-white text-sm' href={'/products/health-insurance'}>About Us</Link>
-                        </li>
-                        <li>
-                            <Link className='text-white text-sm' href={'/products/life-insurance'}>Our Team</Link>
-                        </li>
-                        <li>
-                            <Link className='text-white text-sm' href={'/products/car-insurance'}>Careers</Link>
-                        </li>
-                        <li>
-                            <Link className='text-white text-sm' href={'/products/bike-insurance'}>Press</Link>
-                        </li>
-                        <li>    
-                            <Link className='text-white text-sm' href={'/products/travel-insurance'}>Blog</Link>
-                        </li>
-                        <li>    
-                            <Link className='text-white text-sm' href={'/products/business-insurance'}>Contact Us</Link>
-                        </li>
-                    </ul>
-                </div>
-                <div className='w-[15%]'>
-                    <h5 className='text-xl text-white font-bold mb-10'>Support</h5>
-                    <ul className='flex flex-col gap-3'>
-                        <li>
-                            <Link className='text-white text-sm' href={'/products/health-insurance'}>Help Center</Link>
-                        </li>
-                        <li>
-                            <Link className='text-white text-sm' href={'/products/life-insurance'}>FAQs</Link>
-                        </li>
-                    </ul>
-                </div>
-                <div className='w-[30%]'>
-                    <h5 className='text-xl text-white font-bold mb-10'>Contact Info</h5>
-                    <ul className='flex flex-col gap-3'>
-                        <li>
-                            <Link className='text-white text-sm' href={'tel:9876543210'}><IconPhone className='inline mr-2' color='#E18126' size={20} />+91-9876543210</Link>
-                        </li>
-                        <li>
-                            <Link className='text-white text-sm' href={'mailto:info@insurath.com'}><IconMail className='inline mr-2' color='#E18126' size={20} />info@insurath.com</Link>
-                        </li>
-                        <li>
-                            <div className="flex">
-                                <div>
-                                    <IconMapPin className='inline mr-2' color='#E18126' size={20} />
-                                </div>
-                                <span className='text-white text-sm'>Lodha Supremus, 504, Off Mahakali Caves Rd, Chakala Industrial Area (MIDC), Andheri East, Mumbai, Maharashtra 400093</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div className="flex">
-                                <div>
-                                    <IconClockHour5 className='inline mr-2' color='#E18126' size={20} />
-                                </div>
-                                <span className='text-white text-sm'>Monday - Friday: 9:00 AM - 6:00 PM, Saturday: 10:00 AM - 4:00 PM</span>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            </div>
-            <div className="py-10 border-t border-white/20 max-w-360 mx-auto">
+            <div className="py-10 max-w-4xl mx-auto bg-[#1186B7] rounded-4xl w-full -mt-30">
                 <div className='mb-8'>
                     <h5 className='font-bold text-2xl text-white text-center'>Stay Updated</h5>
                     <p className='text-lg text-white text-center'>Get the latest insurance tips, news, and exclusive offers delivered to your inbox.</p>
@@ -124,7 +30,101 @@ function Footer() {
                     </div>
                 </form>
             </div>
-            <div className='py-5 border-t border-white/20 max-w-360 mx-auto'>
+            <div className='max-w-330 mx-auto py-6'>
+                <div className="flex gap-10">
+                    <div className="w-[25%]">
+                        <div className='flex justify-start'>
+                            <Image src={Logo} alt="Insurath Logo" className="h-40" />
+                        </div>
+                        <p className='text-white text-lg'>India&apos;s leading insurance aggregator, helping millions find the best insurance coverage at the most competitive prices with transparent processes.</p>
+                    </div>
+                    <div className='w-[15%]'>
+                        <h5 className='text-xl text-white font-bold mb-10'>Insurance Products</h5>
+                        <ul className='flex flex-col gap-3'>
+                            <li>
+                                <Link className='text-white text-sm' href={'/products/health-insurance'}>Health Insurance</Link>
+                            </li>
+                            <li>
+                                <Link className='text-white text-sm' href={'/products/life-insurance'}>Life Insurance</Link>
+                            </li>
+                            <li>
+                                <Link className='text-white text-sm' href={'/products/car-insurance'}>Car Insurance</Link>
+                            </li>
+                            <li>
+                                <Link className='text-white text-sm' href={'/products/bike-insurance'}>Bike Insurance</Link>
+                            </li>
+                            <li>    
+                                <Link className='text-white text-sm' href={'/products/travel-insurance'}>Travel Insurance</Link>
+                            </li>
+                            <li>    
+                                <Link className='text-white text-sm' href={'/products/business-insurance'}>Business Insurance</Link>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className='w-[15%]'>
+                        <h5 className='text-xl text-white font-bold mb-10'>Company</h5>
+                        <ul className='flex flex-col gap-3'>
+                            <li>
+                                <Link className='text-white text-sm' href={'/products/health-insurance'}>About Us</Link>
+                            </li>
+                            <li>
+                                <Link className='text-white text-sm' href={'/products/life-insurance'}>Our Team</Link>
+                            </li>
+                            <li>
+                                <Link className='text-white text-sm' href={'/products/car-insurance'}>Careers</Link>
+                            </li>
+                            <li>
+                                <Link className='text-white text-sm' href={'/products/bike-insurance'}>Press</Link>
+                            </li>
+                            <li>    
+                                <Link className='text-white text-sm' href={'/products/travel-insurance'}>Blog</Link>
+                            </li>
+                            <li>    
+                                <Link className='text-white text-sm' href={'/products/business-insurance'}>Contact Us</Link>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className='w-[15%]'>
+                        <h5 className='text-xl text-white font-bold mb-10'>Support</h5>
+                        <ul className='flex flex-col gap-3'>
+                            <li>
+                                <Link className='text-white text-sm' href={'/products/health-insurance'}>Help Center</Link>
+                            </li>
+                            <li>
+                                <Link className='text-white text-sm' href={'/products/life-insurance'}>FAQs</Link>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className='w-[30%]'>
+                        <h5 className='text-xl text-white font-bold mb-10'>Contact Info</h5>
+                        <ul className='flex flex-col gap-3'>
+                            <li>
+                                <Link className='text-white text-sm' href={'tel:9876543210'}><IconPhone className='inline mr-2' color='#E18126' size={20} />+91-9876543210</Link>
+                            </li>
+                            <li>
+                                <Link className='text-white text-sm' href={'mailto:info@insurath.com'}><IconMail className='inline mr-2' color='#E18126' size={20} />info@insurath.com</Link>
+                            </li>
+                            <li>
+                                <div className="flex">
+                                    <div>
+                                        <IconMapPin className='inline mr-2' color='#E18126' size={20} />
+                                    </div>
+                                    <span className='text-white text-sm'>Lodha Supremus, 504, Off Mahakali Caves Rd, Chakala Industrial Area (MIDC), Andheri East, Mumbai, Maharashtra 400093</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div className="flex">
+                                    <div>
+                                        <IconClockHour5 className='inline mr-2' color='#E18126' size={20} />
+                                    </div>
+                                    <span className='text-white text-sm'>Monday - Friday: 9:00 AM - 6:00 PM, Saturday: 10:00 AM - 4:00 PM</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div className='py-5 border-t border-white/20 max-w-330 mx-auto'>
                 <div className="flex justify-between items-center">
                     <div className='w-[33.33%]'>
                         <p className="text-white text-sm">© {currentYear} Insurath. All rights reserved.</p>
