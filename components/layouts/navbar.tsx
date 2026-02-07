@@ -25,20 +25,21 @@ export default function MainNavbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Navbar>
-      {/* Desktop Navbar */}
-      <NavBody>
-        <NavbarLogo />
-        <NavItems items={navItems} />
-        <div className="flex items-center gap-2 z-60">
-          <Link href="/contact">
-            <button className="px-4 py-4 bg-blue-950 text-white rounded-full cursor-pointer flex items-center gap-1">
-              <IconPhone className="w-6 h-6" /> Contact
-            </button>
-          </Link>
-        </div>
-      </NavBody>
-
+    <>
+      <Navbar>
+        {/* Desktop Navbar */}
+        <NavBody>
+          <NavbarLogo />
+          <NavItems items={navItems} />
+          <div className="flex items-center gap-2 z-60">
+            <Link href="/contact">
+              <button className="px-4 py-4 bg-blue-950 text-white rounded-full cursor-pointer flex items-center gap-1">
+                <IconPhone className="w-6 h-6" /> Contact
+              </button>
+            </Link>
+          </div>
+        </NavBody>
+      </Navbar>
       {/* Mobile Navbar */}
       <MobileNav>
         <MobileNavHeader>
@@ -62,6 +63,6 @@ export default function MainNavbar() {
           ))}
         </MobileNavMenu>
       </MobileNav>
-    </Navbar>
+    </>
   );
 }

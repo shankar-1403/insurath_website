@@ -1,10 +1,12 @@
-"use client"; 
+"use client";
 
+import React, { useState, useEffect } from "react";
 import MainNavbar from "@/components/layouts/navbar";
 import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
-import {IconShieldFilled,IconCoins,IconCash,IconArrowRight,IconCheckbox} from "@tabler/icons-react";
+import {IconShieldFilled,IconCash,IconArrowRight,IconCheckbox} from "@tabler/icons-react";
 import { motion } from "motion/react";
 import { NumberTicker } from "@/components/ui/number-ticker";
+import axios from 'axios';
 import Link from "next/link";
 import { LightRays } from "@/components/ui/light-rays";
 import CardCarousel from "@/components/ui/carousel";
@@ -23,6 +25,7 @@ import { PointerHighlight } from "@/components/ui/pointer-highlight";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { FocusCards } from "@/components/ui/focus-cards";
 
+
 const CompaniesCard = ({data}: {data: string}) => {
   return (
     <figure
@@ -36,8 +39,156 @@ const CompaniesCard = ({data}: {data: string}) => {
     </figure>
   )
 }
-
 export default function Home() {
+  const [formData, setFormData] = useState({full_name:"", email_id:"", phone_number:"", insurance_type:"",coverage_type:"",existing_health_insurance:""});
+  const [step, setStep] = useState(1);
+  type FormErrors = Partial<Record<keyof typeof formData, string>>;
+  const [error, setError] = useState<FormErrors>({})
+  const [loading, setLoading] = useState(false);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  }
+
+  const validateFormData = ()=>{
+    const errors: FormErrors = {};
+    if(step === 1){
+      if(!formData.full_name.trim()){
+        errors.full_name = "Full Name is required"
+      } else if (!/^[a-zA-Z\\s]+$/.test(formData.full_name)){
+        errors.full_name = "Enter a valid name";
+      }
+
+      if (!formData.email_id.trim()) {
+        errors.email_id = "Email is required";
+      } else if (
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email_id)
+      ) {
+        errors.email_id = "Enter a valid email address";
+      }
+
+      if(!formData.phone_number.trim()){
+        errors.phone_number = 'Phone Number is required';
+      } else if (!/^\d{12}$/.test(formData.phone_number)) {
+        errors.phone_number = "Phone number must be 12 digits";
+      }
+
+      if(!formData.insurance_type.trim()){
+        errors.insurance_type = "Insurance Type is required"
+      }
+    }
+
+    if (step === 2) {
+      if (!formData.coverage_type.trim()) {
+        errors.coverage_type = "Coverage type is required";
+      }
+
+      if (!formData.existing_health_insurance.trim()) {
+        errors.existing_health_insurance =
+          "Please specify existing health insurance";
+      }
+    }
+    return errors;
+  }
+
+  const submitForm = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const validationErrors = validateFormData();
+    if (Object.keys(validationErrors).length > 0) {
+      setError(validationErrors);
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const storedId = localStorage.getItem("id");
+
+      // -------- STEP 1 --------
+      if (step === 1) {
+        const firstForm = {
+          full_name: formData.full_name,
+          email_id: formData.email_id,
+          phone_number: formData.phone_number,
+          insurance_type: formData.insurance_type,
+        };
+
+        let response;
+
+        // CREATE
+        if (!storedId) {
+          response = await axios.post("/api/home", firstForm);
+          localStorage.setItem("id", response.data.id);
+        }
+        // UPDATE
+        else {
+          response = await axios.patch("/api/home", {
+            id: storedId,
+            ...firstForm,
+          });
+        }
+
+        // persist step 1 data
+        localStorage.setItem("step1", JSON.stringify(firstForm));
+
+        // keep form state in sync
+        setFormData((prev) => ({
+          ...prev,
+          ...firstForm,
+        }));
+
+        setStep(2);
+        return;
+      }
+
+      // -------- STEP 2 --------
+      if (step === 2 && storedId) {
+        await axios.patch("/api/home", {
+          id: storedId,
+          coverage_type: formData.coverage_type,
+          existing_health_insurance: formData.existing_health_insurance,
+        });
+
+        // FINAL CLEANUP
+        localStorage.clear();
+        setStep(1);
+        setFormData({
+          full_name: "",
+          email_id: "",
+          phone_number: "",
+          insurance_type: "",
+          coverage_type: "",
+          existing_health_insurance: "",
+        });
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
+  useEffect(() => {
+    const storedId = localStorage.getItem("id");
+    const step1Data = localStorage.getItem("step1");
+
+    if (storedId && step1Data) {
+      setFormData((prev) => ({
+        ...prev,
+        ...JSON.parse(step1Data),
+      }));
+      setStep(2);
+    } else {
+      setStep(1);
+    }
+  }, []);
+
+
   const services = [
     { name: "Health Insurance", image: health_insurance, description: "Comprehensive health coverage for you and your family with cashless treatment at 10,000+ hospitals nationwide.",rating:"4.8",review:"1250",link:"/" },
     { name: "Life Insurance", image: life_insurance, description: "Secure your family's future with comprehensive life insurance coverage and flexible premium options.",rating:"4.7",review:"980",link:"/" },
@@ -80,67 +231,123 @@ export default function Home() {
         }} className="absolute top-40 left-20 -rotate-20">
         <IconShieldFilled size={100} color="#E18126" opacity={0.1} />
       </motion.div>
-      <motion.div animate={{ y: [0, 40, 0] }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }} className="absolute top-150 right-20 rotate-20">
-        <IconCoins size={100} color="#E18126" opacity={0.1} />
-      </motion.div>
       <motion.div animate={{ y: [0, 80, 0] }}
         transition={{
           duration: 10,
           repeat: Infinity,
           ease: "easeInOut",
-        }} className="absolute top-120 left-20 rotate-10">
+        }} className="absolute top-80 lg:top-120 left-20 rotate-10">
         <IconCash size={100} color="#E18126" opacity={0.1} />
       </motion.div>
-      <div className="bg-linear-to-br from-blue-950 via-[#1186B7] to-[#884001] h-screen pt-50 pb-20">
-        <div className="max-w-340 mx-auto">
-          <div className="flex gap-6">
-            <motion.div initial={{ x: -30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-[60%]">
+      <div className="bg-linear-to-br from-blue-950 via-[#1186B7] to-[#884001] pt-20 md:pt-40 lg:pt-50 pb-20">
+        <div className="px-10 md:px-0 md:max-w-2xl lg:max-w-340 mx-auto">
+          <div className="flex gap-4 md:gap-2 lg:gap-6">
+            <motion.div initial={{ x: -30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-[60%]">
               <div className="flex items-center justify-start mb-2">
                 <div className="rounded-full border border-black/5 bg-neutral-100">
                   <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 uppercase">
-                    <span className="flex gap-1 font-bold">Protection for All</span>
+                    <span className="flex gap-1 font-bold text-sm md:text-sm lg:text-base">Protection for All</span>
                   </AnimatedShinyText>
                 </div>
               </div>
               <div className="flex flex-col items-start justify-center gap-10">
-                <h1 className="text-left text-white text-7xl font-bold text-shadow-lg">Insurance Made<br/><span className="text-[#E18126]">Simple & Affordable</span></h1>
-                <p className="text-left text-white text-2xl text-shadow-lg">Get expert guidance and find the perfect insurance policies from top companies. <span className="text-[#E18126]">Protect what matters most to you</span> with personalized recommendations and comprehensive coverage.</p>
+                <h1 className="text-left text-white text-2xl md:text-4xl lg:text-7xl font-bold text-shadow-lg">Insurance Made<br/><span className="text-[#E18126]">Simple & Affordable</span></h1>
+                <p className="text-left text-white text-lg md:text-lg lg:text-2xl text-shadow-lg">Get expert guidance and find the perfect insurance policies from top companies. <span className="text-[#E18126]">Protect what matters most to you</span> with personalized recommendations and comprehensive coverage.</p>
               </div>
-              <div className="flex gap-6 mt-20">
+              <div className="flex gap-6 mt-15 md:mt-15 lg:mt-20">
                 <div>
                   <InteractiveHoverButton>Learn More</InteractiveHoverButton>
                 </div>
               </div>
             </motion.div>
-            <motion.div initial={{ x: 30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-[40%]">
-              <form action="submit" className="bg-white shadow-lg rounded-4xl p-6">
-                <h2 className="text-3xl font-bold mb-4">Request a Free Quote</h2>
-                <div className="flex flex-col gap-4">
-                  <input type="text" placeholder="Full Name" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
-                  <input type="email" placeholder="Email Address" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
-                  <input type="number" placeholder="Phone Number" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
-                  <select className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                    <option>Select Insurance Type</option>
-                    <option value="life">Life Insurance</option>             
-                    <option value="health">Health Insurance</option>
-                    <option value="auto">Auto Insurance</option>
-                    <option value="home">Home Insurance</option>
-                    <option value="travel">Travel Insurance</option>
-                    <option value="business">Business Insurance</option>
-                  </select>
-                  <button type="submit" className="bg-[#E18126] text-white px-4 py-2 rounded-4xl font-bold mt-4">Get Expert Consultation</button>
-                </div>  
+            <motion.div initial={{ x: 30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-[40%]">
+              <form onSubmit={submitForm} className="bg-white shadow-lg rounded-4xl p-6">
+                <h2 className="text-xl md:text-xl lg:text-3xl font-bold mb-4">Request a Free Quote</h2>
+                <ol className="flex items-center w-full justify-between mb-6 sm:mb-8 px-6">
+                  {/* STEP 1 */}
+                  <li
+                    className={`flex items-center w-full ${
+                      step >= 2
+                        ? "text-fg-brand after:border-brand-subtle"
+                        : "text-neutral-400 after:border-neutral-300"}`}
+                  >
+                    <span
+                      className={`flex items-center justify-center rounded-full shrink-0 transition-all duration-300
+                        w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12
+                        ${
+                          step >= 2
+                            ? "bg-brand-softer text-fg-brand"
+                            : "bg-neutral-tertiary text-body"
+                        }`}
+                    >
+                      <span className="text-sm sm:text-base font-bold text-center">Personal Information</span>
+                    </span>
+                  </li>
+
+                  {/* STEP 2 */}
+                  <li className="flex items-center">
+                    <span
+                      className={`flex items-center justify-center rounded-full shrink-0 transition-all duration-300
+                        w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12
+                        ${
+                          step === 2
+                            ? "bg-brand-softer text-fg-brand"
+                            : "bg-neutral-tertiary text-body"
+                        }`}
+                    >
+                      <span className="text-sm sm:text-base font-bold text-center">Insurance Needs</span>
+                    </span>
+                  </li>
+                </ol>
+
+
+                {step === 1 && (
+                  <div className="flex flex-col gap-4">
+                    <div>
+                      <input type="text" name="full_name" onChange={handleChange} value={formData.full_name} placeholder="Full Name" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
+                      {error.full_name && <span className="text-sm text-red-500">{error.full_name}</span>}
+                    </div>
+                    <div>
+                      <input type="email" name="email_id" onChange={handleChange} value={formData.email_id} placeholder="Email Address" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
+                      {error.email_id && <span className="text-sm text-red-500">{error.email_id}</span>}
+                    </div>
+                    <div>
+                      <input type="text" name="phone_number" onChange={handleChange} value={formData.phone_number} placeholder="Phone Number" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
+                      {error.phone_number && <span className="text-sm text-red-500">{error.phone_number}</span>}
+                    </div>
+                    <div>
+                      <select name="insurance_type" onChange={handleChange} value={formData.insurance_type} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                        <option>Select Insurance Type</option>
+                        <option value="Life Insurance">Life Insurance</option>             
+                        <option value="Health Insurance">Health Insurance</option>
+                        <option value="Car Insurance">Car Insurance</option>
+                        <option value="Bike Insurance">Bike Insurance</option>
+                        <option value="Travel Insurance">Travel Insurance</option>
+                        <option value="Business Insurance">Business Insurance</option>
+                      </select>
+                      {error.insurance_type && <span className="text-sm text-red-500">{error.insurance_type}</span>}
+                    </div>
+                    <div className="flex justify-end">
+                      <button type="submit" className="bg-[#E18126] text-white px-4 py-2 rounded-4xl font-bold mt-4 cursor-pointer">{loading ? 'Submitting...':'Next'}</button>
+                    </div>
+                  </div>  
+                )}
+                {step === 2 && (
+                  <div className="flex flex-col gap-4">
+                    <input type="text" name="coverage_type" onChange={handleChange} value={formData.coverage_type} placeholder="Select Coverage Type" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
+                    <input type="text" name="existing_health_insurance" onChange={handleChange} value={formData.existing_health_insurance} placeholder="Existing Health Insurance" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
+                    <div className="flex justify-between">
+                      <button type="button" onClick={()=>setStep(1)} className="bg-gray-400 text-white px-4 py-2 rounded-4xl font-bold mt-4 cursor-pointer">Back</button>
+                      <button type="submit" className="bg-[#E18126] text-white px-4 py-2 rounded-4xl font-bold mt-4 cursor-pointer">{loading ? 'Submitting...':'Submit'}</button>
+                    </div>
+                  </div>  
+                )}
               </form>
             </motion.div>
           </div>
         </div>
       </div>
-      <div className="h-screen py-20">
+      <div className="py-20">
         <div className="absolute w-full pointer-events-none select-none">
           <img src={'/assets/element.png'} alt="element" className="w-full"/>
         </div>
