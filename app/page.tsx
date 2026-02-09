@@ -40,14 +40,21 @@ const CompaniesCard = ({data}: {data: string}) => {
   )
 }
 export default function Home() {
-  const [formData, setFormData] = useState({full_name:"", email_id:"", phone_number:"", insurance_type:"",coverage_type:"",existing_health_insurance:""});
-  const [step, setStep] = useState(1);
+  const [formData, setFormData] = useState({full_name:"", email_id:"", phone_number:"", insurance_type:""});
+  const [formDataTwo, setFormDataTwo] = useState({full_name_two:"", email_id_two:"", phone_number_two:"", insurance_type_two:"",message:""})
   type FormErrors = Partial<Record<keyof typeof formData, string>>;
+  type FormErrorsTwo = Partial<Record<keyof typeof formDataTwo, string>>;
   const [error, setError] = useState<FormErrors>({})
+  const [errorTwo, setErrorTwo] = useState<FormErrorsTwo>({})
   const [loading, setLoading] = useState(false);
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    setFormDataTwo((prev) => ({
       ...prev,
       [name]: value,
     }));
@@ -55,10 +62,9 @@ export default function Home() {
 
   const validateFormData = ()=>{
     const errors: FormErrors = {};
-    if(step === 1){
       if(!formData.full_name.trim()){
         errors.full_name = "Full Name is required"
-      } else if (!/^[a-zA-Z\\s]+$/.test(formData.full_name)){
+      } else if (!/^[A-Za-z]+(?: [A-Za-z]+)*$/.test(formData.full_name)){
         errors.full_name = "Enter a valid name";
       }
 
@@ -72,25 +78,45 @@ export default function Home() {
 
       if(!formData.phone_number.trim()){
         errors.phone_number = 'Phone Number is required';
-      } else if (!/^\d{12}$/.test(formData.phone_number)) {
+      } else if (!/^\d{10,12}$/.test(formData.phone_number)) {
         errors.phone_number = "Phone number must be 12 digits";
       }
 
       if(!formData.insurance_type.trim()){
         errors.insurance_type = "Insurance Type is required"
       }
-    }
+    return errors;
+  }
 
-    if (step === 2) {
-      if (!formData.coverage_type.trim()) {
-        errors.coverage_type = "Coverage type is required";
+  const validateFormDataTwo = ()=>{
+    const errors: FormErrorsTwo = {};
+      if(!formDataTwo.full_name_two.trim()){
+        errors.full_name_two = "Full Name is required"
+      } else if (!/^[A-Za-z]+(?: [A-Za-z]+)*$/.test(formDataTwo.full_name_two)){
+        errors.full_name_two = "Enter a valid name";
       }
 
-      if (!formData.existing_health_insurance.trim()) {
-        errors.existing_health_insurance =
-          "Please specify existing health insurance";
+      if (!formDataTwo.email_id_two.trim()) {
+        errors.email_id_two = "Email is required";
+      } else if (
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formDataTwo.email_id_two)
+      ) {
+        errors.email_id_two = "Enter a valid email address";
       }
-    }
+
+      if(!formDataTwo.phone_number_two.trim()){
+        errors.phone_number_two = 'Phone Number is required';
+      } else if (!/^\d{10,12}$/.test(formDataTwo.phone_number_two)) {
+        errors.phone_number_two = "Phone number must be 12 digits";
+      }
+
+      if(!formDataTwo.insurance_type_two.trim()){
+        errors.insurance_type_two = "Insurance Type is required"
+      }
+
+      if(!formDataTwo.message.trim()){
+        errors.message = "Message is required"
+      }
     return errors;
   }
 
@@ -104,67 +130,16 @@ export default function Home() {
     }
 
     setLoading(true);
-
     try {
-      const storedId = localStorage.getItem("id");
-
-      // -------- STEP 1 --------
-      if (step === 1) {
-        const firstForm = {
-          full_name: formData.full_name,
-          email_id: formData.email_id,
-          phone_number: formData.phone_number,
-          insurance_type: formData.insurance_type,
-        };
-
-        let response;
-
-        // CREATE
-        if (!storedId) {
-          response = await axios.post("/api/home", firstForm);
-          localStorage.setItem("id", response.data.id);
-        }
-        // UPDATE
-        else {
-          response = await axios.patch("/api/home", {
-            id: storedId,
-            ...firstForm,
-          });
-        }
-
-        // persist step 1 data
-        localStorage.setItem("step1", JSON.stringify(firstForm));
-
-        // keep form state in sync
-        setFormData((prev) => ({
-          ...prev,
-          ...firstForm,
-        }));
-
-        setStep(2);
-        return;
+      const payload = {
+        full_name: formData.full_name,
+        email_id: formData.email_id,
+        phone_number: formData.phone_number,
+        insurance_type: formData.insurance_type,
+        type: 'Home Banner',
       }
-
-      // -------- STEP 2 --------
-      if (step === 2 && storedId) {
-        await axios.patch("/api/home", {
-          id: storedId,
-          coverage_type: formData.coverage_type,
-          existing_health_insurance: formData.existing_health_insurance,
-        });
-
-        // FINAL CLEANUP
-        localStorage.clear();
-        setStep(1);
-        setFormData({
-          full_name: "",
-          email_id: "",
-          phone_number: "",
-          insurance_type: "",
-          coverage_type: "",
-          existing_health_insurance: "",
-        });
-      }
+      await axios.post("/api/home/first", payload);
+      setFormData({full_name:"", email_id:"", phone_number:"", insurance_type:""});
     } catch (error) {
       console.error("Form submission error:", error);
     } finally {
@@ -172,22 +147,33 @@ export default function Home() {
     }
   };
 
+  const submitFormTwo = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-  useEffect(() => {
-    const storedId = localStorage.getItem("id");
-    const step1Data = localStorage.getItem("step1");
-
-    if (storedId && step1Data) {
-      setFormData((prev) => ({
-        ...prev,
-        ...JSON.parse(step1Data),
-      }));
-      setStep(2);
-    } else {
-      setStep(1);
+    const validationErrors = validateFormDataTwo();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrorTwo(validationErrors);
+      return;
     }
-  }, []);
 
+    setLoading(true);
+    try {
+      const payload = {
+        full_name_two: formDataTwo.full_name_two,
+        email_id_two: formDataTwo.email_id_two,
+        phone_number_two: formDataTwo.phone_number_two,
+        insurance_type_two: formDataTwo.insurance_type_two,
+        message:formDataTwo.message,
+        type: 'Home Footer',
+      }
+      await axios.post("/api/home/second", payload);
+      setFormDataTwo({ full_name_two: "", email_id_two: "", phone_number_two: "", insurance_type_two:"",message:""});
+    } catch (error) {
+      console.error("Form submission error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const services = [
     { name: "Health Insurance", image: health_insurance, description: "Comprehensive health coverage for you and your family with cashless treatment at 10,000+ hospitals nationwide.",rating:"4.8",review:"1250",link:"/" },
@@ -263,45 +249,6 @@ export default function Home() {
             <motion.div initial={{ x: 30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-[40%]">
               <form onSubmit={submitForm} className="bg-white shadow-lg rounded-4xl p-6">
                 <h2 className="text-xl md:text-xl lg:text-3xl font-bold mb-4">Request a Free Quote</h2>
-                <ol className="flex items-center w-full justify-between mb-6 sm:mb-8 px-6">
-                  {/* STEP 1 */}
-                  <li
-                    className={`flex items-center w-full ${
-                      step >= 2
-                        ? "text-fg-brand after:border-brand-subtle"
-                        : "text-neutral-400 after:border-neutral-300"}`}
-                  >
-                    <span
-                      className={`flex items-center justify-center rounded-full shrink-0 transition-all duration-300
-                        w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12
-                        ${
-                          step >= 2
-                            ? "bg-brand-softer text-fg-brand"
-                            : "bg-neutral-tertiary text-body"
-                        }`}
-                    >
-                      <span className="text-sm sm:text-base font-bold text-center">Personal Information</span>
-                    </span>
-                  </li>
-
-                  {/* STEP 2 */}
-                  <li className="flex items-center">
-                    <span
-                      className={`flex items-center justify-center rounded-full shrink-0 transition-all duration-300
-                        w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12
-                        ${
-                          step === 2
-                            ? "bg-brand-softer text-fg-brand"
-                            : "bg-neutral-tertiary text-body"
-                        }`}
-                    >
-                      <span className="text-sm sm:text-base font-bold text-center">Insurance Needs</span>
-                    </span>
-                  </li>
-                </ol>
-
-
-                {step === 1 && (
                   <div className="flex flex-col gap-4">
                     <div>
                       <input type="text" name="full_name" onChange={handleChange} value={formData.full_name} placeholder="Full Name" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
@@ -327,21 +274,8 @@ export default function Home() {
                       </select>
                       {error.insurance_type && <span className="text-sm text-red-500">{error.insurance_type}</span>}
                     </div>
-                    <div className="flex justify-end">
-                      <button type="submit" className="bg-[#E18126] text-white px-4 py-2 rounded-4xl font-bold mt-4 cursor-pointer">{loading ? 'Submitting...':'Next'}</button>
-                    </div>
+                    <button type="submit" className="bg-[#E18126] text-white px-4 py-2 rounded-4xl font-bold mt-4 cursor-pointer">{loading ? 'Submitting...':'Get Expert Consultation'}</button>
                   </div>  
-                )}
-                {step === 2 && (
-                  <div className="flex flex-col gap-4">
-                    <input type="text" name="coverage_type" onChange={handleChange} value={formData.coverage_type} placeholder="Select Coverage Type" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
-                    <input type="text" name="existing_health_insurance" onChange={handleChange} value={formData.existing_health_insurance} placeholder="Existing Health Insurance" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
-                    <div className="flex justify-between">
-                      <button type="button" onClick={()=>setStep(1)} className="bg-gray-400 text-white px-4 py-2 rounded-4xl font-bold mt-4 cursor-pointer">Back</button>
-                      <button type="submit" className="bg-[#E18126] text-white px-4 py-2 rounded-4xl font-bold mt-4 cursor-pointer">{loading ? 'Submitting...':'Submit'}</button>
-                    </div>
-                  </div>  
-                )}
               </form>
             </motion.div>
           </div>
@@ -637,24 +571,39 @@ export default function Home() {
           </div>
 
           <div className="w-1/2">
-            <form action="submit" className="bg-white shadow-lg rounded-4xl p-6">
+            <form onSubmit={submitFormTwo} className="bg-white shadow-lg rounded-4xl p-6">
               <h5 className="text-3xl font-bold mb-4">Get Expert Consultation</h5>
               <p className="text-2xl mb-8">Fill in your details and we&apos;ll get back to you within 24 hours with personalized insurance guidance.</p>
               <div className="flex flex-col gap-4">
-                <input type="text" placeholder="Full Name" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
-                <input type="email" placeholder="Email Address" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
-                <input type="number" placeholder="Phone Number" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
-                <select className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                  <option>Select Insurance Type</option>
-                  <option value="life">Life Insurance</option>             
-                  <option value="health">Health Insurance</option>
-                  <option value="auto">Auto Insurance</option>
-                  <option value="home">Home Insurance</option>
-                  <option value="travel">Travel Insurance</option>
-                  <option value="business">Business Insurance</option>
-                </select>
-                <textarea name="message" id="message" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" rows={7} placeholder="Message"></textarea>
-                <button type="submit" className="bg-[#E18126] text-white px-4 py-2 rounded-4xl font-bold mt-4">Get Expert Consultation</button>
+                <div>
+                  <input type="text" name="full_name_two" onChange={handleChange} value={formDataTwo.full_name_two} placeholder="Full Name" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
+                  {errorTwo.full_name_two && <span className="text-sm text-red-500">{errorTwo.full_name_two}</span>}
+                </div>
+                <div>
+                  <input type="email" name="email_id_two" onChange={handleChange} value={formDataTwo.email_id_two} placeholder="Email Address" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
+                  {errorTwo.email_id_two && <span className="text-sm text-red-500">{errorTwo.email_id_two}</span>}
+                </div>
+                <div>
+                  <input type="text" name="phone_number_two" onChange={handleChange} value={formDataTwo.phone_number_two} placeholder="Phone Number" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
+                  {errorTwo.phone_number_two && <span className="text-sm text-red-500">{errorTwo.phone_number_two}</span>}
+                </div>
+                <div>
+                  <select name="insurance_type_two" onChange={handleChange} value={formDataTwo.insurance_type_two} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                    <option>Select Insurance Type</option>
+                    <option value="Life Insurance">Life Insurance</option>             
+                    <option value="Health Insurance">Health Insurance</option>
+                    <option value="Car Insurance">Car Insurance</option>
+                    <option value="Bike Insurance">Bike Insurance</option>
+                    <option value="Travel Insurance">Travel Insurance</option>
+                    <option value="Business Insurance">Business Insurance</option>
+                  </select>
+                  {errorTwo.insurance_type_two && <span className="text-sm text-red-500">{errorTwo.insurance_type_two}</span>}
+                </div>
+                <div>
+                  <textarea name="message" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" onChange={handleChange} value={formDataTwo.message} rows={7} placeholder="Message"></textarea>
+                  {errorTwo.message && <span className="text-sm text-red-500">{errorTwo.message}</span>}
+                </div>
+                <button type="submit" className="bg-[#E18126] text-white px-4 py-2 w-full rounded-4xl font-bold mt-4 cursor-pointer">{loading ? 'Submitting...':'Get Expert Consultation'}</button>
               </div>  
             </form>
           </div>

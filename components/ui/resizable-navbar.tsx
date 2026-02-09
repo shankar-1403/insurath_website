@@ -149,7 +149,7 @@ export const NavItems = ({ items }: { items: NavItem[] }) => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
-                className="absolute left-1/2 top-full mt-2 w-60 -translate-x-1/2 rounded-xl bg-white shadow-xl border"
+                className="absolute left-1/2 top-full mt-2 w-60 -translate-x-1/2 rounded-xl bg-white shadow-xl border overflow-hidden"
               >
                 {item.children.map((child) => (
                   <Link
