@@ -163,10 +163,10 @@ export default function CardCarousel({ items }: Props) {
                 <img src="/assets/inverted_coma.png" alt="comma" className="h-15 w-15"/>
               </div>
               <div className="mb-2">
-                <h5 className="text-base md:text-2xl text-slate-900 font-semibold mb-1">
+                <h5 className="text-base md:text-2xl text-blue-950 font-semibold">
                   {item.name}
                 </h5>
-                <p className="text-sm md:text-base text-slate-600">{item.designation}</p>
+                <p className="text-sm md:text-base text-gray-600">{item.designation}</p>
               </div>
               
               <div className="flex mb-6">
@@ -174,7 +174,7 @@ export default function CardCarousel({ items }: Props) {
                   <svg key={i} className="w-5 h-5 flex text-[#E18126]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/></svg>
                 ))}
               </div>
-              <p className="text-sm md:text-base lg:text-base text-black leading-6">
+              <p className="text-sm md:text-base lg:text-base text-gray-600 leading-6">
                 {item.description}
               </p>
             </div>
@@ -186,14 +186,14 @@ export default function CardCarousel({ items }: Props) {
       <div className="flex justify-between w-full absolute -mt-40">
         <button
           onClick={() => scrollByOne("left")}
-          className="flex -ml-12 rounded-full bg-blue-950 p-2 shadow hover:scale-110 transition cursor-pointer"
+          className="flex rounded-full bg-blue-950 p-2 shadow hover:scale-110 transition cursor-pointer"
         >
           <ChevronLeft color="white"/>
         </button>
 
         <button
           onClick={() => scrollByOne("right")}
-          className="flex -mr-12 rounded-full bg-blue-950 p-2 shadow hover:scale-110 transition cursor-pointer"
+          className="flex rounded-full bg-blue-950 p-2 shadow hover:scale-110 transition cursor-pointer"
         >
           <ChevronRight color="white"/>
         </button>

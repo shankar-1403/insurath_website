@@ -1,4 +1,5 @@
 "use client";
+
 import { cn } from "@/lib/utils";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "motion/react";
@@ -170,6 +171,19 @@ export const NavItems = ({ items }: { items: NavItem[] }) => {
 };
 
 export const MobileNav = ({ children, className }: MobileNavProps) => {
+  return (
+    <motion.div
+      className={cn(`z-50 flex w-full top-5 flex-col items-center justify-between px-0 py-2 fixed lg:hidden `, className )}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+export const MobileNavHeader = ({
+  children,
+  className,
+}: MobileNavHeaderProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll({
     target: ref,
@@ -185,26 +199,9 @@ export const MobileNav = ({ children, className }: MobileNavProps) => {
     }
   });
   return (
-    <motion.div
-      ref={ref}
-      className={cn(`z-50 flex w-full max-w-3xl mx-auto top-5 flex-col items-center justify-between px-0 py-2 fixed lg:hidden ${visible ? "bg-white/80 border-white backdrop-blur-md shadow-lg" : "border-transparent"} rounded-full
-      `, className )}
-    >
-      {children}
-    </motion.div>
-  );
-};
-
-export const MobileNavHeader = ({
-  children,
-  className,
-}: MobileNavHeaderProps) => {
-  return (
     <div
-      className={cn(
-        "flex w-full flex-row items-center justify-between",
-        className,
-      )}
+      ref={ref}
+      className={`flex w-full max-w-180 mx-auto flex-row items-center justify-between ${visible ? "bg-white/80 border-white backdrop-blur-md shadow-lg" : "border-transparent"} rounded-full`}
     >
       {children}
     </div>
