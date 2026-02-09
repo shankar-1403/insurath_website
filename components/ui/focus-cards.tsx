@@ -12,6 +12,7 @@ export const Card = React.memo(
     hovered,
     setHovered,
   }: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     card: any;
     index: number;
     hovered: number | null;
@@ -59,7 +60,7 @@ export const Card = React.memo(
                 </span>
               </div>
 
-              <button className="w-full rounded-full bg-white py-3 text-sm font-semibold text-black cursor-pointer">Read More</button>
+              <button className="w-full rounded-full bg-white py-3 text-sm font-semibold text-black cursor-pointer">Get Insured</button>
             </div>
           </div>
 
@@ -100,7 +101,7 @@ export const Card = React.memo(
                 </span>
               </div>
 
-              <button className="w-full rounded-full bg-white py-3 text-sm font-semibold text-black cursor-pointer">Read More</button>
+              <button className="w-full rounded-full bg-white py-3 text-sm font-semibold text-black cursor-pointer">Get Insured</button>
             </div>
           </div>
 

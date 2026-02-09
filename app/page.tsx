@@ -225,7 +225,7 @@ export default function Home() {
         }} className="absolute top-80 lg:top-120 left-20 rotate-10">
         <IconCash size={100} color="#E18126" opacity={0.1} />
       </motion.div>
-      <div className="bg-linear-to-br from-blue-950 via-[#1186B7] to-[#884001] pt-20 md:pt-40 lg:pt-50 pb-20">
+      <div className="bg-linear-to-br from-blue-950 via-[#1186B7] to-[#884001] pt-20 md:pt-40 lg:pt-50 pb-22">
         <div className="px-10 md:px-0 md:max-w-2xl lg:max-w-340 mx-auto">
           <div className="flex gap-4 md:gap-2 lg:gap-6">
             <motion.div initial={{ x: -30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-[60%]">
@@ -248,7 +248,7 @@ export default function Home() {
             </motion.div>
             <motion.div initial={{ x: 30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-[40%]">
               <form onSubmit={submitForm} className="bg-white shadow-lg rounded-4xl p-6">
-                <h2 className="text-xl md:text-xl lg:text-3xl font-bold mb-4">Request a Free Quote</h2>
+                <h2 className="text-xl md:text-xl lg:text-3xl text-blue-950 font-bold mb-4">Get Expert Consultation</h2>
                   <div className="flex flex-col gap-4">
                     <div>
                       <input type="text" name="full_name" onChange={handleChange} value={formData.full_name} placeholder="Full Name" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
@@ -308,15 +308,17 @@ export default function Home() {
           </motion.div>
           <motion.div initial={{ x: 30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-[60%]">
             <p className="uppercase font-bold text-gray-600 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl mb-4">About Company</p>
-            <h2 className="text-5xl leading-16 font-bold mb-6 text-blue-950">Providing the best insurance policy to customers</h2>
-            <p className="text-lg leading-10 text-gray-700 mb-8">At Insurath, we are dedicated to providing our customers with the best insurance policies that meet their unique needs. With a wide range of options and personalized service, we strive to ensure that our customers have the coverage they need to protect what matters most.</p>
+            <h2 className="text-5xl leading-16 font-bold mb-1 text-[#1185B7] whitespace-nowrap">Insurath-<span className="text-[#E18126]">Suraksha Har Mod Par</span></h2>
+            <p className="text-2xl font-bold leading-10 text-blue-950 mb-4">Smart insurance coverage designed for every journey.</p>
+            <p className="text-lg leading-10 text-gray-700 mb-4">At Insurath, we help individuals, families, and businesses make confident insurance decisions. By working with trusted insurance providers, we guide our customers toward coverage that suits their needs, responsibilities, and life stages.</p>
+            <p className="text-lg leading-10 text-gray-700 mb-4">Our focus is on clarity, transparency, and long-term protection. From understanding policy options to ongoing support, we ensure a smooth and reliable insurance experience so you stay protected at every turn.</p>
             <div className="flex flex-col gap-4 mb-6">
               <div className="flex gap-3 items-center">
                 <div>
                   <IconCheckbox size={20} color="#E18126"/>
                 </div>
                 <div>
-                  <p className="text-lg text-blue-950 font-bold">Large number of insurance policies</p>
+                  <p className="text-lg text-blue-950 font-bold">Protection for every stage of life</p>
                 </div>
               </div>
               <div className="flex gap-3 items-center">
@@ -324,7 +326,7 @@ export default function Home() {
                   <IconCheckbox size={20} color="#E18126"/>
                 </div>
                 <div>
-                  <p className="text-lg text-blue-950 font-bold">Experience & qualified agents</p>
+                  <p className="text-lg text-blue-950 font-bold">Wide range of trusted insurance partners</p>
                 </div>
               </div>
               <div className="flex gap-3 items-center">
@@ -332,7 +334,7 @@ export default function Home() {
                   <IconCheckbox size={20} color="#E18126"/>
                 </div>
                 <div>
-                  <p className="text-lg text-blue-950 font-bold">Free insurance quotes</p>
+                  <p className="text-lg text-blue-950 font-bold">Experienced & qualified advisors</p>
                 </div>
               </div>
             </div>
@@ -352,7 +354,7 @@ export default function Home() {
                   <h3 className="text-center text-blue-950 text-5xl font-bold mb-4 flex justify-center gap-3">Choose Your{" "}<PointerHighlight pointerClassName="text-[#E18126]">Insurance Protection</PointerHighlight></h3>
                 </div>
                 <div>
-                  <p className="text-center text-lg leading-10 text-gray-700">We offer a comprehensive range of insurance products to protect what matters most to you.Compare and choose the best plan for your needs.</p>
+                  <p className="text-center text-lg leading-8 text-gray-700">We offer a comprehensive range of insurance products to protect what matters most to you. Compare and choose the best plan for your needs.</p>
                 </div>
               </div>
             </div>
@@ -362,9 +364,9 @@ export default function Home() {
       </div>
       <div className="h-auto">
         <div className="max-w-340 relative mx-auto py-20">
-          <div className="flex flex-col gap-6 mb-8 max-w-3xl mx-auto">
+          <div className="flex flex-col gap-6 mb-8 max-w-xl mx-auto">
             <h4 className="text-5xl text-blue-950 font-bold text-center">Why Choose Insurath?</h4>
-            <p className="text-lg leading-10 text-center">We are committed to providing you with the best insurance experience with our innovative platform and exceptional service.</p>
+            <p className="text-lg leading-8 text-center">We are committed to delivering a smooth and reliable insurance experience through exceptional service.</p>
           </div>
           <div className="grid grid-cols-3 gap-6">
             {chooseUs.map((item) => (
@@ -411,9 +413,9 @@ export default function Home() {
           <div className="flex">
             <div className="w-[40%]">
               <div className="flex flex-col justify-center gap-6 mb-6">
-                <p className="uppercase font-bold text-gray-600 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl mb-4">About Company</p>
+                <p className="uppercase font-bold text-gray-600 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl mb-4">Stories of Protection</p>
                 <h5 className="text-5xl font-bold text-blue-950 leading-16">What they&apos;re talking about us?</h5>
-                <p className="text-lg leading-10">Don&apos;t just take our word for it. Here&apos;s what our satisfied customers have to say about their experience with Insurath.</p>
+                <p className="text-lg leading-8">Don&apos;t just take our word for it. Here&apos;s what our satisfied customers have to say about their experience with Insurath.</p>
               </div>
             </div>
             <div className="w-[60%]">
@@ -505,7 +507,7 @@ export default function Home() {
             </div>
             <div className="max-w-3xl mx-auto flex flex-col gap-6">
               <h5 className="text-5xl font-bold text-blue-950 leading-16 text-center">Trusted by Leading<br/><span className="text-[#E18126]">Insurance Companies</span></h5>
-              <p className="text-lg leading-10 text-center">We partner with India&apos;s most trusted insurance companies to bring you the best coverage options at competitive prices.</p>
+              <p className="text-lg leading-8 text-center">We partner with India&apos;s most trusted insurance companies to bring you the best coverage options at competitive prices.</p>
             </div>
           </div>
           <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
@@ -524,11 +526,11 @@ export default function Home() {
         <div className="relative z-10 flex gap-10 max-w-340 mx-auto">
           <div className="w-1/2">
             <div className="flex flex-col gap-6 mb-8">
-              <h5 className="text-5xl leading-18 font-bold">
+              <h5 className="text-5xl leading-18 font-bold text-blue-950">
                 Get Expert Insurance <br />
                 <span className="text-[#E18126]">Consultation Today</span>
               </h5>
-              <p className="text-lg leading-10 text-justify">Don&apos;t wait to protect what matters most. <span className="text-[#E18126]">Get personalized guidance</span> from our insurance experts and find the perfect coverage for your needs.</p>
+              <p className="text-lg leading-8">Don&apos;t wait to protect what matters most. <span className="text-[#E18126]">Get personalized guidance</span> from our insurance experts and find the perfect coverage for your needs.</p>
             </div>
             <div className="flex flex-col gap-2">
               <div className="bg-transparent border border-[#E18126] rounded-4xl p-5">
@@ -572,8 +574,8 @@ export default function Home() {
 
           <div className="w-1/2">
             <form onSubmit={submitFormTwo} className="bg-white shadow-lg rounded-4xl p-6">
-              <h5 className="text-3xl font-bold mb-4">Get Expert Consultation</h5>
-              <p className="text-2xl mb-8">Fill in your details and we&apos;ll get back to you within 24 hours with personalized insurance guidance.</p>
+              <h5 className="text-3xl font-bold mb-4 text-blue-950">Get Expert Consultation</h5>
+              <p className="text-lg text-blue-950 mb-8">Fill in your details and we&apos;ll get back to you within 24 hours with personalized insurance guidance.</p>
               <div className="flex flex-col gap-4">
                 <div>
                   <input type="text" name="full_name_two" onChange={handleChange} value={formDataTwo.full_name_two} placeholder="Full Name" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />

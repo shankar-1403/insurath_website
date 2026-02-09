@@ -115,7 +115,7 @@ export default function CardCarousel({ items }: Props) {
   return (
     <div
     ref={wrapperRef}
-      className="relative w-full"
+      className="relative max-w-[45rem] mx-auto"
       onMouseEnter={() => (isHoveringRef.current = true)}
       onMouseLeave={() => (isHoveringRef.current = false)}
     >
@@ -183,19 +183,19 @@ export default function CardCarousel({ items }: Props) {
       </div>
 
       {/* ARROWS */}
-      <div className="relative flex justify-center z-10">
+      <div className="flex justify-between w-full absolute -mt-40">
         <button
           onClick={() => scrollByOne("left")}
-          className="flex absolute -ml-12 z-10 rounded-full bg-white p-2 shadow hover:scale-110 transition cursor-pointer"
+          className="flex -ml-12 rounded-full bg-blue-950 p-2 shadow hover:scale-110 transition cursor-pointer"
         >
-          <ChevronLeft />
+          <ChevronLeft color="white"/>
         </button>
 
         <button
           onClick={() => scrollByOne("right")}
-          className="flex absolute -mr-12 z-10 rounded-full bg-white p-2 shadow hover:scale-110 transition cursor-pointer"
+          className="flex -mr-12 rounded-full bg-blue-950 p-2 shadow hover:scale-110 transition cursor-pointer"
         >
-          <ChevronRight />
+          <ChevronRight color="white"/>
         </button>
       </div>
     </div>

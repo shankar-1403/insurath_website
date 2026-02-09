@@ -1,8 +1,7 @@
 "use Client";
 
 import React from 'react'
-import Logo from "@/public/assets/insurath.png"
-import Image from 'next/image';
+import Logo from "../../public/assets/insurath.png"
 import Link from 'next/link';
 import { IconPhone, IconMail, IconMapPin, IconClockHour5 } from '@tabler/icons-react';
 
@@ -33,13 +32,13 @@ function Footer() {
             <div className='max-w-330 mx-auto py-6'>
                 <div className="flex gap-10">
                     <div className="w-[25%]">
-                        <div className='flex justify-start'>
-                            <Image src={Logo} alt="Insurath Logo" className="h-40" />
+                        <div className='flex justify-start'>    
+                            <img src='/assets/insurath.png' alt="Insurath Logo" className="h-30" />
                         </div>
-                        <p className='text-white text-lg'>India&apos;s leading insurance aggregator, helping millions find the best insurance coverage at the most competitive prices with transparent processes.</p>
+                        <p className='text-white text-base leading-8 text-justify'>India&apos;s leading insurance aggregator, helping millions find the best insurance coverage at the most competitive prices with transparent processes.</p>
                     </div>
                     <div className='w-[15%]'>
-                        <h5 className='text-xl text-white font-bold mb-10'>Insurance Products</h5>
+                        <h5 className='text-xl text-white font-bold mb-10'>Products</h5>
                         <ul className='flex flex-col gap-3'>
                             <li>
                                 <Link className='text-white text-sm' href={'/products/health-insurance'}>Health Insurance</Link>

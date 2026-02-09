@@ -1,11 +1,47 @@
 'use client';
 
-import React,{useState, useEffect} from 'react';
+import React,{useState, useEffect, FC} from 'react';
 import {motion} from 'motion/react';
 import { AnimatedShinyText } from '@/components/ui/animated-shiny-text';
-import { IconUserFilled,IconCheckbox,IconChecks,IconBuildingHospital,IconStethoscope,IconBabyCarriage } from '@tabler/icons-react';
+import { IconUserFilled,IconCheckbox,IconChecks,IconBuildingHospital,IconStethoscope,IconBabyCarriage,IconShieldCheck } from '@tabler/icons-react';
 import Image from 'next/image';
 import axios from 'axios';
+
+interface EllipseItemProps {
+  text: string
+  angle: number // degrees
+  radiusX: number
+  radiusY: number
+}
+
+const EllipseItem: FC<EllipseItemProps> = ({
+  text,
+  angle,
+  radiusX,
+  radiusY,
+}) => {
+  const rad = (angle * Math.PI) / 180
+  const x = Math.cos(rad) * radiusX
+  const y = Math.sin(rad) * radiusY
+
+  return (
+    <div
+      className="absolute top-1/2 left-1/2"
+      style={{
+        transform: `translate(${x}px, ${y}px)`,
+      }}
+    >
+      <div className="flex items-center gap-4 bg-white px-6 py-4 border-2 border-[#E18126] rounded-4xl h-25 shadow-sm -translate-x-1/2 -translate-y-1/2">
+        <IconShieldCheck className="w-12 h-12 text-[#E18126]" />
+        <p className="text-lg font-bold text-blue-950 whitespace-nowrap">
+          {text}
+        </p>
+      </div>
+    </div>
+  )
+}
+
+
 
 function HealthInsurance() {
 
@@ -172,7 +208,8 @@ function HealthInsurance() {
         setStep(1);
         }
     }, []);
-    
+
+
     return (
         <>
             <div className="bg-linear-to-br from-blue-950 via-[#1186B7] to-[#884001] pt-20 md:pt-40 lg:pt-50 pb-20">
@@ -221,7 +258,7 @@ function HealthInsurance() {
                         </motion.div>
                         <motion.div initial={{ x: 30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-[60%]">
                         <form onSubmit={submitForm} className="bg-white shadow-lg rounded-4xl p-6 max-w-xl mx-auto">
-                            <h2 className="text-xl md:text-xl lg:text-3xl font-bold mb-4 text-center">Get Your Health Insurance Quote</h2>
+                            <h2 className="text-xl md:text-xl lg:text-3xl font-bold mb-4 text-center text-blue-950">Get Your Health Insurance Quote</h2>
                             <p className='text-base text-gray-700 text-center mb-6'>Answer a few quick questions to get personalized recommendations</p>
                             <ol className="flex items-center w-full justify-between mb-6 sm:mb-8 px-6">
                                 {/* STEP 1 */}
@@ -368,9 +405,9 @@ function HealthInsurance() {
             <div className="py-20">
                 <div className="max-w-340 mx-auto flex justify-center items-center gap-40">
                     <motion.div initial={{ x: 30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-[70%]">
-                        <p className="uppercase font-bold text-gray-600 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl mb-4">Why Health Insurance Matters</p>
+                        <p className="uppercase font-bold text-gray-700 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl mb-4">Why Health Insurance Matters</p>
                         <h2 className="text-5xl leading-16 font-bold mb-6 text-blue-950">Your Health, <span className='text-[#E18126]'>Our Priority</span></h2>
-                        <p className="text-lg leading-10 text-gray-700 mb-8">Get the right health coverage that fits your needs and budget, with expert guidance to help you choose the best plan.</p>
+                        <p className="text-lg leading-8 text-gray-700 mb-8">Get the right health coverage that fits your needs and budget, with expert guidance to help you choose the best plan.</p>
                         <div className="flex gap-6 mb-6">
                             <div className="flex flex-col gap-3 w-[33.33%] border border-[#E18126] rounded-4xl p-4">
                                 <div>
@@ -378,7 +415,7 @@ function HealthInsurance() {
                                 </div>
                                 <div>
                                     <p className="text-base mb-2 text-blue-950 font-bold">Cashless Treatment</p>
-                                    <p className='text-sm text-gray-600'>Get treated at 10,000+ network hospitals without paying upfront - we settle directly with the hospital.</p>
+                                    <p className='text-sm text-gray-700'>Get treated at 10,000+ network hospitals without paying upfront - we settle directly with the hospital.</p>
                                 </div>
                             </div>
                             <div className="flex flex-col gap-3 w-[33.33%] border border-[#E18126] rounded-4xl p-4">
@@ -387,7 +424,7 @@ function HealthInsurance() {
                                 </div>
                                 <div>
                                     <p className="text-base mb-2 text-blue-950 font-bold">Pre & Post Hospitalization</p>
-                                    <p className='text-sm text-gray-600'>Get treated at 10,000+ network hospitals without paying upfront - we settle directly with the hospital.</p>
+                                    <p className='text-sm text-gray-700'>Get treated at 10,000+ network hospitals without paying upfront - we settle directly with the hospital.</p>
                                 </div>
                             </div>
                             <div className="flex flex-col gap-3 w-[33.33%] border border-[#E18126] rounded-4xl p-4">
@@ -396,7 +433,7 @@ function HealthInsurance() {
                                 </div>
                                 <div>
                                     <p className="text-base mb-2 text-blue-950 font-bold">Maternity & Newborn Care</p>
-                                    <p className='text-sm text-gray-600'>Get treated at 10,000+ network hospitals without paying upfront - we settle directly with the hospital.</p>
+                                    <p className='text-sm text-gray-700'>Get treated at 10,000+ network hospitals without paying upfront - we settle directly with the hospital.</p>
                                 </div>
                             </div>
                         </div>
@@ -465,6 +502,38 @@ function HealthInsurance() {
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div className="max-w-340 mx-auto py-20">
+                <div className="relative py-20">
+                {/* Shared center point */}
+                    <div className="relative w-full flex justify-center items-center">
+                        
+                        {/* Heading (center anchor) */}
+                        <div className="absolute max-w-sm z-10 text-center">
+                            <h4 className="text-4xl font-bold text-blue-950 leading-tight mb-4">
+                                What Our Health <br /> Insurance Covers
+                            </h4>
+                            <p className='text-lg'>Our health insurance covers everything from routine check-ups to emergency care.</p>
+                        </div>
+
+                        <div className="relative w-[700px] h-[500px] mx-auto">
+                            <EllipseItem text="Medicine costs" angle={270} radiusX={400} radiusY={220} />
+                            <EllipseItem text="Emergency treatment" angle={330} radiusX={400} radiusY={220} />
+
+                            <EllipseItem text="ICU charges covered" angle={30} radiusX={400} radiusY={220} />
+                            <EllipseItem text="Room rent benefits" angle={90} radiusX={400} radiusY={220} />
+
+                            <EllipseItem text="Diagnostic tests" angle={210} radiusX={400} radiusY={220} />
+                            <EllipseItem text="Surgery expenses" angle={150} radiusX={400} radiusY={220} />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div className='bg-white'>
+                <div className="max-w-340 mx-auto">
+
                 </div>
             </div>
         </>
