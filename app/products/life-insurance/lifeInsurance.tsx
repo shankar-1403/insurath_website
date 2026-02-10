@@ -3,11 +3,12 @@
 import React,{useState, useEffect, FC} from 'react';
 import {motion} from 'motion/react';
 import { AnimatedShinyText } from '@/components/ui/animated-shiny-text';
-import { IconUserFilled,IconCheckbox,IconChecks,IconBuildingHospital,IconStethoscope,IconBabyCarriage,IconShieldCheck } from '@tabler/icons-react';
+import { IconUserFilled,IconCheckbox,IconChecks,IconMenu3,IconShieldCheck,IconCommand } from '@tabler/icons-react';
 import Image from 'next/image';
 import axios from 'axios';
 import AccordionItem from '@/components/ui/accordion';
 import { PointerHighlight } from '@/components/ui/pointer-highlight';
+
 
 interface EllipseItemProps {
   text: string
@@ -49,10 +50,7 @@ const EllipseItem: FC<EllipseItemProps> = ({
     )
 }
 
-
-
-function HealthInsurance() {
-
+function LifeInsurance() {
     const [formData, setFormData] = useState({full_name:"", email_id:"", phone_number:"",age:"",city:"",gender:"", coverage_type:"",existing_health_insurance:"",pre_existing_conditions:"",desired_coverage_amount:""});
     const [step, setStep] = useState(1);
     const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -220,24 +218,28 @@ function HealthInsurance() {
 
     const faqs = [
         {
-            question: "What is health insurance and why do I need it?",
-            answer: "Health insurance is a type of insurance that covers medical expenses incurred due to illness or injury. It provides financial protection against high medical costs and ensures you get quality healthcare without worrying about expenses."
+            question: "What is life insurance and why do I need it?",
+            answer: "Life insurance is a contract between you and an insurance company where you pay regular premiums in exchange for a death benefit that will be paid to your beneficiaries upon your death. It provides financial security for your loved ones and helps cover expenses like mortgage payments, education costs, and daily living expenses."
         },
         {
-            question: "What is cashless treatment?",
-            answer: "Cashless treatment allows you to get medical treatment at network hospitals without paying upfront. The insurance company directly settles the bills with the hospital, making the process hassle-free for you."
+            question: "What types of life insurance are available?",
+            answer: "There are several types of life insurance including term life (pure protection for a specific period), whole life (permanent coverage with cash value), endowment plans (savings + protection), and unit-linked insurance plans (ULIPs) that combine insurance with investment."
         },
         {
-            question: "What is the waiting period in health insurance?",
-            answer: "Waiting period is the time you need to wait before certain benefits become available. Pre-existing diseases usually have a 2-4 year waiting period, while maternity benefits have a 9-month to 2-year waiting period."
+            question: "How much life insurance coverage do I need?",
+            answer: "A general rule of thumb is to have coverage equal to 10-15 times your annual income. However, the exact amount depends on your financial obligations, debts, future expenses, and your family's needs. Our experts can help you calculate the right coverage amount."
         },
         {
-            question: "Can I get health insurance if I have pre-existing conditions?",
-            answer: "Yes, you can get health insurance even with pre-existing conditions. However, there will be a waiting period before coverage for these conditions begins. Some insurers may also charge higher premiums."
+            question: "What factors affect life insurance premiums?",
+            answer: "Premiums are based on factors like age, gender, health status, occupation, lifestyle habits (smoking, alcohol), family medical history, coverage amount, policy term, and type of policy. Younger and healthier individuals typically pay lower premiums."
         },
         {
-            question: "What is the difference between individual and family floater plans?",
-            answer: "Individual plans cover one person, while family floater plans cover multiple family members under a single policy with a shared sum insured. Family floater plans are usually more cost-effective for families.    "
+            question: "Can I get life insurance if I have pre-existing health conditions?",
+            answer: "Yes, you can still get life insurance with pre-existing conditions, but you may pay higher premiums or have exclusions. Some conditions may require medical underwriting, while others might be covered with additional riders."
+        },
+        {
+            question: "What happens if I miss premium payments?",
+            answer: "Most policies have a grace period (usually 30 days) to pay overdue premiums. If you miss payments beyond the grace period, your policy may lapse. Some policies offer automatic premium loan or reduced paid-up options to prevent complete loss of coverage."
         }
     ];
 
@@ -250,14 +252,14 @@ function HealthInsurance() {
                         <div className="flex items-center justify-start mb-2">
                             <div className="rounded-full border border-black/5 bg-neutral-100">
                             <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 uppercase">
-                                <span className="flex gap-1 font-bold text-sm md:text-sm lg:text-base">Health Protection</span>
+                                <span className="flex gap-1 font-bold text-sm md:text-sm lg:text-base">Life Protection</span>
                             </AnimatedShinyText>
                             </div>
                         </div>
                         <div className="flex flex-col items-start justify-center gap-10">
                             <div className='flex flex-col items-start justify-center gap-10'>
-                                <h1 className="text-left text-white text-2xl md:text-4xl lg:text-7xl font-bold text-shadow-lg">Protect Your <span className="text-[#E18126]">Health</span></h1>
-                                <p className="text-left text-white text-lg md:text-lg lg:text-2xl text-shadow-lg">Expert health insurance guidance with <span className="text-[#E18126]">cashless treatment at 10,000+ hospitals</span> nationwide</p>
+                                <h1 className="text-left text-white text-2xl md:text-4xl lg:text-7xl font-bold text-shadow-lg">Protect Your <span className="text-[#E18126]">Family&apos;s Future</span></h1>
+                                <p className="text-left text-white text-lg md:text-lg lg:text-2xl text-shadow-lg">Secure your family&apos;s future with <span className="text-[#E18126]">comprehensive life insurance coverage</span> and expert guidance.</p>
                             </div>
                             <div className='flex gap-4'>
                                 <div className='flex items-center gap-2 bg-white/20 py-2 px-4 rounded-4xl'>
@@ -265,7 +267,7 @@ function HealthInsurance() {
                                         <IconChecks className='h-6 w-6' color='#E18126'/>
                                     </div>
                                     <div>
-                                        <span className='text-lg text-white'>Cashless Treatment</span>
+                                        <span className='text-lg text-white'>High Sum Assured</span>
                                     </div>
                                 </div>
                                 <div className='flex items-center gap-2 bg-white/20 py-2 px-4 rounded-4xl'>
@@ -273,7 +275,7 @@ function HealthInsurance() {
                                         <IconChecks className='h-6 w-6' color='#E18126'/>
                                     </div>
                                     <div>
-                                        <span className='text-lg text-white'>Pre & Post Hospitalization</span>
+                                        <span className='text-lg text-white'>Family Protection</span>
                                     </div>
                                 </div>
                                 <div className='flex items-center gap-2 bg-white/20 py-2 px-4 rounded-4xl'>
@@ -281,7 +283,7 @@ function HealthInsurance() {
                                         <IconChecks className='h-6 w-6' color='#E18126'/>
                                     </div>
                                     <div>
-                                        <span className='text-lg text-white'>Maternity Benefits</span>
+                                        <span className='text-lg text-white'>Tax Benefits</span>
                                     </div>
                                 </div>
                             </div>
@@ -436,35 +438,35 @@ function HealthInsurance() {
             <div className="py-20">
                 <div className="max-w-340 mx-auto flex justify-center items-center gap-40">
                     <motion.div initial={{ x: -30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-[70%]">
-                        <p className="uppercase font-bold text-gray-700 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl mb-4">Why Health Insurance Matters</p>
-                        <h2 className="text-5xl leading-16 font-bold mb-6 text-blue-950 flex gap-2">Your Health, <PointerHighlight containerClassName="text-[#E18126]">Our Priority</PointerHighlight></h2>
-                        <p className="text-lg leading-8 text-gray-700 mb-8">Get the right health coverage that fits your needs and budget, with expert guidance to help you choose the best plan.</p>
+                        <p className="uppercase font-bold text-gray-700 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl mb-4">Family Protection</p>
+                        <h2 className="text-5xl leading-16 font-bold mb-6 text-blue-950">Secure Your Family&apos;s, <PointerHighlight containerClassName="text-[#E18126]">Financial Future</PointerHighlight></h2>
+                        <p className="text-lg leading-8 text-gray-700 mb-8">Life insurance provides financial security and peace of mind, ensuring your loved ones are protected even in your absence.</p>
                         <div className="flex gap-6 mb-6">
                             <div className="flex flex-col gap-3 w-[33.33%] border border-[#E18126] rounded-4xl p-4">
                                 <div>
-                                    <IconBuildingHospital className='w-10 h-10' color="#E18126"/>
+                                    <IconShieldCheck className='w-10 h-10' color="#E18126"/>
                                 </div>
                                 <div>
-                                    <p className="text-base mb-2 text-blue-950 font-bold">Cashless Treatment</p>
-                                    <p className='text-sm text-gray-700'>Get treated at 10,000+ network hospitals without paying upfront - we settle directly with the hospital.</p>
-                                </div>
-                            </div>
-                            <div className="flex flex-col gap-3 w-[33.33%] border border-[#E18126] rounded-4xl p-4">
-                                <div>
-                                    <IconStethoscope className='w-10 h-10' color="#E18126"/>
-                                </div>
-                                <div>
-                                    <p className="text-base mb-2 text-blue-950 font-bold">Pre & Post Hospitalization</p>
-                                    <p className='text-sm text-gray-700'>Coverage for medical expenses before and after hospitalization, ensuring complete care continuity.</p>
+                                    <p className="text-base mb-2 text-blue-950 font-bold">Financial Security</p>
+                                    <p className='text-sm text-gray-700'>Ensure your family&apos;s financial stability with comprehensive life insurance coverage that protects their future.</p>
                                 </div>
                             </div>
                             <div className="flex flex-col gap-3 w-[33.33%] border border-[#E18126] rounded-4xl p-4">
                                 <div>
-                                    <IconBabyCarriage className='w-10 h-10' color="#E18126"/>
+                                    <IconMenu3 className='w-10 h-10' color="#E18126"/>
                                 </div>
                                 <div>
-                                    <p className="text-base mb-2 text-blue-950 font-bold">Maternity & Newborn Care</p>
-                                    <p className='text-sm text-gray-700'>Specialized coverage for maternity expenses, newborn care, and family planning needs.</p>
+                                    <p className="text-base mb-2 text-blue-950 font-bold">Flexible Coverage Options</p>
+                                    <p className='text-sm text-gray-700'>Choose from various term lengths and coverage amounts that adapt to your changing life circumstances.</p>
+                                </div>
+                            </div>
+                            <div className="flex flex-col gap-3 w-[33.33%] border border-[#E18126] rounded-4xl p-4">
+                                <div>
+                                    <IconCommand className='w-10 h-10' color="#E18126"/>
+                                </div>
+                                <div>
+                                    <p className="text-base mb-2 text-blue-950 font-bold">Peace of Mind</p>
+                                    <p className='text-sm text-gray-700'>Rest easy knowing your family is financially protected with our comprehensive life insurance solutions.</p>
                                 </div>
                             </div>
                         </div>
@@ -474,9 +476,9 @@ function HealthInsurance() {
                             <div className="relative h-100 w-100 overflow-hidden rounded-4xl">
                                 <Image src="/assets/aboutus_one.png" alt="about_us_one" priority fill className="object-cover"/>
                             </div>
-                            <motion.div animate={{ x: [0, 40, 0] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", }} className="absolute bg-white h-auto flex flex-col items-center w-40 overflow-hidden rounded-4xl px-4 py-4 -mt-6">
-                                <p className="text-xl text-[#1185b7] font-bold text-shadow-sm">10,000+</p>
-                                <p className='text-base text-gray-500'>Hospitals</p>
+                            <motion.div animate={{ x: [0, 40, 0] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", }} className="absolute bg-white h-auto flex flex-col items-center w-30 overflow-hidden rounded-4xl px-4 py-4 -mt-6">
+                                <p className="text-xl text-[#1185b7] font-bold text-shadow-sm">500+</p>
+                                <p className='text-base text-gray-500'>Families</p>
                             </motion.div>
                         </div>
                     </motion.div>
@@ -484,50 +486,50 @@ function HealthInsurance() {
             </div>
             <motion.div initial={{ y: 30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className='bg-linear-to-br from-[#1185b7] from-20% via-[#07587b] via-50%  to-blue-950 to-90% py-10 px-10 rounded-4xl max-w-340 mx-auto overflow-hidden'>
                 <div className='max-w-2xl mx-auto mb-5'>
-                    <p className="uppercase font-bold text-sm text-white after:content-[''] after:inline-block after:w-6 after:h-0.5 after:bg-[#E18126] after:ml-2 after:align-middle after:rounded-xl mb-4 text-center">Why Choose Us</p>
-                    <h3 className="text-5xl leading-16 font-bold mb-6 text-white text-center text-shadow-lg">Unmatched Benefits for <br/><span className='text-[#E18126]'>Your Health Journey</span></h3>
-                    <p className='text-lg leading-8 text-center  text-shadow-lg text-white'>Experience unparalleled advantages when you secure your health with our expert guidance and top-tier solutions.</p>
+                    <p className="uppercase font-bold text-sm text-white after:content-[''] after:inline-block after:w-6 after:h-0.5 after:bg-[#E18126] after:ml-2 after:align-middle after:rounded-xl mb-4 text-center">Premium Features</p>
+                    <h3 className="text-5xl leading-16 font-bold mb-6 text-white text-center text-shadow-lg">Everything You Need for<br/><span className='text-[#E18126]'>Complete Life Protection</span></h3>
+                    <p className='text-lg leading-8 text-center  text-shadow-lg text-white'>Our comprehensive life insurance plans come with premium features designed to give you complete peace of mind.</p>
                 </div>
                 <div className="grid grid-cols-6 gap-4">
                     <div className='col-span-1'>
                         <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
                             <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
-                                <h4 className='text-base text-white text-center font-bold'>Tax benefits under Section 80D</h4>
+                                <h4 className='text-base text-white text-center font-bold'>High sum <br/>assured</h4>
                             </div>
                         </div>
                     </div>
                     <div className='col-span-1'>
                         <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
                             <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
-                                <h4 className='text-base text-white text-center font-bold'>No claim <br/>bonus</h4>
+                                <h4 className='text-base text-white text-center font-bold'>Flexible premium payment options</h4>
                             </div>
                         </div>
                     </div>
                     <div className='col-span-1'>
                         <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
                             <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
-                                <h4 className='text-base text-white text-center font-bold'>Restoration benefit once per year</h4>
+                                <h4 className='text-base text-white text-center font-bold'>Term and whole life options</h4>
                             </div>
                         </div>
                     </div>
                     <div className='col-span-1'>
                         <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
                             <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
-                                <h4 className='text-base text-white text-center font-bold'>Alternative treatment coverage</h4>
+                                <h4 className='text-base text-white text-center font-bold'>Accidental death benefit</h4>
                             </div>
                         </div>
                     </div>
                     <div className='col-span-1'>
                         <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
                             <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
-                                <h4 className='text-base text-white text-center font-bold'>Mental health coverage</h4>
+                                <h4 className='text-base text-white text-center font-bold'>Critical illness  <br/>rider</h4>
                             </div>
                         </div>
                     </div>
                     <div className='col-span-1'>
                         <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
                             <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
-                                <h4 className='text-base text-white text-center font-bold'>Critical illness coverage</h4>
+                                <h4 className='text-base text-white text-center font-bold'>Waiver of premium option</h4>
                             </div>
                         </div>
                     </div>
@@ -540,19 +542,19 @@ function HealthInsurance() {
                         
                         {/* Heading (center anchor) */}
                         <div className="absolute max-w-xl text-center bg-[#1185b7] rounded-full h-120 w-120 flex flex-col justify-center items-center p-10">
-                            <h5 className="text-5xl font-bold text-white  text-shadow-lg leading-tight mb-4">What Our Health <br /> Insurance Covers</h5>
-                            <p className='text-lg text-shadow-lg text-white leading-8'>Our health insurance covers everything from routine check-ups to emergency care.</p>
+                            <h5 className="text-5xl font-bold text-white  text-shadow-lg leading-tight mb-4">Unmatched Benefits for your Life Journey</h5>
+                            <p className='text-lg text-shadow-lg text-white leading-8'>Experience unparalleled advantages when you secure your family&apos;s future with our expert guidance and top-tier solutions.</p>
                         </div>
 
                         <div className="relative w-175 h-125 mx-auto">
-                            <EllipseItem text="Medicine costs" angle={270} radiusX={400} radiusY={280} />
-                            <EllipseItem text="Emergency treatment" angle={330} radiusX={400} radiusY={280} />
+                            <EllipseItem text="Tax benefits under Section 80C" angle={270} radiusX={400} radiusY={280} />
+                            <EllipseItem text="Maturity benefits" angle={330} radiusX={400} radiusY={280} />
 
-                            <EllipseItem text="ICU charges covered" angle={30} radiusX={400} radiusY={280} />
-                            <EllipseItem text="Room rent benefits" angle={90} radiusX={400} radiusY={280} />
+                            <EllipseItem text="Death benefit to nominees" angle={30} radiusX={400} radiusY={280} />
+                            <EllipseItem text="Loan against policy" angle={90} radiusX={400} radiusY={280} />
 
-                            <EllipseItem text="Diagnostic tests" angle={210} radiusX={400} radiusY={280} />
-                            <EllipseItem text="Surgery expenses" angle={150} radiusX={400} radiusY={280} />
+                            <EllipseItem text="Surrender value" angle={210} radiusX={400} radiusY={280} />
+                            <EllipseItem text="Bonus additions" angle={150} radiusX={400} radiusY={280} />
                         </div>
 
                     </div>
@@ -568,37 +570,37 @@ function HealthInsurance() {
                         <div className='rounded-4xl w-[20%] flex flex-col items-center justify-center gap-3 p-4 h-30 bg-linear-to-br from-[#e1802610] from-30% to-[#1185b733] to-90%'>
                             <div className='h-10'><IconShieldCheck color='#E18126' className='w-8 h-8'/></div>
                             <div>
-                                <p className='text-lg text-center font-bold text-blue-950'>Room rent<br/>benefits</p>
+                                <p className='text-lg text-center font-bold text-blue-950'>Natural death<br/>coverage</p>
                             </div>
                         </div>
                         <div className='rounded-4xl w-[20%] flex flex-col items-center justify-center gap-3 p-4 h-30 bg-linear-to-br from-[#e1802610] from-30% to-[#1185b733] to-90%'>
                             <div className='h-10'><IconShieldCheck color='#E18126' className='w-8 h-8'/></div>
                             <div>
-                                <p className='text-lg text-center font-bold text-blue-950'>ICU charges<br/>covered</p>
+                                <p className='text-lg text-center font-bold text-blue-950'>Accidental death<br/>coverage</p>
                             </div>
                         </div>
                         <div className='rounded-4xl w-[20%] flex flex-col items-center justify-center gap-3 p-4 h-30 bg-linear-to-br from-[#e1802610] from-30% to-[#1185b733] to-90%'>
                             <div className='h-10'><IconShieldCheck color='#E18126' className='w-8 h-8'/></div>
                             <div>
-                                <p className='text-lg text-center font-bold text-blue-950'>Emergency<br/>treatment</p>
+                                <p className='text-lg text-center font-bold text-blue-950'>Critical illness<br/>coverage</p>
                             </div>
                         </div>
                         <div className='rounded-4xl w-[20%] flex flex-col items-center justify-center gap-3 p-4 h-30 bg-linear-to-br from-[#e1802610] from-30% to-[#1185b733] to-90%'>
                             <div className='h-10'><IconShieldCheck color='#E18126' className='w-8 h-8'/></div>
                             <div>
-                                <p className='text-lg text-center font-bold text-blue-950'>Surgery<br/>expenses</p>
+                                <p className='text-lg text-center font-bold text-blue-950'>Disability<br/>coverage</p>
                             </div>
                         </div>
                         <div className='rounded-4xl w-[20%] flex flex-col items-center justify-center gap-3 p-4 h-30 bg-linear-to-br from-[#e1802610] from-30% to-[#1185b733] to-90%'>
                             <div className='h-10'><IconShieldCheck color='#E18126' className='w-8 h-8'/></div>
                             <div>
-                                <p className='text-lg text-center font-bold text-blue-950'>Diagnostic<br/>tests</p>
+                                <p className='text-lg text-center font-bold text-blue-950'>Terminal illness<br/>coverage</p>
                             </div>
                         </div>
                         <div className='rounded-4xl w-[20%] flex flex-col items-center justify-center gap-3 p-4 h-30 bg-linear-to-br from-[#e1802610] from-30% to-[#1185b733] to-90%'>
                             <div className='h-10'><IconShieldCheck color='#E18126' className='w-8 h-8'/></div>
                             <div>
-                                <p className='text-lg text-center font-bold text-blue-950'>Medicine<br/>costs</p>
+                                <p className='text-lg text-center font-bold text-blue-950'>Suicide clause<br/>(after 1 year)</p>
                             </div>
                         </div>
                     </div>
@@ -606,8 +608,8 @@ function HealthInsurance() {
             </div>
             <div className='bg-linear-to-br from-[#1185b7] from-20% via-[#07587b] via-50%  to-blue-950 to-90% py-10'>
                 <div className="max-w-180 mx-auto">
-                    <h5 className="text-5xl font-bold text-white text-center leading-16 text-shadow-lg mb-4">Ready to Protect Your Health?</h5>
-                    <p className="text-lg text-center leading-8 text-white text-shadow-lg mb-6">Our expert advisors are here to help you choose the best health insurance plan tailored to your needs. Contact us today for a personalized consultation.</p>
+                    <h5 className="text-5xl font-bold text-white text-center leading-16 text-shadow-lg mb-4">Need More Information?</h5>
+                    <p className="text-lg text-center leading-8 text-white text-shadow-lg mb-6">Our life insurance experts are here to help you choose the right coverage for your family&apos;s needs.</p>
                     <div className="flex gap-4 justify-center">
                         <div>
                             <button className='bg-white text-[#1185b7] text-lg p-4 w-40 rounded-4xl cursor-pointer'>Call Us Now</button>
@@ -633,7 +635,7 @@ function HealthInsurance() {
                                 <div className="absolute inset-0 max-w-md mx-auto flex flex-col justify-center px-6 text-center">
                                     <p className="uppercase font-bold text-sm text-white after:content-[''] after:inline-block after:w-6 after:h-0.5 after:bg-[#E18126] after:ml-2 after:align-middle after:rounded-xl mb-2 text-left">Got Questions?</p>
                                     <h5 className="text-5xl font-bold text-white leading-16 text-left mb-4">Frequently Asked Questions</h5>
-                                    <p className="text-lg text-left leading-8 text-white">Find quick answers to common health insurance questions</p>
+                                    <p className="text-lg text-left leading-8 text-white">Find quick answers to common life insurance questions</p>
                                 </div>
                             </div>
                         </div>
@@ -659,4 +661,4 @@ function HealthInsurance() {
     )
 }
 
-export default HealthInsurance
+export default LifeInsurance

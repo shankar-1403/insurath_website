@@ -3,7 +3,7 @@
 import React,{useState, useEffect, FC} from 'react';
 import {motion} from 'motion/react';
 import { AnimatedShinyText } from '@/components/ui/animated-shiny-text';
-import { IconUserFilled,IconCheckbox,IconChecks,IconBuildingHospital,IconStethoscope,IconBabyCarriage,IconShieldCheck } from '@tabler/icons-react';
+import { IconUserFilled,IconCheckbox,IconBuildings,IconShieldCheck,IconUsersGroup,IconChecks,IconWalk } from '@tabler/icons-react';
 import Image from 'next/image';
 import axios from 'axios';
 import AccordionItem from '@/components/ui/accordion';
@@ -49,10 +49,7 @@ const EllipseItem: FC<EllipseItemProps> = ({
     )
 }
 
-
-
-function HealthInsurance() {
-
+function BusinessInsurance() {
     const [formData, setFormData] = useState({full_name:"", email_id:"", phone_number:"",age:"",city:"",gender:"", coverage_type:"",existing_health_insurance:"",pre_existing_conditions:"",desired_coverage_amount:""});
     const [step, setStep] = useState(1);
     const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -220,24 +217,28 @@ function HealthInsurance() {
 
     const faqs = [
         {
-            question: "What is health insurance and why do I need it?",
-            answer: "Health insurance is a type of insurance that covers medical expenses incurred due to illness or injury. It provides financial protection against high medical costs and ensures you get quality healthcare without worrying about expenses."
+            question: "What is business insurance and why do I need it?",
+            answer: "Business insurance protects your company from financial losses due to unexpected events like property damage, lawsuits, or business interruptions. It's essential for protecting your investment and ensuring business continuity."
         },
         {
-            question: "What is cashless treatment?",
-            answer: "Cashless treatment allows you to get medical treatment at network hospitals without paying upfront. The insurance company directly settles the bills with the hospital, making the process hassle-free for you."
+            question: "What types of business insurance are available?",
+            answer: "Common types include general liability, property insurance, professional liability, cyber liability, workers' compensation, and business interruption insurance. The right combination depends on your industry and business size."
         },
         {
-            question: "What is the waiting period in health insurance?",
-            answer: "Waiting period is the time you need to wait before certain benefits become available. Pre-existing diseases usually have a 2-4 year waiting period, while maternity benefits have a 9-month to 2-year waiting period."
+            question: "How much business insurance do I need?",
+            answer: "The amount depends on your business size, industry, assets, and risk exposure. Our experts can help assess your specific needs and recommend appropriate coverage levels."
         },
         {
-            question: "Can I get health insurance if I have pre-existing conditions?",
-            answer: "Yes, you can get health insurance even with pre-existing conditions. However, there will be a waiting period before coverage for these conditions begins. Some insurers may also charge higher premiums."
+            question: "What is professional liability insurance?",
+            answer: "Professional liability insurance protects against claims of negligence, errors, or omissions in professional services. It's crucial for service-based businesses and professionals."
         },
         {
-            question: "What is the difference between individual and family floater plans?",
-            answer: "Individual plans cover one person, while family floater plans cover multiple family members under a single policy with a shared sum insured. Family floater plans are usually more cost-effective for families.    "
+            question: "Does business insurance cover cyber attacks?",
+            answer: "Standard business insurance typically doesn't cover cyber attacks. You need specialized cyber liability insurance to protect against data breaches, cyber extortion, and related losses."
+        },
+        {
+            question: "How do I file a business insurance claim?",
+            answer: "Contact your insurance provider immediately when an incident occurs. Document everything, gather evidence, and work with your claims adjuster to ensure a smooth process."
         }
     ];
 
@@ -250,14 +251,14 @@ function HealthInsurance() {
                         <div className="flex items-center justify-start mb-2">
                             <div className="rounded-full border border-black/5 bg-neutral-100">
                             <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 uppercase">
-                                <span className="flex gap-1 font-bold text-sm md:text-sm lg:text-base">Health Protection</span>
+                                <span className="flex gap-1 font-bold text-sm md:text-sm lg:text-base">Business Protection</span>
                             </AnimatedShinyText>
                             </div>
                         </div>
                         <div className="flex flex-col items-start justify-center gap-10">
                             <div className='flex flex-col items-start justify-center gap-10'>
-                                <h1 className="text-left text-white text-2xl md:text-4xl lg:text-7xl font-bold text-shadow-lg">Protect Your <span className="text-[#E18126]">Health</span></h1>
-                                <p className="text-left text-white text-lg md:text-lg lg:text-2xl text-shadow-lg">Expert health insurance guidance with <span className="text-[#E18126]">cashless treatment at 10,000+ hospitals</span> nationwide</p>
+                                <h1 className="text-left text-white text-2xl md:text-4xl lg:text-7xl font-bold text-shadow-lg">Protect Your<br/><span className="text-[#E18126]">Business</span></h1>
+                                <p className="text-left text-white text-lg md:text-lg lg:text-2xl text-shadow-lg">Protect your business with <span className="text-[#E18126]">comprehensive insurance coverage</span> tailored to your industry and needs.</p>
                             </div>
                             <div className='flex gap-4'>
                                 <div className='flex items-center gap-2 bg-white/20 py-2 px-4 rounded-4xl'>
@@ -265,7 +266,7 @@ function HealthInsurance() {
                                         <IconChecks className='h-6 w-6' color='#E18126'/>
                                     </div>
                                     <div>
-                                        <span className='text-lg text-white'>Cashless Treatment</span>
+                                        <span className='text-lg text-white'>Property Coverage</span>
                                     </div>
                                 </div>
                                 <div className='flex items-center gap-2 bg-white/20 py-2 px-4 rounded-4xl'>
@@ -273,7 +274,7 @@ function HealthInsurance() {
                                         <IconChecks className='h-6 w-6' color='#E18126'/>
                                     </div>
                                     <div>
-                                        <span className='text-lg text-white'>Pre & Post Hospitalization</span>
+                                        <span className='text-lg text-white'>Liability Protection</span>
                                     </div>
                                 </div>
                                 <div className='flex items-center gap-2 bg-white/20 py-2 px-4 rounded-4xl'>
@@ -281,7 +282,7 @@ function HealthInsurance() {
                                         <IconChecks className='h-6 w-6' color='#E18126'/>
                                     </div>
                                     <div>
-                                        <span className='text-lg text-white'>Maternity Benefits</span>
+                                        <span className='text-lg text-white'>Cyber Security</span>
                                     </div>
                                 </div>
                             </div>
@@ -289,7 +290,7 @@ function HealthInsurance() {
                         </motion.div>
                         <motion.div initial={{ x: 30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-[60%]">
                         <form onSubmit={submitForm} className="bg-white shadow-lg rounded-4xl p-6 max-w-xl mx-auto">
-                            <h2 className="text-xl md:text-xl lg:text-3xl font-bold mb-4 text-center text-blue-950">Get Your Health Insurance Quote</h2>
+                            <h2 className="text-xl md:text-xl lg:text-3xl font-bold mb-4 text-center text-blue-950">Get Your Business Insurance Quote</h2>
                             <p className='text-lg text-gray-700 text-center mb-6'>Answer a few quick questions to get personalized recommendations</p>
                             <ol className="flex items-center w-full justify-between mb-6 sm:mb-8 px-6">
                                 {/* STEP 1 */}
@@ -309,7 +310,7 @@ function HealthInsurance() {
                                         <div className="bg-[#E18126] rounded-full p-3">
                                             <IconUserFilled className='w-6 h-6 text-white'/>
                                         </div>
-                                        <span className="text-sm sm:text-base font-bold text-center">Personal Information</span>
+                                        <span className="text-sm sm:text-base font-bold text-center">Business Information</span>
                                     </span>
                                 </li>
 
@@ -334,9 +335,15 @@ function HealthInsurance() {
 
                             {step === 1 && (
                             <div className="flex flex-col gap-4">
-                                <div>
-                                    <input type="text" name="full_name" onChange={handleChange} value={formData.full_name} placeholder="Full Name"  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
-                                    {error.full_name && <span className="text-sm text-red-500">{error.full_name}</span>}
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="col-span-1">
+                                        <input type="text" name="full_name" onChange={handleChange} value={formData.full_name} placeholder="Company Name"  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
+                                        {error.full_name && <span className="text-sm text-red-500">{error.full_name}</span>}
+                                    </div>
+                                    <div className="col-span-1">
+                                        <input type="text" name="full_name" onChange={handleChange} value={formData.full_name} placeholder="Contact Person"  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
+                                        {error.full_name && <span className="text-sm text-red-500">{error.full_name}</span>}
+                                    </div>
                                 </div>
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="col-span-1">
@@ -349,23 +356,57 @@ function HealthInsurance() {
                                     </div>
                                 </div>
                                 <div className="grid grid-cols-2 gap-4">
-                                    <div className='col-span-1'>
-                                        <input type="number" name="age" onChange={handleChange} value={formData.age} placeholder="Age"  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
-                                        {error.age && <span className="text-sm text-red-500">{error.age}</span>}
+                                    <div className="col-span-1">
+                                        <select name="existing_health_insurance" onChange={handleChange} value={formData.existing_health_insurance} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                            <option>Select Business Type</option>
+                                            <option value="Private Limited">Private Limited</option>             
+                                            <option value="Proprietorship">Proprietorship</option>
+                                            <option value="Partnership">Partnership</option>
+                                            <option value="LLP (Limited Liability Partnership)">LLP (Limited Liability Partnership)</option>
+                                            <option value="Public Limited">Public Limited</option>
+                                            <option value="One Person Company (OPC)">One Person Company (OPC)</option>
+                                            <option value="Section 8 Company">Section 8 Company</option>
+                                            <option value="Others">Others</option>
+                                        </select>
+                                        {error.city && <span className="text-sm text-red-500">{error.city}</span>}
                                     </div>
                                     <div className="col-span-1">
-                                        <select name="gender" onChange={handleChange} value={formData.gender} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option>Select Gender</option>
-                                            <option value="Male">Male</option>             
-                                            <option value="Female">Female</option>
-                                            <option value="Other">Other</option>
+                                        <select name="existing_health_insurance" onChange={handleChange} value={formData.existing_health_insurance} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                            <option>Select Industry</option>
+                                            <option value="Retail">Retail</option>             
+                                            <option value="Manufacturing">Manufacturing</option>
+                                            <option value="Professional Services">Professional Services</option>
+                                            <option value="Healthcare">Healthcare</option>
+                                            <option value="Technology">Technology</option>
+                                            <option value="Construction">Construction</option>
+                                            <option value="Hospitality">Hospitality</option>
+                                            <option value="Others">Others</option>
                                         </select>
-                                        {error.gender && <span className="text-sm text-red-500">{error.gender}</span>}
+                                        {error.city && <span className="text-sm text-red-500">{error.city}</span>}
                                     </div>
                                 </div>
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="col-span-1">
-                                        <input type="text" name="city" onChange={handleChange} value={formData.city} placeholder="City" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
+                                        <select name="existing_health_insurance" onChange={handleChange} value={formData.existing_health_insurance} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                            <option>Select Annual Revenue</option>
+                                            <option value="Under ₹1 Lakh">Under ₹1 Lakh</option>             
+                                            <option value="₹1-5 Lakhs">₹1-5 Lakhs</option>
+                                            <option value="₹5-10 Lakhs">₹5-10 Lakhs</option>
+                                            <option value="₹10-50 Lakhs">₹10-50 Lakhs</option>
+                                            <option value="₹50 Lakhs-1 Crore">₹50 Lakhs-1 Crore</option>
+                                            <option value="Over ₹1 Crore">Over ₹1 Crore</option>
+                                        </select>
+                                        {error.city && <span className="text-sm text-red-500">{error.city}</span>}
+                                    </div>
+                                    <div className="col-span-1">
+                                        <select name="existing_health_insurance" onChange={handleChange} value={formData.existing_health_insurance} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                            <option>Select Number of Employees</option>
+                                            <option value="1-5 employees">1-5 employees</option>             
+                                            <option value="6-20 employees">6-20 employees</option>
+                                            <option value="21-50 employees">21-50 employees</option>
+                                            <option value="51-100 employees">51-100 employees</option>
+                                            <option value="100+ employees">100+ employees</option>
+                                        </select>
                                         {error.city && <span className="text-sm text-red-500">{error.city}</span>}
                                     </div>
                                 </div>
@@ -436,35 +477,35 @@ function HealthInsurance() {
             <div className="py-20">
                 <div className="max-w-340 mx-auto flex justify-center items-center gap-40">
                     <motion.div initial={{ x: -30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-[70%]">
-                        <p className="uppercase font-bold text-gray-700 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl mb-4">Why Health Insurance Matters</p>
-                        <h2 className="text-5xl leading-16 font-bold mb-6 text-blue-950 flex gap-2">Your Health, <PointerHighlight containerClassName="text-[#E18126]">Our Priority</PointerHighlight></h2>
-                        <p className="text-lg leading-8 text-gray-700 mb-8">Get the right health coverage that fits your needs and budget, with expert guidance to help you choose the best plan.</p>
+                        <p className="uppercase font-bold text-gray-700 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl mb-4">Why Business Insurance Matters</p>
+                        <h2 className="text-5xl leading-16 font-bold mb-6 text-blue-950 flex gap-2">Your Business, <PointerHighlight containerClassName="text-[#E18126]">Our Priority</PointerHighlight></h2>
+                        <p className="text-lg leading-8 text-gray-700 mb-8">Get the right business coverage that fits your needs and budget, with expert guidance to help you choose the best plan.</p>
                         <div className="flex gap-6 mb-6">
                             <div className="flex flex-col gap-3 w-[33.33%] border border-[#E18126] rounded-4xl p-4">
                                 <div>
-                                    <IconBuildingHospital className='w-10 h-10' color="#E18126"/>
+                                    <IconBuildings className='w-10 h-10' color="#E18126"/>
                                 </div>
                                 <div>
-                                    <p className="text-base mb-2 text-blue-950 font-bold">Cashless Treatment</p>
-                                    <p className='text-sm text-gray-700'>Get treated at 10,000+ network hospitals without paying upfront - we settle directly with the hospital.</p>
-                                </div>
-                            </div>
-                            <div className="flex flex-col gap-3 w-[33.33%] border border-[#E18126] rounded-4xl p-4">
-                                <div>
-                                    <IconStethoscope className='w-10 h-10' color="#E18126"/>
-                                </div>
-                                <div>
-                                    <p className="text-base mb-2 text-blue-950 font-bold">Pre & Post Hospitalization</p>
-                                    <p className='text-sm text-gray-700'>Coverage for medical expenses before and after hospitalization, ensuring complete care continuity.</p>
+                                    <p className="text-base mb-2 text-blue-950 font-bold">Property Protection</p>
+                                    <p className='text-sm text-gray-700'>Comprehensive coverage for your business property, equipment, and inventory against damage and theft.</p>
                                 </div>
                             </div>
                             <div className="flex flex-col gap-3 w-[33.33%] border border-[#E18126] rounded-4xl p-4">
                                 <div>
-                                    <IconBabyCarriage className='w-10 h-10' color="#E18126"/>
+                                    <IconWalk className='w-10 h-10' color="#E18126"/>
                                 </div>
                                 <div>
-                                    <p className="text-base mb-2 text-blue-950 font-bold">Maternity & Newborn Care</p>
-                                    <p className='text-sm text-gray-700'>Specialized coverage for maternity expenses, newborn care, and family planning needs.</p>
+                                    <p className="text-base mb-2 text-blue-950 font-bold">Liability Coverage</p>
+                                    <p className='text-sm text-gray-700'>Protection against lawsuits and claims that could threaten your business&apos;s financial stability.</p>
+                                </div>
+                            </div>
+                            <div className="flex flex-col gap-3 w-[33.33%] border border-[#E18126] rounded-4xl p-4">
+                                <div>
+                                    <IconUsersGroup className='w-10 h-10' color="#E18126"/>
+                                </div>
+                                <div>
+                                    <p className="text-base mb-2 text-blue-950 font-bold">Employee Protection</p>
+                                    <p className='text-sm text-gray-700'>Workers compensation and employee benefits to protect your most valuable asset - your team.</p>
                                 </div>
                             </div>
                         </div>
@@ -474,9 +515,9 @@ function HealthInsurance() {
                             <div className="relative h-100 w-100 overflow-hidden rounded-4xl">
                                 <Image src="/assets/aboutus_one.png" alt="about_us_one" priority fill className="object-cover"/>
                             </div>
-                            <motion.div animate={{ x: [0, 40, 0] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", }} className="absolute bg-white h-auto flex flex-col items-center w-40 overflow-hidden rounded-4xl px-4 py-4 -mt-6">
-                                <p className="text-xl text-[#1185b7] font-bold text-shadow-sm">10,000+</p>
-                                <p className='text-base text-gray-500'>Hospitals</p>
+                            <motion.div animate={{ x: [0, 40, 0] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", }} className="absolute bg-white h-auto flex flex-col items-center w-30 overflow-hidden rounded-4xl px-4 py-4 -mt-6">
+                                <p className="text-xl text-[#1185b7] font-bold text-shadow-sm">100%</p>
+                                <p className='text-base text-gray-500'>Countries</p>
                             </motion.div>
                         </div>
                     </motion.div>
@@ -484,50 +525,50 @@ function HealthInsurance() {
             </div>
             <motion.div initial={{ y: 30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className='bg-linear-to-br from-[#1185b7] from-20% via-[#07587b] via-50%  to-blue-950 to-90% py-10 px-10 rounded-4xl max-w-340 mx-auto overflow-hidden'>
                 <div className='max-w-2xl mx-auto mb-5'>
-                    <p className="uppercase font-bold text-sm text-white after:content-[''] after:inline-block after:w-6 after:h-0.5 after:bg-[#E18126] after:ml-2 after:align-middle after:rounded-xl mb-4 text-center">Why Choose Us</p>
-                    <h3 className="text-5xl leading-16 font-bold mb-6 text-white text-center text-shadow-lg">Unmatched Benefits for <br/><span className='text-[#E18126]'>Your Health Journey</span></h3>
-                    <p className='text-lg leading-8 text-center  text-shadow-lg text-white'>Experience unparalleled advantages when you secure your health with our expert guidance and top-tier solutions.</p>
+                    <p className="uppercase font-bold text-sm text-white after:content-[''] after:inline-block after:w-6 after:h-0.5 after:bg-[#E18126] after:ml-2 after:align-middle after:rounded-xl mb-4 text-center">Premium Features</p>
+                    <h3 className="text-5xl leading-16 font-bold mb-6 text-white text-center text-shadow-lg">Comprehensive<br/><span className='text-[#E18126]'>Business Protection</span></h3>
+                    <p className='text-lg leading-8 text-center text-shadow-lg text-white'>Our business insurance plans offer extensive coverage to protect every aspect of your business operations.</p>
                 </div>
                 <div className="grid grid-cols-6 gap-4">
                     <div className='col-span-1'>
                         <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
-                            <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
-                                <h4 className='text-base text-white text-center font-bold'>Tax benefits under Section 80D</h4>
+                            <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl h-20 flex items-center justify-center">
+                                <h4 className='text-base text-white text-center font-bold'>Property damage coverage</h4>
                             </div>
                         </div>
                     </div>
                     <div className='col-span-1'>
                         <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
-                            <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
-                                <h4 className='text-base text-white text-center font-bold'>No claim <br/>bonus</h4>
+                            <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl h-20 flex items-center justify-center">
+                                <h4 className='text-base text-white text-center font-bold'>Business interruption insurance</h4>
                             </div>
                         </div>
                     </div>
                     <div className='col-span-1'>
                         <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
-                            <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
-                                <h4 className='text-base text-white text-center font-bold'>Restoration benefit once per year</h4>
+                            <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl h-20 flex items-center justify-center">
+                                <h4 className='text-base text-white text-center font-bold'>Professional liability</h4>
                             </div>
                         </div>
                     </div>
                     <div className='col-span-1'>
                         <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
-                            <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
-                                <h4 className='text-base text-white text-center font-bold'>Alternative treatment coverage</h4>
+                            <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl h-20 flex items-center justify-center">
+                                <h4 className='text-base text-white text-center font-bold'>Cyber liability coverage</h4>
                             </div>
                         </div>
                     </div>
                     <div className='col-span-1'>
                         <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
-                            <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
-                                <h4 className='text-base text-white text-center font-bold'>Mental health coverage</h4>
+                            <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl h-20 flex items-center justify-center">
+                                <h4 className='text-base text-white text-center font-bold'>Employee compensation</h4>
                             </div>
                         </div>
                     </div>
                     <div className='col-span-1'>
                         <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
-                            <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
-                                <h4 className='text-base text-white text-center font-bold'>Critical illness coverage</h4>
+                            <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl h-20 flex items-center justify-center">
+                                <h4 className='text-base text-white text-center font-bold'>Product liability</h4>
                             </div>
                         </div>
                     </div>
@@ -540,74 +581,28 @@ function HealthInsurance() {
                         
                         {/* Heading (center anchor) */}
                         <div className="absolute max-w-xl text-center bg-[#1185b7] rounded-full h-120 w-120 flex flex-col justify-center items-center p-10">
-                            <h5 className="text-5xl font-bold text-white  text-shadow-lg leading-tight mb-4">What Our Health <br /> Insurance Covers</h5>
-                            <p className='text-lg text-shadow-lg text-white leading-8'>Our health insurance covers everything from routine check-ups to emergency care.</p>
+                            <h5 className="text-5xl font-bold text-white  text-shadow-lg leading-tight mb-4">Business Insurance Benefits</h5>
+                            <p className='text-lg text-shadow-lg text-white leading-8'>Get comprehensive coverage with our business insurance plans designed for every industry and business size.</p>
                         </div>
 
                         <div className="relative w-175 h-125 mx-auto">
-                            <EllipseItem text="Medicine costs" angle={270} radiusX={400} radiusY={280} />
-                            <EllipseItem text="Emergency treatment" angle={330} radiusX={400} radiusY={280} />
+                            <EllipseItem text="Customized coverage" angle={270} radiusX={400} radiusY={280} />
+                            <EllipseItem text="Risk management support" angle={330} radiusX={400} radiusY={280} />
 
-                            <EllipseItem text="ICU charges covered" angle={30} radiusX={400} radiusY={280} />
-                            <EllipseItem text="Room rent benefits" angle={90} radiusX={400} radiusY={280} />
+                            <EllipseItem text="Claims assistance" angle={30} radiusX={400} radiusY={280} />
+                            <EllipseItem text="Legal protection" angle={90} radiusX={400} radiusY={280} />
 
-                            <EllipseItem text="Diagnostic tests" angle={210} radiusX={400} radiusY={280} />
-                            <EllipseItem text="Surgery expenses" angle={150} radiusX={400} radiusY={280} />
+                            <EllipseItem text="Financial security" angle={210} radiusX={400} radiusY={280} />
+                            <EllipseItem text="Business continuity" angle={150} radiusX={400} radiusY={280} />
                         </div>
 
-                    </div>
-                </div>
-            </div>
-            <div className="bg-white">
-                <div className="max-w-340 mx-auto py-20">
-                    <div className='mb-4'>
-                        <h5 className="text-5xl font-bold text-blue-950 text-center leading-tight mb-4">What&apos;s Covered</h5>
-                        <p className='text-lg text-gray-700 text-center mb-5'>Comprehensive coverage that protects your vehicle in various scenarios</p>
-                    </div>
-                    <div className='flex w-full gap-4'>
-                        <div className='rounded-4xl w-[20%] flex flex-col items-center justify-center gap-3 p-4 h-30 bg-linear-to-br from-[#e1802610] from-30% to-[#1185b733] to-90%'>
-                            <div className='h-10'><IconShieldCheck color='#E18126' className='w-8 h-8'/></div>
-                            <div>
-                                <p className='text-lg text-center font-bold text-blue-950'>Room rent<br/>benefits</p>
-                            </div>
-                        </div>
-                        <div className='rounded-4xl w-[20%] flex flex-col items-center justify-center gap-3 p-4 h-30 bg-linear-to-br from-[#e1802610] from-30% to-[#1185b733] to-90%'>
-                            <div className='h-10'><IconShieldCheck color='#E18126' className='w-8 h-8'/></div>
-                            <div>
-                                <p className='text-lg text-center font-bold text-blue-950'>ICU charges<br/>covered</p>
-                            </div>
-                        </div>
-                        <div className='rounded-4xl w-[20%] flex flex-col items-center justify-center gap-3 p-4 h-30 bg-linear-to-br from-[#e1802610] from-30% to-[#1185b733] to-90%'>
-                            <div className='h-10'><IconShieldCheck color='#E18126' className='w-8 h-8'/></div>
-                            <div>
-                                <p className='text-lg text-center font-bold text-blue-950'>Emergency<br/>treatment</p>
-                            </div>
-                        </div>
-                        <div className='rounded-4xl w-[20%] flex flex-col items-center justify-center gap-3 p-4 h-30 bg-linear-to-br from-[#e1802610] from-30% to-[#1185b733] to-90%'>
-                            <div className='h-10'><IconShieldCheck color='#E18126' className='w-8 h-8'/></div>
-                            <div>
-                                <p className='text-lg text-center font-bold text-blue-950'>Surgery<br/>expenses</p>
-                            </div>
-                        </div>
-                        <div className='rounded-4xl w-[20%] flex flex-col items-center justify-center gap-3 p-4 h-30 bg-linear-to-br from-[#e1802610] from-30% to-[#1185b733] to-90%'>
-                            <div className='h-10'><IconShieldCheck color='#E18126' className='w-8 h-8'/></div>
-                            <div>
-                                <p className='text-lg text-center font-bold text-blue-950'>Diagnostic<br/>tests</p>
-                            </div>
-                        </div>
-                        <div className='rounded-4xl w-[20%] flex flex-col items-center justify-center gap-3 p-4 h-30 bg-linear-to-br from-[#e1802610] from-30% to-[#1185b733] to-90%'>
-                            <div className='h-10'><IconShieldCheck color='#E18126' className='w-8 h-8'/></div>
-                            <div>
-                                <p className='text-lg text-center font-bold text-blue-950'>Medicine<br/>costs</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
             <div className='bg-linear-to-br from-[#1185b7] from-20% via-[#07587b] via-50%  to-blue-950 to-90% py-10'>
                 <div className="max-w-180 mx-auto">
-                    <h5 className="text-5xl font-bold text-white text-center leading-16 text-shadow-lg mb-4">Ready to Protect Your Health?</h5>
-                    <p className="text-lg text-center leading-8 text-white text-shadow-lg mb-6">Our expert advisors are here to help you choose the best health insurance plan tailored to your needs. Contact us today for a personalized consultation.</p>
+                    <h5 className="text-5xl font-bold text-white text-center leading-16 text-shadow-lg mb-4">Ready to Protect Your Business?</h5>
+                    <p className="text-lg text-center leading-8 text-white text-shadow-lg mb-6">Contact our business insurance experts to find the perfect coverage for your company.</p>
                     <div className="flex gap-4 justify-center">
                         <div>
                             <button className='bg-white text-[#1185b7] text-lg p-4 w-40 rounded-4xl cursor-pointer'>Call Us Now</button>
@@ -633,7 +628,7 @@ function HealthInsurance() {
                                 <div className="absolute inset-0 max-w-md mx-auto flex flex-col justify-center px-6 text-center">
                                     <p className="uppercase font-bold text-sm text-white after:content-[''] after:inline-block after:w-6 after:h-0.5 after:bg-[#E18126] after:ml-2 after:align-middle after:rounded-xl mb-2 text-left">Got Questions?</p>
                                     <h5 className="text-5xl font-bold text-white leading-16 text-left mb-4">Frequently Asked Questions</h5>
-                                    <p className="text-lg text-left leading-8 text-white">Find quick answers to common health insurance questions</p>
+                                    <p className="text-lg text-left leading-8 text-white">Find quick answers to common car insurance questions</p>
                                 </div>
                             </div>
                         </div>
@@ -659,4 +654,4 @@ function HealthInsurance() {
     )
 }
 
-export default HealthInsurance
+export default BusinessInsurance

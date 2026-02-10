@@ -12,8 +12,8 @@ function Footer() {
         <footer className='bg-slate-900 pt-10'>
             <div className="py-10 max-w-4xl mx-auto bg-linear-to-br from-[#1185b7] from-20% via-[#07587b] via-50%  to-blue-950 to-90% rounded-4xl w-full -mt-30">
                 <div className='mb-8'>
-                    <h5 className='font-bold text-2xl text-white text-center'>Stay Updated</h5>
-                    <p className='text-lg text-white text-center'>Get the latest insurance tips, news, and exclusive offers delivered to your inbox.</p>
+                    <h5 className='font-bold text-2xl text-white text-center text-shadow-lg'>Stay Updated</h5>
+                    <p className='text-lg text-white text-center text-shadow-lg'>Get the latest insurance tips, news, and exclusive offers delivered to your inbox.</p>
                 </div>
                 <form className="max-w-xl mx-auto">
                     <div className="flex justify-center gap-4">

@@ -6,9 +6,9 @@ import HealthInsurance from './healthInsurance';
 function route() {
   return (
     <>
-        <MainNavbar/>
-            <HealthInsurance/>
-        <Footer/>
+      <MainNavbar/>
+      <HealthInsurance/>
+      <Footer/>
     </>
   )
 }

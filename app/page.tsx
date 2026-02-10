@@ -382,8 +382,8 @@ export default function Home() {
             <div className="flex">
               <div className="w-[70%]">
                 <div className="flex flex-col justify-center gap-4">
-                  <h5 className="text-5xl text-white font-bold mb-4">Ready to Get Started?</h5>
-                  <p className="text-lg text-white">Join thousands of satisfied customers who trust Insurath for their insurance needs.</p>
+                  <h5 className="text-5xl text-white font-bold mb-4 text-shadow-lg">Ready to Get Started?</h5>
+                  <p className="text-lg text-white text-shadow-lg">Join thousands of satisfied customers who trust Insurath for their insurance needs.</p>
                 </div>
               </div>
               <div className="w-[30%] flex items-center justify-end">

@@ -113,9 +113,10 @@ export default function CardCarousel({ items }: Props) {
   }, [totalCardWidth]);
 
   return (
+    <div>
     <div
     ref={wrapperRef}
-      className="relative max-w-[45rem] mx-auto"
+      className="relative max-w-180 mx-auto"
       onMouseEnter={() => (isHoveringRef.current = true)}
       onMouseLeave={() => (isHoveringRef.current = false)}
     >
@@ -181,23 +182,22 @@ export default function CardCarousel({ items }: Props) {
           ))}
         </div>
       </div>
+    </div>
+    <div className="flex justify-between w-full -mt-40">
+      <button
+        onClick={() => scrollByOne("left")}
+        className="flex rounded-full bg-blue-950 p-2 shadow hover:scale-110 transition cursor-pointer"
+      >
+        <ChevronLeft color="white"/>
+      </button>
 
-      {/* ARROWS */}
-      <div className="flex justify-between w-full absolute -mt-40">
-        <button
-          onClick={() => scrollByOne("left")}
-          className="flex rounded-full bg-blue-950 p-2 shadow hover:scale-110 transition cursor-pointer"
-        >
-          <ChevronLeft color="white"/>
-        </button>
-
-        <button
-          onClick={() => scrollByOne("right")}
-          className="flex rounded-full bg-blue-950 p-2 shadow hover:scale-110 transition cursor-pointer"
-        >
-          <ChevronRight color="white"/>
-        </button>
-      </div>
+      <button
+        onClick={() => scrollByOne("right")}
+        className="flex rounded-full bg-blue-950 p-2 shadow hover:scale-110 transition cursor-pointer"
+      >
+        <ChevronRight color="white"/>
+      </button>
+    </div>
     </div>
   );
 }
