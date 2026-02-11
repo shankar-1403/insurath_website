@@ -90,6 +90,14 @@ export default function CardCarousel({ items }: Props) {
         container.style.scrollBehavior = "smooth";
       });
     }
+
+    if (container.scrollLeft <= 0) {
+      container.style.scrollBehavior = "auto";
+      container.scrollLeft = middleOffset;
+      requestAnimationFrame(() => {
+        container.style.scrollBehavior = "smooth";
+      });
+    }
   };
 
   const scrollByOne = (dir: "left" | "right") => {

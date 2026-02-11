@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import MainNavbar from "@/components/layouts/navbar";
 import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
 import {IconShieldFilled,IconCash,IconArrowRight,IconCheckbox} from "@tabler/icons-react";
@@ -32,107 +32,74 @@ const CompaniesCard = ({data}: {data: string}) => {
     </figure>
   )
 }
+
+type Errors = Partial<Record<string, string>>;
+type SnackbarType = "success" | "error";
+
 export default function Home() {
-  const [formData, setFormData] = useState({full_name:"", email_id:"", phone_number:"", insurance_type:""});
-  const [formDataTwo, setFormDataTwo] = useState({full_name_two:"", email_id_two:"", phone_number_two:"", insurance_type_two:"",message:""})
-  type FormErrors = Partial<Record<keyof typeof formData, string>>;
-  type FormErrorsTwo = Partial<Record<keyof typeof formDataTwo, string>>;
-  const [error, setError] = useState<FormErrors>({})
-  const [errorTwo, setErrorTwo] = useState<FormErrorsTwo>({})
+  const formRef = useRef<HTMLFormElement | null>(null)
+  const formRefTwo = useRef<HTMLFormElement | null>(null)
+  const [error, setError] = useState<Errors>({})
+  const [errorTwo, setErrorTwo] = useState<Errors>({})
   const [loading, setLoading] = useState(false);
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+  const [snackbar, setSnackbar] = React.useState<{open: boolean; message: string; type: SnackbarType; }>({ open: false, message: "", type: "success", });
 
-    setFormDataTwo((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  }
+  const showSnackbar = (message: string, type: SnackbarType = "success") => {
+      setSnackbar({ open: true, message, type });
 
-  const validateFormData = ()=>{
-    const errors: FormErrors = {};
-      if(!formData.full_name.trim()){
-        errors.full_name = "Full Name is required"
-      } else if (!/^[A-Za-z]+(?: [A-Za-z]+)*$/.test(formData.full_name)){
-        errors.full_name = "Enter a valid name";
-      }
+      setTimeout(() => {
+          setSnackbar((prev) => ({ ...prev, open: false }));
+      }, 3000);
+  };
 
-      if (!formData.email_id.trim()) {
-        errors.email_id = "Email is required";
-      } else if (
-        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email_id)
-      ) {
-        errors.email_id = "Enter a valid email address";
-      }
+  const validateFormData = () => {
+    const newErrors: Errors = {};
 
-      if(!formData.phone_number.trim()){
-        errors.phone_number = 'Phone Number is required';
-      } else if (!/^\d{10,12}$/.test(formData.phone_number)) {
-        errors.phone_number = "Phone number must be 12 digits";
-      }
+    const get = (name: string) =>
+    (formRef.current?.elements.namedItem(name) as HTMLInputElement)?.value?.trim();
 
-      if(!formData.insurance_type.trim()){
-        errors.insurance_type = "Insurance Type is required"
-      }
-    return errors;
-  }
+    if (!get("full_name")) newErrors.full_name = "Full name is required";
+    if (!get("email_id")) {
+        newErrors.email_id = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@.]+$/.test(get("email_id"))) {
+        newErrors.email_id = "Enter a valid email address";
+    }
 
-  const validateFormDataTwo = ()=>{
-    const errors: FormErrorsTwo = {};
-      if(!formDataTwo.full_name_two.trim()){
-        errors.full_name_two = "Full Name is required"
-      } else if (!/^[A-Za-z]+(?: [A-Za-z]+)*$/.test(formDataTwo.full_name_two)){
-        errors.full_name_two = "Enter a valid name";
-      }
+    if (!get("phone_number")) {
+        newErrors.phone_number = "Mobile number is required";
+    } else if (!/^\d{10,12}$/.test(get("phone_number"))) {
+        newErrors.phone_number = "Enter a valid Mobile number";
+    }
 
-      if (!formDataTwo.email_id_two.trim()) {
-        errors.email_id_two = "Email is required";
-      } else if (
-        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formDataTwo.email_id_two)
-      ) {
-        errors.email_id_two = "Enter a valid email address";
-      }
+    if (!get("insurance_type")) newErrors.insurance_type = "Insurance Type is required";
 
-      if(!formDataTwo.phone_number_two.trim()){
-        errors.phone_number_two = 'Phone Number is required';
-      } else if (!/^\d{10,12}$/.test(formDataTwo.phone_number_two)) {
-        errors.phone_number_two = "Phone number must be 12 digits";
-      }
+    setError(newErrors);
 
-      if(!formDataTwo.insurance_type_two.trim()){
-        errors.insurance_type_two = "Insurance Type is required"
-      }
+    if (Object.keys(newErrors).length > 0) {
+        const firstErrorField = document.querySelector("[data-error='true']");
+        firstErrorField?.scrollIntoView({ behavior: "smooth", block: "center" });
+        return false;
+    }
 
-      if(!formDataTwo.message.trim()){
-        errors.message = "Message is required"
-      }
-    return errors;
-  }
+    return true;
+  };  
 
   const submitForm = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    const validationErrors = validateFormData();
-    if (Object.keys(validationErrors).length > 0) {
-      setError(validationErrors);
-      return;
-    }
-
+    if (!formRef.current) return;
+    if (!validateFormData()) return;
     setLoading(true);
     try {
       const payload = {
-        full_name: formData.full_name,
-        email_id: formData.email_id,
-        phone_number: formData.phone_number,
-        insurance_type: formData.insurance_type,
+        full_name: (formRef.current.elements.namedItem("full_name") as HTMLInputElement)?.value,
+        email_id: (formRef.current.elements.namedItem("email_id") as HTMLInputElement)?.value,
+        phone_number: (formRef.current.elements.namedItem("phone_number") as HTMLInputElement)?.value,
+        insurance_type: (formRef.current.elements.namedItem("insurance_type") as HTMLInputElement)?.value,
         type: 'Home Banner',
       }
-      await axios.post("/api/home/first", payload);
-      setFormData({full_name:"", email_id:"", phone_number:"", insurance_type:""});
+      const res = await axios.post("/api/home/first", payload);
+      showSnackbar(res.data.message, "success");
+      formRef.current.reset();
     } catch (error) {
       console.error("Form submission error:", error);
     } finally {
@@ -140,27 +107,57 @@ export default function Home() {
     }
   };
 
+  const validateFormDataTwo = () => {
+    const newErrors: Errors = {};
+
+    const get = (name: string) =>
+    (formRefTwo.current?.elements.namedItem(name) as HTMLInputElement)?.value?.trim();
+
+    if (!get("full_name_two")) newErrors.full_name_two = "Full name is required";
+    if (!get("email_id_two")) {
+        newErrors.email_id_two = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@.]+$/.test(get("email_id_two"))) {
+        newErrors.email_id_two = "Enter a valid email address";
+    }
+
+    if (!get("phone_number_two")) {
+        newErrors.phone_number_two = "Mobile number is required";
+    } else if (!/^\d{10,12}$/.test(get("phone_number_two"))) {
+        newErrors.phone_number_two = "Enter a valid Mobile number";
+    }
+
+    if (!get("insurance_type_two")) newErrors.insurance_type_two = "Insurance Type is required";
+    if (!get("message")) newErrors.message = "Message is required";
+
+    setErrorTwo(newErrors);
+
+    if (Object.keys(newErrors).length > 0) {
+        const firstErrorField = document.querySelector("[data-error='true']");
+        firstErrorField?.scrollIntoView({ behavior: "smooth", block: "center" });
+        return false;
+    }
+
+    return true;
+  };  
+
   const submitFormTwo = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    const validationErrors = validateFormDataTwo();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrorTwo(validationErrors);
-      return;
-    }
+    if (!formRefTwo.current) return;
+    if (!validateFormDataTwo()) return;
 
     setLoading(true);
     try {
       const payload = {
-        full_name_two: formDataTwo.full_name_two,
-        email_id_two: formDataTwo.email_id_two,
-        phone_number_two: formDataTwo.phone_number_two,
-        insurance_type_two: formDataTwo.insurance_type_two,
-        message:formDataTwo.message,
+        full_name_two: (formRefTwo.current.elements.namedItem("full_name_two") as HTMLInputElement)?.value,
+        email_id_two: (formRefTwo.current.elements.namedItem("email_id_two") as HTMLInputElement)?.value,
+        phone_number_two: (formRefTwo.current.elements.namedItem("phone_number_two") as HTMLInputElement)?.value,
+        insurance_type_two: (formRefTwo.current.elements.namedItem("insurance_type_two") as HTMLInputElement)?.value,
+        message:(formRefTwo.current.elements.namedItem("message") as HTMLInputElement)?.value,
         type: 'Home Footer',
       }
-      await axios.post("/api/home/second", payload);
-      setFormDataTwo({ full_name_two: "", email_id_two: "", phone_number_two: "", insurance_type_two:"",message:""});
+      const res = await axios.post("/api/home/second", payload);
+      showSnackbar(res.data.message, "success");
+      formRefTwo.current.reset();
     } catch (error) {
       console.error("Form submission error:", error);
     } finally {
@@ -219,7 +216,7 @@ export default function Home() {
         <IconCash size={100} color="#E18126" opacity={0.1} />
       </motion.div>
       <div className="bg-linear-to-br from-blue-950 via-[#1186B7] to-[#884001] h-screen flex justify-center items-center">
-        <div className="px-10 md:px-0 md:max-w-180 lg:max-w-340 mx-auto">
+        <div className="px-10 md:px-0 md:max-w-180 lg:max-w-340 mx-auto mt-10">
           <div className="flex gap-4 md:gap-2 lg:gap-6">
             <motion.div initial={{ x: -30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="md:w-[50%] lg:w-[60%]">
               <div className="flex items-center justify-start mb-2">
@@ -233,31 +230,31 @@ export default function Home() {
                 <h1 className="text-left text-white text-2xl md:text-4xl lg:text-7xl font-bold text-shadow-lg">Insurance Made<br/><span className="text-[#E18126]">Simple & Affordable</span></h1>
                 <p className="text-left text-white text-lg md:text-lg lg:text-2xl text-shadow-lg leading-8">Get expert guidance and find the perfect insurance policies from top companies. <span className="text-[#E18126]">Protect what matters most to you</span> with personalized recommendations and comprehensive coverage.</p>
               </div>
-              <div className="flex gap-6 mt-15 md:mt-15 lg:mt-20">
+              <div className="flex gap-6 mt-15 md:mt-15 lg:mt-10">
                 <div>
                   <InteractiveHoverButton>Learn More</InteractiveHoverButton>
                 </div>
               </div>
             </motion.div>
             <motion.div initial={{ x: 30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="md:w-[50%] w-[40%]">
-              <form onSubmit={submitForm} className="bg-white shadow-lg rounded-4xl p-6">
+              <form ref={formRef} onSubmit={submitForm} className="bg-white shadow-lg rounded-4xl p-6">
                 <h2 className="text-xl md:text-xl lg:text-3xl text-blue-950 font-bold mb-4">Get Expert Consultation</h2>
                   <div className="flex flex-col gap-4">
                     <div>
-                      <input type="text" name="full_name" onChange={handleChange} value={formData.full_name} placeholder="Full Name" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
+                      <input type="text" name="full_name" placeholder="Full Name" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
                       {error.full_name && <span className="text-sm text-red-500">{error.full_name}</span>}
                     </div>
                     <div>
-                      <input type="email" name="email_id" onChange={handleChange} value={formData.email_id} placeholder="Email Address" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
+                      <input type="text" name="email_id" placeholder="Email Address" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
                       {error.email_id && <span className="text-sm text-red-500">{error.email_id}</span>}
                     </div>
                     <div>
-                      <input type="text" name="phone_number" onChange={handleChange} value={formData.phone_number} placeholder="Phone Number" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
+                      <input type="text" name="phone_number" placeholder="Phone Number" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
                       {error.phone_number && <span className="text-sm text-red-500">{error.phone_number}</span>}
                     </div>
                     <div>
-                      <select name="insurance_type" onChange={handleChange} value={formData.insurance_type} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                        <option>Select Insurance Type</option>
+                      <select name="insurance_type" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                        <option value={""} selected hidden>Select Insurance Type</option>
                         <option value="Life Insurance">Life Insurance</option>             
                         <option value="Health Insurance">Health Insurance</option>
                         <option value="Car Insurance">Car Insurance</option>
@@ -566,25 +563,25 @@ export default function Home() {
           </div>
 
           <div className="w-1/2">
-            <form onSubmit={submitFormTwo} className="bg-white shadow-lg rounded-4xl p-6">
+            <form ref={formRefTwo} onSubmit={submitFormTwo} className="bg-white shadow-lg rounded-4xl p-6">
               <h5 className="text-3xl font-bold mb-4 text-blue-950">Get Expert Consultation</h5>
               <p className="text-lg text-blue-950 mb-8">Fill in your details and we&apos;ll get back to you within 24 hours with personalized insurance guidance.</p>
               <div className="flex flex-col gap-4">
                 <div>
-                  <input type="text" name="full_name_two" onChange={handleChange} value={formDataTwo.full_name_two} placeholder="Full Name" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
+                  <input type="text" name="full_name_two" placeholder="Full Name" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
                   {errorTwo.full_name_two && <span className="text-sm text-red-500">{errorTwo.full_name_two}</span>}
                 </div>
                 <div>
-                  <input type="email" name="email_id_two" onChange={handleChange} value={formDataTwo.email_id_two} placeholder="Email Address" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
+                  <input type="text" name="email_id_two"  placeholder="Email Address" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
                   {errorTwo.email_id_two && <span className="text-sm text-red-500">{errorTwo.email_id_two}</span>}
                 </div>
                 <div>
-                  <input type="text" name="phone_number_two" onChange={handleChange} value={formDataTwo.phone_number_two} placeholder="Phone Number" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
+                  <input type="text" name="phone_number_two" placeholder="Phone Number" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
                   {errorTwo.phone_number_two && <span className="text-sm text-red-500">{errorTwo.phone_number_two}</span>}
                 </div>
                 <div>
-                  <select name="insurance_type_two" onChange={handleChange} value={formDataTwo.insurance_type_two} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                    <option>Select Insurance Type</option>
+                  <select name="insurance_type_two" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                    <option  value={""} selected hidden>Select Insurance Type</option>
                     <option value="Life Insurance">Life Insurance</option>             
                     <option value="Health Insurance">Health Insurance</option>
                     <option value="Car Insurance">Car Insurance</option>
@@ -595,7 +592,7 @@ export default function Home() {
                   {errorTwo.insurance_type_two && <span className="text-sm text-red-500">{errorTwo.insurance_type_two}</span>}
                 </div>
                 <div>
-                  <textarea name="message" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" onChange={handleChange} value={formDataTwo.message} rows={7} placeholder="Message"></textarea>
+                  <textarea name="message" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" rows={7} placeholder="Message"></textarea>
                   {errorTwo.message && <span className="text-sm text-red-500">{errorTwo.message}</span>}
                 </div>
                 <button type="submit" className="bg-[#E18126] text-white px-4 py-2 w-full rounded-4xl font-bold mt-4 cursor-pointer">{loading ? 'Submitting...':'Get Expert Consultation'}</button>
@@ -616,6 +613,17 @@ export default function Home() {
           )}
         />
       </div>
+      {snackbar.open && (
+        <div className="fixed inset-0 bottom-6 z-50 flex items-end justify-center pointer-events-none">
+            <div
+            className={`flex items-center gap-3 rounded-lg px-4 py-3 shadow-lg text-white
+                transition-all animate-slide-up
+                ${snackbar.type === "success" ? "bg-green-800" : "bg-red-800"}`}
+            >
+                <span className="text-sm md:text-base lg:text-lg font-medium">{snackbar.message}</span>
+            </div>
+        </div>
+      )}
       <Footer/>
     </>
   );

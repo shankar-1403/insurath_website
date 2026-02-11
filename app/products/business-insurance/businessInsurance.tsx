@@ -1,9 +1,9 @@
 'use client';
 
-import React,{useState, useEffect, FC} from 'react';
+import React,{useState, useEffect,useRef, FC} from 'react';
 import {motion} from 'motion/react';
 import { AnimatedShinyText } from '@/components/ui/animated-shiny-text';
-import { IconUserFilled,IconCheckbox,IconBuildings,IconShieldCheck,IconUsersGroup,IconChecks,IconWalk } from '@tabler/icons-react';
+import { IconUserFilled,IconBriefcase,IconBuildings,IconShieldCheck,IconUsersGroup,IconChecks,IconWalk } from '@tabler/icons-react';
 import Image from 'next/image';
 import axios from 'axios';
 import AccordionItem from '@/components/ui/accordion';
@@ -49,171 +49,177 @@ const EllipseItem: FC<EllipseItemProps> = ({
     )
 }
 
+type Errors = Partial<Record<string, string>>;
+type SnackbarType = "success" | "error";
+
 function BusinessInsurance() {
-    const [formData, setFormData] = useState({full_name:"", email_id:"", phone_number:"",age:"",city:"",gender:"", coverage_type:"",existing_health_insurance:"",pre_existing_conditions:"",desired_coverage_amount:""});
+    const formRef = useRef<HTMLFormElement | null>(null)
     const [step, setStep] = useState(1);
     const [openIndex, setOpenIndex] = useState<number | null>(null);
-    type FormErrors = Partial<Record<keyof typeof formData, string>>;
-    const [error, setError] = useState<FormErrors>({})
+    const [error, setError] = useState<Errors>({});
     const [loading, setLoading] = useState(false);
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({
-        ...prev,
-        [name]: value,
-        }));
-    }
+    const [snackbar, setSnackbar] = React.useState<{open: boolean; message: string; type: SnackbarType; }>({ open: false, message: "", type: "success", });
 
-    const validateFormData = ()=>{
-        const errors: FormErrors = {};
+    const showSnackbar = (message: string, type: SnackbarType = "success") => {
+        setSnackbar({ open: true, message, type });
+
+        setTimeout(() => {
+            setSnackbar((prev) => ({ ...prev, open: false }));
+        }, 3000);
+    };
+
+    const validateFormData = () => {
+        const newErrors: Errors = {};
+        const get = (name: string) =>
+        (formRef.current?.elements.namedItem(name) as HTMLInputElement)?.value?.trim();
+
         if(step === 1){
-            if(!formData.full_name.trim()){
-                errors.full_name = "Full Name is required"
-            } else if (!/^[A-Za-z]+(?: [A-Za-z]+)*$/.test(formData.full_name)){
-                errors.full_name = "Enter a valid name";
+            if (!get("company_name")) newErrors.company_name = "Company name is required";
+            if (!get("contact_person")) newErrors.contact_person = "Contact person is required";
+            if (!get("email_id")) {
+                newErrors.email_id = "Email is required";
+            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@.]+$/.test(get("email_id"))) {
+                newErrors.email_id = "Enter a valid email address";
             }
 
-            if (!formData.email_id.trim()) {
-                errors.email_id = "Email is required";
-            } else if (
-                !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email_id)
-            ) {
-                errors.email_id = "Enter a valid email address";
+            if (!get("phone_number")) {
+                newErrors.phone_number = "Mobile number is required";
+            } else if (!/^\d{10,12}$/.test(get("phone_number"))) {
+                newErrors.phone_number = "Enter a valid Mobile number";
             }
 
-            if(!formData.phone_number.trim()){
-                errors.phone_number = 'Phone Number is required';
-            } else if (!/^\d{10,12}$/.test(formData.phone_number)) {
-                errors.phone_number = "Phone number must be 12 digits";
-            }
-
-            if(!formData.gender.trim()){
-                errors.gender = "Gender is required"
-            }
-
-            if(!formData.age.trim()){
-                errors.age = "Age is required"
-            }
-
-             if(!formData.city.trim()){
-                errors.city = "City is required"
-            }
+            if (!get("business_type")) newErrors.business_type = "Business Type is required";
+            if (!get("industry")) newErrors.industry = "Industry is required";
+            if (!get("annual_revenue")) newErrors.annual_revenue = "Annual revenue is required";
+            if (!get("number_of_employees")) newErrors.number_of_employees = "Number of employees is required";
         }
 
         if (step === 2) {
-            if (!formData.coverage_type.trim()) {
-                errors.coverage_type = "Please specify coverage type";
-            }
-
-            if (!formData.existing_health_insurance.trim()) {
-                errors.existing_health_insurance =
-                "Please specify existing health insurance";
-            }
-
-            if (!formData.pre_existing_conditions.trim()) {
-                errors.pre_existing_conditions = "Please specify pre-existing conditions";
-            }
-
-            if (!formData.desired_coverage_amount.trim()) {
-                errors.desired_coverage_amount =
-                "Please specify desired coverage amount";
-            }
+            if (!get("bike_name")) newErrors.bike_name = "Bike name is required";
+            if (!get("bike_model")) newErrors.bike_model = "Bike model is required";
+            if (!get("manufacturing_year")) newErrors.manufacturing_year = "Car manufacturing year is required";
+            if (!get("registration_year")) newErrors.registration_year = "Registration year is required";
+            if (!get("registration_number")) newErrors.registration_number = "Registration number is required";
+            if (!get("exisiting_bike_insurance")) newErrors.exisiting_bike_insurance = "Existing car insurance is required";
+            if (!get("claim_history")) newErrors.claim_history = "Claim history is required";
+            if (!get("desired_coverage_type")) newErrors.desired_coverage_type = "Desired coverage type is required";
         }
-        return errors;
-    }
+        setError(newErrors);
+
+        if (Object.keys(newErrors).length > 0) {
+            const firstErrorField = document.querySelector("[data-error='true']");
+            firstErrorField?.scrollIntoView({ behavior: "smooth", block: "center" });
+            return false;
+        }
+
+        return true;
+    };  
 
     const submitForm = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        const validationErrors = validateFormData();
-        if (Object.keys(validationErrors).length > 0) {
-        setError(validationErrors);
-        return;
-        }
+        if (!formRef.current) return;
+
+        if (!validateFormData()) return;
 
         setLoading(true);
 
         try {
-        const storedId = localStorage.getItem("id");
+            const storedId = localStorage.getItem("business_id");
 
-        // -------- STEP 1 --------
-        if (step === 1) {
-            const firstForm = {
-                full_name: formData.full_name,
-                email_id: formData.email_id,
-                phone_number: formData.phone_number,
-                gender: formData.gender,
-                age: formData.age,
-                city: formData.city,
-            };
+            const get = (name: string) =>
+            (formRef.current?.elements.namedItem(name) as HTMLInputElement)?.value?.trim();
 
-            let response;
+            // -------- STEP 1 --------
+            if (step === 1) {
+                const firstForm = {
+                    company_name: get("company_name"),
+                    contact_person: get("contact_person"),
+                    phone_number: get("phone_number"),
+                    email_id: get("email_id"),
+                    city: get("city"),
+                    business_type: get("business_type"),
+                    industry: get("industry"),
+                    annual_revenue: get("annual_revenue"),
+                    number_of_employees: get("number_of_employees"),
+                };
 
-            // CREATE
-            if (!storedId) {
-            response = await axios.post("/api/health", firstForm);
-            localStorage.setItem("id", response.data.id);
-            setError({})
-            }
-            // UPDATE
-            else {
-                response = await axios.patch("/api/health", {
+                let response;
+
+                // CREATE
+                if (!storedId) {
+                    response = await axios.post("/api/business", firstForm);
+                    localStorage.setItem("business_id", response.data.id);
+                    showSnackbar(response.data.message, "success");
+
+                }
+                // UPDATE
+                else {
+                    response = await axios.patch("/api/business", {
                     id: storedId,
                     ...firstForm,
-                });
-                setError({})
+                    });
+                }
+
+                localStorage.setItem("step_one_business", JSON.stringify(firstForm));
+                setError({});
+                setStep(2);
+                return;
             }
 
-            // persist step 1 data
-            localStorage.setItem("step1", JSON.stringify(firstForm));
+            // -------- STEP 2 --------
+            if (step === 2 && storedId) {
+                const secondForm = {
+                    bike_name: get("bike_name"),
+                    bike_model: get("bike_model"),
+                    manufacturing_year: get("manufacturing_year"),
+                    registration_year: get("registration_year"),
+                    registration_number: get("registration_number"),
+                    exisiting_bike_insurance: get("exisiting_bike_insurance"),
+                    claim_history: get("claim_history"),
+                    desired_coverage_type: get("desired_coverage_type"),
+                };
 
-            // keep form state in sync
-            setFormData((prev) => ({
-            ...prev,
-            ...firstForm,
-            }));
+                const response = await axios.patch("/api/business", {
+                    id: storedId,
+                    ...secondForm,
+                });
+                showSnackbar(response.data.message, "success");
+                // reset everything
+                localStorage.removeItem("business_id");
+                localStorage.removeItem("step_one_business");
 
-            setStep(2);
-            return;
-        }
-
-        // -------- STEP 2 --------
-        if (step === 2 && storedId) {
-            await axios.patch("/api/health", {
-                id: storedId,
-                coverage_type: formData.coverage_type,
-                existing_health_insurance: formData.existing_health_insurance,
-                pre_existing_conditions: formData.pre_existing_conditions,
-                desired_coverage_amount:formData.desired_coverage_amount
-            });
-
-            localStorage.clear();
-            setStep(1);
-            setError({})
-            setFormData({ full_name: "", email_id: "", phone_number: "", gender:"", age:"", city:"", coverage_type: "", existing_health_insurance: "",pre_existing_conditions:"",desired_coverage_amount:""});
-        }
+                formRef.current.reset();
+                setError({});
+                setStep(1);
+            }
         } catch (error) {
-        console.error("Form submission error:", error);
+            console.error("Form submission error:", error);
         } finally {
-        setLoading(false);
+            setLoading(false);
         }
     };
 
 
     useEffect(() => {
-        const storedId = localStorage.getItem("id");
-        const step1Data = localStorage.getItem("step1");
+        const step1Data = localStorage.getItem("step_one_business");
 
-        if (storedId && step1Data) {
-        setFormData((prev) => ({
-            ...prev,
-            ...JSON.parse(step1Data),
-        }));
-        setStep(2);
-        } else {
-        setStep(1);
+        if (step === 1 && step1Data && formRef.current) {
+            const data = JSON.parse(step1Data);
+
+            const setValue = (name: string, value: string) => {
+            const field = formRef.current?.elements.namedItem(name) as HTMLInputElement | null;
+            if (field) field.value = value || "";
+            };
+
+            setValue("full_name", data.full_name);
+            setValue("email_id", data.email_id);
+            setValue("phone_number", data.phone_number);
+            setValue("gender", data.gender);
+            setValue("age", data.age);
+            setValue("city", data.city);
         }
-    }, []);
+    }, [step]);
 
     const faqs = [
         {
@@ -289,7 +295,7 @@ function BusinessInsurance() {
                         </div>
                         </motion.div>
                         <motion.div initial={{ x: 30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-[60%]">
-                        <form onSubmit={submitForm} className="bg-white shadow-lg rounded-4xl p-6 max-w-xl mx-auto">
+                        <form ref={formRef} onSubmit={submitForm} className="bg-white shadow-lg rounded-4xl p-6 max-w-xl mx-auto">
                             <h2 className="text-xl md:text-xl lg:text-3xl font-bold mb-4 text-center text-blue-950">Get Your Business Insurance Quote</h2>
                             <p className='text-lg text-gray-700 text-center mb-6'>Answer a few quick questions to get personalized recommendations</p>
                             <ol className="flex items-center w-full justify-between mb-6 sm:mb-8 px-6">
@@ -325,40 +331,39 @@ function BusinessInsurance() {
                                         }`}
                                     >
                                         <div className={`bg-[#E18126] rounded-full p-3 ${step === 2 ? 'bg-[#E18126]': 'bg-gray-300'}`}>
-                                            <IconCheckbox className='w-6 h-6 text-white'/>
+                                            <IconBriefcase className='w-6 h-6 text-white'/>
                                         </div>
-                                        <span className="text-sm sm:text-base font-bold text-center">Insurance Needs</span>
+                                        <span className="text-sm sm:text-base font-bold text-center">Coverage Needs</span>
                                     </span>
                                 </li>
                             </ol>
-
 
                             {step === 1 && (
                             <div className="flex flex-col gap-4">
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="col-span-1">
-                                        <input type="text" name="full_name" onChange={handleChange} value={formData.full_name} placeholder="Company Name"  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
-                                        {error.full_name && <span className="text-sm text-red-500">{error.full_name}</span>}
+                                        <input type="text" name="company_name" placeholder="Company Name" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
+                                        {error.company_name && <span className="text-sm text-red-500">{error.company_name}</span>}
                                     </div>
                                     <div className="col-span-1">
-                                        <input type="text" name="full_name" onChange={handleChange} value={formData.full_name} placeholder="Contact Person"  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
-                                        {error.full_name && <span className="text-sm text-red-500">{error.full_name}</span>}
+                                        <input type="text" name="contact_person" placeholder="Contact Person" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
+                                        {error.contact_person && <span className="text-sm text-red-500">{error.contact_person}</span>}
                                     </div>
                                 </div>
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="col-span-1">
-                                        <input type="email" name="email_id" onChange={handleChange} value={formData.email_id} placeholder="Email Address" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
+                                        <input type="text" name="email_id" placeholder="Email Address" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
                                         {error.email_id && <span className="text-sm text-red-500">{error.email_id}</span>}
                                     </div>
                                     <div className="col-span-1">
-                                        <input type="text" name="phone_number" onChange={handleChange} value={formData.phone_number} placeholder="Phone Number" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
+                                        <input type="text" name="phone_number" placeholder="Phone Number" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
                                         {error.phone_number && <span className="text-sm text-red-500">{error.phone_number}</span>}
                                     </div>
                                 </div>
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="col-span-1">
-                                        <select name="existing_health_insurance" onChange={handleChange} value={formData.existing_health_insurance} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option>Select Business Type</option>
+                                        <select name="business_type" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                            <option value={""} selected hidden>Select Business Type</option>
                                             <option value="Private Limited">Private Limited</option>             
                                             <option value="Proprietorship">Proprietorship</option>
                                             <option value="Partnership">Partnership</option>
@@ -368,11 +373,11 @@ function BusinessInsurance() {
                                             <option value="Section 8 Company">Section 8 Company</option>
                                             <option value="Others">Others</option>
                                         </select>
-                                        {error.city && <span className="text-sm text-red-500">{error.city}</span>}
+                                        {error.business_type && <span className="text-sm text-red-500">{error.business_type}</span>}
                                     </div>
                                     <div className="col-span-1">
-                                        <select name="existing_health_insurance" onChange={handleChange} value={formData.existing_health_insurance} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option>Select Industry</option>
+                                        <select name="industry" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                            <option value={""} selected hidden>Select Industry</option>
                                             <option value="Retail">Retail</option>             
                                             <option value="Manufacturing">Manufacturing</option>
                                             <option value="Professional Services">Professional Services</option>
@@ -382,13 +387,13 @@ function BusinessInsurance() {
                                             <option value="Hospitality">Hospitality</option>
                                             <option value="Others">Others</option>
                                         </select>
-                                        {error.city && <span className="text-sm text-red-500">{error.city}</span>}
+                                        {error.industry && <span className="text-sm text-red-500">{error.industry}</span>}
                                     </div>
                                 </div>
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="col-span-1">
-                                        <select name="existing_health_insurance" onChange={handleChange} value={formData.existing_health_insurance} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option>Select Annual Revenue</option>
+                                        <select name="annual_revenue" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                            <option value={""} selected hidden>Select Annual Revenue</option>
                                             <option value="Under ₹1 Lakh">Under ₹1 Lakh</option>             
                                             <option value="₹1-5 Lakhs">₹1-5 Lakhs</option>
                                             <option value="₹5-10 Lakhs">₹5-10 Lakhs</option>
@@ -396,18 +401,18 @@ function BusinessInsurance() {
                                             <option value="₹50 Lakhs-1 Crore">₹50 Lakhs-1 Crore</option>
                                             <option value="Over ₹1 Crore">Over ₹1 Crore</option>
                                         </select>
-                                        {error.city && <span className="text-sm text-red-500">{error.city}</span>}
+                                        {error.annual_revenue && <span className="text-sm text-red-500">{error.annual_revenue}</span>}
                                     </div>
                                     <div className="col-span-1">
-                                        <select name="existing_health_insurance" onChange={handleChange} value={formData.existing_health_insurance} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option>Select Number of Employees</option>
+                                        <select name="number_of_employees" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                            <option value={""} selected hidden>Select Number of Employees</option>
                                             <option value="1-5 employees">1-5 employees</option>             
                                             <option value="6-20 employees">6-20 employees</option>
                                             <option value="21-50 employees">21-50 employees</option>
                                             <option value="51-100 employees">51-100 employees</option>
                                             <option value="100+ employees">100+ employees</option>
                                         </select>
-                                        {error.city && <span className="text-sm text-red-500">{error.city}</span>}
+                                        {error.number_of_employees && <span className="text-sm text-red-500">{error.number_of_employees}</span>}
                                     </div>
                                 </div>
                                 <div className="flex justify-end">
@@ -419,45 +424,64 @@ function BusinessInsurance() {
                             <div className="flex flex-col gap-4">
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className='col-span-1'>
-                                        <select name="coverage_type" onChange={handleChange} value={formData.coverage_type} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option>Select Coverage Type</option>
-                                            <option value="Individual">Individual</option>             
-                                            <option value="Floater">Floater</option>
+                                        <select name="existing_business_insurance" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                            <option value={""} selected hidden>Select existing business insurance</option>
+                                            <option value="No existing coverage">No existing coverage</option>             
+                                            <option value="Basic coverage">Basic coverage</option>
+                                            <option value="Comprehensive coverage">Comprehensive coverage</option>
+                                            <option value="Premium coverage">Premium coverage</option>
                                         </select>
-                                        {error.coverage_type && <span className="text-sm text-red-500">{error.coverage_type}</span>}
+                                        {error.existing_business_insurance && <span className="text-sm text-red-500">{error.existing_business_insurance}</span>}
                                     </div>
                                     <div className="col-span-1">
-                                        <select name="existing_health_insurance" onChange={handleChange} value={formData.existing_health_insurance} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option>Select Existing Health Insurance</option>
-                                            <option value="No existing insurance">No existing insurance</option>             
-                                            <option value="Have existing insurance">Have existing insurance</option>
-                                            <option value="Previous insurance expired">Previous insurance expired</option>
+                                        <select name="primary_coverage_type" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                            <option value={""} selected hidden>Select primary coverage type</option>
+                                            <option value="General Liability">General Liability</option>             
+                                            <option value="Property Insurance">Property Insurance</option>
+                                            <option value="Professional Liability">Professional Liability</option>
+                                            <option value="Cyber Liability">Cyber Liability</option>
+                                            <option value="Comprehensive Package">Comprehensive Package</option>
                                         </select>
-                                        {error.existing_health_insurance && <span className="text-sm text-red-500">{error.existing_health_insurance}</span>}
+                                        {error.primary_coverage_type && <span className="text-sm text-red-500">{error.primary_coverage_type}</span>}
                                     </div>
                                 </div>
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className='col-span-1'>
-                                        <select name="pre_existing_conditions" onChange={handleChange} value={formData.pre_existing_conditions} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option>Select Pre-existing Conditions</option>
-                                            <option value="No pre-existing conditions">No pre-existing conditions</option>             
-                                            <option value="Diabetes">Diabetes</option>             
-                                            <option value="Hypertension">Hypertension</option>             
-                                            <option value="Heart conditions">Heart conditions</option>             
-                                            <option value="Other conditions">Other conditions</option>             
-                                        </select>
-                                        {error.pre_existing_conditions && <span className="text-sm text-red-500">{error.pre_existing_conditions}</span>}
+                                        <input type="text" name="estimated_property_value" placeholder="Estimated Property value (₹)" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
+                                        {error.estimated_property_value && <span className="text-sm text-red-500">{error.estimated_property_value}</span>}
                                     </div>
                                     <div className="col-span-1">
-                                        <select name="desired_coverage_amount" onChange={handleChange} value={formData.desired_coverage_amount} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option>Select Desired Coverage Amount</option>
-                                            <option value="₹2-5 Lakhs">₹2-5 Lakhs</option>    
-                                            <option value="₹5-10 Lakhs">₹5-10 Lakhs</option>    
-                                            <option value="₹10-25 Lakhs">₹10-25 Lakhs</option>    
-                                            <option value="₹25-50 Lakhs">₹25-50 Lakhs</option>    
-                                            <option value="₹50+ Lakhs">₹50+ Lakhs</option>    
+                                        <select name="liability_coverage_needs" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                            <option value={""} selected hidden>Select Desired Coverage Amount</option>
+                                            <option value="Basic (₹5-10 Lakhs)">Basic (₹5-10 Lakhs)</option> 
+                                            <option value="Standard (₹10-25 Lakhs)">Standard (₹10-25 Lakhs)</option> 
+                                            <option value="High (₹25-50 Lakhs)">High (₹25-50 Lakhs)</option> 
+                                            <option value="Premium (₹50+ Lakhs)">Premium (₹50+ Lakhs)</option> 
                                         </select>
-                                        {error.desired_coverage_amount && <span className="text-sm text-red-500">{error.desired_coverage_amount}</span>}
+                                        {error.liability_coverage_needs && <span className="text-sm text-red-500">{error.liability_coverage_needs}</span>}
+                                    </div>
+                                </div>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className='col-span-1'>
+                                        <select name="existing_business_insurance" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                            <option value={""} selected hidden>Select existing business insurance</option>
+                                            <option value="No existing coverage">No existing coverage</option>             
+                                            <option value="Basic coverage">Basic coverage</option>
+                                            <option value="Comprehensive coverage">Comprehensive coverage</option>
+                                            <option value="Premium coverage">Premium coverage</option>
+                                        </select>
+                                        {error.existing_business_insurance && <span className="text-sm text-red-500">{error.existing_business_insurance}</span>}
+                                    </div>
+                                    <div className="col-span-1">
+                                        <select name="primary_coverage_type" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                            <option value={""} selected hidden>Select primary coverage type</option>
+                                            <option value="General Liability">General Liability</option>             
+                                            <option value="Property Insurance">Property Insurance</option>
+                                            <option value="Professional Liability">Professional Liability</option>
+                                            <option value="Cyber Liability">Cyber Liability</option>
+                                            <option value="Comprehensive Package">Comprehensive Package</option>
+                                        </select>
+                                        {error.primary_coverage_type && <span className="text-sm text-red-500">{error.primary_coverage_type}</span>}
                                     </div>
                                 </div>
                                 <div className="flex justify-between">
@@ -513,7 +537,7 @@ function BusinessInsurance() {
                     <motion.div initial={{ x: 30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-[30%]">
                         <div>
                             <div className="relative h-100 w-100 overflow-hidden rounded-4xl">
-                                <Image src="/assets/aboutus_one.png" alt="about_us_one" priority fill className="object-cover"/>
+                                <Image src="/assets/business_about.png" alt="about_us_one" priority fill className="object-cover"/>
                             </div>
                             <motion.div animate={{ x: [0, 40, 0] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", }} className="absolute bg-white h-auto flex flex-col items-center w-30 overflow-hidden rounded-4xl px-4 py-4 -mt-6">
                                 <p className="text-xl text-[#1185b7] font-bold text-shadow-sm">100%</p>
@@ -650,6 +674,17 @@ function BusinessInsurance() {
                     </div>
                 </div>
             </div>
+            {snackbar.open && (
+                <div className="fixed inset-0 bottom-6 z-50 flex items-end justify-center pointer-events-none">
+                    <div
+                    className={`flex items-center gap-3 rounded-lg px-4 py-3 shadow-lg text-white
+                        transition-all animate-slide-up
+                        ${snackbar.type === "success" ? "bg-green-800" : "bg-red-800"}`}
+                    >
+                        <span className="text-sm md:text-base lg:text-lg font-medium">{snackbar.message}</span>
+                    </div>
+                </div>
+            )}
         </>
     )
 }

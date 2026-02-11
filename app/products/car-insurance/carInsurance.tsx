@@ -1,10 +1,9 @@
 'use client';
 
-import React,{useState, useEffect, FC} from 'react';
+import React,{useState, useEffect, useRef, FC} from 'react';
 import {motion} from 'motion/react';
 import { AnimatedShinyText } from '@/components/ui/animated-shiny-text';
-import { IconUserFilled,IconCheckbox,IconRoad,IconShieldCheck,IconCash } from '@tabler/icons-react';
-import Image from 'next/image';
+import { IconUserFilled,IconCar,IconRoad,IconShieldCheck,IconCash } from '@tabler/icons-react';
 import axios from 'axios';
 import AccordionItem from '@/components/ui/accordion';
 import { PointerHighlight } from '@/components/ui/pointer-highlight';
@@ -49,171 +48,168 @@ const EllipseItem: FC<EllipseItemProps> = ({
     )
 }
 
+type Errors = Partial<Record<string, string>>;
+type SnackbarType = "success" | "error";
+
 function CarInsurance() {
-    const [formData, setFormData] = useState({full_name:"", email_id:"", phone_number:"",age:"",city:"",gender:"", coverage_type:"",existing_health_insurance:"",pre_existing_conditions:"",desired_coverage_amount:""});
+    const formRef = useRef<HTMLFormElement | null>(null)
     const [step, setStep] = useState(1);
     const [openIndex, setOpenIndex] = useState<number | null>(null);
-    type FormErrors = Partial<Record<keyof typeof formData, string>>;
-    const [error, setError] = useState<FormErrors>({})
+    const [error, setError] = useState<Errors>({});
     const [loading, setLoading] = useState(false);
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({
-        ...prev,
-        [name]: value,
-        }));
-    }
+    const [snackbar, setSnackbar] = React.useState<{open: boolean; message: string; type: SnackbarType; }>({ open: false, message: "", type: "success", });
 
-    const validateFormData = ()=>{
-        const errors: FormErrors = {};
+    const showSnackbar = (message: string, type: SnackbarType = "success") => {
+        setSnackbar({ open: true, message, type });
+
+        setTimeout(() => {
+            setSnackbar((prev) => ({ ...prev, open: false }));
+        }, 3000);
+    };
+
+    const validateFormData = () => {
+        const newErrors: Errors = {};
+        const get = (name: string) =>
+        (formRef.current?.elements.namedItem(name) as HTMLInputElement)?.value?.trim();
+
         if(step === 1){
-            if(!formData.full_name.trim()){
-                errors.full_name = "Full Name is required"
-            } else if (!/^[A-Za-z]+(?: [A-Za-z]+)*$/.test(formData.full_name)){
-                errors.full_name = "Enter a valid name";
+            if (!get("full_name")) newErrors.full_name = "Full name is required";
+            if (!get("email_id")) {
+                newErrors.email_id = "Email is required";
+            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@.]+$/.test(get("email_id"))) {
+                newErrors.email_id = "Enter a valid email address";
             }
 
-            if (!formData.email_id.trim()) {
-                errors.email_id = "Email is required";
-            } else if (
-                !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email_id)
-            ) {
-                errors.email_id = "Enter a valid email address";
+            if (!get("phone_number")) {
+                newErrors.phone_number = "Mobile number is required";
+            } else if (!/^\d{10,12}$/.test(get("phone_number"))) {
+                newErrors.phone_number = "Enter a valid Mobile number";
             }
 
-            if(!formData.phone_number.trim()){
-                errors.phone_number = 'Phone Number is required';
-            } else if (!/^\d{10,12}$/.test(formData.phone_number)) {
-                errors.phone_number = "Phone number must be 12 digits";
-            }
-
-            if(!formData.gender.trim()){
-                errors.gender = "Gender is required"
-            }
-
-            if(!formData.age.trim()){
-                errors.age = "Age is required"
-            }
-
-             if(!formData.city.trim()){
-                errors.city = "City is required"
-            }
+            if (!get("city")) newErrors.city = "City is required";
         }
 
         if (step === 2) {
-            if (!formData.coverage_type.trim()) {
-                errors.coverage_type = "Please specify coverage type";
-            }
-
-            if (!formData.existing_health_insurance.trim()) {
-                errors.existing_health_insurance =
-                "Please specify existing health insurance";
-            }
-
-            if (!formData.pre_existing_conditions.trim()) {
-                errors.pre_existing_conditions = "Please specify pre-existing conditions";
-            }
-
-            if (!formData.desired_coverage_amount.trim()) {
-                errors.desired_coverage_amount =
-                "Please specify desired coverage amount";
-            }
+            if (!get("vehicle_name")) newErrors.vehicle_name = "Vehicle name is required";
+            if (!get("vehicle_model")) newErrors.vehicle_model = "Vehicle model is required";
+            if (!get("manufacturing_year")) newErrors.manufacturing_year = "Car manufacturing year is required";
+            if (!get("registration_year")) newErrors.registration_year = "Registration year is required";
+            if (!get("registration_number")) newErrors.registration_number = "Registration number is required";
+            if (!get("exisiting_car_insurance")) newErrors.exisiting_car_insurance = "Existing car insurance is required";
+            if (!get("claim_history")) newErrors.claim_history = "Claim history is required";
+            if (!get("desired_coverage_type")) newErrors.desired_coverage_type = "Desired coverage type is required";
         }
-        return errors;
-    }
+        setError(newErrors);
+
+        if (Object.keys(newErrors).length > 0) {
+            const firstErrorField = document.querySelector("[data-error='true']");
+            firstErrorField?.scrollIntoView({ behavior: "smooth", block: "center" });
+            return false;
+        }
+
+        return true;
+    };  
 
     const submitForm = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        const validationErrors = validateFormData();
-        if (Object.keys(validationErrors).length > 0) {
-        setError(validationErrors);
-        return;
-        }
+        if (!formRef.current) return;
+
+        if (!validateFormData()) return;
 
         setLoading(true);
 
         try {
-        const storedId = localStorage.getItem("id");
+            const storedId = localStorage.getItem("car_id");
 
-        // -------- STEP 1 --------
-        if (step === 1) {
-            const firstForm = {
-                full_name: formData.full_name,
-                email_id: formData.email_id,
-                phone_number: formData.phone_number,
-                gender: formData.gender,
-                age: formData.age,
-                city: formData.city,
-            };
+            const get = (name: string) =>
+            (formRef.current?.elements.namedItem(name) as HTMLInputElement)?.value?.trim();
 
-            let response;
+            // -------- STEP 1 --------
+            if (step === 1) {
+                const firstForm = {
+                    full_name: get("full_name"),
+                    email_id: get("email_id"),
+                    phone_number: get("phone_number"),
+                    city: get("city"),
+                };
 
-            // CREATE
-            if (!storedId) {
-            response = await axios.post("/api/health", firstForm);
-            localStorage.setItem("id", response.data.id);
-            setError({})
-            }
-            // UPDATE
-            else {
-                response = await axios.patch("/api/health", {
+                let response;
+
+                // CREATE
+                if (!storedId) {
+                    response = await axios.post("/api/car", firstForm);
+                    localStorage.setItem("car_id", response.data.id);
+                    showSnackbar(response.data.message, "success");
+
+                }
+                // UPDATE
+                else {
+                    response = await axios.patch("/api/car", {
                     id: storedId,
                     ...firstForm,
-                });
-                setError({})
+                    });
+                }
+
+                localStorage.setItem("step_one_car", JSON.stringify(firstForm));
+                setError({});
+                setStep(2);
+                return;
             }
 
-            // persist step 1 data
-            localStorage.setItem("step1", JSON.stringify(firstForm));
+            // -------- STEP 2 --------
+            if (step === 2 && storedId) {
+                const secondForm = {
+                    vehicle_name: get("vehicle_name"),
+                    vehicle_model: get("vehicle_model"),
+                    manufacturing_year: get("manufacturing_year"),
+                    registration_year: get("registration_year"),
+                    registration_number: get("registration_number"),
+                    exisiting_car_insurance: get("exisiting_car_insurance"),
+                    claim_history: get("claim_history"),
+                    desired_coverage_type: get("desired_coverage_type"),
+                };
 
-            // keep form state in sync
-            setFormData((prev) => ({
-            ...prev,
-            ...firstForm,
-            }));
+                const response = await axios.patch("/api/car", {
+                    id: storedId,
+                    ...secondForm,
+                });
+                showSnackbar(response.data.message, "success");
+                // reset everything
+                localStorage.removeItem("car_id");
+                localStorage.removeItem("step_one_car");
 
-            setStep(2);
-            return;
-        }
-
-        // -------- STEP 2 --------
-        if (step === 2 && storedId) {
-            await axios.patch("/api/health", {
-                id: storedId,
-                coverage_type: formData.coverage_type,
-                existing_health_insurance: formData.existing_health_insurance,
-                pre_existing_conditions: formData.pre_existing_conditions,
-                desired_coverage_amount:formData.desired_coverage_amount
-            });
-
-            localStorage.clear();
-            setStep(1);
-            setError({})
-            setFormData({ full_name: "", email_id: "", phone_number: "", gender:"", age:"", city:"", coverage_type: "", existing_health_insurance: "",pre_existing_conditions:"",desired_coverage_amount:""});
-        }
+                formRef.current.reset();
+                setError({});
+                setStep(1);
+            }
         } catch (error) {
-        console.error("Form submission error:", error);
+            console.error("Form submission error:", error);
         } finally {
-        setLoading(false);
+            setLoading(false);
         }
     };
 
 
     useEffect(() => {
-        const storedId = localStorage.getItem("id");
-        const step1Data = localStorage.getItem("step1");
+        const step1Data = localStorage.getItem("step_one_car");
 
-        if (storedId && step1Data) {
-        setFormData((prev) => ({
-            ...prev,
-            ...JSON.parse(step1Data),
-        }));
-        setStep(2);
-        } else {
-        setStep(1);
+        if (step === 1 && step1Data && formRef.current) {
+            const data = JSON.parse(step1Data);
+
+            const setValue = (name: string, value: string) => {
+            const field = formRef.current?.elements.namedItem(name) as HTMLInputElement | null;
+            if (field) field.value = value || "";
+            };
+
+            setValue("full_name", data.full_name);
+            setValue("email_id", data.email_id);
+            setValue("phone_number", data.phone_number);
+            setValue("gender", data.gender);
+            setValue("age", data.age);
+            setValue("city", data.city);
         }
-    }, []);
+    }, [step]);
 
     const faqs = [
         {
@@ -241,6 +237,13 @@ function CarInsurance() {
             answer: "To make a claim, inform your insurer immediately after an accident, provide necessary documents (policy copy, driving license, RC, FIR if required), get your vehicle inspected, and choose between cashless (at network garages) or reimbursement claim process."
         }
     ];
+    
+    const currentYear = new Date().getFullYear();
+
+    const years = Array.from(
+        { length: currentYear - 2010 + 1 },
+        (_, index) => currentYear - index
+    );
 
     return (
         <>
@@ -263,7 +266,7 @@ function CarInsurance() {
                         </div>
                         </motion.div>
                         <motion.div initial={{ x: 30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-[60%]">
-                        <form onSubmit={submitForm} className="bg-white shadow-lg rounded-4xl p-6 max-w-xl mx-auto">
+                        <form ref={formRef} onSubmit={submitForm} className="bg-white shadow-lg rounded-4xl p-6 max-w-xl mx-auto">
                             <h2 className="text-xl md:text-xl lg:text-3xl font-bold mb-4 text-center text-blue-950">Get Your Car Insurance Quote</h2>
                             <p className='text-lg text-gray-700 text-center mb-6'>Answer a few quick questions to get personalized recommendations</p>
                             <ol className="flex items-center w-full justify-between mb-6 sm:mb-8 px-6">
@@ -299,9 +302,9 @@ function CarInsurance() {
                                         }`}
                                     >
                                         <div className={`bg-[#E18126] rounded-full p-3 ${step === 2 ? 'bg-[#E18126]': 'bg-gray-300'}`}>
-                                            <IconCheckbox className='w-6 h-6 text-white'/>
+                                            <IconCar className='w-6 h-6 text-white'/>
                                         </div>
-                                        <span className="text-sm sm:text-base font-bold text-center">Insurance Needs</span>
+                                        <span className="text-sm sm:text-base font-bold text-center">Vehicle Details</span>
                                     </span>
                                 </li>
                             </ol>
@@ -310,22 +313,22 @@ function CarInsurance() {
                             {step === 1 && (
                             <div className="flex flex-col gap-4">
                                 <div>
-                                    <input type="text" name="full_name" onChange={handleChange} value={formData.full_name} placeholder="Full Name"  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
+                                    <input type="text" name="full_name" placeholder="Full Name"  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
                                     {error.full_name && <span className="text-sm text-red-500">{error.full_name}</span>}
                                 </div>
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="col-span-1">
-                                        <input type="email" name="email_id" onChange={handleChange} value={formData.email_id} placeholder="Email Address" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
+                                        <input type="text" name="email_id" placeholder="Email Address" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
                                         {error.email_id && <span className="text-sm text-red-500">{error.email_id}</span>}
                                     </div>
                                     <div className="col-span-1">
-                                        <input type="text" name="phone_number" onChange={handleChange} value={formData.phone_number} placeholder="Phone Number" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
+                                        <input type="text" name="phone_number" placeholder="Phone Number" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
                                         {error.phone_number && <span className="text-sm text-red-500">{error.phone_number}</span>}
                                     </div>
                                 </div>
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="col-span-1">
-                                        <input type="text" name="city" onChange={handleChange} value={formData.city} placeholder="City" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
+                                        <input type="text" name="city" placeholder="City" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
                                         {error.city && <span className="text-sm text-red-500">{error.city}</span>}
                                     </div>
                                 </div>
@@ -338,45 +341,73 @@ function CarInsurance() {
                             <div className="flex flex-col gap-4">
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className='col-span-1'>
-                                        <select name="coverage_type" onChange={handleChange} value={formData.coverage_type} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option>Select Coverage Type</option>
-                                            <option value="Individual">Individual</option>             
-                                            <option value="Floater">Floater</option>
-                                        </select>
-                                        {error.coverage_type && <span className="text-sm text-red-500">{error.coverage_type}</span>}
+                                        <input type="text" name="vehicle_name" placeholder="Vehicle Name" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
+                                        {error.vehicle_name && <span className="text-sm text-red-500">{error.vehicle_name}</span>}
                                     </div>
                                     <div className="col-span-1">
-                                        <select name="existing_health_insurance" onChange={handleChange} value={formData.existing_health_insurance} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option>Select Existing Health Insurance</option>
-                                            <option value="No existing insurance">No existing insurance</option>             
-                                            <option value="Have existing insurance">Have existing insurance</option>
-                                            <option value="Previous insurance expired">Previous insurance expired</option>
-                                        </select>
-                                        {error.existing_health_insurance && <span className="text-sm text-red-500">{error.existing_health_insurance}</span>}
+                                        <input type="text" name="vehicle_model" placeholder="Vehicle Model" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
+                                        {error.vehicle_model && <span className="text-sm text-red-500">{error.vehicle_model}</span>}
                                     </div>
                                 </div>
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className='col-span-1'>
-                                        <select name="pre_existing_conditions" onChange={handleChange} value={formData.pre_existing_conditions} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option>Select Pre-existing Conditions</option>
-                                            <option value="No pre-existing conditions">No pre-existing conditions</option>             
-                                            <option value="Diabetes">Diabetes</option>             
-                                            <option value="Hypertension">Hypertension</option>             
-                                            <option value="Heart conditions">Heart conditions</option>             
-                                            <option value="Other conditions">Other conditions</option>             
+                                        <select name="manufacturing_year" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                            <option value={""} selected hidden>Select manufacturing year</option>
+                                            {years.map((year)=>(
+                                                <>
+                                                    <option key={year} value={year}>{year}</option> 
+                                                </>   
+                                            ))}
                                         </select>
-                                        {error.pre_existing_conditions && <span className="text-sm text-red-500">{error.pre_existing_conditions}</span>}
+                                        {error.manufacturing_year && <span className="text-sm text-red-500">{error.manufacturing_year}</span>}
                                     </div>
                                     <div className="col-span-1">
-                                        <select name="desired_coverage_amount" onChange={handleChange} value={formData.desired_coverage_amount} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option>Select Desired Coverage Amount</option>
-                                            <option value="₹2-5 Lakhs">₹2-5 Lakhs</option>    
-                                            <option value="₹5-10 Lakhs">₹5-10 Lakhs</option>    
-                                            <option value="₹10-25 Lakhs">₹10-25 Lakhs</option>    
-                                            <option value="₹25-50 Lakhs">₹25-50 Lakhs</option>    
-                                            <option value="₹50+ Lakhs">₹50+ Lakhs</option>    
+                                        <select name="registration_year" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                            <option value={""} selected hidden>Select registration year</option>
+                                            {years.map((year)=>(
+                                                <>
+                                                    <option key={year} value={year}>{year}</option> 
+                                                </>   
+                                            ))}  
                                         </select>
-                                        {error.desired_coverage_amount && <span className="text-sm text-red-500">{error.desired_coverage_amount}</span>}
+                                        {error.registration_year && <span className="text-sm text-red-500">{error.registration_year}</span>}
+                                    </div>
+                                </div>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="col-span-2">
+                                        <input type="text" name="registration_number" placeholder="Registration Number" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
+                                        {error.registration_number && <span className="text-sm text-red-500">{error.registration_number}</span>}
+                                    </div>
+                                </div>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className='col-span-1'>
+                                        <select name="exisiting_car_insurance" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                            <option value={""} selected hidden>Select existing car insurance</option>
+                                            <option value="No existing insurance">No existing insurance</option>             
+                                            <option value="Have existing insurance">Have existing insurance</option>             
+                                            <option value="Previous insurance expired">Previous insurance expired</option>     
+                                        </select>
+                                        {error.exisiting_car_insurance && <span className="text-sm text-red-500">{error.exisiting_car_insurance}</span>}
+                                    </div>
+                                    <div className="col-span-1">
+                                        <select name="claim_history" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                            <option value={""} selected hidden>Select claim history</option>
+                                            <option value="No claims">No claims</option>             
+                                            <option value="1-2 claims">1-2 claims</option>             
+                                            <option value="3-5 claims">3-5 claims</option>
+                                            <option value="5+ claims">5+ claims</option>
+                                        </select>
+                                        {error.claim_history && <span className="text-sm text-red-500">{error.claim_history}</span>}
+                                    </div>
+                                </div>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="col-span-2">
+                                        <select name="desired_coverage_type" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                            <option value={""} selected hidden>Select coverage type</option>
+                                            <option value="Third Party Only">Third Party Only</option>             
+                                            <option value="Comprehensive">Comprehensive</option>
+                                        </select>
+                                        {error.desired_coverage_type && <span className="text-sm text-red-500">{error.desired_coverage_type}</span>}
                                     </div>
                                 </div>
                                 <div className="flex justify-between">
@@ -432,7 +463,7 @@ function CarInsurance() {
                     <motion.div initial={{ x: 30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-[30%]">
                         <div>
                             <div className="relative h-100 w-100 overflow-hidden rounded-4xl">
-                                <Image src="/assets/aboutus_one.png" alt="about_us_one" priority fill className="object-cover"/>
+                                <img src="/assets/car_about.png" alt="about_us_one" className="object-cover h-full w-full"/>
                             </div>
                             <motion.div animate={{ x: [0, 40, 0] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", }} className="absolute bg-white h-auto flex flex-col items-center w-30 overflow-hidden rounded-4xl px-4 py-4 -mt-6">
                                 <p className="text-xl text-[#1185b7] font-bold text-shadow-sm">1000+</p>
@@ -615,6 +646,17 @@ function CarInsurance() {
                     </div>
                 </div>
             </div>
+            {snackbar.open && (
+                <div className="fixed inset-0 bottom-6 z-50 flex items-end justify-center pointer-events-none">
+                    <div
+                    className={`flex items-center gap-3 rounded-lg px-4 py-3 shadow-lg text-white
+                        transition-all animate-slide-up
+                        ${snackbar.type === "success" ? "bg-green-800" : "bg-red-800"}`}
+                    >
+                        <span className="text-sm md:text-base lg:text-lg font-medium">{snackbar.message}</span>
+                    </div>
+                </div>
+            )}
         </>
     )
 }

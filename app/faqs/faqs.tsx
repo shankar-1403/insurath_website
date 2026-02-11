@@ -6,7 +6,7 @@ import { NumberTicker } from '@/components/ui/number-ticker';
 import { IconTargetArrow,IconHeart, IconShield } from '@tabler/icons-react';
 import AccordionItem from '@/components/ui/accordion';
 
-function AboutUs() {
+function Faqs() {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
     
     const faqs = [
@@ -38,14 +38,14 @@ function AboutUs() {
     return (
         <>
             <div className="bg-linear-to-br from-blue-950 via-[#1186B7] to-[#884001] pt-20 md:pt-40 lg:pt-50 pb-20">
-                <div className="px-10 md:px-0 md:max-w-2xl lg:max-w-340 mx-auto">
+                <div className="px-10 md:px-0 md:max-w-2xl lg:max-w-180 mx-auto">
                     <div className="flex justify-center gap-4 md:gap-2 lg:gap-6">
                         <motion.div initial={{ y: 30, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }}>
                             
                             <div className="flex flex-col items-center justify-center gap-10">
                                 <div className='flex flex-col items-center justify-center gap-10'>
-                                    <h1 className="text-center text-white text-2xl md:text-4xl lg:text-7xl font-bold text-shadow-lg">About Insurath</h1>
-                                    <p className="text-center text-white text-lg md:text-lg lg:text-2xl text-shadow-lg">Your trusted partner in finding the <span className="text-[#E18126]">perfect insurance coverage</span> for your needs.</p>
+                                    <h1 className="text-center text-white text-2xl md:text-4xl lg:text-7xl font-bold text-shadow-lg leading-24">Frequently Asked Questions</h1>
+                                    <p className="text-center text-white text-lg md:text-lg lg:text-2xl text-shadow-lg">Find answers to common questions about insurance, claims, policies, and more. Can&apos;t find what you&apos;re looking for? Contact our experts for personalized help.</p>
                                 </div>
                             </div>
                         </motion.div>
@@ -323,4 +323,4 @@ function AboutUs() {
     )
 }
 
-export default AboutUs
+export default Faqs
