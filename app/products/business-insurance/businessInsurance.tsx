@@ -492,14 +492,14 @@ function BusinessInsurance() {
                     </div>
                 </div>
             </div>
-            <div className="absolute">
+            <div className="absolute w-full">
                 <img src="/assets/element_three.png" alt="element" className='w-full h-full' />
             </div>
             <div className="py-20">
                 <div className="max-w-340 mx-auto flex justify-center items-center gap-40">
                     <motion.div initial={{ x: -30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-[70%]">
                         <p className="uppercase font-bold text-gray-700 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl mb-4">Why Business Insurance Matters</p>
-                        <h2 className="text-5xl leading-16 font-bold mb-6 text-blue-950 flex gap-2">Your Business, <PointerHighlight containerClassName="text-[#E18126]">Our Priority</PointerHighlight></h2>
+                        <h2 className="text-5xl leading-16 font-bold mb-6 text-blue-950 flex gap-2">Your Business, <PointerHighlight pointerClassName="text-[#E18126]" containerClassName="text-[#E18126]">Our Priority</PointerHighlight></h2>
                         <p className="text-lg leading-8 text-gray-700 mb-8">Get the right business coverage that fits your needs and budget, with expert guidance to help you choose the best plan.</p>
                         <div className="flex gap-6 mb-6">
                             <div className="flex flex-col gap-3 w-[33.33%] border border-[#E18126] rounded-4xl p-4">

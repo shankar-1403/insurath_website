@@ -85,7 +85,7 @@ export const Navbar = ({ children, className }: NavbarProps) => {
 
 export const NavBody = ({ children }: NavBodyProps) => {
   return (
-    <div className="relative flex-row items-center justify-between self-start px-4 py-2 lg:flex">
+    <div className="relative flex-row items-center justify-between self-start px-8 py-2 lg:flex">
       {children}
     </div>
   );
@@ -254,7 +254,7 @@ export const NavbarLogo = () => {
   const { scrollY } = useScroll()
 
   const scale = useTransform(scrollY, [0, 180], [1, 0.8])
-  const x = useTransform(scrollY, [0, 150], [-10, 0])
+  const x = useTransform(scrollY, [0, 150], [-30,-20])
 
   return (
     <Link href="/" className="z-20">

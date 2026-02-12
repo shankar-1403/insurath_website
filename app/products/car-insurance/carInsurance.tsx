@@ -421,14 +421,14 @@ function CarInsurance() {
                     </div>
                 </div>
             </div>
-            <div className="absolute">
+            <div className="absolute w-full">
                 <img src="/assets/element_three.png" alt="element" className='w-full h-full' />
             </div>
             <div className="py-20">
                 <div className="max-w-340 mx-auto flex justify-center items-center gap-40">
                     <motion.div initial={{ x: -30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-[70%]">
                         <p className="uppercase font-bold text-gray-700 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl mb-4">Vehicle Protection</p>
-                        <h2 className="text-5xl leading-16 font-bold mb-6 text-blue-950">Protect Your Vehicle with, <PointerHighlight containerClassName="text-[#E18126]">Complete Coverage</PointerHighlight></h2>
+                        <h2 className="text-5xl leading-16 font-bold mb-6 text-blue-950">Protect Your Vehicle with, <PointerHighlight pointerClassName="text-[#E18126]" containerClassName="text-[#E18126]">Complete Coverage</PointerHighlight></h2>
                         <p className="text-lg leading-8 text-gray-700 mb-8">Comprehensive car insurance that provides complete protection for your vehicle against accidents, theft, and natural disasters.</p>
                         <div className="flex gap-6 mb-6">
                             <div className="flex flex-col gap-3 w-[33.33%] border border-[#E18126] rounded-4xl p-4">
@@ -546,52 +546,6 @@ function CarInsurance() {
                             <EllipseItem text="Add-on covers available" angle={150} radiusX={400} radiusY={280} />
                         </div>
 
-                    </div>
-                </div>
-            </div>
-            <div className="bg-white">
-                <div className="max-w-340 mx-auto py-20">
-                    <div className='mb-4'>
-                        <h5 className="text-5xl font-bold text-blue-950 text-center leading-tight mb-4">What&apos;s Covered</h5>
-                        <p className='text-lg text-gray-700 text-center mb-5'>Comprehensive coverage that protects your vehicle in various scenarios</p>
-                    </div>
-                    <div className='flex w-full gap-4'>
-                        <div className='rounded-4xl w-[20%] flex flex-col items-center justify-center gap-3 p-4 h-30 bg-linear-to-br from-[#e1802610] from-30% to-[#1185b733] to-90%'>
-                            <div className='h-10'><IconShieldCheck color='#E18126' className='w-8 h-8'/></div>
-                            <div>
-                                <p className='text-lg text-center font-bold text-blue-950'>Own damage<br/>coverage</p>
-                            </div>
-                        </div>
-                        <div className='rounded-4xl w-[20%] flex flex-col items-center justify-center gap-3 p-4 h-30 bg-linear-to-br from-[#e1802610] from-30% to-[#1185b733] to-90%'>
-                            <div className='h-10'><IconShieldCheck color='#E18126' className='w-8 h-8'/></div>
-                            <div>
-                                <p className='text-lg text-center font-bold text-blue-950'>Third-party property damage</p>
-                            </div>
-                        </div>
-                        <div className='rounded-4xl w-[20%] flex flex-col items-center justify-center gap-3 p-4 h-30 bg-linear-to-br from-[#e1802610] from-30% to-[#1185b733] to-90%'>
-                            <div className='h-10'><IconShieldCheck color='#E18126' className='w-8 h-8'/></div>
-                            <div>
-                                <p className='text-lg text-center font-bold text-blue-950'>Third-party bodily injury</p>
-                            </div>
-                        </div>
-                        <div className='rounded-4xl w-[20%] flex flex-col items-center justify-center gap-3 p-4 h-30 bg-linear-to-br from-[#e1802610] from-30% to-[#1185b733] to-90%'>
-                            <div className='h-10'><IconShieldCheck color='#E18126' className='w-8 h-8'/></div>
-                            <div>
-                                <p className='text-lg text-center font-bold text-blue-950'>Personal accident<br/>cover</p>
-                            </div>
-                        </div>
-                        <div className='rounded-4xl w-[20%] flex flex-col items-center justify-center gap-3 p-4 h-30 bg-linear-to-br from-[#e1802610] from-30% to-[#1185b733] to-90%'>
-                            <div className='h-10'><IconShieldCheck color='#E18126' className='w-8 h-8'/></div>
-                            <div>
-                                <p className='text-lg text-center font-bold text-blue-950'>Theft <br/>protection</p>
-                            </div>
-                        </div>
-                        <div className='rounded-4xl w-[20%] flex flex-col items-center justify-center gap-3 p-4 h-30 bg-linear-to-br from-[#e1802610] from-30% to-[#1185b733] to-90%'>
-                            <div className='h-10'><IconShieldCheck color='#E18126' className='w-8 h-8'/></div>
-                            <div>
-                                <p className='text-lg text-center font-bold text-blue-950'>Natural calamity coverage</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

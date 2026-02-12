@@ -10,7 +10,7 @@ function Footer() {
     return (
         <>
         <footer className='bg-slate-900 pt-10'>
-            <div className="py-10 md:max-w-180 lg:max-w-340 mx-auto bg-linear-to-br from-[#1185b7] from-20% via-[#07587b] via-50%  to-blue-950 to-90% rounded-4xl w-full -mt-30">
+            <div className="py-10 md:max-w-180 mx-auto bg-linear-to-br from-[#1185b7] from-20% via-[#07587b] via-50%  to-blue-950 to-90% rounded-4xl w-full -mt-30">
                 <div className='mb-4 lg:mb-8'>
                     <h5 className='font-bold text-lg md:text-xl lg:text-2xl text-white text-center text-shadow-lg'>Stay Updated</h5>
                     <p className='text-sm md:text-base lg:text-lg text-white text-center text-shadow-lg'>Get the latest insurance tips, news, and exclusive offers delivered to your inbox.</p>
@@ -65,19 +65,19 @@ function Footer() {
                             <h5 className='text-xl text-white font-bold mb-10'>Company</h5>
                             <ul className='flex flex-col gap-3'>
                                 <li>
-                                    <Link className='text-white text-base' href={'/products/health-insurance'}>About Us</Link>
+                                    <Link className='text-white text-base' href={'/about-us'}>About Us</Link>
                                 </li>
                                 <li>    
-                                    <Link className='text-white text-base' href={'/products/travel-insurance'}>Blog</Link>
+                                    <Link className='text-white text-base' href={'/'}>Blog</Link>
                                 </li>
                                 <li>    
-                                    <Link className='text-white text-base' href={'/products/business-insurance'}>Contact Us</Link>
+                                    <Link className='text-white text-base' href={'/contact-us'}>Contact Us</Link>
                                 </li>
                                 <li>
-                                    <Link className='text-white text-base' href={'/products/health-insurance'}>Help Center</Link>
+                                    <Link className='text-white text-base' href={'/'}>Help Center</Link>
                                 </li>
                                 <li>
-                                    <Link className='text-white text-base' href={'/products/life-insurance'}>FAQs</Link>
+                                    <Link className='text-white text-base' href={'/'}>FAQs</Link>
                                 </li>
                             </ul>
                         </div>

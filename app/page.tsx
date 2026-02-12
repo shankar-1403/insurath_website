@@ -24,11 +24,11 @@ const CompaniesCard = ({data}: {data: string}) => {
   return (
     <figure
       className={cn(
-        "relative w-64 h-30 overflow-hidden rounded-4xl border p-4 border-blue-950 hover:shadow-lg hover:scale-105 transition-transform duration-300",
+        "relative w-64 h-30 overflow-hidden rounded-4xl border p-2 border-blue-950 hover:shadow-lg hover:scale-105 transition-transform duration-300",
       )}
     >
       <div className="flex items-center justify-center h-full">
-        <Image src={data} alt={'Image'} width={120} height={120} />
+        <img src={data} alt={'Partners Logo'} className="h-full"/>
       </div>
     </figure>
   )
@@ -167,12 +167,12 @@ export default function Home() {
   };
 
   const services = [
-    { name: "Health Insurance", image: "/assets/health.png", description: "Comprehensive health coverage for you and your family with cashless treatment at 10,000+ hospitals nationwide.",rating:"4.8",review:"1250",link:"/" },
-    { name: "Life Insurance", image: '/assets/life.png', description: "Secure your family's future with comprehensive life insurance coverage and flexible premium options.",rating:"4.7",review:"980",link:"/" },
-    { name: "Car Insurance", image: "/assets/car.png", description: "Complete protection for your car with comprehensive coverage and quick claim settlement.",rating:"4.6",review:"2100",link:"/" },
-    { name: "Bike Insurance", image: "/assets/bike.png", description: "Affordable two-wheeler insurance with comprehensive coverage and instant policy delivery.",rating:"4.5",review:"1800",link:"/" },
-    { name: "Travel Insurance", image: "/assets/travel.png", description: "Travel worry-free with comprehensive travel insurance covering medical emergencies and trip cancellations.",rating:"4.7",review:"750",link:"/" },
-    { name: "Business Insurance", image: "/assets/business.png", description: "Comprehensive business insurance protecting your company assets, employees, and operations.",rating:"4.9",review:"450",link:"/" },
+    { name: "Health Insurance", image: "/assets/health.png", description: "Comprehensive health coverage for you and your family with cashless treatment at 10,000+ hospitals nationwide.",rating:"4.8",review:"1250",link:"/products/health-insurance" },
+    { name: "Life Insurance", image: '/assets/life.png', description: "Secure your family's future with comprehensive life insurance coverage and flexible premium options.",rating:"4.7",review:"980",link:"/products/life-insurance" },
+    { name: "Car Insurance", image: "/assets/car.png", description: "Complete protection for your car with comprehensive coverage and quick claim settlement.",rating:"4.6",review:"2100",link:"/products/car-insurance" },
+    { name: "Bike Insurance", image: "/assets/bike.png", description: "Affordable two-wheeler insurance with comprehensive coverage and instant policy delivery.",rating:"4.5",review:"1800",link:"/products/bike-insurance" },
+    { name: "Travel Insurance", image: "/assets/travel.png", description: "Travel worry-free with comprehensive travel insurance covering medical emergencies and trip cancellations.",rating:"4.7",review:"750",link:"/products/travel-insurance" },
+    { name: "Business Insurance", image: "/assets/business.png", description: "Comprehensive business insurance protecting your company assets, employees, and operations.",rating:"4.9",review:"450",link:"/products/business-insurance" },
   ];
 
   const chooseUs = [
@@ -195,7 +195,9 @@ export default function Home() {
     { name: "Kavita Nair", designation:"Homemaker", rating: 5, description: "I never understood insurance until my neighbor told me about Insurath. Their agent explained everything so clearly that even I could understand. I started with a small health insurance for ₹1,200 per month. When my daughter had to be hospitalized for dengue, the entire bill of ₹45,000 was covered. I didn't have to worry about money during such a stressful time. Now I've also taken life insurance for my husband." },
   ] 
 
-  const companies = [{image:"/assets/hdfclife.png"},{image:"/assets/icici.png"}, {image:"/assets/lic.png"}, {image:"/assets/sbilife.png"}, {image:"/assets/tataaig.png"}, {image:"/assets/maxlife.png"},{image:"/assets/kotak.png"},{image:"/assets/future.png"},];
+  const companies_one = [{image:"/assets/insurance_partners/aditya_birla.png"},{image:"/assets/insurance_partners/bajaj.png"}, {image:"/assets/insurance_partners/care_health.png"}, {image:"/assets/insurance_partners/chola.png"}, {image:"/assets/insurance_partners/digit.png"}, {image:"/assets/insurance_partners/future.png"},{image:"/assets/insurance_partners/hdfc_ergo.png"},{image:"/assets/insurance_partners/icici.png"},{image:"/assets/insurance_partners/iffco.png"},{image:"/assets/insurance_partners/kotak.png"},{image:"/assets/insurance_partners/liberty.png"},{image:"/assets/insurance_partners/magma.png"},{image:"/assets/insurance_partners/max_life.png"}];
+
+  const companies_two = [{image:"/assets/insurance_partners/national.png"},{image:"/assets/insurance_partners/new_india.png"}, {image:"/assets/insurance_partners/niva.png"}, {image:"/assets/insurance_partners/oriental.png"}, {image:"/assets/insurance_partners/raheja.png"}, {image:"/assets/insurance_partners/reliance.png"},{image:"/assets/insurance_partners/royal_sundaram.png"},{image:"/assets/insurance_partners/sbi_general.png"},{image:"/assets/insurance_partners/shriram.png"},{image:"/assets/insurance_partners/star.png"},{image:"/assets/insurance_partners/tata_aig.png"},{image:"/assets/insurance_partners/united_india.png"},{image:"/assets/insurance_partners/universal.png"}];
 
   return (
     <>
@@ -256,8 +258,8 @@ export default function Home() {
                       {error.phone_number && <span className="text-sm text-red-500">{error.phone_number}</span>}
                     </div>
                     <div>
-                      <select name="insurance_type" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                        <option value="" selected hidden disabled>Select Insurance Type</option>
+                      <select name="insurance_type" defaultValue="" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                        <option value="" disabled hidden>Select Insurance Type</option>
                         <option value="Health Insurance">Health Insurance</option>             
                         <option value="Life Insurance">Life Insurance</option>
                         <option value="Car Insurance">Car Insurance</option>
@@ -336,8 +338,9 @@ export default function Home() {
             </Link>
           </motion.div>
         </div>
+      <div id="services"></div>
       </div>
-      <div id="services" className="bg-white h-auto py-20">
+      <div className="bg-white h-auto py-20">
         <div className="md:max-w-180 lg:max-w-340 mx-auto flex justify-center items-center flex-col">
           <div className="md:max-w-2xl lg:max-w-3xl mx-auto mb-8">
             <div className="flex items-center justify-center">
@@ -493,11 +496,11 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="bg-white relative">
+      <div className="bg-white">
         <div className="absolute w-full z-10 pointer-events-none select-none">
           <img src={'/assets/element_two.png'} alt="element" className="w-full"/>
         </div>
-        <div className="py-20 max-w-180 lg:max-w-340 mx-auto">
+        <div className="py-20 relative max-w-180 lg:max-w-340 mx-auto">
           <div className="flex flex-col gap-3 lg:gap-6 justify-center mb-10 lg:mb-14">
             <div className="flex justify-center">
               <p className="uppercase font-bold text-gray-700 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl mb-4">Trusted Partners</p>
@@ -509,13 +512,19 @@ export default function Home() {
           </div>
           <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
             <Marquee pauseOnHover className="[--duration:50s]">
-              {companies.map((data,index) => (
+              {companies_one.map((data,index) => (
+                <CompaniesCard key={index+1} data={data.image} {...data} />
+              ))}
+            </Marquee>
+            <Marquee reverse={true} pauseOnHover className="[--duration:50s]">
+              {companies_two.map((data,index) => (
                 <CompaniesCard key={index+1} data={data.image} {...data} />
               ))}
             </Marquee>
             <div className="from-background pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-linear-to-r"></div>
             <div className="from-background pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-linear-to-l"></div>
           </div>
+          <div id="contact-form"></div>
         </div>
       </div>
       <div className="relative pt-20 pb-40 overflow-hidden">
@@ -577,7 +586,7 @@ export default function Home() {
           </div>
 
           <div className="w-full lg:w-[50%]">
-            <form id="contact-form" ref={formRefTwo} onSubmit={submitFormTwo} className="bg-white shadow-lg rounded-4xl p-6">
+            <form ref={formRefTwo} onSubmit={submitFormTwo} className="bg-white shadow-lg rounded-4xl p-6">
               <p className="text-sm md:text-base lg:text-lg text-blue-950 font-bold mb-8">Fill in your details and we&apos;ll get back to you within 24 hours with personalized insurance guidance.</p>
               <div className="flex flex-col gap-4">
                 <div>
@@ -593,8 +602,8 @@ export default function Home() {
                   {errorTwo.phone_number_two && <span className="text-sm text-red-500">{errorTwo.phone_number_two}</span>}
                 </div>
                 <div>
-                  <select name="insurance_type_two" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                    <option value="" disabled selected hidden>Select Insurance Type</option>
+                  <select name="insurance_type_two" defaultValue="" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                    <option value={""} disabled hidden>Select Insurance Type</option>
                     <option value="Health Insurance">Health Insurance</option>             
                     <option value="Life Insurance">Life Insurance</option>
                     <option value="Car Insurance">Car Insurance</option>

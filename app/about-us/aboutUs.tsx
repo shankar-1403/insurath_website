@@ -112,9 +112,6 @@ function AboutUs() {
                 </div>
             </div>
             <div className="bg-white">
-                <div className="absolute">
-                    <img src="/assets/element_three.png" alt="element" className='w-full h-full' />
-                </div>
                 <div className="relative max-w-340 mx-auto py-20">
                     <div className="max-w-140 mx-auto">
                         <div className="flex flex-col justify-center gap-6 mb-6">
@@ -176,60 +173,75 @@ function AboutUs() {
                 </div>
             </div>
             <div className="bg-linear-to-br from-[#1185b7] from-20% via-[#07587b] via-50%  to-blue-950 to-90% py-10">
-                <div className="max-w-340 mx-auto">
-                    <div className="max-w-180 mx-auto">
-                        <div className="flex flex-col justify-center gap-6 mb-6">
-                            <p className="uppercase font-bold text-white after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl text-center">Our Impact</p>
-                            <h2 className="text-5xl font-bold text-white text-center">Numbers That Matter</h2>
-                            <p className='text-lg text-center text-white'>Our success is measured by the trust and satisfaction of our customers.</p>
-                        </div>
+                <div className="max-w-180 lg:max-w-340 mx-auto">
+                <div className="grid grid-cols-3 lg:grid-cols-6 gap-6 items-center justify-between">
+                    <div className="col-span-1 flex flex-col justify-center">
+                    <div className="flex justify-center">
+                        <img src={'/assets/happy_customers.png'} alt="Happy Customers" className="h-full"/>
                     </div>
-                    <div className="grid grid-cols-4 gap-6">
-                        <div className="col-span-1 flex flex-col justify-center bg-white/20 rounded-4xl border-2 px-4 py-2">
-                            <div className="flex justify-center">
-                                <img src={'/assets/happy_customers.png'} alt="Happy Customers" className="h-full"/>
-                            </div>
-                            <div className="flex flex-col items-center justify-center">
-                                <div className="flex">
-                                    <NumberTicker value={50000} className="text-white text-4xl font-bold"/><span className="text-white text-4xl font-bold">+</span>
-                                </div>
-                                <p className="text-white text-base">Happy Customers</p>
-                            </div>
+                    <div className="flex flex-col items-center justify-center">
+                        <div className="flex">
+                        <NumberTicker value={50000} className="text-white text-2xl md:text-3xl lg:text-4xl font-bold"/><span className="text-white text-2xl md:text-3xl lg:text-4xl font-bold">+</span>
                         </div>
-                        <div className="col-span-1 flex flex-col justify-center bg-white/20 rounded-4xl border-2 px-4 py-2">
-                            <div className="flex justify-center">
-                                <img src={'/assets/insurance_partners.png'} alt="Years Experience" className="h-full"/>
-                            </div>
-                            <div className="flex flex-col items-center justify-center">
-                                <div className="flex">
-                                    <NumberTicker value={15} className="text-white text-4xl font-bold"/><span className="text-white text-4xl font-bold">+</span>
-                                </div>
-                                <p className="text-white text-base">Years Experience</p>
-                            </div>
-                        </div>
-                        <div className="col-span-1 flex flex-col justify-center bg-white/20 rounded-4xl border-2 px-4 py-2">
-                            <div className="flex justify-center">
-                            <img src={'/assets/claim_settlement_ratio.png'} alt="Insurance Partners" className="h-full"/>
-                            </div>
-                            <div className="flex flex-col items-center justify-center">
-                                <div className="flex">
-                                    <NumberTicker value={25} className="text-white text-4xl font-bold"/><span className="text-white text-4xl font-bold">+</span>
-                                </div>
-                                <p className="text-white text-base">Insurance Partners</p>
-                            </div>
-                        </div>
-                        <div className="col-span-1 flex flex-col justify-center bg-white/20 rounded-4xl border-2 px-4 py-2">
-                            <div className="flex justify-center">
-                            <img src={'/assets/customer_support.png'} alt="Customer Satisfaction" className="h-full"/>
-                            </div>
-                            <div className="flex flex-col items-center justify-center">
-                                <div className="flex">
-                                    <NumberTicker value={98} className="text-white text-4xl font-bold"/><span className="text-white text-4xl font-bold">%</span>
-                                </div>
-                                <p className="text-white text-base">Customer Satisfaction</p>
-                            </div>
-                        </div>
+                        <p className="text-white text-base">Happy Customers</p>
                     </div>
+                    </div>
+                    <div className="col-span-1 flex flex-col justify-center">
+                    <div className="flex justify-center">
+                        <img src={'/assets/claims_settled.png'} alt="Claims Settled" className="h-full"/>
+                    </div>
+                    <div className="flex flex-col items-center justify-center">
+                        <div className="flex">
+                        <NumberTicker value={500} className="text-white text-2xl md:text-3xl lg:text-4xl font-bold"/><span className="text-white text-2xl md:text-3xl lg:text-4xl font-bold">+</span>
+                        </div>
+                        <p className="text-white text-base">Claims Settled</p>
+                    </div>
+                    </div>
+                    <div className="col-span-1 flex flex-col justify-center">
+                    <div className="flex justify-center">
+                        <img src={'/assets/insurance_partners.png'} alt="Insurance Partners" className="h-full"/>
+                    </div>
+                    <div className="flex flex-col items-center justify-center">
+                        <div className="flex">
+                        <NumberTicker value={25} className="text-white text-2xl md:text-3xl lg:text-4xl font-bold"/><span className="text-white text-2xl md:text-3xl lg:text-4xl font-bold">+</span>
+                        </div>
+                        <p className="text-white text-base">Insurance Partners</p>
+                    </div>
+                    </div>
+                    <div className="col-span-1 flex flex-col justify-center">
+                    <div className="flex justify-center">
+                        <img src={'/assets/claim_settlement_ratio.png'} alt="Claim Settlement Ratio" className="h-full"/>
+                    </div>
+                    <div className="flex flex-col items-center justify-center">
+                        <div className="flex">
+                        <NumberTicker value={92} className="text-white text-2xl md:text-3xl lg:text-4xl font-bold"/><span className="text-white text-2xl md:text-3xl lg:text-4xl font-bold">%</span>
+                        </div>
+                        <p className="text-white text-base">Claim Settlement Ratio</p>
+                    </div>
+                    </div>
+                    <div className="col-span-1 flex flex-col justify-center">
+                    <div className="flex justify-center">
+                        <img src={'/assets/customer_support.png'} alt="Customer Support" className="h-full"/>
+                    </div>
+                    <div className="flex flex-col items-center justify-center">
+                        <div className="flex">
+                        <NumberTicker value={24} className="text-white text-2xl md:text-3xl lg:text-4xl font-bold"/><span className="text-white text-2xl md:text-3xl lg:text-4xl font-bold">/</span><NumberTicker value={7} className="text-white text-2xl md:text-3xl lg:text-4xl font-bold"/>
+                        </div>
+                        <p className="text-white text-base">Customer Support</p>
+                    </div>
+                    </div>
+                    <div className="col-span-1 flex flex-col justify-center">
+                    <div className="flex justify-center">
+                        <img src={'/assets/customer_rating.png'} alt="Customer Rating" className="h-full"/>
+                    </div>
+                    <div className="flex flex-col items-center justify-center">
+                        <div className="flex">
+                        <NumberTicker value={4.8} decimalPlaces={1} className="text-white text-2xl md:text-3xl lg:text-4xl font-bold"/><span className="text-white text-2xl md:text-3xl lg:text-4xl font-bold">+</span>
+                        </div>
+                        <p className="text-white text-base">Customer Rating</p>
+                    </div>
+                    </div>
+                </div>
                 </div>
             </div>
             {/* <div className="py-20 bg-white">

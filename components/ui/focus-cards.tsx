@@ -58,7 +58,6 @@ export const Card = React.memo(
                   {card.review} reviews
                 </span>
               </div>
-
               <button className="w-full rounded-full bg-white md:py-2 lg:py-2 text-sm md:text-sm lg:text-lg font-semibold text-black cursor-pointer">Get Insured</button>
             </div>
           </div>
@@ -100,7 +99,9 @@ export const Card = React.memo(
                 </span>
               </div>
 
-              <button className="w-full rounded-full bg-white md:py-2 lg:py-2 text-sm md:text-sm lg:text-lg font-semibold text-black cursor-pointer">Get Insured</button>
+              <Link href={card.link}>
+                <button className="w-full rounded-full bg-white md:py-2 lg:py-2 text-sm md:text-sm lg:text-lg font-semibold text-black cursor-pointer">Get Insured</button>
+              </Link>
             </div>
           </div>
 

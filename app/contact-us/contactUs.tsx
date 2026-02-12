@@ -127,8 +127,8 @@ function ContactUs() {
                                                 {error.phone_number && <span className="text-sm text-red-500">{error.phone_number}</span>}
                                             </div>
                                             <div>
-                                                <select name="insurance_type" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                                    <option value="" disabled selected hidden>Select insurance type</option>
+                                                <select name="insurance_type" defaultValue={""} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                                    <option value="" disabled hidden>Select insurance type</option>
                                                     <option value="Health Insurance">Health Insurance</option>             
                                                     <option value="Life Insurance">Life Insurance</option>
                                                     <option value="Car Insurance">Car Insurance</option>
@@ -140,8 +140,8 @@ function ContactUs() {
                                             </div>
                                         </div>
                                         <div>
-                                            <select name="subject" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                                <option value="" disabled selected hidden>Select subject</option>
+                                            <select name="subject" defaultValue={""} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                                <option value="" disabled hidden>Select subject</option>
                                                 <option value="Get a quote">Get a quote</option>             
                                                 <option value="Claim Support">Claim Support</option>
                                                 <option value="Policy Renewal">Policy Renewal</option>
@@ -220,7 +220,7 @@ function ContactUs() {
                                         </div>
                                         <div>
                                             <h3 className='text-blue-950 text-xl font-bold'>Hours</h3>
-                                            <p className='text-sm text-gray-700 font-semibold mb-1'>Mon-Fri: 9AM-6PM</p>
+                                            <p className='text-base text-blue-950 font-bold'>Mon-Fri: 9AM-6PM</p>
                                             <p className='text-blue-950 text-base font-bold'>Sat: 10AM-4PM</p>
                                         </div>
                                     </div>

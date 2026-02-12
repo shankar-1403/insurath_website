@@ -285,7 +285,7 @@ function LifeInsurance() {
                         </motion.div>
                         <motion.div initial={{ x: 30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-[60%]">
                         <form ref={formRef} onSubmit={submitForm} className="bg-white shadow-lg rounded-4xl p-6 max-w-xl mx-auto">
-                            <h2 className="text-xl md:text-xl lg:text-3xl font-bold mb-4 text-center text-blue-950">Get Your Health Insurance Quote</h2>
+                            <h2 className="text-xl md:text-xl lg:text-3xl font-bold mb-4 text-center text-blue-950">Get Your Life Insurance Quote</h2>
                             <p className='text-lg text-gray-700 text-center mb-6'>Answer a few quick questions to get personalized recommendations</p>
                             <ol className="flex items-center w-full justify-between mb-6 sm:mb-8 px-6">
                                 {/* STEP 1 */}
@@ -443,14 +443,14 @@ function LifeInsurance() {
                     </div>
                 </div>
             </div>
-            <div className="absolute">
+            <div className="absolute w-full">
                 <img src="/assets/element_three.png" alt="element" className='w-full h-full' />
             </div>
             <div className="py-20">
                 <div className="max-w-340 mx-auto flex justify-center items-center gap-40">
                     <motion.div initial={{ x: -30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-[70%]">
                         <p className="uppercase font-bold text-gray-700 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl mb-4">Family Protection</p>
-                        <h2 className="text-5xl leading-16 font-bold mb-6 text-blue-950">Secure Your Family&apos;s, <PointerHighlight containerClassName="text-[#E18126]">Financial Future</PointerHighlight></h2>
+                        <h2 className="text-5xl leading-16 font-bold mb-6 text-blue-950">Secure Your Family&apos;s, <PointerHighlight pointerClassName="text-[#E18126]" containerClassName="text-[#E18126]">Financial Future</PointerHighlight></h2>
                         <p className="text-lg leading-8 text-gray-700 mb-8">Life insurance provides financial security and peace of mind, ensuring your loved ones are protected even in your absence.</p>
                         <div className="flex gap-6 mb-6">
                             <div className="flex flex-col gap-3 w-[33.33%] border border-[#E18126] rounded-4xl p-4">
@@ -568,52 +568,6 @@ function LifeInsurance() {
                             <EllipseItem text="Bonus additions" angle={150} radiusX={400} radiusY={280} />
                         </div>
 
-                    </div>
-                </div>
-            </div>
-            <div className="bg-white">
-                <div className="max-w-340 mx-auto py-20">
-                    <div className='mb-4'>
-                        <h5 className="text-5xl font-bold text-blue-950 text-center leading-tight mb-4">What&apos;s Covered</h5>
-                        <p className='text-lg text-gray-700 text-center mb-5'>Comprehensive coverage that protects your vehicle in various scenarios</p>
-                    </div>
-                    <div className='flex w-full gap-4'>
-                        <div className='rounded-4xl w-[20%] flex flex-col items-center justify-center gap-3 p-4 h-30 bg-linear-to-br from-[#e1802610] from-30% to-[#1185b733] to-90%'>
-                            <div className='h-10'><IconShieldCheck color='#E18126' className='w-8 h-8'/></div>
-                            <div>
-                                <p className='text-lg text-center font-bold text-blue-950'>Natural death<br/>coverage</p>
-                            </div>
-                        </div>
-                        <div className='rounded-4xl w-[20%] flex flex-col items-center justify-center gap-3 p-4 h-30 bg-linear-to-br from-[#e1802610] from-30% to-[#1185b733] to-90%'>
-                            <div className='h-10'><IconShieldCheck color='#E18126' className='w-8 h-8'/></div>
-                            <div>
-                                <p className='text-lg text-center font-bold text-blue-950'>Accidental death<br/>coverage</p>
-                            </div>
-                        </div>
-                        <div className='rounded-4xl w-[20%] flex flex-col items-center justify-center gap-3 p-4 h-30 bg-linear-to-br from-[#e1802610] from-30% to-[#1185b733] to-90%'>
-                            <div className='h-10'><IconShieldCheck color='#E18126' className='w-8 h-8'/></div>
-                            <div>
-                                <p className='text-lg text-center font-bold text-blue-950'>Critical illness<br/>coverage</p>
-                            </div>
-                        </div>
-                        <div className='rounded-4xl w-[20%] flex flex-col items-center justify-center gap-3 p-4 h-30 bg-linear-to-br from-[#e1802610] from-30% to-[#1185b733] to-90%'>
-                            <div className='h-10'><IconShieldCheck color='#E18126' className='w-8 h-8'/></div>
-                            <div>
-                                <p className='text-lg text-center font-bold text-blue-950'>Disability<br/>coverage</p>
-                            </div>
-                        </div>
-                        <div className='rounded-4xl w-[20%] flex flex-col items-center justify-center gap-3 p-4 h-30 bg-linear-to-br from-[#e1802610] from-30% to-[#1185b733] to-90%'>
-                            <div className='h-10'><IconShieldCheck color='#E18126' className='w-8 h-8'/></div>
-                            <div>
-                                <p className='text-lg text-center font-bold text-blue-950'>Terminal illness<br/>coverage</p>
-                            </div>
-                        </div>
-                        <div className='rounded-4xl w-[20%] flex flex-col items-center justify-center gap-3 p-4 h-30 bg-linear-to-br from-[#e1802610] from-30% to-[#1185b733] to-90%'>
-                            <div className='h-10'><IconShieldCheck color='#E18126' className='w-8 h-8'/></div>
-                            <div>
-                                <p className='text-lg text-center font-bold text-blue-950'>Suicide clause<br/>(after 1 year)</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
