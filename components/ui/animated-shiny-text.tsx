@@ -16,7 +16,7 @@ export const AnimatedShinyText: FC<AnimatedShinyTextProps> = ({
   return (
     <span
       className={cn(
-        "mx-auto max-w-md text-black",
+        "mx-auto max-w-md text-black text-sm",
 
         // Shine effect
         "animate-shiny-text bg-clip-text bg-position-[0_0] bg-no-repeat [transition:background-position_1s_cubic-bezier(.6,.6,0,1)_infinite]",

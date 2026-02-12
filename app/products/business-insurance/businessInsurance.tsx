@@ -95,14 +95,12 @@ function BusinessInsurance() {
         }
 
         if (step === 2) {
-            if (!get("bike_name")) newErrors.bike_name = "Bike name is required";
-            if (!get("bike_model")) newErrors.bike_model = "Bike model is required";
-            if (!get("manufacturing_year")) newErrors.manufacturing_year = "Car manufacturing year is required";
-            if (!get("registration_year")) newErrors.registration_year = "Registration year is required";
-            if (!get("registration_number")) newErrors.registration_number = "Registration number is required";
-            if (!get("exisiting_bike_insurance")) newErrors.exisiting_bike_insurance = "Existing car insurance is required";
-            if (!get("claim_history")) newErrors.claim_history = "Claim history is required";
-            if (!get("desired_coverage_type")) newErrors.desired_coverage_type = "Desired coverage type is required";
+            if (!get("existing_business_insurance")) newErrors.existing_business_insurance = "Bike name is required";
+            if (!get("primary_coverage_type")) newErrors.primary_coverage_type = "Bike model is required";
+            if (!get("estimated_property_value")) newErrors.estimated_property_value = "Car manufacturing year is required";
+            if (!get("liability_coverage_needs")) newErrors.liability_coverage_needs = "Registration year is required";
+            if (!get("cyber_security_coverage")) newErrors.cyber_security_coverage = "Registration number is required";
+            if (!get("priority_coverage_area")) newErrors.priority_coverage_area = "Existing car insurance is required";
         }
         setError(newErrors);
 
@@ -137,7 +135,6 @@ function BusinessInsurance() {
                     contact_person: get("contact_person"),
                     phone_number: get("phone_number"),
                     email_id: get("email_id"),
-                    city: get("city"),
                     business_type: get("business_type"),
                     industry: get("industry"),
                     annual_revenue: get("annual_revenue"),
@@ -170,14 +167,12 @@ function BusinessInsurance() {
             // -------- STEP 2 --------
             if (step === 2 && storedId) {
                 const secondForm = {
-                    bike_name: get("bike_name"),
-                    bike_model: get("bike_model"),
-                    manufacturing_year: get("manufacturing_year"),
-                    registration_year: get("registration_year"),
-                    registration_number: get("registration_number"),
-                    exisiting_bike_insurance: get("exisiting_bike_insurance"),
-                    claim_history: get("claim_history"),
-                    desired_coverage_type: get("desired_coverage_type"),
+                    existing_business_insurance: get("existing_business_insurance"),
+                    primary_coverage_type: get("primary_coverage_type"),
+                    estimated_property_value: get("estimated_property_value"),
+                    liability_coverage_needs: get("liability_coverage_needs"),
+                    cyber_security_coverage: get("cyber_security_coverage"),
+                    priority_coverage_area: get("priority_coverage_area"),
                 };
 
                 const response = await axios.patch("/api/business", {
@@ -212,12 +207,14 @@ function BusinessInsurance() {
             if (field) field.value = value || "";
             };
 
-            setValue("full_name", data.full_name);
+            setValue("company_name", data.company_name);
+            setValue("contact_person", data.contact_person);
             setValue("email_id", data.email_id);
             setValue("phone_number", data.phone_number);
-            setValue("gender", data.gender);
-            setValue("age", data.age);
-            setValue("city", data.city);
+            setValue("business_type", data.business_type);
+            setValue("industry", data.industry);
+            setValue("annual_revenue", data.annual_revenue);
+            setValue("number_of_employees", data.number_of_employees);
         }
     }, [step]);
 
@@ -363,7 +360,7 @@ function BusinessInsurance() {
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="col-span-1">
                                         <select name="business_type" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option value={""} selected hidden>Select Business Type</option>
+                                            <option value="" disabled selected hidden>Select Business Type</option>
                                             <option value="Private Limited">Private Limited</option>             
                                             <option value="Proprietorship">Proprietorship</option>
                                             <option value="Partnership">Partnership</option>
@@ -377,7 +374,7 @@ function BusinessInsurance() {
                                     </div>
                                     <div className="col-span-1">
                                         <select name="industry" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option value={""} selected hidden>Select Industry</option>
+                                            <option value="" disabled selected hidden>Select Industry</option>
                                             <option value="Retail">Retail</option>             
                                             <option value="Manufacturing">Manufacturing</option>
                                             <option value="Professional Services">Professional Services</option>
@@ -393,7 +390,7 @@ function BusinessInsurance() {
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="col-span-1">
                                         <select name="annual_revenue" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option value={""} selected hidden>Select Annual Revenue</option>
+                                            <option value="" disabled selected hidden>Select Annual Revenue</option>
                                             <option value="Under ₹1 Lakh">Under ₹1 Lakh</option>             
                                             <option value="₹1-5 Lakhs">₹1-5 Lakhs</option>
                                             <option value="₹5-10 Lakhs">₹5-10 Lakhs</option>
@@ -405,7 +402,7 @@ function BusinessInsurance() {
                                     </div>
                                     <div className="col-span-1">
                                         <select name="number_of_employees" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option value={""} selected hidden>Select Number of Employees</option>
+                                            <option value="" disabled selected hidden>Select Number of Employees</option>
                                             <option value="1-5 employees">1-5 employees</option>             
                                             <option value="6-20 employees">6-20 employees</option>
                                             <option value="21-50 employees">21-50 employees</option>
@@ -425,7 +422,7 @@ function BusinessInsurance() {
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className='col-span-1'>
                                         <select name="existing_business_insurance" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option value={""} selected hidden>Select existing business insurance</option>
+                                            <option value="" disabled selected hidden>Select existing business insurance</option>
                                             <option value="No existing coverage">No existing coverage</option>             
                                             <option value="Basic coverage">Basic coverage</option>
                                             <option value="Comprehensive coverage">Comprehensive coverage</option>
@@ -435,7 +432,7 @@ function BusinessInsurance() {
                                     </div>
                                     <div className="col-span-1">
                                         <select name="primary_coverage_type" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option value={""} selected hidden>Select primary coverage type</option>
+                                            <option value="" disabled selected hidden>Select primary coverage type</option>
                                             <option value="General Liability">General Liability</option>             
                                             <option value="Property Insurance">Property Insurance</option>
                                             <option value="Professional Liability">Professional Liability</option>
@@ -452,7 +449,7 @@ function BusinessInsurance() {
                                     </div>
                                     <div className="col-span-1">
                                         <select name="liability_coverage_needs" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option value={""} selected hidden>Select Desired Coverage Amount</option>
+                                            <option value="" disabled selected hidden>Select liability coverage needs</option>
                                             <option value="Basic (₹5-10 Lakhs)">Basic (₹5-10 Lakhs)</option> 
                                             <option value="Standard (₹10-25 Lakhs)">Standard (₹10-25 Lakhs)</option> 
                                             <option value="High (₹25-50 Lakhs)">High (₹25-50 Lakhs)</option> 
@@ -463,25 +460,25 @@ function BusinessInsurance() {
                                 </div>
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className='col-span-1'>
-                                        <select name="existing_business_insurance" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option value={""} selected hidden>Select existing business insurance</option>
+                                        <select name="cyber_security_coverage" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                            <option value="" disabled selected hidden>Select cyber security coverage</option>
                                             <option value="No existing coverage">No existing coverage</option>             
                                             <option value="Basic coverage">Basic coverage</option>
                                             <option value="Comprehensive coverage">Comprehensive coverage</option>
                                             <option value="Premium coverage">Premium coverage</option>
                                         </select>
-                                        {error.existing_business_insurance && <span className="text-sm text-red-500">{error.existing_business_insurance}</span>}
+                                        {error.cyber_security_coverage && <span className="text-sm text-red-500">{error.existing_business_insurance}</span>}
                                     </div>
                                     <div className="col-span-1">
-                                        <select name="primary_coverage_type" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option value={""} selected hidden>Select primary coverage type</option>
-                                            <option value="General Liability">General Liability</option>             
-                                            <option value="Property Insurance">Property Insurance</option>
-                                            <option value="Professional Liability">Professional Liability</option>
-                                            <option value="Cyber Liability">Cyber Liability</option>
-                                            <option value="Comprehensive Package">Comprehensive Package</option>
+                                        <select name="priority_coverage_area" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                            <option value="" disabled selected hidden>Select priority coverage area</option>
+                                            <option value="Property Protection">Property Protection</option>             
+                                            <option value="Liability Protection">Liability Protection</option>
+                                            <option value="Cyber Security">Cyber Security</option>
+                                            <option value="Business Interuption">Business Interuption</option>
+                                            <option value="Comprehensive Coverage">Comprehensive Coverage</option>
                                         </select>
-                                        {error.primary_coverage_type && <span className="text-sm text-red-500">{error.primary_coverage_type}</span>}
+                                        {error.priority_coverage_area && <span className="text-sm text-red-500">{error.priority_coverage_area}</span>}
                                     </div>
                                 </div>
                                 <div className="flex justify-between">
@@ -540,7 +537,7 @@ function BusinessInsurance() {
                                 <Image src="/assets/business_about.png" alt="about_us_one" priority fill className="object-cover"/>
                             </div>
                             <motion.div animate={{ x: [0, 40, 0] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", }} className="absolute bg-white h-auto flex flex-col items-center w-30 overflow-hidden rounded-4xl px-4 py-4 -mt-6">
-                                <p className="text-xl text-[#1185b7] font-bold text-shadow-sm">100%</p>
+                                <p className="text-xl text-[#1185b7] font-bold text-shadow-sm">100+</p>
                                 <p className='text-base text-gray-500'>Countries</p>
                             </motion.div>
                         </div>
@@ -557,42 +554,42 @@ function BusinessInsurance() {
                     <div className='col-span-1'>
                         <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
                             <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl h-20 flex items-center justify-center">
-                                <h4 className='text-base text-white text-center font-bold'>Property damage coverage</h4>
+                                <h4 className='text-base text-white text-center font-bold'>Property damage <br/>coverage</h4>
                             </div>
                         </div>
                     </div>
                     <div className='col-span-1'>
                         <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
                             <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl h-20 flex items-center justify-center">
-                                <h4 className='text-base text-white text-center font-bold'>Business interruption insurance</h4>
+                                <h4 className='text-base text-white text-center font-bold'>Business interruption <br/>insurance</h4>
                             </div>
                         </div>
                     </div>
                     <div className='col-span-1'>
                         <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
                             <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl h-20 flex items-center justify-center">
-                                <h4 className='text-base text-white text-center font-bold'>Professional liability</h4>
+                                <h4 className='text-base text-white text-center font-bold'>Professional <br/>liability</h4>
                             </div>
                         </div>
                     </div>
                     <div className='col-span-1'>
                         <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
                             <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl h-20 flex items-center justify-center">
-                                <h4 className='text-base text-white text-center font-bold'>Cyber liability coverage</h4>
+                                <h4 className='text-base text-white text-center font-bold'>Cyber liability <br/>coverage</h4>
                             </div>
                         </div>
                     </div>
                     <div className='col-span-1'>
                         <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
                             <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl h-20 flex items-center justify-center">
-                                <h4 className='text-base text-white text-center font-bold'>Employee compensation</h4>
+                                <h4 className='text-base text-white text-center font-bold'>Employee <br/>compensation</h4>
                             </div>
                         </div>
                     </div>
                     <div className='col-span-1'>
                         <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
                             <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl h-20 flex items-center justify-center">
-                                <h4 className='text-base text-white text-center font-bold'>Product liability</h4>
+                                <h4 className='text-base text-white text-center font-bold'>Product <br/>liability</h4>
                             </div>
                         </div>
                     </div>

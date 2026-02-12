@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { IconMenu2, IconX } from "@tabler/icons-react";
-import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "motion/react";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent,useTransform } from "motion/react";
 import logo from "../../public/assets/insurath.png";
 import React, { useRef, useState } from "react";
 import Link from "next/link";
@@ -156,7 +156,7 @@ export const NavItems = ({ items }: { items: NavItem[] }) => {
                   <Link
                     key={child.name}
                     href={child.link}
-                    className="block px-4 py-3 text-lg hover:bg-neutral-100 hover:text-[#E18126] font-bold"
+                    className="block px-4 py-3 text-lg hover:bg-neutral-100 hover:text-[#E18126] text-blue-950 font-bold"
                   >
                     {child.name}
                   </Link>
@@ -251,10 +251,16 @@ export const MobileNavToggle = ({
 };
 
 export const NavbarLogo = () => {
+  const { scrollY } = useScroll()
+
+  const scale = useTransform(scrollY, [0, 180], [1, 0.8])
+  const x = useTransform(scrollY, [0, 150], [-10, 0])
+
   return (
-    <Link href="/" className="relative z-20 flex items-center"
-    >
-      <Image src={logo} alt="Insurath" height={90} />
+    <Link href="/" className="z-20">
+      <motion.div style={{ scale, x }} className="transition-transform">
+        <img src={'/assets/insurath.png'} alt="Insurath" className="h-30"/>
+      </motion.div>
     </Link>
-  );
+  )
 };

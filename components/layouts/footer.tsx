@@ -10,10 +10,10 @@ function Footer() {
     return (
         <>
         <footer className='bg-slate-900 pt-10'>
-            <div className="py-10 max-w-4xl mx-auto bg-linear-to-br from-[#1185b7] from-20% via-[#07587b] via-50%  to-blue-950 to-90% rounded-4xl w-full -mt-30">
-                <div className='mb-8'>
-                    <h5 className='font-bold text-2xl text-white text-center text-shadow-lg'>Stay Updated</h5>
-                    <p className='text-lg text-white text-center text-shadow-lg'>Get the latest insurance tips, news, and exclusive offers delivered to your inbox.</p>
+            <div className="py-10 md:max-w-180 lg:max-w-340 mx-auto bg-linear-to-br from-[#1185b7] from-20% via-[#07587b] via-50%  to-blue-950 to-90% rounded-4xl w-full -mt-30">
+                <div className='mb-4 lg:mb-8'>
+                    <h5 className='font-bold text-lg md:text-xl lg:text-2xl text-white text-center text-shadow-lg'>Stay Updated</h5>
+                    <p className='text-sm md:text-base lg:text-lg text-white text-center text-shadow-lg'>Get the latest insurance tips, news, and exclusive offers delivered to your inbox.</p>
                 </div>
                 <form className="max-w-xl mx-auto">
                     <div className="flex justify-center gap-4">
@@ -29,101 +29,89 @@ function Footer() {
                     </div>
                 </form>
             </div>
-            <div className='max-w-330 mx-auto py-6'>
-                <div className="flex gap-10">
-                    <div className="w-[30%]">
+            <div className='md:max-w-180 lg:max-w-340 mx-auto py-6'>
+                <div className="flex flex-col lg:flex-row gap-10">
+                    <div className="w-full lg:w-[25%]">
                         <div className='flex justify-start'>    
                             <img src='/assets/insurath.png' alt="Insurath Logo" className="h-30" />
                         </div>
                         <p className='text-white text-base leading-8'>India&apos;s leading insurance aggregator, helping millions find the best insurance coverage at the most competitive prices with transparent processes.</p>
                     </div>
-                    <div className='w-[15%]'>
-                        <h5 className='text-xl text-white font-bold mb-10'>Products</h5>
-                        <ul className='flex flex-col gap-3'>
-                            <li>
-                                <Link className='text-white text-base' href={'/products/health-insurance'}>Health Insurance</Link>
-                            </li>
-                            <li>
-                                <Link className='text-white text-base' href={'/products/life-insurance'}>Life Insurance</Link>
-                            </li>
-                            <li>
-                                <Link className='text-white text-base' href={'/products/car-insurance'}>Car Insurance</Link>
-                            </li>
-                            <li>
-                                <Link className='text-white text-base' href={'/products/bike-insurance'}>Bike Insurance</Link>
-                            </li>
-                            <li>    
-                                <Link className='text-white text-base' href={'/products/travel-insurance'}>Travel Insurance</Link>
-                            </li>
-                            <li>    
-                                <Link className='text-white text-base' href={'/products/business-insurance'}>Business Insurance</Link>
-                            </li>
-                        </ul>
-                    </div>
-                    <div className='w-[15%]'>
-                        <h5 className='text-xl text-white font-bold mb-10'>Company</h5>
-                        <ul className='flex flex-col gap-3'>
-                            <li>
-                                <Link className='text-white text-base' href={'/products/health-insurance'}>About Us</Link>
-                            </li>
-                            <li>
-                                <Link className='text-white text-base' href={'/products/life-insurance'}>Our Team</Link>
-                            </li>
-                            <li>
-                                <Link className='text-white text-base' href={'/products/car-insurance'}>Careers</Link>
-                            </li>
-                            <li>
-                                <Link className='text-white text-base' href={'/products/bike-insurance'}>Press</Link>
-                            </li>
-                            <li>    
-                                <Link className='text-white text-base' href={'/products/travel-insurance'}>Blog</Link>
-                            </li>
-                            <li>    
-                                <Link className='text-white text-base' href={'/products/business-insurance'}>Contact Us</Link>
-                            </li>
-                        </ul>
-                    </div>
-                    <div className='w-[15%]'>
-                        <h5 className='text-xl text-white font-bold mb-10'>Support</h5>
-                        <ul className='flex flex-col gap-3'>
-                            <li>
-                                <Link className='text-white text-base' href={'/products/health-insurance'}>Help Center</Link>
-                            </li>
-                            <li>
-                                <Link className='text-white text-base' href={'/products/life-insurance'}>FAQs</Link>
-                            </li>
-                        </ul>
-                    </div>
-                    <div className='w-[30%]'>
-                        <h5 className='text-xl text-white font-bold mb-10'>Contact Info</h5>
-                        <ul className='flex flex-col gap-3'>
-                            <li>
-                                <Link className='text-white text-base' href={'tel:9876543210'}><IconPhone className='inline mr-2' color='#E18126' size={20} />+91-9876543210</Link>
-                            </li>
-                            <li>
-                                <Link className='text-white text-base' href={'mailto:info@insurath.com'}><IconMail className='inline mr-2' color='#E18126' size={20} />info@insurath.com</Link>
-                            </li>
-                            <li>
-                                <div className="flex">
-                                    <div>
-                                        <IconMapPin className='inline mr-2' color='#E18126' size={20} />
+                    <div className="grid grid-cols-3 lg:grid-cols-3 w-full lg:w-[75%]">
+                        <div className='col-span-1'>
+                            <h5 className='text-xl text-white font-bold mb-10'>Products</h5>
+                            <ul className='flex flex-col gap-3'>
+                                <li>
+                                    <Link className='text-white text-base' href={'/products/health-insurance'}>Health Insurance</Link>
+                                </li>
+                                <li>
+                                    <Link className='text-white text-base' href={'/products/life-insurance'}>Life Insurance</Link>
+                                </li>
+                                <li>
+                                    <Link className='text-white text-base' href={'/products/car-insurance'}>Car Insurance</Link>
+                                </li>
+                                <li>
+                                    <Link className='text-white text-base' href={'/products/bike-insurance'}>Bike Insurance</Link>
+                                </li>
+                                <li>    
+                                    <Link className='text-white text-base' href={'/products/travel-insurance'}>Travel Insurance</Link>
+                                </li>
+                                <li>    
+                                    <Link className='text-white text-base' href={'/products/business-insurance'}>Business Insurance</Link>
+                                </li>
+                            </ul>
+                        </div>
+                        <div className='col-span-1'>
+                            <h5 className='text-xl text-white font-bold mb-10'>Company</h5>
+                            <ul className='flex flex-col gap-3'>
+                                <li>
+                                    <Link className='text-white text-base' href={'/products/health-insurance'}>About Us</Link>
+                                </li>
+                                <li>    
+                                    <Link className='text-white text-base' href={'/products/travel-insurance'}>Blog</Link>
+                                </li>
+                                <li>    
+                                    <Link className='text-white text-base' href={'/products/business-insurance'}>Contact Us</Link>
+                                </li>
+                                <li>
+                                    <Link className='text-white text-base' href={'/products/health-insurance'}>Help Center</Link>
+                                </li>
+                                <li>
+                                    <Link className='text-white text-base' href={'/products/life-insurance'}>FAQs</Link>
+                                </li>
+                            </ul>
+                        </div>
+                        <div className='col-span-1'>
+                            <h5 className='text-xl text-white font-bold mb-10'>Contact Info</h5>
+                            <ul className='flex flex-col gap-3'>
+                                <li>
+                                    <Link className='text-white text-base' href={'tel:9876543210'}><IconPhone className='inline mr-2' color='#E18126' size={20} />+91-9876543210</Link>
+                                </li>
+                                <li>
+                                    <Link className='text-white text-base' href={'mailto:info@insurath.com'}><IconMail className='inline mr-2' color='#E18126' size={20} />info@insurath.com</Link>
+                                </li>
+                                <li>
+                                    <div className="flex">
+                                        <div>
+                                            <IconMapPin className='inline mr-2' color='#E18126' size={20} />
+                                        </div>
+                                        <span className='text-white text-base'>Lodha Supremus, 504, Off Mahakali Caves Rd, Chakala Industrial Area (MIDC), Andheri East, Mumbai, Maharashtra 400093</span>
                                     </div>
-                                    <span className='text-white text-base'>Lodha Supremus, 504, Off Mahakali Caves Rd, Chakala Industrial Area (MIDC), Andheri East, Mumbai, Maharashtra 400093</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div className="flex">
-                                    <div>
-                                        <IconClockHour5 className='inline mr-2' color='#E18126' size={20} />
+                                </li>
+                                <li>
+                                    <div className="flex">
+                                        <div>
+                                            <IconClockHour5 className='inline mr-2' color='#E18126' size={20} />
+                                        </div>
+                                        <span className='text-white text-base'>Monday - Friday: 9:00 AM - 6:00 PM, Saturday: 10:00 AM - 4:00 PM</span>
                                     </div>
-                                    <span className='text-white text-base'>Monday - Friday: 9:00 AM - 6:00 PM, Saturday: 10:00 AM - 4:00 PM</span>
-                                </div>
-                            </li>
-                        </ul>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div className='py-5 border-t border-white/20 max-w-330 mx-auto'>
+            <div className='py-5 border-t border-white/20 max-w-180 lg:max-w-340 mx-auto'>
                 <div className="flex justify-between items-center">
                     <div className='w-[33.33%]'>
                         <p className="text-white text-base">© {currentYear} Insurath. All rights reserved.</p>

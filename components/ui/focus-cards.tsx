@@ -23,7 +23,7 @@ export const Card = React.memo(
       onMouseLeave={() => setHovered(null)}
       className={cn(
         "group relative h-100 w-full overflow-hidden rounded-4xl bg-gray-100 transition-all duration-300 ease-out md:h-110 lg:h-130",
-        hovered !== null && hovered !== index && "blur-sm scale-[0.98]"
+        hovered !== null && hovered !== index && "blur-[2px] scale-[0.98]"
       )}
     >
       {/* Background image */}
@@ -36,7 +36,7 @@ export const Card = React.memo(
                 rounded-b-lg
                 px-5 pt-16 pb-6
                 text-white
-                bg-gradient-to-t
+                bg-linear-to-t
                 from-black/90
                 via-black/70
                 to-transparent
@@ -77,7 +77,7 @@ export const Card = React.memo(
                 rounded-b-lg
                 px-5 pt-16 pb-6
                 text-white
-                bg-gradient-to-t
+                bg-linear-to-t
                 from-black/90
                 via-black/70
                 to-transparent

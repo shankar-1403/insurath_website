@@ -348,7 +348,7 @@ function TravelInsurance() {
                     <div className='col-span-1'>
                         <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
                             <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl h-20 flex items-center justify-center">
-                                <h4 className='text-base text-white text-center font-bold'>24/7 assistance</h4>
+                                <h4 className='text-base text-white text-center font-bold'>24/7 <br/>assistance</h4>
                             </div>
                         </div>
                     </div>

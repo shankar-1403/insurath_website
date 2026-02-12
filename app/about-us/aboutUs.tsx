@@ -63,33 +63,37 @@ function AboutUs() {
                 <div className="max-w-340 mx-auto">
                     <div className="flex gap-20">
                         <div className='flex gap-10 flex-col w-[40%]'>
-                            <motion.div initial={{ y: 30, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 5, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className='flex items-center gap-4 p-2 rounded-tr-4xl rounded-bl-4xl shadow-lg bg-linear-to-br from-[#1185b7] from-20% via-[#07587b] via-50%  to-blue-950 to-90%'>
-                                <div className="border-2 border-white rounded-tr-3xl rounded-bl-3xl p-4">
+                            <motion.div initial={{ y: 30, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 5, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className='flex flex-col items-start gap-4 p-2 rounded-tr-4xl rounded-bl-4xl border-t-6 border-l-6 border-[#1185b7]'>
+                                <div className="rounded-tr-4xl rounded-bl-4xl border-t-2 border-l-2 border-[#1185b7] p-4">
                                     <div className='flex gap-6 items-center'>
-                                        <IconTargetArrow className='w-12 h-12' color='white'/>
-                                        <h3 className="text-3xl font-bold text-white mb-2">Our Vision</h3>
+                                        <div className='bg-linear-to-br from-[#1185b7] from-20% via-[#07587b] via-50%  to-blue-950 to-90% rounded-full p-2'>
+                                            <IconTargetArrow className='w-12 h-12' color='white'/>
+                                        </div>
+                                        <h3 className="text-3xl font-bold text-blue-950 mb-2">Our Vision</h3>
                                     </div>
                                     <div>
-                                        <p className='text-lg text-white leading-8'>To become India&apos;s most trusted insurance platform, making insurance accessible, understandable, and affordable for everyone.</p>
+                                        <p className='text-lg text-blue-950 leading-8'>To become India&apos;s most trusted insurance platform, making insurance accessible, understandable, and affordable for everyone.</p>
                                     </div>
                                 </div>
                             </motion.div>
-                            <motion.div initial={{ y: 30, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className='flex items-center gap-4 p-2 rounded-tr-4xl rounded-bl-4xl shadow-lg bg-linear-to-br from-[#1185b7] from-20% via-[#07587b] via-50%  to-blue-950 to-90%'>
-                                <div className="border-2 border-white rounded-tr-3xl rounded-bl-3xl p-4">
+                            <motion.div initial={{ y: 30, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className='flex flex-col items-start gap-4 p-2 rounded-tr-4xl rounded-bl-4xl border-t-6 border-l-6 border-[#1185b7]'>
+                                <div className="rounded-tr-4xl rounded-bl-4xl border-t-2 border-l-2 border-[#1185b7] p-4">
                                     <div className='flex gap-6 items-center'>
-                                        <IconHeart className='w-12 h-12' color='white'/>
-                                        <h3 className="text-3xl font-bold text-white mb-2">Our Values</h3>
+                                        <div className='bg-linear-to-br from-[#1185b7] from-20% via-[#07587b] via-50%  to-blue-950 to-90% rounded-full p-2'>
+                                            <IconHeart className='w-12 h-12' color='white'/>
+                                        </div>
+                                        <h3 className="text-3xl font-bold text-blue-950 mb-2">Our Values</h3>
                                     </div>
                                     <div>
-                                        <p className='text-lg text-white leading-8'>Integrity, transparency, and customer-centricity guide everything we do. We believe in building long-term relationships based on trust and mutual respect.</p>
+                                        <p className='text-lg text-blue-950 leading-8'>Integrity, transparency, and customer-centricity guide everything we do. We believe in building long-term relationships based on trust and mutual respect.</p>
                                     </div>
                                 </div>
                             </motion.div>
                         </div>
                         <div className='w-[60%]'>
-                            <div className="relative w-full h-110 rounded-4xl overflow-hidden">
+                            <div className="relative w-full h-120 rounded-4xl overflow-hidden">
                                 {/* Image */}
-                                <img src="/assets/faq.png" alt="FAQs" className="w-full h-full object-cover" />
+                                <img src="/assets/vision.png" alt="vision" className="w-full h-full object-cover" />
 
                                 {/* Overlay */}
                                 <div className="absolute inset-0 bg-black/60" />
@@ -107,8 +111,11 @@ function AboutUs() {
                     </div>
                 </div>
             </div>
-            <div className="py-20 bg-white">
-                <div className="max-w-340 mx-auto">
+            <div className="bg-white">
+                <div className="absolute">
+                    <img src="/assets/element_three.png" alt="element" className='w-full h-full' />
+                </div>
+                <div className="relative max-w-340 mx-auto py-20">
                     <div className="max-w-140 mx-auto">
                         <div className="flex flex-col justify-center gap-6 mb-6">
                             <p className="uppercase font-bold text-gray-700 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl text-center">Our Values</p>
@@ -120,8 +127,8 @@ function AboutUs() {
                         <div className="col-span-1">
                             <motion.div initial={{ y: 30, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 2, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="bg-white rounded-4xl p-2 shadow-lg">
                                 <div className="border-2 border-[#E18126] rounded-3xl p-4">
-                                    <div className='bg-[#E18126] p-2 rounded-full w-15 h-15 flex justify-center items-center mb-4'>
-                                        <IconShield color='white' className='w-10 h-10'/>
+                                    <div className='bg-[#E18126] p-2 rounded-full w-16 h-16 flex justify-center items-center mb-4'>
+                                        <img src="/assets/trust_reliability.png" alt="Trust & Reliability" className='w-full h-full'/>
                                     </div>
                                     <h3 className='text-2xl text-blue-950 font-bold mb-2'>Trust & Reliability</h3>
                                     <div className='h-1 w-16 bg-linear-to-r from-[#E18126] to-[#1185b7] rounded-full mb-4'></div>
@@ -132,8 +139,8 @@ function AboutUs() {
                         <div className="col-span-1">
                             <motion.div initial={{ y: 30, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 4, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="bg-white rounded-4xl p-2 shadow-lg">
                                 <div className="border-2 border-[#E18126] rounded-3xl p-4">
-                                    <div className='bg-[#E18126] p-2 rounded-full w-15 h-15 flex justify-center items-center mb-4'>
-                                        <IconShield color='white' className='w-10 h-10'/>
+                                    <div className='bg-[#E18126] p-2 rounded-full w-16 h-16 flex justify-center items-center mb-4'>
+                                        <img src="/assets/customer_first.png" alt="Customer First" className='w-full h-full'/>
                                     </div>
                                     <h3 className='text-2xl text-blue-950 font-bold mb-2'>Customer First</h3>
                                     <div className='h-1 w-16 bg-linear-to-r from-[#E18126] to-[#1185b7] rounded-full mb-4'></div>
@@ -144,8 +151,8 @@ function AboutUs() {
                         <div className="col-span-1">
                             <motion.div initial={{ y: 30, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 6, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="bg-white rounded-4xl p-2 shadow-lg">
                                 <div className="border-2 border-[#E18126] rounded-3xl p-4">
-                                    <div className='bg-[#E18126] p-2 rounded-full w-15 h-15 flex justify-center items-center mb-4'>
-                                        <IconShield color='white' className='w-10 h-10'/>
+                                    <div className='bg-[#E18126] p-2 rounded-full w-16 h-16 flex justify-center items-center mb-4'>
+                                        <img src="/assets/excellence.png" alt="Excellence" className='w-full h-full'/>
                                     </div>
                                     <h3 className='text-2xl text-blue-950 font-bold mb-2'>Excellence</h3>
                                     <div className='h-1 w-16 bg-linear-to-r from-[#E18126] to-[#1185b7] rounded-full mb-4'></div>
@@ -156,8 +163,8 @@ function AboutUs() {
                         <div className="col-span-1">
                             <motion.div initial={{ y: 30, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 8, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="bg-white rounded-4xl p-2 shadow-lg">
                                 <div className="border-2 border-[#E18126] rounded-3xl p-4">
-                                    <div className='bg-[#E18126] p-2 rounded-full w-15 h-15 flex justify-center items-center mb-4'>
-                                        <IconShield color='white' className='w-10 h-10'/>
+                                    <div className='bg-[#E18126] p-2 rounded-full w-16 h-16 flex justify-center items-center mb-4'>
+                                        <img src="/assets/integrity.png" alt="Integrity" className='w-full h-full'/>
                                     </div>
                                     <h3 className='text-2xl text-blue-950 font-bold mb-2'>Integrity</h3>
                                     <div className='h-1 w-16 bg-linear-to-r from-[#E18126] to-[#1185b7] rounded-full mb-4'></div>
@@ -184,7 +191,7 @@ function AboutUs() {
                             </div>
                             <div className="flex flex-col items-center justify-center">
                                 <div className="flex">
-                                    <NumberTicker value={5000} className="text-white text-4xl font-bold"/><span className="text-white text-4xl font-bold">+</span>
+                                    <NumberTicker value={50000} className="text-white text-4xl font-bold"/><span className="text-white text-4xl font-bold">+</span>
                                 </div>
                                 <p className="text-white text-base">Happy Customers</p>
                             </div>

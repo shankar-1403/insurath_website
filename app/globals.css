@@ -152,4 +152,8 @@
   body {
     @apply bg-[#1185b720] overflow-x-hidden;
   }
+  html {
+    @apply scroll-smooth;
+  }
+
 }

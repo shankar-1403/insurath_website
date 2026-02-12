@@ -345,7 +345,7 @@ function HealthInsurance() {
                                     </div>
                                     <div className="col-span-1">
                                         <select name="gender" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option value={""} selected hidden>Select Gender</option>
+                                            <option value="" disabled selected hidden>Select Gender</option>
                                             <option value="Male">Male</option>             
                                             <option value="Female">Female</option>
                                             <option value="Other">Other</option>
@@ -369,7 +369,7 @@ function HealthInsurance() {
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className='col-span-1'>
                                         <select name="coverage_type" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option value={""} selected hidden>Select Coverage Type</option>
+                                            <option value="" disabled selected hidden>Select Coverage Type</option>
                                             <option value="Individual">Individual</option>             
                                             <option value="Floater">Floater</option>
                                         </select>
@@ -377,7 +377,7 @@ function HealthInsurance() {
                                     </div>
                                     <div className="col-span-1">
                                         <select name="existing_health_insurance" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option value={""} selected hidden>Select Existing Health Insurance</option>
+                                            <option value="" disabled selected hidden>Select Existing Health Insurance</option>
                                             <option value="No existing insurance">No existing insurance</option>             
                                             <option value="Have existing insurance">Have existing insurance</option>
                                             <option value="Previous insurance expired">Previous insurance expired</option>
@@ -388,7 +388,7 @@ function HealthInsurance() {
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className='col-span-1'>
                                         <select name="pre_existing_conditions" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option value={""} selected hidden>Select Pre-existing Conditions</option>
+                                            <option value="" disabled selected hidden>Select Pre-existing Conditions</option>
                                             <option value="No pre-existing conditions">No pre-existing conditions</option>             
                                             <option value="Diabetes">Diabetes</option>             
                                             <option value="Hypertension">Hypertension</option>             
@@ -399,7 +399,7 @@ function HealthInsurance() {
                                     </div>
                                     <div className="col-span-1">
                                         <select name="desired_coverage_amount" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option value={""} selected hidden>Select Desired Coverage Amount</option>
+                                            <option value="" disabled selected hidden>Select Desired Coverage Amount</option>
                                             <option value="₹2-5 Lakhs">₹2-5 Lakhs</option>    
                                             <option value="₹5-10 Lakhs">₹5-10 Lakhs</option>    
                                             <option value="₹10-25 Lakhs">₹10-25 Lakhs</option>    

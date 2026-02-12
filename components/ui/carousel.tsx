@@ -31,19 +31,10 @@ export default function CardCarousel({ items }: Props) {
     if (!wrapperRef.current) return;
 
     const calculate = () => {
-      const viewportW = window.innerWidth;
       const wrapperW = wrapperRef.current!.offsetWidth;
 
-      if (viewportW < 640) {
-        setVisibleCards(1);
-        setCardWidth(wrapperW);
-      } else if (viewportW < 1024) {
-        setVisibleCards(1);
-        setCardWidth((wrapperW));
-      } else {
-        setVisibleCards(1);
-        setCardWidth((wrapperW));
-      }
+      setVisibleCards(1);
+      setCardWidth(wrapperW);
     };
 
     calculate();
@@ -61,11 +52,9 @@ export default function CardCarousel({ items }: Props) {
 
   const totalCardWidth = cardWidth + GAP;
 
-  /* Clone list for infinite scroll */
   const clonedItems = [...items, ...items, ...items];
   const middleOffset = items.length * totalCardWidth;
 
-  /* Initial positioning */
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -78,7 +67,6 @@ export default function CardCarousel({ items }: Props) {
     });
   }, [middleOffset]);
 
-  /* Infinite correction */
   const handleScroll = () => {
     const container = containerRef.current;
     if (!container) return;
@@ -107,7 +95,6 @@ export default function CardCarousel({ items }: Props) {
     });
   };
 
-  /* Auto scroll */
   useEffect(() => {
     intervalRef.current = setInterval(() => {
       if (!isHoveringRef.current) {
@@ -121,13 +108,13 @@ export default function CardCarousel({ items }: Props) {
   }, [totalCardWidth]);
 
   return (
-    <div>
     <div
-    ref={wrapperRef}
-      className="relative max-w-180 mx-auto"
+      ref={wrapperRef}
+      className="relative lg:max-w-180 lg:mx-auto"
       onMouseEnter={() => (isHoveringRef.current = true)}
       onMouseLeave={() => (isHoveringRef.current = false)}
     >
+
       {/* VIEWPORT */}
       <div
         ref={viewportRef}
@@ -145,7 +132,12 @@ export default function CardCarousel({ items }: Props) {
           className="flex gap-6 py-4 overflow-hidden snap-x snap-mandatory scroll-smooth"
         >
           {clonedItems.map((item, index) => (
-            <div key={index} className="shrink-0 snap-start rounded-4xl border-2 border-[#E18126] bg-transparent p-6 shadow-lg hover:bg-radial-gradient transition relative group overflow-hidden"
+            <div
+              key={index}
+              className="shrink-0 snap-start rounded-4xl border-2 border-[#E18126] 
+                         bg-transparent p-6 shadow-lg 
+                         hover:bg-radial-gradient transition 
+                         relative group overflow-hidden"
               style={{ width: cardWidth }}
               onMouseMove={(e) => {
                 const rect = e.currentTarget.getBoundingClientRect();
@@ -159,7 +151,10 @@ export default function CardCarousel({ items }: Props) {
                 );
               }}
             >
-              <span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+              <span
+                className="pointer-events-none absolute inset-0 opacity-0 
+                           transition-opacity duration-300 
+                           group-hover:opacity-100"
                 style={{
                   background: `radial-gradient(
                     600px circle at var(--x) var(--y),
@@ -168,44 +163,64 @@ export default function CardCarousel({ items }: Props) {
                   )`,
                 }}
               />
+
               <div className="absolute w-30 h-25 bg-[#E18126] right-0 top-0 rounded-bl-[6rem] flex items-center justify-center">
-                <img src="/assets/inverted_coma.png" alt="comma" className="h-15 w-15"/>
+                <img
+                  src="/assets/inverted_coma.png"
+                  alt="comma"
+                  className="h-15 w-15"
+                />
               </div>
+
               <div className="mb-2">
                 <h5 className="text-base md:text-2xl text-blue-950 font-semibold">
                   {item.name}
                 </h5>
-                <p className="text-sm md:text-base text-gray-600">{item.designation}</p>
+                <p className="text-sm md:text-base text-gray-600">
+                  {item.designation}
+                </p>
               </div>
-              
+
               <div className="flex mb-6">
                 {[...Array(item.rating)].map((_, i) => (
-                  <svg key={i} className="w-5 h-5 flex text-[#E18126]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/></svg>
+                  <svg
+                    key={i}
+                    className="w-5 h-5 text-[#E18126]"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z" />
+                  </svg>
                 ))}
               </div>
-              <p className="text-sm md:text-base lg:text-base text-gray-600 leading-6">
+
+              <p className="text-sm md:text-base text-gray-600 leading-6">
                 {item.description}
               </p>
             </div>
           ))}
         </div>
       </div>
-    </div>
-    <div className="flex justify-between w-full -mt-40">
+      
+      {/* LEFT BUTTON */}
       <button
         onClick={() => scrollByOne("left")}
-        className="flex rounded-full bg-blue-950 p-2 shadow hover:scale-110 transition cursor-pointer"
+        className="absolute left-[42%] lg:-left-6 lg:top-1/2 lg:-translate-y-1/2 lg:-translate-x-1/2 
+                   rounded-full bg-blue-950 p-3 shadow-lg 
+                   hover:scale-110 transition z-20 cursor-pointer"
       >
-        <ChevronLeft color="white"/>
+        <ChevronLeft color="white" />
       </button>
 
+      {/* RIGHT BUTTON */}
       <button
         onClick={() => scrollByOne("right")}
-        className="flex rounded-full bg-blue-950 p-2 shadow hover:scale-110 transition cursor-pointer"
+        className="absolute right-[42%] lg:-right-6 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-1/2 
+                   rounded-full bg-blue-950 p-3 shadow-lg 
+                   hover:scale-110 transition z-20 cursor-pointer"
       >
-        <ChevronRight color="white"/>
+        <ChevronRight color="white" />
       </button>
-    </div>
     </div>
   );
 }

@@ -351,7 +351,7 @@ function LifeInsurance() {
                                     </div>
                                     <div className="col-span-1">
                                         <select name="gender" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option value={""} selected hidden>Select gender</option>
+                                            <option value="" disabled selected hidden>Select gender</option>
                                             <option value="Male">Male</option>             
                                             <option value="Female">Female</option>
                                             <option value="Other">Other</option>
@@ -375,7 +375,7 @@ function LifeInsurance() {
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className='col-span-1'>
                                         <select name="family_size" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option value={""} selected hidden>Select family size</option>
+                                            <option value="" disabled selected hidden>Select family size</option>
                                             <option value="Individual">Individual</option>             
                                             <option value="Couple">Couple</option>
                                             <option value="Family (3 members)">Family (3 members)</option>
@@ -386,7 +386,7 @@ function LifeInsurance() {
                                     </div>
                                     <div className="col-span-1">
                                         <select name="income_range" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option value={""} selected hidden>Select income range</option>
+                                            <option value="" disabled selected hidden>Select income range</option>
                                             <option value="₹2-5 Lakhs">₹2-5 Lakhs</option>             
                                             <option value="₹5-10 Lakhs">₹5-10 Lakhs</option>
                                             <option value="₹10-25 Lakhs">₹10-25 Lakhs</option>    
@@ -399,7 +399,7 @@ function LifeInsurance() {
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className='col-span-1'>
                                         <select name="exisitng_life_insurance" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option value={""} selected hidden>Select existing life insurance</option>
+                                            <option value="" disabled selected hidden>Select existing life insurance</option>
                                             <option value="No existing insurance">No existing insurance</option>             
                                             <option value="Have existing insurance">Have existing insurance</option>             
                                             <option value="Previous insurance expired">Previous insurance expired</option>             
@@ -408,7 +408,7 @@ function LifeInsurance() {
                                     </div>
                                     <div className="col-span-1">
                                         <select name="health_condition" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option value={""} selected hidden>Select health condition</option>
+                                            <option value="" disabled selected hidden>Select health condition</option>
                                             <option value="No health condition">No health condition</option>             
                                             <option value="Diabetes">Diabetes</option>             
                                             <option value="Hypertension">Hypertension</option>             
@@ -421,7 +421,7 @@ function LifeInsurance() {
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className='col-span-1'>
                                         <select name="desired_coverage_amount" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option value={""} selected hidden>Select desired coverage amount</option>
+                                            <option value="" disabled selected hidden>Select desired coverage amount</option>
                                             <option value="₹10-25 Lakhs">₹10-25 Lakhs</option>    
                                             <option value="₹25-50 Lakhs">₹25-50 Lakhs</option>    
                                             <option value="₹50-100 Lakhs">₹50-100 Lakhs</option>             

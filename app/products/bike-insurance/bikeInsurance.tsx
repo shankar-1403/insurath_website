@@ -379,7 +379,7 @@ function BikeInsurance() {
                                     <div className="grid grid-cols-2 gap-4">
                                         <div className='col-span-1'>
                                             <select name="manufacturing_year" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                                <option value={""} selected hidden>Select manufacturing year</option>
+                                                <option value="" disabled selected hidden>Select manufacturing year</option>
                                                 {years.map((year)=>(
                                                     <>
                                                         <option key={year} value={year}>{year}</option> 
@@ -390,7 +390,7 @@ function BikeInsurance() {
                                         </div>
                                         <div className="col-span-1">
                                             <select name="registration_year" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                                <option value={""} selected hidden>Select registration year</option>
+                                                <option value="" disabled selected hidden>Select registration year</option>
                                                 {years.map((year)=>(
                                                     <>
                                                         <option key={year} value={year}>{year}</option> 
@@ -409,7 +409,7 @@ function BikeInsurance() {
                                     <div className="grid grid-cols-2 gap-4">
                                         <div className='col-span-1'>
                                             <select name="exisiting_bike_insurance" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                                <option value={""} selected hidden>Select existing bike insurance</option>
+                                                <option value="" disabled selected hidden>Select existing bike insurance</option>
                                                 <option value="No existing insurance">No existing insurance</option>             
                                                 <option value="Have existing insurance">Have existing insurance</option>             
                                                 <option value="Previous insurance expired">Previous insurance expired</option>     
@@ -418,7 +418,7 @@ function BikeInsurance() {
                                         </div>
                                         <div className="col-span-1">
                                             <select name="claim_history" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                                <option value={""} selected hidden>Select claim history</option>
+                                                <option value="" disabled selected hidden>Select claim history</option>
                                                 <option value="No claims">No claims</option>             
                                                 <option value="1-2 claims">1-2 claims</option>             
                                                 <option value="3-5 claims">3-5 claims</option>
@@ -430,7 +430,7 @@ function BikeInsurance() {
                                     <div className="grid grid-cols-2 gap-4">
                                         <div className="col-span-2">
                                             <select name="desired_coverage_type" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                                <option value={""} selected hidden>Select coverage type</option>
+                                                <option value="" disabled selected hidden>Select coverage type</option>
                                                 <option value="Third Party Only">Third Party Only</option>             
                                                 <option value="Comprehensive">Comprehensive</option>
                                             </select>
@@ -510,21 +510,21 @@ function BikeInsurance() {
                     <div className='col-span-1'>
                         <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
                             <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl h-20 flex items-center justify-center">
-                                <h4 className='text-base text-white text-center font-bold'>Zero depreciation cover</h4>
+                                <h4 className='text-base text-white text-center font-bold'>Zero depreciation<br/>cover</h4>
                             </div>
                         </div>
                     </div>
                     <div className='col-span-1'>
                         <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
                             <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl h-20 flex items-center justify-center">
-                                <h4 className='text-base text-white text-center font-bold'>Engine protection</h4>
+                                <h4 className='text-base text-white text-center font-bold'>Engine<br/>protection</h4>
                             </div>
                         </div>
                     </div>
                     <div className='col-span-1'>
                         <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
                             <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl h-20 flex items-center justify-center">
-                                <h4 className='text-base text-white text-center font-bold'>Cashless claims</h4>
+                                <h4 className='text-base text-white text-center font-bold'>Cashless<br/>claims</h4>
                             </div>
                         </div>
                     </div>
@@ -538,14 +538,14 @@ function BikeInsurance() {
                     <div className='col-span-1'>
                         <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
                             <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl h-20 flex items-center justify-center">
-                                <h4 className='text-base text-white text-center font-bold'>Return to invoice</h4>
+                                <h4 className='text-base text-white text-center font-bold'>Return to<br/>invoice</h4>
                             </div>
                         </div>
                     </div>
                     <div className='col-span-1'>
                         <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
                             <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl h-20 flex items-center justify-center">
-                                <h4 className='text-base text-white text-center font-bold'>Roadside assistance</h4>
+                                <h4 className='text-base text-white text-center font-bold'>Roadside<br/>assistance</h4>
                             </div>
                         </div>
                     </div>
