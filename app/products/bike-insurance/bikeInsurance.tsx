@@ -378,8 +378,8 @@ function BikeInsurance() {
                                     </div>
                                     <div className="grid grid-cols-2 gap-4">
                                         <div className='col-span-1'>
-                                            <select name="manufacturing_year" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                                <option value="" disabled selected hidden>Select manufacturing year</option>
+                                            <select name="manufacturing_year" defaultValue={""} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                                <option value="" disabled hidden>Select manufacturing year</option>
                                                 {years.map((year)=>(
                                                     <>
                                                         <option key={year} value={year}>{year}</option> 
@@ -389,8 +389,8 @@ function BikeInsurance() {
                                             {error.manufacturing_year && <span className="text-sm text-red-500">{error.manufacturing_year}</span>}
                                         </div>
                                         <div className="col-span-1">
-                                            <select name="registration_year" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                                <option value="" disabled selected hidden>Select registration year</option>
+                                            <select name="registration_year" defaultValue={""} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                                <option value="" disabled hidden>Select registration year</option>
                                                 {years.map((year)=>(
                                                     <>
                                                         <option key={year} value={year}>{year}</option> 
@@ -408,8 +408,8 @@ function BikeInsurance() {
                                     </div>
                                     <div className="grid grid-cols-2 gap-4">
                                         <div className='col-span-1'>
-                                            <select name="exisiting_bike_insurance" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                                <option value="" disabled selected hidden>Select existing bike insurance</option>
+                                            <select name="exisiting_bike_insurance" defaultValue={""} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                                <option value="" disabled hidden>Select existing bike insurance</option>
                                                 <option value="No existing insurance">No existing insurance</option>             
                                                 <option value="Have existing insurance">Have existing insurance</option>             
                                                 <option value="Previous insurance expired">Previous insurance expired</option>     
@@ -417,8 +417,8 @@ function BikeInsurance() {
                                             {error.exisiting_bike_insurance && <span className="text-sm text-red-500">{error.exisiting_bike_insurance}</span>}
                                         </div>
                                         <div className="col-span-1">
-                                            <select name="claim_history" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                                <option value="" disabled selected hidden>Select claim history</option>
+                                            <select name="claim_history" defaultValue={""} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                                <option value="" disabled hidden>Select claim history</option>
                                                 <option value="No claims">No claims</option>             
                                                 <option value="1-2 claims">1-2 claims</option>             
                                                 <option value="3-5 claims">3-5 claims</option>
@@ -429,8 +429,8 @@ function BikeInsurance() {
                                     </div>
                                     <div className="grid grid-cols-2 gap-4">
                                         <div className="col-span-2">
-                                            <select name="desired_coverage_type" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                                <option value="" disabled selected hidden>Select coverage type</option>
+                                            <select name="desired_coverage_type" defaultValue={""} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                                <option value="" disabled hidden>Select coverage type</option>
                                                 <option value="Third Party Only">Third Party Only</option>             
                                                 <option value="Comprehensive">Comprehensive</option>
                                             </select>
@@ -558,19 +558,19 @@ function BikeInsurance() {
                         
                         {/* Heading (center anchor) */}
                         <div className="absolute max-w-xl text-center bg-[#1185b7] rounded-full h-120 w-120 flex flex-col justify-center items-center p-10">
-                            <h5 className="text-5xl font-bold text-white  text-shadow-lg leading-tight mb-4">Unmatched Benefits for your Two-Wheeler Journey</h5>
-                            <p className='text-lg text-shadow-lg text-white leading-8'>Experience unparalleled advantages when you secure your two-wheeler with our expert guidance and top-tier solutions.</p>
+                            <h5 className="text-5xl font-bold text-white  text-shadow-lg leading-tight mb-4">Bike Benefits That Matter</h5>
+                            <p className='text-lg text-shadow-lg text-white leading-8'>Start with Secure your two - wheeler.</p>
                         </div>
 
                         <div className="relative w-175 h-125 mx-auto">
                             <EllipseItem text="No claim bonus up to 50%" angle={270} radiusX={400} radiusY={280} />
-                            <EllipseItem text="Quick renewal" angle={330} radiusX={400} radiusY={280} />
+                            <EllipseItem text="Quick renewal" angle={330} radiusX={400} radiusY={240} />
 
-                            <EllipseItem text="Online claim process" angle={30} radiusX={400} radiusY={280} />
+                            <EllipseItem text="Online claim process" angle={30} radiusX={400} radiusY={240} />
                             <EllipseItem text="Emergency services" angle={90} radiusX={400} radiusY={280} />
 
-                            <EllipseItem text="Towing assistance" angle={210} radiusX={400} radiusY={280} />
-                            <EllipseItem text="Battery replacement" angle={150} radiusX={400} radiusY={280} />
+                            <EllipseItem text="Towing assistance" angle={210} radiusX={400} radiusY={240} />
+                            <EllipseItem text="Battery replacement" angle={150} radiusX={400} radiusY={240} />
                         </div>
 
                     </div>
@@ -605,7 +605,7 @@ function BikeInsurance() {
                                 <div className="absolute inset-0 max-w-md mx-auto flex flex-col justify-center px-6 text-center">
                                     <p className="uppercase font-bold text-sm text-white after:content-[''] after:inline-block after:w-6 after:h-0.5 after:bg-[#E18126] after:ml-2 after:align-middle after:rounded-xl mb-2 text-left">Got Questions?</p>
                                     <h5 className="text-5xl font-bold text-white leading-16 text-left mb-4">Frequently Asked Questions</h5>
-                                    <p className="text-lg text-left leading-8 text-white">Find quick answers to common car insurance questions</p>
+                                    <p className="text-lg text-left leading-8 text-white">Find quick answers to common bike insurance questions</p>
                                 </div>
                             </div>
                         </div>

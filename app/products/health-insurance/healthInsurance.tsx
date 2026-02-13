@@ -344,10 +344,11 @@ function HealthInsurance() {
                                         {error.age && <span className="text-sm text-red-500">{error.age}</span>}
                                     </div>
                                     <div className="col-span-1">
-                                        <select name="gender" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option value="" disabled selected hidden>Select Gender</option>
+                                        <select name="gender" defaultValue={""} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                            <option value="" disabled hidden>Select Gender</option>
                                             <option value="Male">Male</option>             
                                             <option value="Female">Female</option>
+                                            <option value="Prefer not to say">Prefer not to say</option>
                                             <option value="Other">Other</option>
                                         </select>
                                         {error.gender && <span className="text-sm text-red-500">{error.gender}</span>}
@@ -368,16 +369,16 @@ function HealthInsurance() {
                             <div className="flex flex-col gap-4">
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className='col-span-1'>
-                                        <select name="coverage_type" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option value="" disabled selected hidden>Select Coverage Type</option>
+                                        <select name="coverage_type" defaultValue={""} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                            <option value="" disabled hidden>Select Coverage Type</option>
                                             <option value="Individual">Individual</option>             
                                             <option value="Floater">Floater</option>
                                         </select>
                                         {error.coverage_type && <span className="text-sm text-red-500">{error.coverage_type}</span>}
                                     </div>
                                     <div className="col-span-1">
-                                        <select name="existing_health_insurance" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option value="" disabled selected hidden>Select Existing Health Insurance</option>
+                                        <select name="existing_health_insurance" defaultValue={""} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                            <option value="" disabled hidden>Select Existing Health Insurance</option>
                                             <option value="No existing insurance">No existing insurance</option>             
                                             <option value="Have existing insurance">Have existing insurance</option>
                                             <option value="Previous insurance expired">Previous insurance expired</option>
@@ -387,8 +388,8 @@ function HealthInsurance() {
                                 </div>
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className='col-span-1'>
-                                        <select name="pre_existing_conditions" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option value="" disabled selected hidden>Select Pre-existing Conditions</option>
+                                        <select name="pre_existing_conditions" defaultValue={""} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                            <option value="" disabled hidden>Select Pre-existing Conditions</option>
                                             <option value="No pre-existing conditions">No pre-existing conditions</option>             
                                             <option value="Diabetes">Diabetes</option>             
                                             <option value="Hypertension">Hypertension</option>             
@@ -398,8 +399,8 @@ function HealthInsurance() {
                                         {error.pre_existing_conditions && <span className="text-sm text-red-500">{error.pre_existing_conditions}</span>}
                                     </div>
                                     <div className="col-span-1">
-                                        <select name="desired_coverage_amount" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option value="" disabled selected hidden>Select Desired Coverage Amount</option>
+                                        <select name="desired_coverage_amount" defaultValue={""} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                            <option value="" disabled hidden>Select Desired Coverage Amount</option>
                                             <option value="₹2-5 Lakhs">₹2-5 Lakhs</option>    
                                             <option value="₹5-10 Lakhs">₹5-10 Lakhs</option>    
                                             <option value="₹10-25 Lakhs">₹10-25 Lakhs</option>    
@@ -536,61 +537,15 @@ function HealthInsurance() {
 
                         <div className="relative w-175 h-125 mx-auto">
                             <EllipseItem text="Medicine costs" angle={270} radiusX={400} radiusY={280} />
-                            <EllipseItem text="Emergency treatment" angle={330} radiusX={400} radiusY={280} />
+                            <EllipseItem text="Emergency treatment" angle={330} radiusX={400} radiusY={240} />
 
-                            <EllipseItem text="ICU charges covered" angle={30} radiusX={400} radiusY={280} />
+                            <EllipseItem text="ICU charges covered" angle={30} radiusX={400} radiusY={240} />
                             <EllipseItem text="Room rent benefits" angle={90} radiusX={400} radiusY={280} />
 
-                            <EllipseItem text="Diagnostic tests" angle={210} radiusX={400} radiusY={280} />
-                            <EllipseItem text="Surgery expenses" angle={150} radiusX={400} radiusY={280} />
+                            <EllipseItem text="Diagnostic tests" angle={210} radiusX={400} radiusY={240} />
+                            <EllipseItem text="Surgery expenses" angle={150} radiusX={400} radiusY={240} />
                         </div>
 
-                    </div>
-                </div>
-            </div>
-            <div className="bg-white">
-                <div className="max-w-340 mx-auto py-20">
-                    <div className='mb-4'>
-                        <h5 className="text-5xl font-bold text-blue-950 text-center leading-tight mb-4">What&apos;s Covered</h5>
-                        <p className='text-lg text-gray-700 text-center mb-5'>Comprehensive coverage that protects your vehicle in various scenarios</p>
-                    </div>
-                    <div className='flex w-full gap-4'>
-                        <div className='rounded-4xl w-[20%] flex flex-col items-center justify-center gap-3 p-4 h-30 bg-linear-to-br from-[#e1802610] from-30% to-[#1185b733] to-90%'>
-                            <div className='h-10'><IconShieldCheck color='#E18126' className='w-8 h-8'/></div>
-                            <div>
-                                <p className='text-lg text-center font-bold text-blue-950'>Room rent<br/>benefits</p>
-                            </div>
-                        </div>
-                        <div className='rounded-4xl w-[20%] flex flex-col items-center justify-center gap-3 p-4 h-30 bg-linear-to-br from-[#e1802610] from-30% to-[#1185b733] to-90%'>
-                            <div className='h-10'><IconShieldCheck color='#E18126' className='w-8 h-8'/></div>
-                            <div>
-                                <p className='text-lg text-center font-bold text-blue-950'>ICU charges<br/>covered</p>
-                            </div>
-                        </div>
-                        <div className='rounded-4xl w-[20%] flex flex-col items-center justify-center gap-3 p-4 h-30 bg-linear-to-br from-[#e1802610] from-30% to-[#1185b733] to-90%'>
-                            <div className='h-10'><IconShieldCheck color='#E18126' className='w-8 h-8'/></div>
-                            <div>
-                                <p className='text-lg text-center font-bold text-blue-950'>Emergency<br/>treatment</p>
-                            </div>
-                        </div>
-                        <div className='rounded-4xl w-[20%] flex flex-col items-center justify-center gap-3 p-4 h-30 bg-linear-to-br from-[#e1802610] from-30% to-[#1185b733] to-90%'>
-                            <div className='h-10'><IconShieldCheck color='#E18126' className='w-8 h-8'/></div>
-                            <div>
-                                <p className='text-lg text-center font-bold text-blue-950'>Surgery<br/>expenses</p>
-                            </div>
-                        </div>
-                        <div className='rounded-4xl w-[20%] flex flex-col items-center justify-center gap-3 p-4 h-30 bg-linear-to-br from-[#e1802610] from-30% to-[#1185b733] to-90%'>
-                            <div className='h-10'><IconShieldCheck color='#E18126' className='w-8 h-8'/></div>
-                            <div>
-                                <p className='text-lg text-center font-bold text-blue-950'>Diagnostic<br/>tests</p>
-                            </div>
-                        </div>
-                        <div className='rounded-4xl w-[20%] flex flex-col items-center justify-center gap-3 p-4 h-30 bg-linear-to-br from-[#e1802610] from-30% to-[#1185b733] to-90%'>
-                            <div className='h-10'><IconShieldCheck color='#E18126' className='w-8 h-8'/></div>
-                            <div>
-                                <p className='text-lg text-center font-bold text-blue-950'>Medicine<br/>costs</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

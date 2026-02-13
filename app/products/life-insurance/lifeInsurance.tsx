@@ -350,10 +350,11 @@ function LifeInsurance() {
                                         {error.age && <span className="text-sm text-red-500">{error.age}</span>}
                                     </div>
                                     <div className="col-span-1">
-                                        <select name="gender" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option value="" disabled selected hidden>Select gender</option>
+                                        <select name="gender" defaultValue={""} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                            <option value="" disabled hidden>Select gender</option>
                                             <option value="Male">Male</option>             
                                             <option value="Female">Female</option>
+                                            <option value="Prefer not to say">Prefer not to say</option>
                                             <option value="Other">Other</option>
                                         </select>
                                         {error.gender && <span className="text-sm text-red-500">{error.gender}</span>}
@@ -374,8 +375,8 @@ function LifeInsurance() {
                             <div className="flex flex-col gap-4">
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className='col-span-1'>
-                                        <select name="family_size" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option value="" disabled selected hidden>Select family size</option>
+                                        <select name="family_size" defaultValue={""} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                            <option value="" disabled hidden>Select family size</option>
                                             <option value="Individual">Individual</option>             
                                             <option value="Couple">Couple</option>
                                             <option value="Family (3 members)">Family (3 members)</option>
@@ -385,8 +386,8 @@ function LifeInsurance() {
                                         {error.family_size && <span className="text-sm text-red-500">{error.family_size}</span>}
                                     </div>
                                     <div className="col-span-1">
-                                        <select name="income_range" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option value="" disabled selected hidden>Select income range</option>
+                                        <select name="income_range" defaultValue={""} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                            <option value="" disabled hidden>Select income range</option>
                                             <option value="₹2-5 Lakhs">₹2-5 Lakhs</option>             
                                             <option value="₹5-10 Lakhs">₹5-10 Lakhs</option>
                                             <option value="₹10-25 Lakhs">₹10-25 Lakhs</option>    
@@ -398,8 +399,8 @@ function LifeInsurance() {
                                 </div>
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className='col-span-1'>
-                                        <select name="exisitng_life_insurance" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option value="" disabled selected hidden>Select existing life insurance</option>
+                                        <select name="exisitng_life_insurance" defaultValue={""} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                            <option value="" disabled hidden>Select existing life insurance</option>
                                             <option value="No existing insurance">No existing insurance</option>             
                                             <option value="Have existing insurance">Have existing insurance</option>             
                                             <option value="Previous insurance expired">Previous insurance expired</option>             
@@ -407,8 +408,8 @@ function LifeInsurance() {
                                         {error.exisitng_life_insurance && <span className="text-sm text-red-500">{error.exisitng_life_insurance}</span>}
                                     </div>
                                     <div className="col-span-1">
-                                        <select name="health_condition" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option value="" disabled selected hidden>Select health condition</option>
+                                        <select name="health_condition" defaultValue={""} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                            <option value="" disabled hidden>Select health condition</option>
                                             <option value="No health condition">No health condition</option>             
                                             <option value="Diabetes">Diabetes</option>             
                                             <option value="Hypertension">Hypertension</option>             
@@ -420,8 +421,8 @@ function LifeInsurance() {
                                 </div>
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className='col-span-1'>
-                                        <select name="desired_coverage_amount" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
-                                            <option value="" disabled selected hidden>Select desired coverage amount</option>
+                                        <select name="desired_coverage_amount" defaultValue={""} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126] cursor-pointer">
+                                            <option value="" disabled hidden>Select desired coverage amount</option>
                                             <option value="₹10-25 Lakhs">₹10-25 Lakhs</option>    
                                             <option value="₹25-50 Lakhs">₹25-50 Lakhs</option>    
                                             <option value="₹50-100 Lakhs">₹50-100 Lakhs</option>             
@@ -559,13 +560,13 @@ function LifeInsurance() {
 
                         <div className="relative w-175 h-125 mx-auto">
                             <EllipseItem text="Tax benefits under Section 80C" angle={270} radiusX={400} radiusY={280} />
-                            <EllipseItem text="Maturity benefits" angle={330} radiusX={400} radiusY={280} />
+                            <EllipseItem text="Maturity benefits" angle={330} radiusX={400} radiusY={240} />
 
-                            <EllipseItem text="Death benefit to nominees" angle={30} radiusX={400} radiusY={280} />
+                            <EllipseItem text="Death benefit to nominees" angle={30} radiusX={400} radiusY={240} />
                             <EllipseItem text="Loan against policy" angle={90} radiusX={400} radiusY={280} />
 
-                            <EllipseItem text="Surrender value" angle={210} radiusX={400} radiusY={280} />
-                            <EllipseItem text="Bonus additions" angle={150} radiusX={400} radiusY={280} />
+                            <EllipseItem text="Surrender value" angle={210} radiusX={400} radiusY={240} />
+                            <EllipseItem text="Bonus additions" angle={150} radiusX={400} radiusY={240} />
                         </div>
 
                     </div>

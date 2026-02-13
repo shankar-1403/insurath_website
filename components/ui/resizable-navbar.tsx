@@ -3,10 +3,8 @@
 import { cn } from "@/lib/utils";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent,useTransform } from "motion/react";
-import logo from "../../public/assets/insurath.png";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import {IconCaretDownFilled} from "@tabler/icons-react";
 
 interface NavChildItem {
@@ -173,7 +171,7 @@ export const NavItems = ({ items }: { items: NavItem[] }) => {
 export const MobileNav = ({ children, className }: MobileNavProps) => {
   return (
     <motion.div
-      className={cn(`z-50 flex w-full top-5 flex-col items-center justify-between px-0 py-2 fixed lg:hidden `, className )}
+      className={cn(`z-50 flex w-full top-2 md:top-5 flex-col items-center justify-between px-0 py-2 fixed lg:hidden `, className )}
     >
       {children}
     </motion.div>
@@ -201,7 +199,7 @@ export const MobileNavHeader = ({
   return (
     <div
       ref={ref}
-      className={`flex w-full max-w-180 mx-auto flex-row items-center justify-between ${visible ? "bg-white/80 border-white backdrop-blur-md shadow-lg" : "border-transparent"} rounded-full`}
+      className={`flex w-full md:max-w-165 md:mx-auto flex-row items-center justify-between px-2 ${visible ? "bg-white/80 border-white backdrop-blur-md shadow-lg" : "border-transparent"} rounded-full`}
     >
       {children}
     </div>
@@ -216,17 +214,17 @@ export const MobileNavMenu = ({
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className={cn(
-            "absolute inset-x-0 top-24 z-50 flex w-full flex-col items-start justify-start gap-4 rounded-lg bg-white px-4 py-8 shadow-[0_0_24px_rgba(34,42,53,0.06),0_1px_1px_rgba(0,0,0,0.05),0_0_0_1px_rgba(34,42,53,0.04),0_0_4px_rgba(34,42,53,0.08),0_16px_68px_rgba(47,48,55,0.05),0_1px_0_rgba(255,255,255,0.1)_inset] dark:bg-neutral-950",
-            className,
-          )}
-        >
-          {children}
-        </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className={cn(
+              "absolute inset-x-0 top-30 z-50 flex w-full flex-col items-start justify-start gap-4 bg-white/80 backdrop-blur-md px-4 py-8 shadow-[0_0_24px_rgba(34,42,53,0.06),0_1px_1px_rgba(0,0,0,0.05),0_0_0_1px_rgba(34,42,53,0.04),0_0_4px_rgba(34,42,53,0.08),0_16px_68px_rgba(47,48,55,0.05),0_1px_0_rgba(255,255,255,0.1)_inset] rounded-4xl max-w-180 mx-auto",
+              className,
+            )}
+          >
+            {children}
+          </motion.div>
       )}
     </AnimatePresence>
   );
@@ -251,15 +249,50 @@ export const MobileNavToggle = ({
 };
 
 export const NavbarLogo = () => {
-  const { scrollY } = useScroll()
+  const { scrollY } = useScroll();
+  const [device, setDevice] = useState<"mobile" | "tablet" | "desktop">("desktop");
 
-  const scale = useTransform(scrollY, [0, 180], [1, 0.8])
-  const x = useTransform(scrollY, [0, 150], [-30,-20])
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setDevice("mobile");
+      } else if (window.innerWidth < 1024) {
+        setDevice("tablet");
+      } else {
+        setDevice("desktop");
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Responsive transforms
+  const scale = useTransform(
+    scrollY,
+    [0, 180],
+    device === "mobile"
+      ? [1, 0.9]
+      : device === "tablet"
+      ? [1, 0.85]
+      : [1, 0.8]
+  );
+
+  const x = useTransform(
+    scrollY,
+    [0, 150],
+    device === "mobile"
+      ? [10, 0]
+      : device === "tablet"
+      ? [-12, 0]
+      : [-35, -15]
+  );
 
   return (
     <Link href="/" className="z-20">
       <motion.div style={{ scale, x }} className="transition-transform">
-        <img src={'/assets/insurath.png'} alt="Insurath" className="h-30"/>
+        <img src={'/assets/insurath.png'} alt="Insurath" className="h-26 md:h-28 lg:h-30"/>
       </motion.div>
     </Link>
   )

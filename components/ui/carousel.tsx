@@ -135,7 +135,7 @@ export default function CardCarousel({ items }: Props) {
             <div
               key={index}
               className="shrink-0 snap-start rounded-4xl border-2 border-[#E18126] 
-                         bg-transparent p-6 shadow-lg 
+                         bg-transparent p-4 md:p-6 shadow-lg 
                          hover:bg-radial-gradient transition 
                          relative group overflow-hidden"
               style={{ width: cardWidth }}
@@ -164,19 +164,15 @@ export default function CardCarousel({ items }: Props) {
                 }}
               />
 
-              <div className="absolute w-30 h-25 bg-[#E18126] right-0 top-0 rounded-bl-[6rem] flex items-center justify-center">
-                <img
-                  src="/assets/inverted_coma.png"
-                  alt="comma"
-                  className="h-15 w-15"
-                />
+              <div className="absolute w-25 md:w-30 h-20 md:h-25 bg-[#E18126] right-0 top-0 rounded-bl-[6rem] flex items-center justify-center">
+                <img src="/assets/inverted_coma.png" alt="comma" className="w-10 md:h-15 h-10 md:w-15"/>
               </div>
 
               <div className="mb-2">
-                <h5 className="text-base md:text-2xl text-blue-950 font-semibold">
+                <h5 className="text-lg md:text-xl lg:text-2xl text-blue-950 font-bold">
                   {item.name}
                 </h5>
-                <p className="text-sm md:text-base text-gray-600">
+                <p className="text-sm md:text-base lg:text-lg text-gray-600">
                   {item.designation}
                 </p>
               </div>
@@ -205,21 +201,21 @@ export default function CardCarousel({ items }: Props) {
       {/* LEFT BUTTON */}
       <button
         onClick={() => scrollByOne("left")}
-        className="absolute left-[42%] lg:-left-6 lg:top-1/2 lg:-translate-y-1/2 lg:-translate-x-1/2 
-                   rounded-full bg-blue-950 p-3 shadow-lg 
+        className="absolute left-[38%] md:left-[44%] lg:-left-6 lg:top-1/2 lg:-translate-y-1/2 lg:-translate-x-1/2 
+                   rounded-full bg-blue-950 p-2 lg:p-3 shadow-lg 
                    hover:scale-110 transition z-20 cursor-pointer"
       >
-        <ChevronLeft color="white" />
+        <ChevronLeft color="white" className="w-5 h-5"/>
       </button>
 
       {/* RIGHT BUTTON */}
       <button
         onClick={() => scrollByOne("right")}
-        className="absolute right-[42%] lg:-right-6 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-1/2 
-                   rounded-full bg-blue-950 p-3 shadow-lg 
+        className="absolute right-[38%] md:right-[44%] lg:-right-6 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-1/2 
+                   rounded-full bg-blue-950 p-2 lg:p-3 shadow-lg 
                    hover:scale-110 transition z-20 cursor-pointer"
       >
-        <ChevronRight color="white" />
+        <ChevronRight color="white" className="w-5 h-5"/>
       </button>
     </div>
   );

@@ -537,13 +537,13 @@ function CarInsurance() {
 
                         <div className="relative w-175 h-125 mx-auto">
                             <EllipseItem text="No claim bonus up to 50%" angle={270} radiusX={400} radiusY={280} />
-                            <EllipseItem text="24/7 customer support" angle={330} radiusX={400} radiusY={280} />
+                            <EllipseItem text="24/7 customer support" angle={330} radiusX={400} radiusY={240} />
 
-                            <EllipseItem text="Quick claim settlement" angle={30} radiusX={400} radiusY={280} />
+                            <EllipseItem text="Quick claim settlement" angle={30} radiusX={400} radiusY={240} />
                             <EllipseItem text="Wide network of garages" angle={90} radiusX={400} radiusY={280} />
 
-                            <EllipseItem text="Online policy management" angle={210} radiusX={400} radiusY={280} />
-                            <EllipseItem text="Add-on covers available" angle={150} radiusX={400} radiusY={280} />
+                            <EllipseItem text="Online policy management" angle={210} radiusX={400} radiusY={240} />
+                            <EllipseItem text="Add-on covers available" angle={150} radiusX={400} radiusY={240} />
                         </div>
 
                     </div>

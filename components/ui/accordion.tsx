@@ -20,10 +20,10 @@ const AccordionItem: FC<AccordionItemProps> = ({
       {/* Header */}
       <button
         onClick={onToggle}
-        className="w-full flex justify-between items-center text-left cursor-pointer p-4"
+        className="w-full flex justify-between items-center text-left cursor-pointer p-3 lg:p-4"
         type="button"
       >
-        <span className="text-lg text-blue-950 font-semibold">
+        <span className="text-sm md:text-base lg:text-lg text-blue-950 font-semibold">
           {question}
         </span>
 
@@ -47,7 +47,7 @@ const AccordionItem: FC<AccordionItemProps> = ({
               transition={{ duration: 0.35, ease: "easeInOut" }}
               className="overflow-hidden"
             >
-              <p className="mt-3 text-gray-700">{answer}</p>
+              <p className="mt-3 text-sm md:text-base lg:text-lg text-gray-700">{answer}</p>
             </motion.div>
           )}
         </AnimatePresence>

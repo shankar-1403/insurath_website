@@ -367,13 +367,13 @@ function TravelInsurance() {
 
                         <div className="relative w-175 h-125 mx-auto">
                             <EllipseItem text="Coverage for pre-existing conditions" angle={270} radiusX={400} radiusY={280} />
-                            <EllipseItem text="Adventure sports coverage" angle={330} radiusX={400} radiusY={280} />
+                            <EllipseItem text="Adventure sports coverage" angle={330} radiusX={400} radiusY={240} />
 
-                            <EllipseItem text="Family coverage options" angle={30} radiusX={400} radiusY={280} />
+                            <EllipseItem text="Family coverage options" angle={30} radiusX={400} radiusY={240} />
                             <EllipseItem text="Business trip protection" angle={90} radiusX={400} radiusY={280} />
 
-                            <EllipseItem text="Student travel insurance" angle={210} radiusX={400} radiusY={280} />
-                            <EllipseItem text="Senior citizen coverage" angle={150} radiusX={400} radiusY={280} />
+                            <EllipseItem text="Student travel insurance" angle={210} radiusX={400} radiusY={240} />
+                            <EllipseItem text="Senior citizen coverage" angle={150} radiusX={400} radiusY={240} />
                         </div>
 
                     </div>
@@ -408,7 +408,7 @@ function TravelInsurance() {
                                 <div className="absolute inset-0 max-w-md mx-auto flex flex-col justify-center px-6 text-center">
                                     <p className="uppercase font-bold text-sm text-white after:content-[''] after:inline-block after:w-6 after:h-0.5 after:bg-[#E18126] after:ml-2 after:align-middle after:rounded-xl mb-2 text-left">Got Questions?</p>
                                     <h5 className="text-5xl font-bold text-white leading-16 text-left mb-4">Frequently Asked Questions</h5>
-                                    <p className="text-lg text-left leading-8 text-white">Find quick answers to common car insurance questions</p>
+                                    <p className="text-lg text-left leading-8 text-white">Find quick answers to common travel insurance questions</p>
                                 </div>
                             </div>
                         </div>

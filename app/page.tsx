@@ -28,7 +28,7 @@ const CompaniesCard = ({data}: {data: string}) => {
       )}
     >
       <div className="flex items-center justify-center h-full">
-        <img src={data} alt={'Partners Logo'} className="h-full"/>
+        <img src={data} alt={'Partners Logo'} className="h-30 md:h-full"/>
       </div>
     </figure>
   )
@@ -177,7 +177,7 @@ export default function Home() {
 
   const chooseUs = [
     {number:"01",title:"100% Secure & Trusted", description:"Your data is protected with bank-level security and we are licensed by IRDAI."},
-    {number:"02",title:"Instant Quotes", description:"Get quotes from 25+ insurance companies in just 2 minutes."},
+    {number:"02",title:"Instant Quotes", description:"Get quotes from 25+ trusted insurance providers, all in one place."},
     {number:"03",title:"Expert Support", description:"Our insurance experts guide you through every step of the process."},
     {number:"04",title:"Best Prices", description:"Compare and save up to 40% on your insurance premiums."},
     {number:"05",title:"Customer First", description:"We prioritize your needs and provide 24/7 customer support."},
@@ -218,22 +218,22 @@ export default function Home() {
         }} className="absolute top-80 lg:top-120 left-20 rotate-10">
         <IconCash size={100} color="#E18126" opacity={0.1} />
       </motion.div>
-      <div className="bg-linear-to-br from-blue-950 via-[#1186B7] to-[#884001] h-screen flex justify-center items-center">
-        <div className="px-10 md:px-0 md:max-w-180 lg:max-w-340 mx-auto mt-20 lg:mt-10">
-          <div className="flex gap-4 md:gap-2 lg:gap-6">
-            <motion.div initial={{ x: -30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="md:w-[60%] lg:w-[60%]">
+      <div className="bg-linear-to-br from-blue-950 via-[#1186B7] to-[#884001] py-20 md:py-0 h-auto md:h-screen flex justify-center items-center">
+        <div className="px-6 md:px-0 md:max-w-165 lg:max-w-340 mx-auto mt-30 lg:mt-10">
+          <div className="flex flex-col md:flex-row lg:flex-row gap-8 md:gap-2 lg:gap-6">
+            <motion.div initial={{ x: -30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-full md:w-[60%]">
               <div className="flex items-center justify-start mb-2">
                 <div className="rounded-full border border-black/5 bg-neutral-100">
                   <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 uppercase">
-                    <span className="flex gap-1 font-bold text-sm">Protection for All</span>
+                    <span className="flex gap-1 font-bold text-xs">Protection for All</span>
                   </AnimatedShinyText>
                 </div>
               </div>
               <div className="flex flex-col items-start justify-center gap-4 lg:gap-10">
-                <h1 className="text-left text-white text-2xl md:text-5xl lg:text-7xl font-bold text-shadow-lg">Insurance Made<br/><span className="text-[#E18126]">Simple & Affordable</span></h1>
-                <p className="text-left text-white text-lg md:text-lg lg:text-2xl text-shadow-lg leading-8">Get expert guidance and find the perfect insurance policies from top companies. <span className="text-[#E18126]">Protect what matters most to you</span> with personalized recommendations and comprehensive coverage.</p>
+                <h1 className="text-left text-white text-4xl md:text-5xl lg:text-7xl font-bold text-shadow-lg">Insurance Made<br/><span className="text-[#E18126]">Simple & Affordable</span></h1>
+                <p className="text-left text-white text-lg md:text-lg lg:text-2xl text-shadow-lg leading-6 md:leading-8">Get expert guidance and find the perfect insurance policies from top companies. <span className="text-[#E18126]">Protect what matters most to you</span> with personalized recommendations and comprehensive coverage.</p>
               </div>
-              <div className="flex gap-6 mt-15 md:mt-8 lg:mt-10">
+              <div className="flex gap-6 mt-10 md:mt-8 lg:mt-10">
                 <div>
                   <a href={'#services'}>
                     <InteractiveHoverButton>Learn More</InteractiveHoverButton>
@@ -241,7 +241,7 @@ export default function Home() {
                 </div>
               </div>
             </motion.div>
-            <motion.div initial={{ x: 30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="md:w-[40%] w-[40%]">
+            <motion.div initial={{ x: 30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-full md:w-[40%]">
               <form ref={formRef} onSubmit={submitForm} className="bg-white shadow-lg rounded-4xl p-6">
                 <h2 className="text-xl md:text-xl lg:text-3xl text-blue-950 font-bold mb-4">Get Expert Consultation</h2>
                   <div className="flex flex-col gap-4">
@@ -280,33 +280,33 @@ export default function Home() {
         <div className="absolute w-full pointer-events-none select-none">
           <img src={'/assets/element.png'} alt="element" className="w-full"/>
         </div>
-        <div className="md:max-w-180 lg:max-w-340 mx-auto flex flex-col lg:flex-row justify-center items-center gap-30 lg:gap-40">
+        <div className="px-6 md:px-0 md:max-w-165 lg:max-w-340 mx-auto flex flex-col lg:flex-row justify-center items-center gap-30 lg:gap-40">
           <motion.div initial={{ x: -30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-full lg:w-[30%] flex lg:block items-center justify-center">
             <div>
-              <div className="relative ml-20 lg:ml-0 h-100 lg:h-120 w-100 lg:w-120 overflow-hidden rounded-br-full rounded-tr-full rounded-bl-full">
+              <div className="relative ml-10 md:ml-20 lg:ml-0 h-60 md:h-100 lg:h-120 w-60 md:w-100 lg:w-120 overflow-hidden rounded-br-full rounded-tr-full rounded-bl-full">
                 <Image src="/assets/aboutus_one.png" alt="about_us_one" priority fill className="object-cover"/>
               </div>
-              <div className="absolute rounded-br-full h-40 lg:h-60 w-40 lg:w-60 overflow-hidden rounded-tl-full rounded-bl-full -mt-30 lg:-mt-40">
+              <div className="absolute rounded-br-full h-40 lg:h-60 w-40 lg:w-60 overflow-hidden rounded-tl-full rounded-bl-full -mt-20 md:-mt-30 lg:-mt-40">
                 <Image src={"/assets/aboutus_two.png"} alt="about_us_two" priority fill className="object-cover"/>
               </div>
-              <motion.div animate={{ x: [0, 40, 0] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", }} className="absolute bg-white h-auto w-50 lg:w-60 overflow-hidden rounded-tr-4xl rounded-bl-4xl md:-mt-20 lg:-mt-20 ml-50 lg:ml-60 p-2">
-                <div className="border-2 border-[#E18126] flex gap-4 rounded-tr-4xl rounded-bl-4xl px-1 lg:px-1 py-4 lg:py-6">
+              <motion.div animate={{ x: [0, 40, 0] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", }} className="absolute bg-white h-auto w-40 md:w-50 lg:w-60 overflow-hidden rounded-tr-4xl rounded-bl-4xl md:-mt-20 lg:-mt-20 ml-20 md:ml-50 lg:ml-60 p-2">
+                <div className="border-2 border-[#E18126] flex items-center gap-2 md:gap-4 rounded-tr-4xl rounded-bl-4xl px-1 lg:px-1 py-2 md:py-4 lg:py-6">
                   <div>
-                    <span className="text-[#E18126] text-4xl lg:text-5xl font-bold">15+</span>
+                    <span className="text-[#E18126] text-2xl md:text-4xl lg:text-5xl font-bold">5+</span>
                   </div>
                   <div>
-                    <span className="text-base lg:text-xl text-blue-950 font-bold">Years of Experience</span>
+                    <span className="text-sm md:text-base lg:text-xl text-blue-950 font-bold">Years of Experience</span>
                   </div>
                 </div>
               </motion.div>
             </div>
           </motion.div>
           <motion.div initial={{ x: 30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-full lg:w-[70%]">
-            <span className="uppercase font-bold text-sm text-gray-700 after:content-[''] after:inline-block after:w-6 after:h-0.5 after:bg-[#E18126] after:ml-2 after:align-middle after:rounded-xl mb-4">About Company</span>
-            <h3 className="text-2xl md:text-4xl lg:text-5xl leading-16 font-bold mb-1 text-[#1185B7]">Insurath - <span className="text-[#E18126]">Suraksha Har Mod Par</span></h3>
-            <p className="text-base md:text-lg lg:text-2xl font-bold leading-8 text-blue-950 mb-4">Smart insurance coverage designed for every journey.</p>
-            <p className="text-sm md:text-base lg:text-lg leading-8 text-gray-700 mb-2 lg:mb-4">At Insurath, we help individuals, families, and businesses make confident insurance decisions. By working with trusted insurance providers, we guide our customers toward coverage that suits their needs, responsibilities, and life stages.</p>
-            <p className="text-sm md:text-base lg:text-lg leading-8 text-gray-700 mb-4 lg:mb-4">Our focus is on clarity, transparency, and long-term protection. From understanding policy options to ongoing support, we ensure a smooth and reliable insurance experience so you stay protected at every turn.</p>
+            <span className="uppercase font-bold text-xs text-gray-700 after:content-[''] after:inline-block after:w-6 after:h-0.5 after:bg-[#E18126] after:ml-2 after:align-middle after:rounded-xl mb-4">About Company</span>
+            <h3 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-1 text-[#1185B7]">Insurath - <span className="text-[#E18126]">Suraksha Har Mod Par</span></h3>
+            <p className="text-base md:text-lg lg:text-2xl font-bold leading-6 md:leading-8 text-blue-950 mb-4">Smart insurance coverage designed for every journey.</p>
+            <p className="text-sm md:text-base lg:text-lg leading-6 md:leading-8 text-gray-700 mb-2 lg:mb-4">At Insurath, we help individuals, families, and businesses make confident insurance decisions. By working with trusted insurance providers, we guide our customers toward coverage that suits their needs, responsibilities, and life stages.</p>
+            <p className="text-sm md:text-base lg:text-lg leading-6 md:leading-8 text-gray-700 mb-4 lg:mb-4">Our focus is on clarity, transparency, and long-term protection. From understanding policy options to ongoing support, we ensure a smooth and reliable insurance experience so you stay protected at every turn.</p>
             <div className="flex flex-col gap-4 mb-4 lg:mb-6">
               <div className="flex gap-3 items-center">
                 <div>
@@ -341,19 +341,17 @@ export default function Home() {
       <div id="services"></div>
       </div>
       <div className="bg-white h-auto py-20">
-        <div className="md:max-w-180 lg:max-w-340 mx-auto flex justify-center items-center flex-col">
+        <div className="px-6 md:px-0 md:max-w-165 lg:max-w-340 mx-auto flex justify-center items-center flex-col">
           <div className="md:max-w-2xl lg:max-w-3xl mx-auto mb-8">
             <div className="flex items-center justify-center">
-              <span className="uppercase font-bold text-sm text-gray-700 after:content-[''] after:inline-block after:w-6 after:h-0.5 after:bg-[#E18126] after:ml-2 after:align-middle after:rounded-xl mb-4">Comprehensive Coverage</span>
+              <span className="uppercase font-bold text-xs text-gray-700 after:content-[''] after:inline-block after:w-6 after:h-0.5 after:bg-[#E18126] after:ml-2 after:align-middle after:rounded-xl mb-4">Comprehensive Coverage</span>
             </div>
-            <div>
-              <div className="flex flex-col md:gap-2 lg:gap-6 max-w-4xl mx-auto">
-                <div>
-                  <h3 className="text-center text-blue-950 text-2xl md:text-4xl lg:text-5xl leading-16 font-bold mb-4 flex justify-center gap-3">Choose Your{" "}<PointerHighlight pointerClassName="text-[#E18126]"><span className="text-[#E18126]">Insurance Protection</span></PointerHighlight></h3>
-                </div>
-                <div>
-                  <p className="text-center text-sm md:text-base lg:text-lg leading-8 text-gray-700">We offer a comprehensive range of insurance products to protect what matters most to you. Compare and choose the best plan for your needs.</p>
-                </div>
+            <div className="flex flex-col gap-4 md:gap-6 md:max-w-4xl mx-auto">
+              <div>
+                <h3 className="text-center text-blue-950 text-2xl md:text-4xl lg:text-5xl font-bold mb-4 flex flex-col md:flex-row items-center lg:justify-center gap-1 md:gap-3">Choose Your{" "}<PointerHighlight pointerClassName="text-[#E18126]"><span className="text-[#E18126]">Insurance Protection</span></PointerHighlight></h3>
+              </div>
+              <div>
+                <p className="text-center text-sm md:text-base lg:text-lg leading-6 md:leading-8 text-gray-700">We offer a comprehensive range of insurance products to protect what matters most to you. Compare and choose the best plan for your needs.</p>
               </div>
             </div>
           </div>
@@ -361,39 +359,39 @@ export default function Home() {
         </div>
       </div>
       <div className="h-auto">
-        <div className="md:max-w-180 lg:max-w-340 relative mx-auto py-20">
-          <div className="flex flex-col gap-6 mb-8 max-w-xl mx-auto">
+        <div className="px-6 md:px-0 md:max-w-165 lg:max-w-340 relative mx-auto py-20">
+          <div className="flex flex-col gap-6 mb-8 md:max-w-xl mx-auto">
             <h4 className="text-2xl md:text-4xl lg:text-5xl lg:leading-16 text-blue-950 font-bold text-center">Why Choose <span className="text-[#E18126]">Insurath?</span></h4>
-            <p className="text-sm md:text-base lg:text-lg leading-8 text-center">We are committed to delivering a smooth and reliable insurance experience through exceptional service.</p>
+            <p className="text-sm md:text-base lg:text-lg leading-6 md:leading-8 text-center">We are committed to delivering a smooth and reliable insurance experience through exceptional service.</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {chooseUs.map((item) => (
-              <motion.div initial={{ y: 20, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 1, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} key={item.title} className="col-span-1 p-6 transition border-t-3 border-l-3  rounded-br-4xl rounded-tr-4xl rounded-bl-4xl border-[#E18126]">
+              <motion.div initial={{ y: 20, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 1, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} key={item.title} className="col-span-1 p-2 md:p-6 transition border-t-3 border-l-3  rounded-br-4xl rounded-tr-4xl rounded-bl-4xl border-[#E18126]">
                 <div className="flex gap-3">
                   <div className="flex items-center">
-                    <span className="font-bold text-5xl lg:text-6xl text-[#E18126]">{item.number}</span>
+                    <span className="font-bold text-4xl md:text-5xl lg:text-6xl text-[#E18126]">{item.number}</span>
                   </div>
                 <div>
                   <p className="text-lg md:text-lg lg:text-2xl text-blue-950 font-bold mb-2">{item.title}</p>
-                  <p className="text-sm md:text-base lg:text-lg text-gray-700 lg:leading-8">{item.description}</p>
+                  <p className="text-sm md:text-base lg:text-lg text-gray-700 leading-6 md:leading-8">{item.description}</p>
                 </div>
               </div>
             </motion.div>
             ))}
           </div>
         </div>
-        <div className="pb-10">
-          <div className="relative p-10 bg-linear-to-br from-[#1185b7] from-20% via-[#07587b] via-50%  to-blue-950 to-90% w-full overflow-hidden rounded-4xl md:max-w-180 lg:max-w-340 mx-auto">
-            <div className="flex">
-              <div className="w-[60%] lg:w-[70%]">
+        <div className="pb-10 px-6 md:px-0">
+          <div className="relative p-10 bg-linear-to-br from-[#1185b7] from-20% via-[#07587b] via-50%  to-blue-950 to-90% w-full overflow-hidden rounded-4xl  md:max-w-165 lg:max-w-340 mx-auto">
+            <div className="flex flex-col md:flex-row gap-4 md:gap-0">
+              <div className="w-full md:w-[60%] lg:w-[70%]">
                 <div className="flex flex-col justify-center gap-4">
-                  <h5 className="text-2xl md:text-4xl lg:text-5xl text-white font-bold mb-4 text-shadow-lg">Ready to Get Started?</h5>
+                  <h5 className="text-2xl md:text-4xl lg:text-5xl text-white font-bold mb-0 lg:mb-4 text-shadow-lg">Ready to Get Started?</h5>
                   <p className="text-sm md:text-base lg:text-lg text-white text-shadow-lg">Join thousands of satisfied customers who trust Insurath for their insurance needs.</p>
                 </div>
               </div>
-              <div className="w-[40%] lg:w-[30%] flex items-center justify-end">
+              <div className="w-full md:w-[40%] lg:w-[30%] flex items-center md:justify-end">
                 <a href={"#contact-form"}>
-                  <div className="group relative w-50 lg:w-60 cursor-pointer text-left text-lg text-white hover:text-[#E18126] py-3 flex items-center justify-between">
+                  <div className="group relative w-40 lg:w-60 cursor-pointer text-left text-sm md:text-base lg:text-lg text-white hover:text-[#E18126] py-3 flex items-center justify-between">
                     <span>Get Started</span>
                     <IconArrowRight color="#E18126" className="w-5 h-5"/>
 
@@ -409,13 +407,13 @@ export default function Home() {
         </div>
       </div>
       <div className="py-20 bg-white">
-        <div className="max-w-180 lg:max-w-340 mx-auto">
+        <div className="px-6 md:px-0 md:max-w-165 lg:max-w-340 mx-auto">
           <div className="flex flex-col lg:flex-row">
             <div className="w-full lg:w-[40%]">
-              <div className="flex flex-col justify-center gap-6 mb-6">
-                <p className="uppercase font-bold text-gray-700 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl text-sm mb-2 lg:mb-4">Stories of Protection</p>
+              <div className="flex flex-col justify-center gap-4 md:gap-6 mb-6">
+                <p className="uppercase font-bold text-gray-700 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl text-xs mb-0 md:mb-2 lg:mb-4">Stories of Protection</p>
                 <h5 className="text-2xl md:text-4xl lg:text-5xl font-bold text-blue-950 lg:leading-16">What they&apos;re talking about us?</h5>
-                <p className="text-sm md:text-base lg:text-lg text-gray-700 lg:leading-8">Don&apos;t just take our word for it. Here&apos;s what our satisfied customers have to say about their experience with Insurath.</p>
+                <p className="text-sm md:text-base lg:text-lg text-gray-700 leading-6 md:leading-8">Don&apos;t just take our word for it. Here&apos;s what our satisfied customers have to say about their experience with Insurath.</p>
               </div>
             </div>
             <div className="w-full lg:w-[60%]">
@@ -425,17 +423,17 @@ export default function Home() {
         </div>
       </div>
       <div className="bg-linear-to-br from-[#1185b7] from-20% via-[#07587b] via-50%  to-blue-950 to-90% py-10">
-        <div className="max-w-180 lg:max-w-340 mx-auto">
-          <div className="grid grid-cols-3 lg:grid-cols-6 gap-6 items-center justify-between">
+        <div className="px-6 md:px-0 md:max-w-165 lg:max-w-340 mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 items-center justify-between">
             <div className="col-span-1 flex flex-col justify-center">
               <div className="flex justify-center">
                 <img src={'/assets/happy_customers.png'} alt="Happy Customers" className="h-full"/>
               </div>
               <div className="flex flex-col items-center justify-center">
                 <div className="flex">
-                  <NumberTicker value={50000} className="text-white text-2xl md:text-3xl lg:text-4xl font-bold"/><span className="text-white text-2xl md:text-3xl lg:text-4xl font-bold">+</span>
+                  <NumberTicker value={50000} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/><span className="text-white text-xl md:text-3xl lg:text-4xl font-bold">+</span>
                 </div>
-                <p className="text-white text-base">Happy Customers</p>
+                <p className="text-white text-sm lg:text-base">Happy Customers</p>
               </div>
             </div>
             <div className="col-span-1 flex flex-col justify-center">
@@ -444,9 +442,9 @@ export default function Home() {
               </div>
               <div className="flex flex-col items-center justify-center">
                 <div className="flex">
-                  <NumberTicker value={500} className="text-white text-2xl md:text-3xl lg:text-4xl font-bold"/><span className="text-white text-2xl md:text-3xl lg:text-4xl font-bold">+</span>
+                  <NumberTicker value={500} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/><span className="text-white text-xl md:text-2xl lg:text-4xl font-bold">+</span>
                 </div>
-                <p className="text-white text-base">Claims Settled</p>
+                <p className="text-white text-sm lg:text-base">Claims Settled</p>
               </div>
             </div>
             <div className="col-span-1 flex flex-col justify-center">
@@ -455,9 +453,9 @@ export default function Home() {
               </div>
               <div className="flex flex-col items-center justify-center">
                 <div className="flex">
-                  <NumberTicker value={25} className="text-white text-2xl md:text-3xl lg:text-4xl font-bold"/><span className="text-white text-2xl md:text-3xl lg:text-4xl font-bold">+</span>
+                  <NumberTicker value={25} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/><span className="text-white text-xl md:text-2xl lg:text-4xl font-bold">+</span>
                 </div>
-                <p className="text-white text-base">Insurance Partners</p>
+                <p className="text-white text-sm lg:text-base">Insurance Partners</p>
               </div>
             </div>
             <div className="col-span-1 flex flex-col justify-center">
@@ -466,9 +464,9 @@ export default function Home() {
               </div>
               <div className="flex flex-col items-center justify-center">
                 <div className="flex">
-                  <NumberTicker value={92} className="text-white text-2xl md:text-3xl lg:text-4xl font-bold"/><span className="text-white text-2xl md:text-3xl lg:text-4xl font-bold">%</span>
+                  <NumberTicker value={92} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/><span className="text-white text-xl md:text-2xl lg:text-4xl font-bold">%</span>
                 </div>
-                <p className="text-white text-base">Claim Settlement Ratio</p>
+                <p className="text-white text-sm lg:text-base">Claim Settlement Ratio</p>
               </div>
             </div>
             <div className="col-span-1 flex flex-col justify-center">
@@ -477,9 +475,9 @@ export default function Home() {
               </div>
               <div className="flex flex-col items-center justify-center">
                 <div className="flex">
-                  <NumberTicker value={24} className="text-white text-2xl md:text-3xl lg:text-4xl font-bold"/><span className="text-white text-2xl md:text-3xl lg:text-4xl font-bold">/</span><NumberTicker value={7} className="text-white text-2xl md:text-3xl lg:text-4xl font-bold"/>
+                  <NumberTicker value={24} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/><span className="text-white text-xl md:text-2xl lg:text-4xl font-bold">/</span><NumberTicker value={7} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/>
                 </div>
-                <p className="text-white text-base">Customer Support</p>
+                <p className="text-white text-sm lg:text-base">Customer Support</p>
               </div>
             </div>
             <div className="col-span-1 flex flex-col justify-center">
@@ -488,9 +486,9 @@ export default function Home() {
               </div>
               <div className="flex flex-col items-center justify-center">
                 <div className="flex">
-                  <NumberTicker value={4.8} decimalPlaces={1} className="text-white text-2xl md:text-3xl lg:text-4xl font-bold"/><span className="text-white text-2xl md:text-3xl lg:text-4xl font-bold">+</span>
+                  <NumberTicker value={4.8} decimalPlaces={1} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/><span className="text-white text-xl md:text-2xl lg:text-4xl font-bold">+</span>
                 </div>
-                <p className="text-white text-base">Customer Rating</p>
+                <p className="text-white text-sm lg:text-base">Customer Rating</p>
               </div>
             </div>
           </div>
@@ -500,14 +498,14 @@ export default function Home() {
         <div className="absolute w-full z-10 pointer-events-none select-none">
           <img src={'/assets/element_two.png'} alt="element" className="w-full"/>
         </div>
-        <div className="py-20 relative max-w-180 lg:max-w-340 mx-auto">
-          <div className="flex flex-col gap-3 lg:gap-6 justify-center mb-10 lg:mb-14">
+        <div className="py-20 relative px-6 md:px-0 md:max-w-165 lg:max-w-340 mx-auto">
+          <div className="flex flex-col gap-4 md:gap-6 justify-center mb-10 lg:mb-14">
             <div className="flex justify-center">
-              <p className="uppercase font-bold text-gray-700 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl mb-4">Trusted Partners</p>
+              <p className="uppercase font-bold text-gray-700 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl mb-0 md:mb-4 text-xs">Trusted Partners</p>
             </div>
-            <div className="max-w-lg lg:max-w-3xl mx-auto flex flex-col md:gap-4 lg:gap-6">
-              <h5 className="text-2xl md:text-4xl lg:text-5xl font-bold text-blue-950 lg:leading-16 text-center">Trusted by Leading<br/><span className="text-[#E18126]">Insurance Companies</span></h5>
-              <p className="text-sm md:text-base lg:text-lg text-gray-700 lg:leading-8 text-center">We partner with India&apos;s most trusted insurance companies to bring you the best coverage options at competitive prices.</p>
+            <div className="max-w-lg lg:max-w-3xl mx-auto flex flex-col gap-4 md:gap-6">
+              <h5 className="text-2xl md:text-4xl lg:text-5xl font-bold text-blue-950 lg:leading-16 text-center">Associated with<br/><span className="text-[#E18126]">Top Insurers</span></h5>
+              <p className="text-sm md:text-base lg:text-lg text-gray-700 leading-6 md:leading-8 text-center">We partner with India&apos;s most trusted insurance companies to bring you the best coverage options at competitive prices.</p>
             </div>
           </div>
           <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
@@ -529,16 +527,16 @@ export default function Home() {
       </div>
       <div className="relative pt-20 pb-40 overflow-hidden">
         {/* content */}
-        <div className="relative z-10 flex flex-col lg:flex-row gap-10 max-w-180 lg:max-w-340 mx-auto">
+        <div className="relative z-10 flex flex-col lg:flex-row gap-10 px-6 md:px-0 md:max-w-165 lg:max-w-340 mx-auto">
           <div className="w-full lg:w-[50%]">
             <div className="flex flex-col gap-4 mb-6">
-              <h5 className="text-2xl md:text-4xl lg:text-5xl lg:leading-18 font-bold text-blue-950 whitespace-nowrap lg:whitespace-normal">
+              <h5 className="text-2xl md:text-4xl lg:text-5xl lg:leading-18 font-bold text-blue-950">
                 Get Expert Insurance <span className="text-[#E18126]">Consultation Today</span>
               </h5>
-              <p className="text-sm md:text-base lg:text-lg text-blue-950 lg:leading-8">Don&apos;t wait to protect what matters most. <span className="text-[#E18126]">Get personalized guidance</span> from our insurance experts and find the perfect coverage for your needs.</p>
+              <p className="text-sm md:text-base lg:text-lg text-blue-950 leading-6 md:leading-8">Don&apos;t wait to protect what matters most. <span className="text-[#E18126]">Get personalized guidance</span> from our insurance experts and find the perfect coverage for your needs.</p>
             </div>
-            <div className="grid grid-cols-2 lg:grid-cols-1 gap-2">
-              <div className="col-span-1 bg-transparent border border-[#E18126] rounded-4xl p-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-2">
+              <div className="col-span-1 bg-transparent border border-[#E18126] rounded-4xl p-3 md:p-4">
                 <div className="flex">
                   <div>
                     <IconShieldFilled className="w-6 h-6 text-[#E18126]"/>
@@ -549,7 +547,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="col-span-1 bg-transparent border border-[#E18126] rounded-4xl p-4">
+              <div className="col-span-1 bg-transparent border border-[#E18126] rounded-4xl p-3 md:p-4">
                 <div className="flex">
                   <div>
                     <IconShieldFilled className="w-6 h-6 text-[#E18126]"/>
@@ -560,7 +558,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="col-span-1 bg-transparent border border-[#E18126] rounded-4xl p-4">
+              <div className="col-span-1 bg-transparent border border-[#E18126] rounded-4xl p-3 md:p-4">
                 <div className="flex">
                   <div>
                     <IconShieldFilled className="w-6 h-6 text-[#E18126]"/>
@@ -571,7 +569,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="col-span-1 bg-transparent border border-[#E18126] rounded-4xl p-4">
+              <div className="col-span-1 bg-transparent border border-[#E18126] rounded-4xl p-3 md:p-4">
                 <div className="flex">
                   <div>
                     <IconShieldFilled className="w-6 h-6 text-[#E18126]"/>
@@ -587,7 +585,7 @@ export default function Home() {
 
           <div className="w-full lg:w-[50%]">
             <form ref={formRefTwo} onSubmit={submitFormTwo} className="bg-white shadow-lg rounded-4xl p-6">
-              <p className="text-sm md:text-base lg:text-lg text-blue-950 font-bold mb-8">Fill in your details and we&apos;ll get back to you within 24 hours with personalized insurance guidance.</p>
+              <p className="text-sm md:text-base lg:text-lg text-blue-950 font-bold mb-8 leading-6 md:leading-8">Fill in your details and we&apos;ll get back to you within 24 hours with personalized insurance guidance.</p>
               <div className="flex flex-col gap-4">
                 <div>
                   <input type="text" name="full_name_two" placeholder="Full Name" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
@@ -617,7 +615,7 @@ export default function Home() {
                   <textarea name="message" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" rows={7} placeholder="Message"></textarea>
                   {errorTwo.message && <span className="text-sm text-red-500">{errorTwo.message}</span>}
                 </div>
-                <button type="submit" className="bg-[#E18126] text-white px-4 py-2 w-full rounded-4xl font-bold mt-4 cursor-pointer">{loading ? 'Submitting...':'Submit'}</button>
+                <button type="submit" className="bg-[#E18126] text-white px-4 py-2 w-full rounded-4xl font-bold text-sm md:text-base lg:text-lg mt-4 cursor-pointer">{loading ? 'Submitting...':'Submit'}</button>
               </div>  
             </form>
           </div>

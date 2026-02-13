@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Navbar, NavBody, NavItems, NavbarLogo, MobileNav, MobileNavHeader, MobileNavMenu, MobileNavToggle} from "@/components/ui/resizable-navbar";
 import Link from "next/link";
+import { IconCaretDownFilled,IconCaretRightFilled } from "@tabler/icons-react";
 
 const navItems = [
   { name: "Home", link: "/" },
@@ -21,7 +22,7 @@ const navItems = [
 
 export default function MainNavbar() {
   const [isOpen, setIsOpen] = useState(false);
-
+  const [productsOpen, setProductsOpen] = useState(false);
   return (
     <>
       <Navbar>
@@ -61,16 +62,42 @@ export default function MainNavbar() {
         </MobileNavHeader>
 
         <MobileNavMenu isOpen={isOpen} onClose={() => setIsOpen(false)}>
-          {navItems.map((item) => (
-            <a
-              key={item.name}
-              href={item.link}
-              onClick={() => setIsOpen(false)}
-              className="text-neutral-700"
-            >
-              {item.name}
-            </a>
-          ))}
+          {navItems.map((item) => {
+            if (item.children) {
+              return (
+                <>
+                  <button onClick={() => setProductsOpen(!productsOpen)} className="text-blue-950 font-bold text-left flex justify-between items-center w-full">{item.name}<IconCaretDownFilled className="w-4 h-4" /></button>
+                  {productsOpen && (
+                    <div className="flex flex-col space-y-4">
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.name}
+                          href={child.link}
+                          onClick={() => {
+                            setIsOpen(false);
+                            setProductsOpen(false);
+                          }}
+                          className="text-blue-950 text-base font-bold ml-4"
+                        >{child.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </>
+              );
+            }
+
+            return (
+              <Link
+                key={item.name}
+                href={item.link}
+                onClick={() => setIsOpen(false)}
+                className="text-blue-950 text-base font-bold"
+              >
+                {item.name}
+              </Link>
+            );
+          })}
         </MobileNavMenu>
       </MobileNav>
     </>
