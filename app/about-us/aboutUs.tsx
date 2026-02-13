@@ -56,7 +56,7 @@ function AboutUs() {
                 <div className="px-6 md:px-0 md:max-w-165 lg:max-w-180 mx-auto">
                     <div className="flex flex-col justify-center gap-4 md:gap-6 mb-6">
                         <p className="uppercase font-bold text-gray-700 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl text-xs text-center">Our Mission</p>
-                        <h2 className="text-2xl md:text-4xl lg:text-5xl text-center font-bold text-blue-950 md:leading-16">Protecting What Matters Most</h2>
+                        <h2 className="text-2xl md:text-4xl lg:text-5xl text-center font-bold text-blue-950 lg:leading-16">Protecting What Matters Most</h2>
                         <p className='text-sm md:text-base lg:text-lg text-center leading-6 md:leading-8 text-gray-700'>At Insurath, we believe that everyone deserves access to the right insurance coverage at the right price. Our mission is to simplify the complex world of insurance and help you make informed decisions that protect what matters most to you.</p>
                     </div>
                 </div>
@@ -109,7 +109,7 @@ function AboutUs() {
                                     <div className='bg-[#E18126] rounded-full p-3 md:p-6'>
                                         <IconShield color='white' className='md:w-10 lg:w-14 md:h-10 lg:h-14'/>
                                     </div>
-                                    <h5 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white md:leading-16 text-center mb-4">Insurath - Suraksha Har Mod Par</h5>
+                                    <h5 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white lg:leading-16 text-center mb-4">Insurath - Suraksha Har Mod Par</h5>
                                     <p className="text-sm md:text-base lg:text-lg leading-6 md:leading-8 text-center text-white">At Insurath, we simplify insurance so you can make decisions with clarity and confidence. Whether you’re protecting yourself, your family, or your business, we connect you with the right coverage tailored to your goals and stage of life.</p>
                                 </div>
                             </div>
@@ -122,7 +122,7 @@ function AboutUs() {
                     <div className="max-w-140 mx-auto">
                         <div className="flex flex-col justify-center gap-4 md:gap-6 mb-6">
                             <p className="uppercase font-bold text-gray-700 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl text-center text-xs">Our Values</p>
-                            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-center text-blue-950 md:leading-16">What Drives Us</h2>
+                            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-center text-blue-950 lg:leading-16">What Drives Us</h2>
                             <p className='text-sm md:text-base lg:text-lg text-center leading-6 md:leading-8 text-gray-700'>Our core values shape every interaction and decision we make, ensuring we always put our customers first.</p>
                         </div>
                     </div>
@@ -321,8 +321,8 @@ function AboutUs() {
                                 {/* Content */}
                                 <div className="absolute inset-0 max-w-md mx-auto flex flex-col justify-center gap-4 md:gap-6 px-6 text-center">
                                     <p className="uppercase font-bold text-xs text-white after:content-[''] after:inline-block after:w-6 after:h-0.5 after:bg-[#E18126] after:ml-2 after:align-middle after:rounded-xl text-left">Got Questions?</p>
-                                    <h5 className="text-2xl md:text-3xl lg:text-5xl font-bold text-white md:leading-16 text-left">Frequently Asked Questions</h5>
-                                    <p className="text-sm md:text-base lg:text-lg text-left leading-6 md:leading-8 text-white">Find quick answers to common car insurance questions</p>
+                                    <h5 className="text-2xl md:text-3xl lg:text-5xl font-bold text-white lg:leading-16 text-left">Frequently Asked Questions</h5>
+                                    <p className="text-sm md:text-base lg:text-lg text-left leading-6 md:leading-8 text-white">Find quick answers to common insurance questions</p>
                                 </div>
                             </div>
                         </div>

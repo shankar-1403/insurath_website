@@ -390,7 +390,17 @@ export default function Home() {
                 </div>
               </div>
               <div className="w-full md:w-[40%] lg:w-[30%] flex items-center md:justify-end">
-                <a href={"#contact-form"}>
+                <a href={"#contact-form"} className="hidden lg:block">
+                  <div className="group relative w-40 lg:w-60 cursor-pointer text-left text-sm md:text-base lg:text-lg text-white hover:text-[#E18126] py-3 flex items-center justify-between">
+                    <span>Get Started</span>
+                    <IconArrowRight color="#E18126" className="w-5 h-5"/>
+
+                    <span className="absolute left-0 bottom-0 h-0.5 w-full bg-white" />
+
+                    <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-[#E18126] transition-all duration-300 ease-out group-hover:w-full" />
+                  </div>
+                </a>
+                <a href={"#contact-form-two"} className="block lg:hidden">
                   <div className="group relative w-40 lg:w-60 cursor-pointer text-left text-sm md:text-base lg:text-lg text-white hover:text-[#E18126] py-3 flex items-center justify-between">
                     <span>Get Started</span>
                     <IconArrowRight color="#E18126" className="w-5 h-5"/>
@@ -581,6 +591,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
+            <div id="contact-form-two"></div>
           </div>
 
           <div className="w-full lg:w-[50%]">

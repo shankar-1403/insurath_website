@@ -20,6 +20,22 @@ const navItems = [
   { name: "About Us", link: "/about-us" },
 ];
 
+const mobNavItems = [
+  { name: "Home", link: "/" },
+  { name: "Products", 
+    children: [
+      { name: "Health Insurance", link: "/products/health-insurance" },
+      { name: "Life Insurance", link: "/products/life-insurance" },
+      { name: "Car Insurance", link: "/products/car-insurance" },
+      { name: "Bike Insurance", link: "/products/bike-insurance" },
+      { name: "Travel Insurance", link: "/products/travel-insurance" },
+      { name: "Business Insurance", link: "/products/business-insurance" },
+    ]
+   },
+  { name: "About Us", link: "/about-us" },
+  { name: "Contact Us", link: "/contact-us" },
+];
+
 export default function MainNavbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
@@ -62,7 +78,7 @@ export default function MainNavbar() {
         </MobileNavHeader>
 
         <MobileNavMenu isOpen={isOpen} onClose={() => setIsOpen(false)}>
-          {navItems.map((item) => {
+          {mobNavItems.map((item) => {
             if (item.children) {
               return (
                 <>

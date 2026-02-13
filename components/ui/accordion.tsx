@@ -20,7 +20,7 @@ const AccordionItem: FC<AccordionItemProps> = ({
       {/* Header */}
       <button
         onClick={onToggle}
-        className="w-full flex justify-between items-center text-left cursor-pointer p-3 lg:p-4"
+        className="w-full flex justify-between items-start text-left cursor-pointer p-3 lg:p-4"
         type="button"
       >
         <span className="text-sm md:text-base lg:text-lg text-blue-950 font-semibold">

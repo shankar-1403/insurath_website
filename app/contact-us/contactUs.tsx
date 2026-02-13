@@ -84,8 +84,8 @@ function ContactUs() {
     };
     return (
         <>
-            <div className="bg-linear-to-br from-blue-950 via-[#1186B7] to-[#884001] pt-20 md:pt-40 lg:pt-50 pb-20">
-                <div className="px-10 md:px-0 md:max-w-2xl lg:max-w-340 mx-auto">
+            <div className="bg-linear-to-br from-blue-950 via-[#1186B7] to-[#884001] pt-40 md:pt-40 lg:pt-50 pb-20">
+                <div className="px-8 md:px-0 md:max-w-2xl lg:max-w-340 mx-auto">
                     <div className="flex justify-center gap-4 md:gap-2 lg:gap-6">
                         <motion.div initial={{ y: 30, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }}>
                             
@@ -100,18 +100,18 @@ function ContactUs() {
                 </div>
             </div>
             <div className='pt-20 pb-40'>
-                <div className="max-w-340 mx-auto">
-                    <div className="flex gap-20">
-                        <div className='flex gap-10 flex-col w-[50%]'>
-                            <form ref={formRef} onSubmit={submitForm} className='bg-white p-4 rounded-4xl shadow-lg'>
-                                <div className='border-2 border-[#E18126] rounded-2xl p-6'>
-                                    <div className='mb-4'>
-                                        <p className="uppercase font-bold text-gray-700 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl mb-2 text-center">Send us a Message</p>
-                                        <h2 className='text-5xl font-bold leading-18 text-blue-950 text-center'>Get in touch</h2>
-                                        <p className='text-lg leading-8 text-gray-700 text-center'>Fill out the form below and we&apos;ll get back to you within 24 hours.</p>
+                <div className="px-8 md:px-0 md:max-w-165 lg:max-w-340 mx-auto">
+                    <div className="flex flex-col lg:flex-row gap-20">
+                        <div className='flex gap-10 flex-col w-full lg:w-[50%]'>
+                            <form ref={formRef} onSubmit={submitForm} className='bg-white p-2 md:p-4 rounded-4xl shadow-lg'>
+                                <div className='border-2 border-[#E18126] rounded-2xl p-3 md:p-6'>
+                                    <div className='mb-2 flex flex-col gap-2 lg:gap-3'>
+                                        <p className="uppercase font-bold text-gray-700 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl text-center text-xs">Send us a Message</p>
+                                        <h2 className='text-2xl md:text-4xl lg:text-5x font-bold lg:leading-18 text-blue-950 text-center'>Get in touch</h2>
+                                        <p className='text-sm md:text-base lg:text-lg leading-6 md:leading-8 text-gray-700 text-center'>Fill out the form below and we&apos;ll get back to you within 24 hours.</p>
                                     </div>
                                     <div className="flex flex-col gap-4">
-                                        <div className="grid grid-cols-2 gap-4">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                             <div className='col-span-1'>
                                                 <input type="text" name="full_name" placeholder="Full Name" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
                                                 {error.full_name && <span className="text-sm text-red-500">{error.full_name}</span>}
@@ -121,7 +121,7 @@ function ContactUs() {
                                                 {error.email_id && <span className="text-sm text-red-500">{error.email_id}</span>}
                                             </div>
                                         </div>
-                                        <div className="grid grid-cols-2 gap-4">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                             <div>
                                                 <input type="text" name="phone_number" placeholder="Phone Number" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" />
                                                 {error.phone_number && <span className="text-sm text-red-500">{error.phone_number}</span>}
@@ -152,7 +152,7 @@ function ContactUs() {
                                             {error.subject && <span className="text-sm text-red-500">{error.subject}</span>}
                                         </div>
                                         <div>
-                                            <textarea name="message" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" rows={7} placeholder="Message"></textarea>
+                                            <textarea name="message" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" rows={4} placeholder="Message"></textarea>
                                             {error.message && <span className="text-sm text-red-500">{error.message}</span>}
                                         </div>
                                         <div>
@@ -165,77 +165,100 @@ function ContactUs() {
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submit" className="bg-[#E18126] text-white px-4 py-2 w-full rounded-4xl font-bold mt-4 cursor-pointer">{loading ? 'Submitting...':'Submit'}</button>
+                                        <button type="submit" className="bg-[#E18126] text-white px-4 py-2 w-full rounded-4xl font-bold mt-4 cursor-pointer text-sm md:text-base lg:text-lg">{loading ? 'Submitting...':'Submit'}</button>
                                     </div>  
                                 </div>
                             </form>
                         </div>
-                        <div className='w-[50%]'>
-                            <div className="grid grid-cols-2 gap-4">
-                                <div className='bg-linear-to-br from-[#1185b7] from-20% via-[#07587b] via-50%  to-blue-950 to-90% p-6 rounded-4xl flex gap-4 col-span-2'>
-                                    <div>
-                                        <div className='bg-[#E18126] p-2 rounded-full'>
-                                            <IconMapPin className='w-10 h-10' color='white'/>
+                        <div className='w-full lg:w-[50%]'>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div className='col-span-1 md:col-span-2 bg-white p-2 rounded-tr-4xl rounded-bl-4xl shadow-lg'>
+                                    <div className='border-l-2 border-r-2 border-[#E18126] p-4 gap-4 rounded-tr-4xl rounded-bl-4xl'>
+                                        <h3 className='text-blue-950 text-base md:text-lg lg:text-xl font-bold mb-2'>SIPANY SS INSURANCE BROKERS LLP <br/>(License No - 773) LLPIN: AAT-4069</h3>
+                                        <div className="grid grid-cols-4 w-full">
+                                            <div className='col-span-1'>
+                                                <p className='font-bold text-blue-950'>Registered Office :</p>
+                                            </div>
+                                            <div className='col-span-3'>
+                                                <p className='text-blue-950 text-sm lg:text-base'>Todi Mansion, 10th Floor, Room No - 1002A1, Lu Shun Sarani, Kolkata, West Bengal - 700073</p>
+                                            </div>
+                                        </div>
+                                        <div className="grid grid-cols-4 w-full">
+                                            <div className='col-span-1'>
+                                                <p className='font-bold text-blue-950'>Valid From :</p>
+                                            </div>
+                                            <div className='col-span-3'>
+                                                <p className='text-blue-950 text-sm lg:text-base'>20 October 2024 | Valid Till: 20 October 2027</p>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div>
-                                        <h3 className='text-white text-xl font-bold mb-2'>Our Office Address</h3>
-                                        <p className='text-white text-base'>Lodha Supremus, 520, Off Mahakali Caves Rd, Chakala Industrial Area (MIDC), Andheri East, Mumbai, Maharashtra 400093</p>
-                                    </div>
                                 </div>
-                                <div className="col-span-1 bg-white p-2 rounded-tr-4xl rounded-bl-4xl">
-                                    <div className='border-l-2 border-r-2 flex border-[#E18126] p-4 gap-4  rounded-tr-4xl rounded-bl-4xl'>
+                                <div className='col-span-1 md:col-span-2 bg-white p-2 rounded-tr-4xl rounded-bl-4xl shadow-lg'>
+                                    <div className='border-l-2 border-r-2 flex border-[#E18126] p-4 gap-4 rounded-tr-4xl rounded-bl-4xl'>
                                         <div>
                                             <div className='bg-[#E18126] p-2 rounded-full'>
-                                                <IconPhone className='w-8 h-8' color='white'/>
+                                                <IconMapPin className='w-6 md:w-8 h-6 md:h-8' color='white'/>
                                             </div>
                                         </div>
                                         <div>
-                                            <h3 className='text-blue-950 text-xl font-bold'>Phone</h3>
+                                            <h3 className='text-blue-950 text-base md:text-lg lg:text-xl font-bold mb-2'>Our Office Address</h3>
+                                            <p className='text-blue-950 text-sm lg:text-base'>Lodha Supremus, 520, Off Mahakali Caves Rd, Chakala Industrial Area (MIDC), Andheri East, Mumbai, Maharashtra 400093</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-span-1 bg-white p-2 rounded-tr-4xl rounded-bl-4xl shadow-lg">
+                                    <div className='border-l-2 border-r-2 flex border-[#E18126] p-4 gap-4 rounded-tr-4xl rounded-bl-4xl'>
+                                        <div>
+                                            <div className='bg-[#E18126] p-2 rounded-full'>
+                                                <IconPhone className='w-6 md:w-8 h-6 md:h-8' color='white'/>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h3 className='text-blue-950 text-base md:text-lg lg:text-xl font-bold'>Phone</h3>
                                             <p className='text-sm text-gray-700 font-semibold mb-1'>Call us directly</p>
-                                            <Link href={'tel:9876543210'} className='text-blue-950 text-base font-bold'>+91-9876543210</Link>
+                                            <Link href={'tel:9876543210'} className='text-blue-950 text-sm lg:text-base font-bold'>+91-9876543210</Link>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-span-1 bg-white p-2 rounded-tr-4xl rounded-bl-4xl">
-                                    <div className='border-l-2 border-r-2 flex border-[#E18126] p-4 gap-4  rounded-tr-4xl rounded-bl-4xl'>
+                                <div className="col-span-1 bg-white p-2 rounded-tr-4xl rounded-bl-4xl shadow-lg">
+                                    <div className='border-l-2 border-r-2 flex border-[#E18126] p-4 gap-4 rounded-tr-4xl rounded-bl-4xl'>
                                         <div>
                                             <div className='bg-[#E18126] p-2 rounded-full'>
-                                                <IconMail className='w-8 h-8' color='white'/>
+                                                <IconMail className='w-6 md:w-8 h-6 md:h-8' color='white'/>
                                             </div>
                                         </div>
                                         <div>
-                                            <h3 className='text-blue-950 text-xl font-bold'>Email</h3>
+                                            <h3 className='text-blue-950 text-base md:text-lg lg:text-xl font-bold'>Email</h3>
                                             <p className='text-sm text-gray-700 font-semibold mb-1'>Send us a message</p>
-                                            <Link href={'mailto:info@insurath.com'} className='text-blue-950 text-base font-bold'>info@insurath.com</Link>
+                                            <Link href={'mailto:info@insurath.com'} className='text-blue-950 text-sm lg:text-base font-bold'>info@insurath.com</Link>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-span-1 bg-white p-2 rounded-tr-4xl rounded-bl-4xl">
-                                    <div className='border-l-2 border-r-2 flex border-[#E18126] p-4 gap-4  rounded-tr-4xl rounded-bl-4xl'>
+                                <div className="col-span-1 bg-white p-2 rounded-tr-4xl rounded-bl-4xl shadow-lg">
+                                    <div className='border-l-2 border-r-2 flex border-[#E18126] p-4 gap-4 rounded-tr-4xl rounded-bl-4xl'>
                                         <div>
                                             <div className='bg-[#E18126] p-2 rounded-full'>
-                                                <IconClockHour5 className='w-8 h-8' color='white'/>
+                                                <IconClockHour5 className='w-6 md:w-8 h-6 md:h-8' color='white'/>
                                             </div>
                                         </div>
                                         <div>
-                                            <h3 className='text-blue-950 text-xl font-bold'>Hours</h3>
-                                            <p className='text-base text-blue-950 font-bold'>Mon-Fri: 9AM-6PM</p>
-                                            <p className='text-blue-950 text-base font-bold'>Sat: 10AM-4PM</p>
+                                            <h3 className='text-blue-950 text-base md:text-lg lg:text-xl font-bold'>Hours</h3>
+                                            <p className='text-sm lg:text-base text-blue-950 font-bold mb-1'>Mon-Fri: 9AM-6PM</p>
+                                            <p className='text-blue-950 text-sm lg:text-base font-bold'>Sat: 10AM-4PM</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-span-1 bg-white p-2 rounded-tr-4xl rounded-bl-4xl">
+                                <div className="col-span-1 bg-white p-2 rounded-tr-4xl rounded-bl-4xl shadow-lg">
                                     <div className='border-l-2 border-r-2 flex border-[#E18126] p-4 gap-4  rounded-tr-4xl rounded-bl-4xl'>
                                         <div>
                                             <div className='bg-green-500 p-2 rounded-full'>
-                                                <IconBrandWhatsapp className='w-8 h-8' color='white'/>
+                                                <IconBrandWhatsapp className='w-6 md:w-8 h-6 md:h-8' color='white'/>
                                             </div>
                                         </div>
                                         <div>
-                                            <h3 className='text-blue-950 text-xl font-bold'>WhatsApp</h3>
+                                            <h3 className='text-blue-950 text-base md:text-lg lg:text-xl font-bold'>WhatsApp</h3>
                                             <p className='text-sm text-gray-700 font-semibold mb-1'>24/7 Support</p>
-                                            <Link href={'mailto'} className='text-blue-950 text-base font-bold underline'>Chat Now</Link>
+                                            <Link href={'mailto'} className='text-blue-950 text-sm lg:text-base font-bold underline'>Chat Now</Link>
                                         </div>
                                     </div>
                                 </div>

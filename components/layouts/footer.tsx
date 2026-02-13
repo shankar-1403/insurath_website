@@ -1,7 +1,6 @@
 "use Client";
 
 import React from 'react'
-import Logo from "../../public/assets/insurath.png"
 import Link from 'next/link';
 import { IconPhone, IconMail, IconMapPin, IconClockHour5 } from '@tabler/icons-react';
 
@@ -114,15 +113,12 @@ function Footer() {
                 </div>
             </div>
             <div className='py-5 border-t border-white/20 px-6 md:px-0 md:max-w-165 lg:max-w-340 mx-auto'>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                    <div className='col-span-1 md:col-span-2 lg:col-span-1'>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div className='col-span-1 md:col-span-1 lg:col-span-1'>
                         <p className="text-white text-sm lg:text-base">© {currentYear} Insurath. All rights reserved.</p>
                     </div>
                     <div className='col-span-1 md:col-span-1 lg:col-span-1'>
-                        <p className='text-sm lg:text-base text-white text-left md:text-center'>We Accept: <span className='bg-gray-600 text-white px-2 py-0.5 rounded-md'>VISA</span> <span className='bg-gray-600 text-white px-2 py-0.5 rounded-md'>MC</span> <span className='bg-gray-600 text-white px-2 py-0.5 rounded-md'>UPI</span> <span className='bg-gray-600 text-white px-2 py-0.5 rounded-md'>NB</span></p>
-                    </div>
-                    <div className='col-span-1 md:col-span-3 lg:col-span-1'>
-                        <div className="flex gap-4 lg:justify-end">
+                        <div className="flex gap-4 md:justify-end">
                             <Link href={'/privacy-policy'} className='text-white text-sm lg:text-base'>Privacy Policy</Link>
                             <Link href={'/terms-of-service'} className='text-white text-sm lg:text-base'>Terms of Service</Link>
                             <Link href={'/terms-of-service'} className='text-white text-sm lg:text-base'>IRDAI License</Link>

@@ -1,8 +1,7 @@
 'use client';
 
-import React,{useState, useEffect, useRef, FC} from 'react';
+import React,{useState, useEffect,useLayoutEffect, useRef, FC} from 'react';
 import {motion} from 'motion/react';
-import { AnimatedShinyText } from '@/components/ui/animated-shiny-text';
 import { IconUserFilled,IconCheckbox,IconChecks,IconBuildingHospital,IconStethoscope,IconBabyCarriage,IconShieldCheck } from '@tabler/icons-react';
 import Image from 'next/image';
 import axios from 'axios';
@@ -22,32 +21,81 @@ const EllipseItem: FC<EllipseItemProps> = ({
   radiusX,
   radiusY,
 }) => {
-    const rad = (angle * Math.PI) / 180
-    const baseX = Math.cos(rad) * radiusX
-    const baseY = Math.sin(rad) * radiusY
+    const [device, setDevice] = useState<"mobile" | "tablet" | "desktop">("desktop");
 
-    return (
-        <motion.div className="absolute top-1/2 left-1/2"
-            initial={{ x: baseX, y: baseY }}
-            animate={{
-                x: [baseX - 8, baseX + 8, baseX - 8],
-            }}
-            transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: angle * 0.015,
-            }}
-        >
-        <div className="flex items-center gap-4 bg-white p-1 rounded-4xl h-20 shadow-lg -translate-x-1/2 -translate-y-1/2">
-            <div className='border-2 border-[#E18126] p-1 rounded-3xl flex h-full justify-center items-center gap-2'>
-                <IconShieldCheck className="w-8 h-8 text-[#E18126]" />
-                <p className="text-lg font-bold text-blue-950 whitespace-nowrap">{text}</p>
+    useLayoutEffect(() => {
+        const handleResize = () => {
+        if (window.innerWidth < 768) {
+            setDevice("mobile");
+        } else if (window.innerWidth < 1024) {
+            setDevice("tablet");
+        } else {
+            setDevice("desktop");
+        }
+        };
+
+        handleResize();
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+    
+
+    const responsiveRadiusX =
+        device === "mobile"
+        ? radiusX * 0.55
+        : device === "tablet"
+        ? radiusX * 0.6
+        : radiusX;
+
+    const responsiveRadiusY = radiusY;
+
+    const rad = (angle * Math.PI) / 180;
+
+    let verticalAdjust = responsiveRadiusY;
+
+    if (angle === 90 || angle === 270) {
+        if (device === "mobile") {
+            verticalAdjust = radiusY * 0.45;   // 📱 more flat
+        } 
+        else if (device === "tablet") {
+            verticalAdjust = radiusY * 0.9;    // 📲 reduced from original
+        } 
+        else {
+            verticalAdjust = radiusY * 1.2;    // 💻 original
+        }
+    }
+
+    const baseX = Math.cos(rad) * responsiveRadiusX;
+    const baseY = Math.sin(rad) * verticalAdjust;
+
+  return (
+    <motion.div
+      className="absolute top-1/2 left-1/2"
+      initial={{ x: baseX, y: baseY }}
+      animate={{
+        x: [baseX - 8, baseX + 8, baseX - 8],
+      }}
+      transition={{
+        duration: 4,
+        repeat: Infinity,
+        ease: "easeInOut",
+        delay: angle * 0.015,
+      }}
+    >
+      <div className="flex items-center gap-4 bg-white p-1 rounded-4xl h-16 md:h-18 lg:h-20 w-40 lg:w-full shadow-lg -translate-x-1/2 -translate-y-1/2">
+        <div className="border-2 border-[#E18126] p-1 rounded-3xl flex h-full justify-center items-center gap-1">
+            <div>
+                <IconShieldCheck className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 text-[#E18126]" />
             </div>
+            <p className={`text-sm md:text-base lg:text-lg font-bold text-blue-950 ${device === 'desktop' ? 'whitespace-nowrap': 'whitespace-wrap'}`}>
+                {text}
+            </p>
         </div>
-        </motion.div>
-    )
-}
+      </div>
+    </motion.div>
+  );
+};
+
 type Errors = Partial<Record<string, string>>;
 type SnackbarType = "success" | "error";
 
@@ -233,15 +281,15 @@ function HealthInsurance() {
 
     return (
         <>
-            <div className="bg-linear-to-br from-blue-950 via-[#1186B7] to-[#884001] pt-20 md:pt-40 lg:pt-50 pb-20">
-                <div className="px-10 md:px-0 md:max-w-2xl lg:max-w-340 mx-auto">
-                    <div className="flex gap-4 md:gap-2 lg:gap-6">
-                        <motion.div initial={{ x: -30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-[40%]">
+            <div className="bg-linear-to-br from-blue-950 via-[#1186B7] to-[#884001] pt-40 md:pt-40 lg:pt-50 pb-20">
+                <div className="px-8 md:px-0 md:max-w-165 lg:max-w-340 mx-auto">
+                    <div className="flex flex-col md:flex-row gap-4 md:gap-2 lg:gap-6">
+                        <motion.div initial={{ x: -30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-full md:w-[40%]">
                         <div className="flex items-center justify-start mb-2">
                             <div className="rounded-full border border-black/5 bg-neutral-100">
-                            <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 uppercase">
-                                <span className="flex gap-1 font-bold text-sm md:text-sm lg:text-base">Health Protection</span>
-                            </AnimatedShinyText>
+                                <div className="inline-flex items-center justify-center px-4 py-1 uppercase">
+                                    <span className="flex gap-1 font-bold text-xs">Health Protection</span>
+                                </div>
                             </div>
                         </div>
                         <div className="flex flex-col items-start justify-center gap-10">
@@ -249,13 +297,13 @@ function HealthInsurance() {
                                 <h1 className="text-left text-white text-2xl md:text-4xl lg:text-7xl font-bold text-shadow-lg">Protect Your <span className="text-[#E18126]">Health</span></h1>
                                 <p className="text-left text-white text-lg md:text-lg lg:text-2xl text-shadow-lg">Expert health insurance guidance with <span className="text-[#E18126]">cashless treatment at 10,000+ hospitals</span> nationwide</p>
                             </div>
-                            <div className='flex gap-4'>
+                            <div className='flex flex-col lg:flex-row gap-4'>
                                 <div className='flex items-center gap-2 bg-white/20 py-2 px-4 rounded-4xl'>
                                     <div>
                                         <IconChecks className='h-6 w-6' color='#E18126'/>
                                     </div>
                                     <div>
-                                        <span className='text-lg text-white'>Cashless Treatment</span>
+                                        <span className='text-sm md:text-base lg:text-lg text-white'>Cashless Treatment</span>
                                     </div>
                                 </div>
                                 <div className='flex items-center gap-2 bg-white/20 py-2 px-4 rounded-4xl'>
@@ -263,7 +311,7 @@ function HealthInsurance() {
                                         <IconChecks className='h-6 w-6' color='#E18126'/>
                                     </div>
                                     <div>
-                                        <span className='text-lg text-white'>Pre & Post Hospitalization</span>
+                                        <span className='text-sm md:text-base lg:text-lg text-white'>Pre & Post Hospitalization</span>
                                     </div>
                                 </div>
                                 <div className='flex items-center gap-2 bg-white/20 py-2 px-4 rounded-4xl'>
@@ -271,7 +319,7 @@ function HealthInsurance() {
                                         <IconChecks className='h-6 w-6' color='#E18126'/>
                                     </div>
                                     <div>
-                                        <span className='text-lg text-white'>Maternity Benefits</span>
+                                        <span className='text-sm md:text-base lg:text-lg text-white'>Maternity Benefits</span>
                                     </div>
                                 </div>
                             </div>
@@ -279,8 +327,8 @@ function HealthInsurance() {
                         </motion.div>
                         <motion.div initial={{ x: 30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-[60%]">
                         <form ref={formRef} onSubmit={submitForm} className="bg-white shadow-lg rounded-4xl p-6 max-w-xl mx-auto">
-                            <h2 className="text-xl md:text-xl lg:text-3xl font-bold mb-4 text-center text-blue-950">Get Your Health Insurance Quote</h2>
-                            <p className='text-lg text-gray-700 text-center mb-6'>Answer a few quick questions to get personalized recommendations</p>
+                            <h2 className="text-xl md:text-xl lg:text-3xl font-bold mb-3 lg:mb-4 text-center text-blue-950">Get Your Health Insurance Quote</h2>
+                            <p className='text-sm md:text-base lg:text-lg text-gray-700 text-center mb-6 leading-6 md:leading-8'>Answer a few quick questions to get personalized recommendations</p>
                             <ol className="flex items-center w-full justify-between mb-6 sm:mb-8 px-6">
                                 {/* STEP 1 */}
                                 <li
@@ -299,7 +347,7 @@ function HealthInsurance() {
                                         <div className="bg-[#E18126] rounded-full p-3">
                                             <IconUserFilled className='w-6 h-6 text-white'/>
                                         </div>
-                                        <span className="text-sm sm:text-base font-bold text-center">Personal Information</span>
+                                        <span className="text-sm md:text-base lg:text-lg font-bold text-center">Personal Information</span>
                                     </span>
                                 </li>
 
@@ -316,7 +364,7 @@ function HealthInsurance() {
                                         <div className={`bg-[#E18126] rounded-full p-3 ${step === 2 ? 'bg-[#E18126]': 'bg-gray-300'}`}>
                                             <IconCheckbox className='w-6 h-6 text-white'/>
                                         </div>
-                                        <span className="text-sm sm:text-base font-bold text-center">Insurance Needs</span>
+                                        <span className="text-sm md:text-base lg:text-lg font-bold text-center">Insurance Needs</span>
                                     </span>
                                 </li>
                             </ol>
@@ -361,7 +409,7 @@ function HealthInsurance() {
                                     </div>
                                 </div>
                                 <div className="flex justify-end">
-                                    <button type="submit" className="bg-[#E18126] text-white px-4 py-2 rounded-4xl font-bold mt-4 cursor-pointer">{loading ? 'Submitting...':'Next'}</button>
+                                    <button type="submit" className="bg-[#E18126] text-white px-4 py-2 rounded-4xl font-bold mt-4 cursor-pointer text-sm md:text-base lg:text-lg">{loading ? 'Submitting...':'Next'}</button>
                                 </div>
                             </div>  
                             )}
@@ -411,8 +459,8 @@ function HealthInsurance() {
                                     </div>
                                 </div>
                                 <div className="flex justify-between">
-                                    <button type="button" onClick={()=>setStep(1)} className="bg-gray-400 text-white px-4 py-2 rounded-4xl font-bold mt-4 cursor-pointer">Back</button>
-                                    <button type="submit" className="bg-[#E18126] text-white px-4 py-2 rounded-4xl font-bold mt-4 cursor-pointer">{loading ? 'Submitting...':'Submit'}</button>
+                                    <button type="button" onClick={()=>setStep(1)} className="bg-gray-400 text-white px-4 py-2 rounded-4xl font-bold mt-4 cursor-pointer text-sm md:text-base lg:text-lg">Back</button>
+                                    <button type="submit" className="bg-[#E18126] text-white px-4 py-2 rounded-4xl font-bold mt-4 cursor-pointer text-sm md:text-base lg:text-lg">{loading ? 'Submitting...':'Submit'}</button>
                                 </div>
                             </div>  
                             )}
@@ -425,122 +473,126 @@ function HealthInsurance() {
                 <img src="/assets/element_three.png" alt="element" className='w-full h-full' />
             </div>
             <div className="py-20">
-                <div className="max-w-340 mx-auto flex justify-center items-center gap-40">
-                    <motion.div initial={{ x: -30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-[70%]">
-                        <p className="uppercase font-bold text-gray-700 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl mb-4">Why Health Insurance Matters</p>
-                        <h2 className="text-5xl leading-16 font-bold mb-6 text-blue-950 flex gap-2">Your Health, <PointerHighlight pointerClassName="text-[#E18126]" containerClassName="text-[#E18126]">Our Priority</PointerHighlight></h2>
-                        <p className="text-lg leading-8 text-gray-700 mb-8">Get the right health coverage that fits your needs and budget, with expert guidance to help you choose the best plan.</p>
+                <div className="px-8 md:px-0 md:max-w-165 lg:max-w-340 mx-auto flex flex-col lg:flex-row justify-center items-center md:gap-20 lg:gap-40">
+                    <motion.div initial={{ x: -30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-full lg:w-[70%]">
+                        <p className="uppercase font-bold text-gray-700 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl text-xs mb-4">Why Health Insurance Matters</p>
+                        <h2 className="text-2xl md:text-4xl lg:text-5xl lg:leading-16 font-bold mb-6 text-blue-950 flex gap-2">Your Health, <PointerHighlight pointerClassName="text-[#E18126]" containerClassName="text-[#E18126]">Our Priority</PointerHighlight></h2>
+                        <p className="text-sm md:text-base lg:text-lg leading-6 md:leading-8 text-gray-700 mb-8">Get the right health coverage that fits your needs and budget, with expert guidance to help you choose the best plan.</p>
                         <div className="flex gap-6 mb-6">
                             <div className="flex flex-col gap-3 w-[33.33%] border border-[#E18126] rounded-4xl p-4">
                                 <div>
-                                    <IconBuildingHospital className='w-10 h-10' color="#E18126"/>
+                                    <IconBuildingHospital className='w-6 h-6 md:w-10 md:h-10' color="#E18126"/>
                                 </div>
                                 <div>
-                                    <p className="text-base mb-2 text-blue-950 font-bold">Cashless Treatment</p>
+                                    <p className="text-sm md:text-base mb-2 text-blue-950 font-bold">Cashless Treatment</p>
                                     <p className='text-sm text-gray-700'>Get treated at 10,000+ network hospitals without paying upfront - we settle directly with the hospital.</p>
                                 </div>
                             </div>
                             <div className="flex flex-col gap-3 w-[33.33%] border border-[#E18126] rounded-4xl p-4">
                                 <div>
-                                    <IconStethoscope className='w-10 h-10' color="#E18126"/>
+                                    <IconStethoscope className='w-6 h-6 md:w-10 md:h-10' color="#E18126"/>
                                 </div>
                                 <div>
-                                    <p className="text-base mb-2 text-blue-950 font-bold">Pre & Post Hospitalization</p>
+                                    <p className="text-sm md:text-base mb-2 text-blue-950 font-bold">Pre & Post Hospitalization</p>
                                     <p className='text-sm text-gray-700'>Coverage for medical expenses before and after hospitalization, ensuring complete care continuity.</p>
                                 </div>
                             </div>
                             <div className="flex flex-col gap-3 w-[33.33%] border border-[#E18126] rounded-4xl p-4">
                                 <div>
-                                    <IconBabyCarriage className='w-10 h-10' color="#E18126"/>
+                                    <IconBabyCarriage className='w-6 h-6 md:w-10 md:h-10' color="#E18126"/>
                                 </div>
                                 <div>
-                                    <p className="text-base mb-2 text-blue-950 font-bold">Maternity & Newborn Care</p>
+                                    <p className="text-sm md:text-base mb-2 text-blue-950 font-bold">Maternity & Newborn Care</p>
                                     <p className='text-sm text-gray-700'>Specialized coverage for maternity expenses, newborn care, and family planning needs.</p>
                                 </div>
                             </div>
                         </div>
                     </motion.div>
-                    <motion.div initial={{ x: 30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-[30%]">
-                        <div>
-                            <div className="relative h-100 w-100 overflow-hidden rounded-4xl">
-                                <Image src="/assets/health_about.png" alt="about_us_one" priority fill className="object-cover"/>
+                    <motion.div initial={{ x: 30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-full lg:w-[30%]">
+                        <div className='flex justify-center'>
+                            <div>
+                                <div className="relative h-100 w-100 overflow-hidden rounded-4xl">
+                                    <Image src="/assets/health_about.png" alt="about_us_one" priority fill className="object-cover"/>
+                                </div>
+                                <motion.div animate={{ x: [0, 40, 0] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", }} className="absolute bg-white h-auto flex flex-col items-center w-40 overflow-hidden rounded-4xl px-4 py-4 -mt-6">
+                                    <p className="text-xl text-[#1185b7] font-bold text-shadow-sm">10,000+</p>
+                                    <p className='text-base text-gray-500'>Hospitals</p>
+                                </motion.div>
                             </div>
-                            <motion.div animate={{ x: [0, 40, 0] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", }} className="absolute bg-white h-auto flex flex-col items-center w-40 overflow-hidden rounded-4xl px-4 py-4 -mt-6">
-                                <p className="text-xl text-[#1185b7] font-bold text-shadow-sm">10,000+</p>
-                                <p className='text-base text-gray-500'>Hospitals</p>
-                            </motion.div>
                         </div>
                     </motion.div>
                 </div>
             </div>
-            <motion.div initial={{ y: 30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className='bg-linear-to-br from-[#1185b7] from-20% via-[#07587b] via-50%  to-blue-950 to-90% py-10 px-10 rounded-4xl max-w-340 mx-auto overflow-hidden'>
-                <div className='max-w-2xl mx-auto mb-5'>
-                    <p className="uppercase font-bold text-sm text-white after:content-[''] after:inline-block after:w-6 after:h-0.5 after:bg-[#E18126] after:ml-2 after:align-middle after:rounded-xl mb-4 text-center">Why Choose Us</p>
-                    <h3 className="text-5xl leading-16 font-bold mb-6 text-white text-center text-shadow-lg">Unmatched Benefits for <br/><span className='text-[#E18126]'>Your Health Journey</span></h3>
-                    <p className='text-lg leading-8 text-center  text-shadow-lg text-white'>Experience unparalleled advantages when you secure your health with our expert guidance and top-tier solutions.</p>
-                </div>
-                <div className="grid grid-cols-6 gap-4">
-                    <div className='col-span-1'>
-                        <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
-                            <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
-                                <h4 className='text-base text-white text-center font-bold'>Tax benefits under Section 80D</h4>
+            <div className='px-8 lg:px-0'>
+                <motion.div initial={{ y: 30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className='bg-linear-to-br from-[#1185b7] from-20% via-[#07587b] via-50%  to-blue-950 to-90% py-10 px-10 rounded-4xl md:max-w-165 lg:max-w-340 mx-auto overflow-hidden'>
+                    <div className='max-w-2xl mx-auto mb-5'>
+                        <p className="uppercase font-bold text-white after:content-[''] after:inline-block after:w-6 after:h-0.5 after:bg-[#E18126] after:ml-2 after:align-middle after:rounded-xl mb-4 text-xs text-center">Why Choose Us</p>
+                        <h3 className="text-2xl md:text-4xl lg:text-5xl lg:leading-16 font-bold mb-6 text-white text-center text-shadow-lg">Unmatched Benefits for <br/><span className='text-[#E18126]'>Your Health Journey</span></h3>
+                        <p className='text-sm md:text-base lg:text-lg leading-6 md:leading-8 text-center  text-shadow-lg text-white'>Experience unparalleled advantages when you secure your health with our expert guidance and top-tier solutions.</p>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                        <div className='col-span-1'>
+                            <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
+                                <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
+                                    <h4 className='text-xs md:text-sm lg:text-base text-white text-center font-bold'>Tax benefits under Section 80D</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='col-span-1'>
+                            <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
+                                <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
+                                    <h4 className='text-xs md:text-sm lg:text-base text-white text-center font-bold'>No claim <br/>bonus</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='col-span-1'>
+                            <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
+                                <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
+                                    <h4 className='text-xs md:text-sm lg:text-base text-white text-center font-bold'>Restoration benefit once per year</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='col-span-1'>
+                            <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
+                                <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
+                                    <h4 className='text-xs md:text-sm lg:text-base text-white text-center font-bold'>Alternative treatment<br/>coverage</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='col-span-1'>
+                            <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
+                                <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
+                                    <h4 className='text-xs md:text-sm lg:text-base text-white text-center font-bold'>Mental health<br/>coverage</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='col-span-1'>
+                            <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
+                                <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
+                                    <h4 className='text-xs md:text-sm lg:text-base text-white text-center font-bold'>Critical illness<br/>coverage</h4>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div className='col-span-1'>
-                        <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
-                            <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
-                                <h4 className='text-base text-white text-center font-bold'>No claim <br/>bonus</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='col-span-1'>
-                        <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
-                            <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
-                                <h4 className='text-base text-white text-center font-bold'>Restoration benefit once per year</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='col-span-1'>
-                        <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
-                            <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
-                                <h4 className='text-base text-white text-center font-bold'>Alternative treatment coverage</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='col-span-1'>
-                        <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
-                            <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
-                                <h4 className='text-base text-white text-center font-bold'>Mental health coverage</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='col-span-1'>
-                        <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
-                            <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
-                                <h4 className='text-base text-white text-center font-bold'>Critical illness coverage</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </motion.div>
-            <div className="max-w-340 mx-auto py-20">
+                </motion.div>
+            </div>
+            <div className="md:max-w-165 lg:max-w-340 mx-auto py-40">
                 <div className="relative py-20">
-                {/* Shared center point */}
                     <div className="relative w-full flex justify-center items-center">
                         
-                        {/* Heading (center anchor) */}
-                        <div className="absolute max-w-xl text-center bg-[#1185b7] rounded-full h-120 w-120 flex flex-col justify-center items-center p-10">
-                            <h5 className="text-5xl font-bold text-white  text-shadow-lg leading-tight mb-4">What Our Health <br /> Insurance Covers</h5>
-                            <p className='text-lg text-shadow-lg text-white leading-8'>Our health insurance covers everything from routine check-ups to emergency care.</p>
+                        <div className="absolute bg-radial from-[#E18126] from-30% via-[#E18126]/60 via-50% via-transparent via-80% to-transparent to-100% md:h-140 lg:h-180 md:w-140 lg:w-180 flex justify-center items-center rounded-full">
+                            <div className="max-w-xl text-center bg-linear-to-br from-[#07587b] from-20% via-[#07587b] via-30%  to-[#1185b7] to-90% rounded-full md:h-80 lg:h-120 md:w-80 lg:w-120 flex flex-col justify-center items-center p-10">
+                                <h5 className="text-2xl md:text-3xl lg:text-5xl font-bold text-white text-shadow-lg lg:leading-tight mb-4">What Our Health <br /> Insurance Covers</h5>
+                                <p className='text-sm md:text-base lg:text-lg text-shadow-lg text-white leading-6 lg:leading-8'>Our health insurance covers everything from routine check-ups to emergency care.</p>
+                            </div>
                         </div>
 
                         <div className="relative w-175 h-125 mx-auto">
-                            <EllipseItem text="Medicine costs" angle={270} radiusX={400} radiusY={280} />
+                            <EllipseItem text="Medicine costs" angle={270} radiusX={400} radiusY={240} />
                             <EllipseItem text="Emergency treatment" angle={330} radiusX={400} radiusY={240} />
 
                             <EllipseItem text="ICU charges covered" angle={30} radiusX={400} radiusY={240} />
-                            <EllipseItem text="Room rent benefits" angle={90} radiusX={400} radiusY={280} />
+                            <EllipseItem text="Room rent benefits" angle={90} radiusX={400} radiusY={240} />
 
                             <EllipseItem text="Diagnostic tests" angle={210} radiusX={400} radiusY={240} />
                             <EllipseItem text="Surgery expenses" angle={150} radiusX={400} radiusY={240} />
@@ -550,23 +602,23 @@ function HealthInsurance() {
                 </div>
             </div>
             <div className='bg-linear-to-br from-[#1185b7] from-20% via-[#07587b] via-50%  to-blue-950 to-90% py-10'>
-                <div className="max-w-180 mx-auto">
-                    <h5 className="text-5xl font-bold text-white text-center leading-16 text-shadow-lg mb-4">Ready to Protect Your Health?</h5>
-                    <p className="text-lg text-center leading-8 text-white text-shadow-lg mb-6">Our expert advisors are here to help you choose the best health insurance plan tailored to your needs. Contact us today for a personalized consultation.</p>
+                <div className="md:max-w-165 lg:max-w-340 mx-auto">
+                    <h5 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white text-center lg:leading-16 text-shadow-lg mb-4">Ready to Protect Your Health?</h5>
+                    <p className="text-sm md:text-base lg:text-lg text-center leading-8 text-white text-shadow-lg mb-6">Our expert advisors are here to help you choose the best health insurance plan tailored to your needs. Contact us today for a personalized consultation.</p>
                     <div className="flex gap-4 justify-center">
                         <div>
-                            <button className='bg-white text-[#1185b7] text-lg p-4 w-40 rounded-4xl cursor-pointer'>Call Us Now</button>
+                            <button className='bg-white text-[#1185b7] text-sm md:text-base lg:text-lg md:p-3 lg:p-4 w-40 rounded-4xl cursor-pointer'>Call Us Now</button>
                         </div>
                         <div>
-                            <button className='text-white border-2 border-white text-lg p-4 w-40 rounded-4xl cursor-pointer'>WhatsApp Us</button>
+                            <button className='text-white border-2 border-white text-sm md:text-base lg:text-lg md:p-3 lg:p-4 w-40 rounded-4xl cursor-pointer'>WhatsApp Us</button>
                         </div>
                     </div>
                 </div>
             </div>
             <div className='bg-white'>
-                <div className="max-w-340 mx-auto pt-20 pb-40">
-                    <div className="flex">
-                        <div className="w-[40%]">
+                <div className="px-6 md:px-0 md:max-w-165 lg:max-w-340 mx-auto pt-20 pb-30 md:pb-40">
+                    <div className="flex flex-col md:flex-row gap-6 md:gap-4">
+                        <div className="w-full md:w-[50%] lg:w-[40%]">
                             <div className="relative w-full h-130 rounded-4xl overflow-hidden">
                                 {/* Image */}
                                 <img src="/assets/faq.png" alt="FAQs" className="w-full h-full object-cover" />
@@ -575,15 +627,15 @@ function HealthInsurance() {
                                 <div className="absolute inset-0 bg-black/60" />
 
                                 {/* Content */}
-                                <div className="absolute inset-0 max-w-md mx-auto flex flex-col justify-center px-6 text-center">
-                                    <p className="uppercase font-bold text-sm text-white after:content-[''] after:inline-block after:w-6 after:h-0.5 after:bg-[#E18126] after:ml-2 after:align-middle after:rounded-xl mb-2 text-left">Got Questions?</p>
-                                    <h5 className="text-5xl font-bold text-white leading-16 text-left mb-4">Frequently Asked Questions</h5>
-                                    <p className="text-lg text-left leading-8 text-white">Find quick answers to common health insurance questions</p>
+                                <div className="absolute inset-0 max-w-md mx-auto flex flex-col justify-center gap-4 md:gap-6 px-6 text-center">
+                                    <p className="uppercase font-bold text-xs text-white after:content-[''] after:inline-block after:w-6 after:h-0.5 after:bg-[#E18126] after:ml-2 after:align-middle after:rounded-xl text-left">Got Questions?</p>
+                                    <h5 className="text-2xl md:text-3xl lg:text-5xl font-bold text-white lg:leading-16 text-left">Frequently Asked Questions</h5>
+                                    <p className="text-sm md:text-base lg:text-lg text-left leading-6 md:leading-8 text-white">Find quick answers to common health insurance questions</p>
                                 </div>
                             </div>
                         </div>
-                        <div className='w-[60%]'>
-                            <div className="max-w-2xl mx-auto flex flex-col gap-4">
+                        <div className='w-full md:w-[50%] lg:w-[60%]'>
+                            <div className="lg:max-w-2xl lg:mx-auto flex flex-col gap-4">
                                 {faqs.map((faq, index) => (
                                     <AccordionItem
                                     key={index}
