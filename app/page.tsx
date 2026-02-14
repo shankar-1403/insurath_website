@@ -28,7 +28,7 @@ const CompaniesCard = ({data}: {data: string}) => {
       )}
     >
       <div className="flex items-center justify-center h-full">
-        <img src={data} alt={'Partners Logo'} className="h-30 md:h-full"/>
+        <img src={data} alt={'Partners Logo'} className="h-20"/>
       </div>
     </figure>
   )
@@ -195,9 +195,9 @@ export default function Home() {
     { name: "Kavita Nair", designation:"Homemaker", rating: 5, description: "I never understood insurance until my neighbor told me about Insurath. Their agent explained everything so clearly that even I could understand. I started with a small health insurance for ₹1,200 per month. When my daughter had to be hospitalized for dengue, the entire bill of ₹45,000 was covered. I didn't have to worry about money during such a stressful time. Now I've also taken life insurance for my husband." },
   ] 
 
-  const companies_one = [{image:"/assets/insurance_partners/aditya_birla.png"},{image:"/assets/insurance_partners/bajaj.png"}, {image:"/assets/insurance_partners/care_health.png"}, {image:"/assets/insurance_partners/chola.png"}, {image:"/assets/insurance_partners/digit.png"}, {image:"/assets/insurance_partners/future.png"},{image:"/assets/insurance_partners/hdfc_ergo.png"},{image:"/assets/insurance_partners/icici.png"},{image:"/assets/insurance_partners/iffco.png"},{image:"/assets/insurance_partners/kotak.png"},{image:"/assets/insurance_partners/liberty.png"},{image:"/assets/insurance_partners/magma.png"},{image:"/assets/insurance_partners/max_life.png"}];
+  const companies_one = [{image:"/assets/insurance_partners/partners_1.png"},{image:"/assets/insurance_partners/partners_2.png"},{image:"/assets/insurance_partners/partners_3.png"},{image:"/assets/insurance_partners/partners_4.png"},{image:"/assets/insurance_partners/partners_5.png"},{image:"/assets/insurance_partners/partners_6.png"},{image:"/assets/insurance_partners/partners_7.png"},{image:"/assets/insurance_partners/partners_8.png"},{image:"/assets/insurance_partners/partners_9.png"},{image:"/assets/insurance_partners/partners_10.png"},{image:"/assets/insurance_partners/partners_11.png"},{image:"/assets/insurance_partners/partners_12.png"},{image:"/assets/insurance_partners/partners_13.png"},];
 
-  const companies_two = [{image:"/assets/insurance_partners/national.png"},{image:"/assets/insurance_partners/new_india.png"}, {image:"/assets/insurance_partners/niva.png"}, {image:"/assets/insurance_partners/oriental.png"}, {image:"/assets/insurance_partners/raheja.png"}, {image:"/assets/insurance_partners/reliance.png"},{image:"/assets/insurance_partners/royal_sundaram.png"},{image:"/assets/insurance_partners/sbi_general.png"},{image:"/assets/insurance_partners/shriram.png"},{image:"/assets/insurance_partners/star.png"},{image:"/assets/insurance_partners/tata_aig.png"},{image:"/assets/insurance_partners/united_india.png"},{image:"/assets/insurance_partners/universal.png"}];
+  const companies_two = [{image:"/assets/insurance_partners/partners_14.png"},{image:"/assets/insurance_partners/partners_15.png"},{image:"/assets/insurance_partners/partners_16.png"},{image:"/assets/insurance_partners/partners_17.png"},{image:"/assets/insurance_partners/partners_18.png"},{image:"/assets/insurance_partners/partners_19.png"},{image:"/assets/insurance_partners/partners_20.png"},{image:"/assets/insurance_partners/partners_21.png"},{image:"/assets/insurance_partners/partners_22.png"},{image:"/assets/insurance_partners/partners_23.png"},{image:"/assets/insurance_partners/partners_24.png"},{image:"/assets/insurance_partners/partners_25.png"},{image:"/assets/insurance_partners/partners_26.png"},];
 
   return (
     <>
@@ -284,10 +284,10 @@ export default function Home() {
           <motion.div initial={{ x: -30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-full lg:w-[30%] flex lg:block items-center justify-center">
             <div>
               <div className="relative ml-10 md:ml-20 lg:ml-0 h-60 md:h-100 lg:h-120 w-60 md:w-100 lg:w-120 overflow-hidden rounded-br-full rounded-tr-full rounded-bl-full">
-                <Image src="/assets/aboutus_one.png" alt="about_us_one" priority fill className="object-cover"/>
+                <img src="/assets/aboutus_one.webp" alt="about_us_one" className="object-cover"/>
               </div>
               <div className="absolute rounded-br-full h-40 lg:h-60 w-40 lg:w-60 overflow-hidden rounded-tl-full rounded-bl-full -mt-20 md:-mt-30 lg:-mt-40">
-                <Image src={"/assets/aboutus_two.png"} alt="about_us_two" priority fill className="object-cover"/>
+                <img src={"/assets/aboutus_two.webp"} alt="about_us_two" className="object-cover"/>
               </div>
               <motion.div animate={{ x: [0, 40, 0] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", }} className="absolute bg-white h-auto w-40 md:w-50 lg:w-60 overflow-hidden rounded-tr-4xl rounded-bl-4xl md:-mt-20 lg:-mt-20 ml-20 md:ml-50 lg:ml-60 p-2">
                 <div className="border-2 border-[#E18126] flex items-center gap-2 md:gap-4 rounded-tr-4xl rounded-bl-4xl px-1 lg:px-1 py-2 md:py-4 lg:py-6">

@@ -52,12 +52,7 @@ export default function MainNavbar() {
                   className="relative overflow-hidden px-6 py-3 bg-blue-950 text-blue-950 rounded-full group transition-colors duration-300 cursor-pointer flex items-center gap-3"
                 >
                   {/* Animated background */}
-                  <span
-                    className="absolute inset-0 bg-[#E18126] 
-                              scale-x-0 origin-left 
-                              transition-transform duration-300 
-                              group-hover:scale-x-100"
-                  ></span>
+                  <span className="absolute inset-0 bg-[#E18126] scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
                   {/* Text */}
                   <span className="relative z-10 text-white group-hover:text-white transition-colors duration-300">
                     Contact Us
