@@ -40,7 +40,7 @@ export const Card = React.memo(
       <img
         src={card.image}
         alt={card.name}
-        className="pointer-events-none absolute inset-0 md:h-130 lg:h-full md:w-130 lg:w-full object-cover select-none transition-transform duration-500 lg:group-hover:scale-110"
+        className="pointer-events-none absolute inset-0 h-full w-full md:h-130 lg:h-full md:w-130 lg:w-full object-cover select-none transition-transform duration-500 lg:group-hover:scale-110"
       />
       <div className="absolute hidden lg:block bottom-0 left-0 right-0 z-10">
           <div

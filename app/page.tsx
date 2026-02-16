@@ -24,11 +24,11 @@ const CompaniesCard = ({data}: {data: string}) => {
   return (
     <figure
       className={cn(
-        "relative w-64 h-30 overflow-hidden rounded-4xl border p-2 border-blue-950 hover:shadow-lg hover:scale-105 transition-transform duration-300",
+        "relative w-50 h-20 md:w-64 md:h-30 overflow-hidden rounded-4xl border p-2 border-blue-950 hover:shadow-lg hover:scale-105 transition-transform duration-300",
       )}
     >
       <div className="flex items-center justify-center h-full">
-        <img src={data} alt={'Partners Logo'} className="h-20"/>
+        <img src={data} alt={'Partners Logo'} className="h-12 md:h-20"/>
       </div>
     </figure>
   )
@@ -167,10 +167,10 @@ export default function Home() {
   };
 
   const services = [
-    { name: "Health Insurance", image: "/assets/health.png", description: "Comprehensive health coverage for you and your family with cashless treatment at 10,000+ hospitals nationwide.",rating:"4.8",review:"1250",link:"/products/health-insurance" },
+    { name: "Health Insurance", image: "/assets/health.webp", description: "Comprehensive health coverage for you and your family with cashless treatment at 10,000+ hospitals nationwide.",rating:"4.8",review:"1250",link:"/products/health-insurance" },
     { name: "Life Insurance", image: '/assets/life.png', description: "Secure your family's future with comprehensive life insurance coverage and flexible premium options.",rating:"4.7",review:"980",link:"/products/life-insurance" },
-    { name: "Car Insurance", image: "/assets/car.png", description: "Complete protection for your car with comprehensive coverage and quick claim settlement.",rating:"4.6",review:"2100",link:"/products/car-insurance" },
-    { name: "Bike Insurance", image: "/assets/bike.png", description: "Affordable two-wheeler insurance with comprehensive coverage and instant policy delivery.",rating:"4.5",review:"1800",link:"/products/bike-insurance" },
+    { name: "Car Insurance", image: "/assets/car.webp", description: "Complete protection for your car with comprehensive coverage and quick claim settlement.",rating:"4.6",review:"2100",link:"/products/car-insurance" },
+    { name: "Bike Insurance", image: "/assets/bike.webp", description: "Affordable two-wheeler insurance with comprehensive coverage and instant policy delivery.",rating:"4.5",review:"1800",link:"/products/bike-insurance" },
     { name: "Travel Insurance", image: "/assets/travel.png", description: "Travel worry-free with comprehensive travel insurance covering medical emergencies and trip cancellations.",rating:"4.7",review:"750",link:"/products/travel-insurance" },
     { name: "Business Insurance", image: "/assets/business.png", description: "Comprehensive business insurance protecting your company assets, employees, and operations.",rating:"4.9",review:"450",link:"/products/business-insurance" },
   ];
@@ -269,7 +269,12 @@ export default function Home() {
                       </select>
                       {error.insurance_type && <span className="text-sm text-red-500">{error.insurance_type}</span>}
                     </div>
-                    <button type="submit" className="bg-[#E18126] text-white px-4 py-2 rounded-4xl font-bold mt-4 cursor-pointer text-sm md:text-base lg:text-lg">{loading ? 'Submitting...':'Submit'}</button>
+                    <button type="submit" className="relative bg-[#E18126] text-white px-4 py-2 rounded-4xl font-semibold mt-4 cursor-pointer text-sm md:text-base lg:text-lg group transition-colors duration-300 overflow-hidden">
+                      <span className="absolute inset-0 bg-blue-950 scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
+                      <span className="relative z-10 text-white group-hover:text-white transition-colors duration-300">
+                      {loading ? 'Submitting...':'Submit'}
+                      </span>
+                    </button>
                   </div>  
               </form>
             </motion.div>
@@ -290,7 +295,7 @@ export default function Home() {
                 <img src={"/assets/aboutus_two.webp"} alt="about_us_two" className="object-cover"/>
               </div>
               <motion.div animate={{ x: [0, 40, 0] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", }} className="absolute bg-white h-auto w-40 md:w-50 lg:w-60 overflow-hidden rounded-tr-4xl rounded-bl-4xl md:-mt-20 lg:-mt-20 ml-20 md:ml-50 lg:ml-60 p-2">
-                <div className="border-2 border-[#E18126] flex items-center gap-2 md:gap-4 rounded-tr-4xl rounded-bl-4xl px-1 lg:px-1 py-2 md:py-4 lg:py-6">
+                <div className="border-2 border-[#E18126] flex items-center gap-2 md:gap-4 rounded-tr-4xl rounded-bl-4xl px-1 lg:px-4 py-2 md:py-4 lg:py-6">
                   <div>
                     <span className="text-[#E18126] text-2xl md:text-4xl lg:text-5xl font-bold">5+</span>
                   </div>
@@ -334,7 +339,10 @@ export default function Home() {
               </div>
             </div>
             <Link href={'/about-us'}>
-              <button className="bg-[#E18126] text-white px-6 py-2 rounded-4xl font-bold mt-4 hover:cursor-pointer text-sm md:text-base lg:text-lg">Discover More</button>
+              <button type="submit" className="relative bg-[#E18126] text-white px-4 py-2 rounded-4xl font-semibold mt-4 cursor-pointer text-sm md:text-base lg:text-lg group transition-colors duration-300 overflow-hidden">
+                <span className="absolute inset-0 bg-blue-950 scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
+                <span className="relative z-10 text-white group-hover:text-white transition-colors duration-300">Discover More</span>
+              </button>
             </Link>
           </motion.div>
         </div>
@@ -348,7 +356,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col gap-4 md:gap-6 md:max-w-4xl mx-auto">
               <div>
-                <h3 className="text-center text-blue-950 text-2xl md:text-4xl lg:text-5xl font-bold mb-4 flex flex-col md:flex-row items-center lg:justify-center gap-1 md:gap-3">Choose Your{" "}<PointerHighlight pointerClassName="text-[#E18126]"><span className="text-[#E18126]">Insurance Protection</span></PointerHighlight></h3>
+                <h4 className="text-center text-blue-950 text-2xl md:text-4xl lg:text-5xl font-bold mb-4 flex flex-col md:flex-row items-center lg:justify-center gap-1 md:gap-3">Choose Your{" "}<PointerHighlight pointerClassName="text-[#E18126]"><span className="text-[#E18126]">Insurance Protection</span></PointerHighlight></h4>
               </div>
               <div>
                 <p className="text-center text-sm md:text-base lg:text-lg leading-6 md:leading-8 text-gray-700">We offer a comprehensive range of insurance products to protect what matters most to you. Compare and choose the best plan for your needs.</p>
@@ -361,7 +369,7 @@ export default function Home() {
       <div className="h-auto">
         <div className="px-6 md:px-0 md:max-w-165 lg:max-w-340 relative mx-auto py-20">
           <div className="flex flex-col gap-6 mb-8 md:max-w-xl mx-auto">
-            <h4 className="text-2xl md:text-4xl lg:text-5xl lg:leading-16 text-blue-950 font-bold text-center">Why Choose <span className="text-[#E18126]">Insurath?</span></h4>
+            <h5 className="text-2xl md:text-4xl lg:text-5xl lg:leading-16 text-blue-950 font-bold text-center">Why Choose <span className="text-[#E18126]">Insurath?</span></h5>
             <p className="text-sm md:text-base lg:text-lg leading-6 md:leading-8 text-center">We are committed to delivering a smooth and reliable insurance experience through exceptional service.</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -390,6 +398,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="w-full md:w-[40%] lg:w-[30%] flex items-center md:justify-end">
+                {/* For Desktop & Tab view */}
                 <a href={"#contact-form"} className="hidden lg:block">
                   <div className="group relative w-40 lg:w-60 cursor-pointer text-left text-sm md:text-base lg:text-lg text-white hover:text-[#E18126] py-3 flex items-center justify-between">
                     <span>Get Started</span>
@@ -400,6 +409,7 @@ export default function Home() {
                     <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-[#E18126] transition-all duration-300 ease-out group-hover:w-full" />
                   </div>
                 </a>
+                {/* For Mobile view */}
                 <a href={"#contact-form-two"} className="block lg:hidden">
                   <div className="group relative w-40 lg:w-60 cursor-pointer text-left text-sm md:text-base lg:text-lg text-white hover:text-[#E18126] py-3 flex items-center justify-between">
                     <span>Get Started</span>
@@ -519,12 +529,12 @@ export default function Home() {
             </div>
           </div>
           <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
-            <Marquee pauseOnHover className="[--duration:50s]">
+            <Marquee pauseOnHover className="[--duration:50s] pb-5">
               {companies_one.map((data,index) => (
                 <CompaniesCard key={index+1} data={data.image} {...data} />
               ))}
             </Marquee>
-            <Marquee reverse={true} pauseOnHover className="[--duration:50s]">
+            <Marquee reverse={true} pauseOnHover className="[--duration:50s] pb-6">
               {companies_two.map((data,index) => (
                 <CompaniesCard key={index+1} data={data.image} {...data} />
               ))}
@@ -626,7 +636,12 @@ export default function Home() {
                   <textarea name="message" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E18126]" rows={7} placeholder="Message"></textarea>
                   {errorTwo.message && <span className="text-sm text-red-500">{errorTwo.message}</span>}
                 </div>
-                <button type="submit" className="bg-[#E18126] text-white px-4 py-2 w-full rounded-4xl font-bold text-sm md:text-base lg:text-lg mt-4 cursor-pointer">{loading ? 'Submitting...':'Submit'}</button>
+                <button type="submit" className="relative bg-[#E18126] text-white px-4 py-2 rounded-4xl font-semibold mt-4 cursor-pointer text-sm md:text-base lg:text-lg group transition-colors duration-300 overflow-hidden">
+                  <span className="absolute inset-0 bg-blue-950 scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
+                  <span className="relative z-10 text-white group-hover:text-white transition-colors duration-300">
+                  {loading ? 'Submitting...':'Submit'}
+                  </span>
+                </button>
               </div>  
             </form>
           </div>

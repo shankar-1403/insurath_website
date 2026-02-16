@@ -240,7 +240,7 @@ function LifeInsurance() {
     return (
         <>
             <div className="bg-linear-to-br from-blue-950 via-[#1186B7] to-[#884001] pt-40 md:pt-40 lg:pt-50 pb-20">
-                <div className="px-8 md:px-0 md:max-w-165 lg:max-w-340 mx-auto">
+                <div className="px-6 md:px-0 md:max-w-165 lg:max-w-340 mx-auto">
                     <div className="flex flex-col md:flex-row gap-4 md:gap-8 lg:gap-6">
                         <motion.div initial={{ x: -30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-full md:w-[40%]">
                         <div className="flex items-center justify-start mb-2">
@@ -365,7 +365,7 @@ function LifeInsurance() {
                                     </div>
                                 </div>
                                 <div className="flex justify-end">
-                                    <button type="submit" className="bg-[#E18126] text-white px-4 py-2 rounded-4xl font-bold mt-4 cursor-pointer text-sm md:text-base lg:text-lg">{loading ? 'Submitting...':'Next'}</button>
+                                    <button type="submit" className="bg-[#E18126] text-white px-4 py-2 rounded-4xl font-semibold mt-4 cursor-pointer text-sm md:text-base lg:text-lg">{loading ? 'Submitting...':'Next'}</button>
                                 </div>
                             </div>  
                             )}
@@ -432,8 +432,8 @@ function LifeInsurance() {
                                     </div>
                                 </div>
                                 <div className="flex justify-between">
-                                    <button type="button" onClick={()=>setStep(1)} className="bg-gray-400 text-white px-4 py-2 rounded-4xl font-bold mt-4 cursor-pointer text-sm md:text-base lg:text-lg">Back</button>
-                                    <button type="submit" className="bg-[#E18126] text-white px-4 py-2 rounded-4xl font-bold mt-4 cursor-pointer text-sm md:text-base lg:text-lg">{loading ? 'Submitting...':'Submit'}</button>
+                                    <button type="button" onClick={()=>setStep(1)} className="bg-gray-400 text-white px-4 py-2 rounded-4xl font-semibold mt-4 cursor-pointer text-sm md:text-base lg:text-lg">Back</button>
+                                    <button type="submit" className="bg-[#E18126] text-white px-4 py-2 rounded-4xl font-semibold mt-4 cursor-pointer text-sm md:text-base lg:text-lg">{loading ? 'Submitting...':'Submit'}</button>
                                 </div>
                             </div>  
                             )}
@@ -446,7 +446,7 @@ function LifeInsurance() {
                 <img src="/assets/element_three.png" alt="element" className='w-full h-full' />
             </div>
             <div className="py-20">
-                <div className="px-8 md:px-0 md:max-w-165 lg:max-w-340 mx-auto flex flex-col lg:flex-row justify-center items-center md:gap-20 lg:gap-40">
+                <div className="px-6 md:px-0 md:max-w-165 lg:max-w-340 mx-auto flex flex-col lg:flex-row justify-center items-center md:gap-20 lg:gap-40">
                     <motion.div initial={{ x: -30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-full lg:w-[70%]">
                         <p className="uppercase font-bold text-gray-700 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl text-xs mb-4">Family Protection</p>
                         <h2 className="text-2xl md:text-4xl lg:text-5xl lg:leading-16 font-bold mb-6 text-blue-950">Secure Your Family&apos;s, <PointerHighlight pointerClassName="text-[#E18126]" containerClassName="text-[#E18126]">Financial Future</PointerHighlight></h2>
@@ -485,7 +485,7 @@ function LifeInsurance() {
                         <div className='flex justify-center'>
                             <div>
                                 <div className="relative w-65 md:h-100 h-65 md:w-100 overflow-hidden rounded-4xl">
-                                    <img src="/assets/life_about.png" alt="Life Insurance" className="object-cover w-full h-full"/>
+                                    <img src="/assets/life_about.webp" alt="Life Insurance" className="object-cover w-full h-full"/>
                                 </div>
                                 <motion.div animate={{ x: [0, 40, 0] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", }} className="absolute bg-white h-auto flex flex-col items-center w-40 overflow-hidden rounded-4xl px-4 py-4 -mt-6">
                                     <p className="text-lg md:text-xl text-[#1185b7] font-bold text-shadow-sm">500+</p>
@@ -496,7 +496,7 @@ function LifeInsurance() {
                     </motion.div>
                 </div>
             </div>
-            <div className='px-8 pb-10 lg:px-0'>
+            <div className='px-6 pb-10 lg:px-0'>
                 <div className='bg-linear-to-br from-[#1185b7] from-20% via-[#07587b] via-50%  to-blue-950 to-90% py-10 px-4 md:px-10 rounded-4xl md:max-w-165 lg:max-w-340 mx-auto overflow-hidden'>
                     <div className='md:max-w-2xl mx-auto mb-5'>
                         <p className="uppercase font-bold text-white after:content-[''] after:inline-block after:w-6 after:h-0.5 after:bg-[#E18126] after:ml-2 after:align-middle after:rounded-xl mb-4 text-xs text-center">Premium Features</p>
@@ -550,7 +550,7 @@ function LifeInsurance() {
                 </div>
             </div>
             <div className="bg-white">
-                <div className="px-8 md:px-0 md:max-w-165 lg:max-w-340 mx-auto py-20">
+                <div className="px-6 md:px-0 md:max-w-165 lg:max-w-340 mx-auto py-20">
                     <div className='mb-4 max-w-2xl mx-auto'>
                         <h5 className="text-2xl md:text-4xl lg:text-5xl font-bold text-blue-950 text-center leading-tight mb-4">Unmatched Benefits for<br/><span className="text-[#E18126]">your Life Journey</span></h5>
                         <p className='text-sm md:text-base lg:text-lg text-gray-700 text-center mb-5'>Experience unparalleled advantages when you secure your family&apos;s future with our expert guidance and top-tier solutions.</p>
@@ -608,7 +608,7 @@ function LifeInsurance() {
                 </div>
             </div>
             <div className='bg-linear-to-br from-[#1185b7] from-20% via-[#07587b] via-50%  to-blue-950 to-90% py-10'>
-                <div className="px-8 md:px-0 md:max-w-165 lg:max-w-180 mx-auto">
+                <div className="px-6 md:px-0 md:max-w-165 lg:max-w-180 mx-auto">
                     <h5 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white text-center lg:leading-16 text-shadow-lg mb-4">Need More Information?</h5>
                     <p className="text-sm md:text-base lg:text-lg text-center leading-6 md:leading-8 text-white text-shadow-lg mb-6">Our life insurance experts are here to help you choose the right coverage for your family&apos;s needs.</p>
                     <div className="flex flex-col md:flex-row items-center gap-4 justify-center">
@@ -622,7 +622,7 @@ function LifeInsurance() {
                 </div>
             </div>
             <div className='bg-white'>
-                <div className="px-8 md:px-0 md:max-w-165 lg:max-w-340 mx-auto pt-20 pb-30 md:pb-40">
+                <div className="px-6 md:px-0 md:max-w-165 lg:max-w-340 mx-auto pt-20 pb-30 md:pb-40">
                     <div className="flex flex-col md:flex-row gap-6 md:gap-4">
                         <div className="w-full md:w-[50%] lg:w-[40%]">
                             <div className="relative w-full h-80 md:h-100 lg:h-130 rounded-4xl overflow-hidden">

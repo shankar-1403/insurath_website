@@ -68,7 +68,7 @@ function Footer() {
     return (
         <>
         <footer className='bg-slate-900 pt-10'>
-            <div className='px-6 md:px-0'>
+            <div className='px-8 md:px-0'>
                 <div className="py-6 md:py-10 px-4 md:px-10 lg:px-20 md:max-w-165 mx-auto bg-linear-to-br from-[#1185b7] from-20% via-[#07587b] via-50%  to-blue-950 to-90% rounded-4xl w-full -mt-30">
                     <div className='mb-4 lg:mb-8'>
                         <h5 className='font-bold text-lg md:text-xl lg:text-2xl text-white text-left text-shadow-lg'>Stay Updated</h5>
@@ -139,17 +139,11 @@ function Footer() {
                                 <li>
                                     <Link className='text-white text-sm md:text-base' href={'/about-us'}>About Us</Link>
                                 </li>
-                                {/* <li>    
-                                    <Link className='text-white text-sm md:text-base' href={'/'}>Blog</Link>
-                                </li> */}
                                 <li>    
                                     <Link className='text-white text-sm md:text-base' href={'/contact-us'}>Contact Us</Link>
                                 </li>
                                 <li>
                                     <Link className='text-white text-sm md:text-base' href={'/'}>Help Center</Link>
-                                </li>
-                                <li>
-                                    <Link className='text-white text-sm md:text-base' href={'/'}>FAQs</Link>
                                 </li>
                             </ul>
                         </div>

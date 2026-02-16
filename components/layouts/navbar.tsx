@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Navbar, NavBody, NavItems, NavbarLogo, MobileNav, MobileNavHeader, MobileNavMenu, MobileNavToggle} from "@/components/ui/resizable-navbar";
 import Link from "next/link";
-import { IconCaretDownFilled,IconCaretRightFilled } from "@tabler/icons-react";
+import { IconCaretDownFilled,IconCaretRightFilled, IconShield } from "@tabler/icons-react";
 
 const navItems = [
   { name: "Home", link: "/" },
@@ -88,8 +88,8 @@ export default function MainNavbar() {
                             setIsOpen(false);
                             setProductsOpen(false);
                           }}
-                          className="text-blue-950 text-base font-bold ml-4"
-                        >{child.name}
+                          className="text-blue-950 text-base font-bold flex gap-2 items-center"
+                        ><IconShield className="w-4 h-4" color="#E18126"/>{child.name}
                         </Link>
                       ))}
                     </div>

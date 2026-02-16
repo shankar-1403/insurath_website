@@ -85,7 +85,7 @@ function ContactUs() {
     return (
         <>
             <div className="bg-linear-to-br from-blue-950 via-[#1186B7] to-[#884001] pt-40 md:pt-40 lg:pt-50 pb-20">
-                <div className="px-8 md:px-0 md:max-w-2xl lg:max-w-340 mx-auto">
+                <div className="px-6 md:px-0 md:max-w-2xl lg:max-w-340 mx-auto">
                     <div className="flex justify-center gap-4 md:gap-2 lg:gap-6">
                         <motion.div initial={{ y: 30, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }}>
                             
@@ -100,7 +100,7 @@ function ContactUs() {
                 </div>
             </div>
             <div className='pt-20 pb-40'>
-                <div className="px-8 md:px-0 md:max-w-165 lg:max-w-340 mx-auto">
+                <div className="px-6 md:px-0 md:max-w-165 lg:max-w-340 mx-auto">
                     <div className="flex flex-col lg:flex-row gap-20">
                         <div className='flex gap-10 flex-col w-full lg:w-[50%]'>
                             <form ref={formRef} onSubmit={submitForm} className='bg-white p-2 md:p-4 rounded-4xl shadow-lg'>
@@ -165,7 +165,12 @@ function ContactUs() {
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submit" className="bg-[#E18126] text-white px-4 py-2 w-full rounded-4xl font-bold mt-4 cursor-pointer text-sm md:text-base lg:text-lg">{loading ? 'Submitting...':'Submit'}</button>
+                                        <button type="submit" className="relative bg-[#E18126] text-white px-4 py-2 rounded-4xl font-semibold mt-4 cursor-pointer text-sm md:text-base lg:text-lg group transition-colors duration-300 overflow-hidden">
+                                            <span className="absolute inset-0 bg-blue-950 scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
+                                            <span className="relative z-10 text-white group-hover:text-white transition-colors duration-300">
+                                            {loading ? 'Submitting...':'Submit'}
+                                            </span>
+                                        </button>
                                     </div>  
                                 </div>
                             </form>
