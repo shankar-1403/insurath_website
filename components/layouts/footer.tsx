@@ -68,7 +68,7 @@ function Footer() {
     return (
         <>
         <footer className='bg-slate-900 pt-10'>
-            <div className='px-8 md:px-0'>
+            <div className='px-6 md:px-0'>
                 <div className="py-6 md:py-10 px-4 md:px-10 lg:px-20 md:max-w-165 mx-auto bg-linear-to-br from-[#1185b7] from-20% via-[#07587b] via-50%  to-blue-950 to-90% rounded-4xl w-full -mt-30">
                     <div className='mb-4 lg:mb-8'>
                         <h5 className='font-bold text-lg md:text-xl lg:text-2xl text-white text-left text-shadow-lg'>Stay Updated</h5>
@@ -101,7 +101,7 @@ function Footer() {
                     </form>
                 </div>
             </div>
-            <div className='px-8 md:px-0 md:max-w-165 lg:max-w-340 mx-auto py-6'>
+            <div className='px-6 md:px-0 md:max-w-165 lg:max-w-340 mx-auto py-6'>
                 <div className="flex flex-col lg:flex-row gap-10">
                     <div className="w-full lg:w-[25%]">
                         <div className='flex justify-start'>    
@@ -177,13 +177,13 @@ function Footer() {
                     </div>
                 </div>
             </div>
-            <div className='py-5 border-t border-white/20 px-8 md:px-0 md:max-w-165 lg:max-w-340 mx-auto'>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className='py-5 border-t border-white/20 px-6 md:px-0 md:max-w-165 lg:max-w-340 mx-auto'>
+                <div className="grid grid-cols-1 md:grid-cols-2 justify-between gap-4 md:gap-0">
                     <div className='col-span-1 md:col-span-1 lg:col-span-1'>
                         <p className="text-white text-sm lg:text-base">© {currentYear} Insurath. All rights reserved.</p>
                     </div>
                     <div className='col-span-1 md:col-span-1 lg:col-span-1'>
-                        <div className="flex gap-4 md:justify-end">
+                        <div className="flex gap-3 justify-between md:justify-end">
                             <Link href={'/privacy-policy'} className='text-white text-sm lg:text-base'>Privacy Policy</Link>
                             <Link href={'/terms-of-service'} className='text-white text-sm lg:text-base'>Terms of Service</Link>
                             <Link href={'/terms-of-service'} className='text-white text-sm lg:text-base'>IRDAI License</Link>

@@ -180,7 +180,7 @@ function ContactUs() {
                                 <div className='col-span-1 md:col-span-2 bg-white p-2 rounded-tr-4xl rounded-bl-4xl shadow-lg'>
                                     <div className='border-l-2 border-r-2 border-[#E18126] p-4 gap-4 rounded-tr-4xl rounded-bl-4xl'>
                                         <h3 className='text-blue-950 text-base md:text-lg lg:text-xl font-bold mb-2'>SIPANY SS INSURANCE BROKERS LLP <br/>(License No - 773) LLPIN: AAT-4069</h3>
-                                        <div className="grid grid-cols-4 w-full">
+                                        <div className="grid grid-cols-1 md:grid-cols-4 w-full">
                                             <div className='col-span-1'>
                                                 <p className='font-bold text-blue-950'>Registered Office :</p>
                                             </div>
@@ -188,7 +188,7 @@ function ContactUs() {
                                                 <p className='text-blue-950 text-sm lg:text-base'>Todi Mansion, 10th Floor, Room No - 1002A1, Lu Shun Sarani, Kolkata, West Bengal - 700073</p>
                                             </div>
                                         </div>
-                                        <div className="grid grid-cols-4 w-full">
+                                        <div className="grid grid-cols-1 md:grid-cols-4 w-full">
                                             <div className='col-span-1'>
                                                 <p className='font-bold text-blue-950'>Valid From :</p>
                                             </div>
@@ -206,7 +206,7 @@ function ContactUs() {
                                             </div>
                                         </div>
                                         <div>
-                                            <h3 className='text-blue-950 text-base md:text-lg lg:text-xl font-bold mb-2'>Our Office Address</h3>
+                                            <h4 className='text-blue-950 text-base md:text-lg lg:text-xl font-bold mb-2'>Our Office Address</h4>
                                             <p className='text-blue-950 text-sm lg:text-base'>Lodha Supremus, 520, Off Mahakali Caves Rd, Chakala Industrial Area (MIDC), Andheri East, Mumbai, Maharashtra 400093</p>
                                         </div>
                                     </div>
@@ -219,7 +219,7 @@ function ContactUs() {
                                             </div>
                                         </div>
                                         <div>
-                                            <h3 className='text-blue-950 text-base md:text-lg lg:text-xl font-bold'>Phone</h3>
+                                            <h4 className='text-blue-950 text-base md:text-lg lg:text-xl font-bold'>Phone</h4>
                                             <p className='text-sm text-gray-700 font-semibold mb-1'>Call us directly</p>
                                             <Link href={'tel:9876543210'} className='text-blue-950 text-sm lg:text-base font-bold'>+91-9876543210</Link>
                                         </div>
@@ -233,7 +233,7 @@ function ContactUs() {
                                             </div>
                                         </div>
                                         <div>
-                                            <h3 className='text-blue-950 text-base md:text-lg lg:text-xl font-bold'>Email</h3>
+                                            <h5 className='text-blue-950 text-base md:text-lg lg:text-xl font-bold'>Email</h5>
                                             <p className='text-sm text-gray-700 font-semibold mb-1'>Send us a message</p>
                                             <Link href={'mailto:info@insurath.com'} className='text-blue-950 text-sm lg:text-base font-bold'>info@insurath.com</Link>
                                         </div>
@@ -247,7 +247,7 @@ function ContactUs() {
                                             </div>
                                         </div>
                                         <div>
-                                            <h3 className='text-blue-950 text-base md:text-lg lg:text-xl font-bold'>Hours</h3>
+                                            <h5 className='text-blue-950 text-base md:text-lg lg:text-xl font-bold'>Hours</h5>
                                             <p className='text-sm lg:text-base text-blue-950 font-bold mb-1'>Mon-Fri: 9AM-6PM</p>
                                             <p className='text-blue-950 text-sm lg:text-base font-bold'>Sat: 10AM-4PM</p>
                                         </div>
@@ -261,7 +261,7 @@ function ContactUs() {
                                             </div>
                                         </div>
                                         <div>
-                                            <h3 className='text-blue-950 text-base md:text-lg lg:text-xl font-bold'>WhatsApp</h3>
+                                            <h5 className='text-blue-950 text-base md:text-lg lg:text-xl font-bold'>WhatsApp</h5>
                                             <p className='text-sm text-gray-700 font-semibold mb-1'>24/7 Support</p>
                                             <Link href={'mailto'} className='text-blue-950 text-sm lg:text-base font-bold underline'>Chat Now</Link>
                                         </div>

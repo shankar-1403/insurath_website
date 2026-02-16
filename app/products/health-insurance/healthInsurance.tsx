@@ -474,7 +474,7 @@ function HealthInsurance() {
                 <div className="px-6 md:px-0 md:max-w-165 lg:max-w-340 mx-auto flex flex-col lg:flex-row justify-center items-center md:gap-20 lg:gap-40">
                     <motion.div initial={{ x: -30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-full lg:w-[70%]">
                         <p className="uppercase font-bold text-gray-700 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl text-xs mb-4">Why Health Insurance Matters</p>
-                        <h2 className="text-2xl md:text-4xl lg:text-5xl lg:leading-16 font-bold mb-6 text-blue-950 flex flex-col md:flex-row md:gap-2">Your Health, <PointerHighlight pointerClassName="text-[#E18126]" containerClassName="text-[#E18126]">Our Priority</PointerHighlight></h2>
+                        <h3 className="text-2xl md:text-4xl lg:text-5xl lg:leading-16 font-bold mb-6 text-blue-950 flex flex-col md:flex-row md:gap-2">Your Health, <PointerHighlight pointerClassName="text-[#E18126]" containerClassName="text-[#E18126]">Our Priority</PointerHighlight></h3>
                         <p className="text-sm md:text-base lg:text-lg leading-6 md:leading-8 text-gray-700 mb-8">Get the right health coverage that fits your needs and budget, with expert guidance to help you choose the best plan.</p>
                         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 mb-6">
                             <div className="flex flex-col gap-3 col-span-1 border border-[#E18126] rounded-4xl p-4">
@@ -525,49 +525,49 @@ function HealthInsurance() {
                 <div className='bg-linear-to-br from-[#1185b7] from-20% via-[#07587b] via-50%  to-blue-950 to-90% py-10 px-4 md:px-10 rounded-4xl md:max-w-165 lg:max-w-340 mx-auto overflow-hidden'>
                     <div className='md:max-w-2xl mx-auto mb-5'>
                         <p className="uppercase font-bold text-white after:content-[''] after:inline-block after:w-6 after:h-0.5 after:bg-[#E18126] after:ml-2 after:align-middle after:rounded-xl mb-4 text-xs text-center">Why Choose Us</p>
-                        <h3 className="text-2xl md:text-4xl lg:text-5xl lg:leading-16 font-bold mb-6 text-white text-center text-shadow-lg">Unmatched Benefits for <br/><span className='text-[#E18126]'>Your Health Journey</span></h3>
+                        <h4 className="text-2xl md:text-4xl lg:text-5xl lg:leading-16 font-bold mb-6 text-white text-center text-shadow-lg">Unmatched Benefits for <br/><span className='text-[#E18126]'>Your Health Journey</span></h4>
                         <p className='text-sm md:text-base lg:text-lg leading-6 md:leading-8 text-center text-shadow-lg text-white'>Experience unparalleled advantages when you secure your health with our expert guidance and top-tier solutions.</p>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
                         <div className='col-span-1'>
                             <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
                                 <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
-                                    <h4 className='text-sm lg:text-base text-white text-center font-bold'>Tax benefits under<br/>Section 80D</h4>
+                                    <h5 className='text-sm lg:text-base text-white text-center font-bold'>Tax benefits under<br/>Section 80D</h5>
                                 </div>
                             </div>
                         </div>
                         <div className='col-span-1'>
                             <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
                                 <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
-                                    <h4 className='text-sm lg:text-base text-white text-center font-bold'>No claim<br/>bonus</h4>
+                                    <h5 className='text-sm lg:text-base text-white text-center font-bold'>No claim<br/>bonus</h5>
                                 </div>
                             </div>
                         </div>
                         <div className='col-span-1'>
                             <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
                                 <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
-                                    <h4 className='text-sm lg:text-base text-white text-center font-bold'>Restoration benefit<br/>once per year</h4>
+                                    <h5 className='text-sm lg:text-base text-white text-center font-bold'>Restoration benefit<br/>once per year</h5>
                                 </div>
                             </div>
                         </div>
                         <div className='col-span-1'>
                             <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
                                 <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
-                                    <h4 className='text-sm lg:text-base text-white text-center font-bold'>Alternative treatment<br/>coverage</h4>
+                                    <h5 className='text-sm lg:text-base text-white text-center font-bold'>Alternative treatment<br/>coverage</h5>
                                 </div>
                             </div>
                         </div>
                         <div className='col-span-1'>
                             <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
                                 <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
-                                    <h4 className='text-sm lg:text-base text-white text-center font-bold'>Mental health<br/>coverage</h4>
+                                    <h5 className='text-sm lg:text-base text-white text-center font-bold'>Mental health<br/>coverage</h5>
                                 </div>
                             </div>
                         </div>
                         <div className='col-span-1'>
                             <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
                                 <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
-                                    <h4 className='text-sm lg:text-base text-white text-center font-bold'>Critical illness<br/>coverage</h4>
+                                    <h5 className='text-sm lg:text-base text-white text-center font-bold'>Critical illness<br/>coverage</h5>
                                 </div>
                             </div>
                         </div>

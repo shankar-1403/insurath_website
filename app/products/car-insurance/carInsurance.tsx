@@ -426,7 +426,7 @@ function CarInsurance() {
                 <div className="px-6 md:px-0 md:max-w-165 lg:max-w-340 mx-auto flex flex-col lg:flex-row justify-center items-center md:gap-20 lg:gap-40">
                     <motion.div initial={{ x: -30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-full lg:w-[70%]">
                         <p className="uppercase font-bold text-gray-700 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl text-xs mb-4">Vehicle Protection</p>
-                        <h2 className="text-2xl md:text-4xl lg:text-5xl lg:leading-16 font-bold mb-6 text-blue-950 flex flex-col md:flex-row lg:flex-col md:gap-2">Protect Your Vehicle with, <PointerHighlight pointerClassName="text-[#E18126]" containerClassName="text-[#E18126]">Complete Coverage</PointerHighlight></h2>
+                        <h3 className="text-2xl md:text-4xl lg:text-5xl lg:leading-16 font-bold mb-6 text-blue-950 flex flex-col md:flex-row lg:flex-col md:gap-2">Protect Your Vehicle with, <PointerHighlight pointerClassName="text-[#E18126]" containerClassName="text-[#E18126]">Complete Coverage</PointerHighlight></h3>
                         <p className="text-sm md:text-base lg:text-lg leading-6 md:leading-8 text-gray-700 mb-8">Comprehensive car insurance that provides complete protection for your vehicle against accidents, theft, and natural disasters.</p>
                         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 mb-6">
                             <div className="flex flex-col gap-3 col-span-1 border border-[#E18126] rounded-4xl p-4">
@@ -477,49 +477,49 @@ function CarInsurance() {
                 <div className='bg-linear-to-br from-[#1185b7] from-20% via-[#07587b] via-50%  to-blue-950 to-90% py-10 px-4 md:px-10 rounded-4xl md:max-w-165 lg:max-w-340 mx-auto overflow-hidden'>
                     <div className='md:max-w-2xl mx-auto mb-5'>
                         <p className="uppercase font-bold text-white after:content-[''] after:inline-block after:w-6 after:h-0.5 after:bg-[#E18126] after:ml-2 after:align-middle after:rounded-xl mb-4 text-xs text-center">Premium Features</p>
-                        <h3 className="text-2xl md:text-4xl lg:text-5xl lg:leading-16 font-bold mb-6 text-white text-center text-shadow-lg">Everything You Need for<br/><span className='text-[#E18126]'>Complete Vehicle Protection</span></h3>
+                        <h4 className="text-2xl md:text-4xl lg:text-5xl lg:leading-16 font-bold mb-6 text-white text-center text-shadow-lg">Everything You Need for<br/><span className='text-[#E18126]'>Complete Vehicle Protection</span></h4>
                         <p className='text-sm md:text-base lg:text-lg leading-6 md:leading-8 text-center text-shadow-lg text-white'>Our comprehensive car insurance plans come with premium features designed to give you complete peace of mind.</p>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
                         <div className='col-span-1'>
                             <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
                                 <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
-                                    <h4 className='text-sm lg:text-base text-white text-center font-bold'>Zero depreciation<br/>cover</h4>
+                                    <h5 className='text-sm lg:text-base text-white text-center font-bold'>Zero depreciation<br/>cover</h5>
                                 </div>
                             </div>
                         </div>
                         <div className='col-span-1'>
                             <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
                                 <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
-                                    <h4 className='text-sm lg:text-base text-white text-center font-bold'>Engine<br/>protection</h4>
+                                    <h5 className='text-sm lg:text-base text-white text-center font-bold'>Engine<br/>protection</h5>
                                 </div>
                             </div>
                         </div>
                         <div className='col-span-1'>
                             <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
                                 <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
-                                    <h4 className='text-sm lg:text-base text-white text-center font-bold'>Cashless<br/>claims</h4>
+                                    <h5 className='text-sm lg:text-base text-white text-center font-bold'>Cashless<br/>claims</h5>
                                 </div>
                             </div>
                         </div>
                         <div className='col-span-1'>
                             <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
                                 <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
-                                    <h4 className='text-sm lg:text-base text-white text-center font-bold'>Consumables</h4>
+                                    <h5 className='text-sm lg:text-base text-white text-center font-bold'>Consumables</h5>
                                 </div>
                             </div>
                         </div>
                         <div className='col-span-1'>
                             <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
                                 <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
-                                    <h4 className='text-sm lg:text-base text-white text-center font-bold'>Return to<br/>invoice</h4>
+                                    <h5 className='text-sm lg:text-base text-white text-center font-bold'>Return to<br/>invoice</h5>
                                 </div>
                             </div>
                         </div>
                         <div className='col-span-1'>
                             <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
                                 <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
-                                    <h4 className='text-sm lg:text-base text-white text-center font-bold'>Roadside<br/>assistance</h4>
+                                    <h5 className='text-sm lg:text-base text-white text-center font-bold'>Roadside<br/>assistance</h5>
                                 </div>
                             </div>
                         </div>

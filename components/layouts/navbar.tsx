@@ -77,7 +77,7 @@ export default function MainNavbar() {
             if (item.children) {
               return (
                 <>
-                  <button onClick={() => setProductsOpen(!productsOpen)} className="text-blue-950 font-bold text-left flex justify-between items-center w-full">{item.name}<IconCaretDownFilled className="w-4 h-4" /></button>
+                  <button onClick={() => setProductsOpen(!productsOpen)} className="text-blue-950 font-bold text-left flex justify-between items-center w-full">{item.name}<IconCaretDownFilled className="w-4 h-4" color="#162556"/></button>
                   {productsOpen && (
                     <div className="flex flex-col space-y-4">
                       {item.children.map((child) => (

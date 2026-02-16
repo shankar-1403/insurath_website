@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { IconMenu2, IconX } from "@tabler/icons-react";
+import { IconMenuDeep, IconX } from "@tabler/icons-react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent,useTransform } from "motion/react";
 import React, { useRef, useState, useEffect } from "react";
 import Link from "next/link";
@@ -246,7 +246,7 @@ export const MobileNavToggle = ({
     </div>
   ) : (
     <div className="px-6">
-      <IconMenu2 className="text-[#E18126]" onClick={onClick} />
+      <IconMenuDeep className="w-7 md:w-8 h-7 md:h-8" color="#E18126" onClick={onClick} />
     </div>
   );
 };

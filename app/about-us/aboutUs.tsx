@@ -109,7 +109,7 @@ function AboutUs() {
                                     <div className='bg-[#E18126] rounded-full p-3 md:p-6'>
                                         <IconShield color='white' className='md:w-10 lg:w-14 md:h-10 lg:h-14'/>
                                     </div>
-                                    <h5 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white lg:leading-16 text-center mb-4">Insurath - Suraksha Har Mod Par</h5>
+                                    <h4 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white lg:leading-16 text-center mb-4">Insurath - Suraksha Har Mod Par</h4>
                                     <p className="text-sm md:text-base lg:text-lg leading-6 md:leading-8 text-center text-white">At Insurath, we simplify insurance so you can make decisions with clarity and confidence. Whether you’re protecting yourself, your family, or your business, we connect you with the right coverage tailored to your goals and stage of life.</p>
                                 </div>
                             </div>
@@ -122,7 +122,7 @@ function AboutUs() {
                     <div className="max-w-140 mx-auto">
                         <div className="flex flex-col justify-center gap-4 md:gap-6 mb-6">
                             <p className="uppercase font-bold text-gray-700 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl text-center text-xs">Our Values</p>
-                            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-center text-blue-950 lg:leading-16">What Drives Us</h2>
+                            <h5 className="text-2xl md:text-4xl lg:text-5xl font-bold text-center text-blue-950 lg:leading-16">What Drives Us</h5>
                             <p className='text-sm md:text-base lg:text-lg text-center leading-6 md:leading-8 text-gray-700'>Our core values shape every interaction and decision we make, ensuring we always put our customers first.</p>
                         </div>
                     </div>
@@ -133,7 +133,7 @@ function AboutUs() {
                                     <div className='bg-[#E18126] p-2 rounded-full w-16 h-16 flex justify-center items-center mb-4'>
                                         <img src="/assets/trust_reliability.png" alt="Trust & Reliability" className='w-full h-full'/>
                                     </div>
-                                    <h3 className='text-lg md:text-xl lg:text-2xl text-blue-950 font-bold mb-2'>Trust & Reliability</h3>
+                                    <h5 className='text-lg md:text-xl lg:text-2xl text-blue-950 font-bold mb-2'>Trust & Reliability</h5>
                                     <div className='h-1 w-16 bg-linear-to-r from-[#E18126] to-[#1185b7] rounded-full mb-4'></div>
                                     <p className='text-sm md:text-base lg:text-lg text-gray-700 leading-6 md:leading-8'>We build lasting relationships based on trust, transparency, and reliable service.</p>
                                 </div>
@@ -145,7 +145,7 @@ function AboutUs() {
                                     <div className='bg-[#E18126] p-2 rounded-full w-16 h-16 flex justify-center items-center mb-4'>
                                         <img src="/assets/customer_first.png" alt="Customer First" className='w-full h-full'/>
                                     </div>
-                                    <h3 className='text-lg md:text-xl lg:text-2xl text-blue-950 font-bold mb-2'>Customer First</h3>
+                                    <h5 className='text-lg md:text-xl lg:text-2xl text-blue-950 font-bold mb-2'>Customer First</h5>
                                     <div className='h-1 w-16 bg-linear-to-r from-[#E18126] to-[#1185b7] rounded-full mb-4'></div>
                                     <p className='text-sm md:text-base textlg:-lg text-gray-700 leading-6 md:leading-8'>Our customers are at the heart of everything we do, and their success is our success.</p>
                                 </div>
@@ -157,7 +157,7 @@ function AboutUs() {
                                     <div className='bg-[#E18126] p-2 rounded-full w-16 h-16 flex justify-center items-center mb-4'>
                                         <img src="/assets/excellence.png" alt="Excellence" className='w-full h-full'/>
                                     </div>
-                                    <h3 className='text-lg md:text-xl lg:text-2xl text-blue-950 font-bold mb-2'>Excellence</h3>
+                                    <h5 className='text-lg md:text-xl lg:text-2xl text-blue-950 font-bold mb-2'>Excellence</h5>
                                     <div className='h-1 w-16 bg-linear-to-r from-[#E18126] to-[#1185b7] rounded-full mb-4'></div>
                                     <p className='text-sm md:text-base lg:text-lg text-gray-700 leading-6 md:leading-8'>We strive for excellence in every interaction and continuously improve our services.</p>
                                 </div>
@@ -169,7 +169,7 @@ function AboutUs() {
                                     <div className='bg-[#E18126] p-2 rounded-full w-16 h-16 flex justify-center items-center mb-4'>
                                         <img src="/assets/integrity.png" alt="Integrity" className='w-full h-full'/>
                                     </div>
-                                    <h3 className='text-lg md:text-xl lg:text-2xl text-blue-950 font-bold mb-2'>Integrity</h3>
+                                    <h5 className='text-lg md:text-xl lg:text-2xl text-blue-950 font-bold mb-2'>Integrity</h5>
                                     <div className='h-1 w-16 bg-linear-to-r from-[#E18126] to-[#1185b7] rounded-full mb-4'></div>
                                     <p className='text-sm md:text-base lg:text-lg text-gray-700 leading-6 md:leading-8'>We conduct business with the highest ethical standards and complete transparency.</p>
                                 </div>
@@ -180,74 +180,74 @@ function AboutUs() {
             </div>
             <div className="bg-linear-to-br from-[#1185b7] from-20% via-[#07587b] via-50%  to-blue-950 to-90% py-10">
                 <div className="px-6 md:px-0 md:max-w-165 lg:max-w-340 mx-auto">
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 items-center justify-between">
-                    <div className="col-span-1 flex flex-col justify-center">
-                    <div className="flex justify-center">
-                        <img src={'/assets/happy_customers.png'} alt="Happy Customers" className="h-full"/>
-                    </div>
-                    <div className="flex flex-col items-center justify-center">
-                        <div className="flex">
-                        <NumberTicker value={50000} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/><span className="text-white text-xl md:text-3xl lg:text-4xl font-bold">+</span>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 items-center justify-between">
+                        <div className="col-span-1 flex flex-col justify-center">
+                            <div className="flex justify-center">
+                                <img src={'/assets/happy_customers.png'} alt="Happy Customers" className="h-full"/>
+                            </div>
+                            <div className="flex flex-col items-center justify-center">
+                                <div className="flex">
+                                <NumberTicker value={50000} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/><span className="text-white text-xl md:text-3xl lg:text-4xl font-bold">+</span>
+                                </div>
+                                <p className="text-white text-sm lg:text-base">Happy Customers</p>
+                            </div>
                         </div>
-                        <p className="text-white text-sm lg:text-base">Happy Customers</p>
-                    </div>
-                    </div>
-                    <div className="col-span-1 flex flex-col justify-center">
-                    <div className="flex justify-center">
-                        <img src={'/assets/claims_settled.png'} alt="Claims Settled" className="h-full"/>
-                    </div>
-                    <div className="flex flex-col items-center justify-center">
-                        <div className="flex">
-                        <NumberTicker value={500} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/><span className="text-white text-xl md:text-2xl lg:text-4xl font-bold">+</span>
+                        <div className="col-span-1 flex flex-col justify-center">
+                            <div className="flex justify-center">
+                                <img src={'/assets/claims_settled.png'} alt="Claims Settled" className="h-full"/>
+                            </div>
+                            <div className="flex flex-col items-center justify-center">
+                                <div className="flex">
+                                <NumberTicker value={500} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/><span className="text-white text-xl md:text-2xl lg:text-4xl font-bold">+</span>
+                                </div>
+                                <p className="text-white text-sm lg:text-base">Claims Settled</p>
+                            </div>
                         </div>
-                        <p className="text-white text-sm lg:text-base">Claims Settled</p>
-                    </div>
-                    </div>
-                    <div className="col-span-1 flex flex-col justify-center">
-                    <div className="flex justify-center">
-                        <img src={'/assets/insurance_partners.png'} alt="Insurance Partners" className="h-full"/>
-                    </div>
-                    <div className="flex flex-col items-center justify-center">
-                        <div className="flex">
-                        <NumberTicker value={25} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/><span className="text-white text-xl md:text-2xl lg:text-4xl font-bold">+</span>
+                        <div className="col-span-1 flex flex-col justify-center">
+                            <div className="flex justify-center">
+                                <img src={'/assets/insurance_partners.png'} alt="Insurance Partners" className="h-full"/>
+                            </div>
+                            <div className="flex flex-col items-center justify-center">
+                                <div className="flex">
+                                <NumberTicker value={25} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/><span className="text-white text-xl md:text-2xl lg:text-4xl font-bold">+</span>
+                                </div>
+                                <p className="text-white text-sm lg:text-base">Insurance Partners</p>
+                            </div>
                         </div>
-                        <p className="text-white text-sm lg:text-base">Insurance Partners</p>
-                    </div>
-                    </div>
-                    <div className="col-span-1 flex flex-col justify-center">
-                    <div className="flex justify-center">
-                        <img src={'/assets/claim_settlement_ratio.png'} alt="Claim Settlement Ratio" className="h-full"/>
-                    </div>
-                    <div className="flex flex-col items-center justify-center">
-                        <div className="flex">
-                        <NumberTicker value={92} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/><span className="text-white text-xl md:text-2xl lg:text-4xl font-bold">%</span>
+                        <div className="col-span-1 flex flex-col justify-center">
+                            <div className="flex justify-center">
+                                <img src={'/assets/claim_settlement_ratio.png'} alt="Claim Settlement Ratio" className="h-full"/>
+                            </div>
+                            <div className="flex flex-col items-center justify-center">
+                                <div className="flex">
+                                <NumberTicker value={92} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/><span className="text-white text-xl md:text-2xl lg:text-4xl font-bold">%</span>
+                                </div>
+                                <p className="text-white text-sm lg:text-base">Claim Settlement Ratio</p>
+                            </div>
                         </div>
-                        <p className="text-white text-sm lg:text-base">Claim Settlement Ratio</p>
-                    </div>
-                    </div>
-                    <div className="col-span-1 flex flex-col justify-center">
-                    <div className="flex justify-center">
-                        <img src={'/assets/customer_support.png'} alt="Customer Support" className="h-full"/>
-                    </div>
-                    <div className="flex flex-col items-center justify-center">
-                        <div className="flex">
-                        <NumberTicker value={24} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/><span className="text-white text-xl md:text-2xl lg:text-4xl font-bold">/</span><NumberTicker value={7} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/>
+                        <div className="col-span-1 flex flex-col justify-center">
+                            <div className="flex justify-center">
+                                <img src={'/assets/customer_support.png'} alt="Customer Support" className="h-full"/>
+                            </div>
+                            <div className="flex flex-col items-center justify-center">
+                                <div className="flex">
+                                <NumberTicker value={24} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/><span className="text-white text-xl md:text-2xl lg:text-4xl font-bold">/</span><NumberTicker value={7} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/>
+                                </div>
+                                <p className="text-white text-sm lg:text-base">Customer Support</p>
+                            </div>
                         </div>
-                        <p className="text-white text-sm lg:text-base">Customer Support</p>
-                    </div>
-                    </div>
-                    <div className="col-span-1 flex flex-col justify-center">
-                    <div className="flex justify-center">
-                        <img src={'/assets/customer_rating.png'} alt="Customer Rating" className="h-full"/>
-                    </div>
-                    <div className="flex flex-col items-center justify-center">
-                        <div className="flex">
-                        <NumberTicker value={4.8} decimalPlaces={1} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/><span className="text-white text-xl md:text-2xl lg:text-4xl font-bold">+</span>
+                        <div className="col-span-1 flex flex-col justify-center">
+                            <div className="flex justify-center">
+                                <img src={'/assets/customer_rating.png'} alt="Customer Rating" className="h-full"/>
+                            </div>
+                            <div className="flex flex-col items-center justify-center">
+                                <div className="flex">
+                                <NumberTicker value={4.8} decimalPlaces={1} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/><span className="text-white text-xl md:text-2xl lg:text-4xl font-bold">+</span>
+                                </div>
+                                <p className="text-white text-sm lg:text-base">Customer Rating</p>
+                            </div>
                         </div>
-                        <p className="text-white text-sm lg:text-base">Customer Rating</p>
                     </div>
-                    </div>
-                </div>
                 </div>
             </div>
             {/* <div className="py-20 bg-white">
