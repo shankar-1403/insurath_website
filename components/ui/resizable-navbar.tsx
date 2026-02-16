@@ -286,7 +286,7 @@ export const NavbarLogo = () => {
     scrollY,
     [0, 150],
     device === "mobile"
-      ? [20, 20]
+      ? [5, 0]
       : device === "tablet"
       ? [-12, 0]
       : [-35, -15]
