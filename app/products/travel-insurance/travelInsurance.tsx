@@ -179,7 +179,7 @@ function TravelInsurance() {
                         </div>
                         <div className="flex flex-col items-start justify-center gap-10">
                             <div className='flex flex-col items-start justify-center gap-6 md:gap-10'>
-                                <h1 className="text-left text-white text-2xl md:text-4xl lg:text-7xl font-bold text-shadow-lg">Travel<br/><span className="text-[#E18126]">Worry-Free</span></h1>
+                                <h1 className="text-left text-white text-2xl md:text-4xl lg:text-7xl font-bold text-shadow-lg">Protect Your<br/><span className="text-[#E18126]">Journey</span></h1>
                                 <p className="text-left text-white text-lg md:text-lg lg:text-2xl text-shadow-lg">Travel worry-free with <span className="text-[#E18126]">comprehensive travel insurance</span> covering medical emergencies and trip cancellations.</p>
                             </div>
                             <div className='flex flex-col lg:flex-row gap-4 w-full'>
