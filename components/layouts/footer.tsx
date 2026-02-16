@@ -161,7 +161,7 @@ function Footer() {
                                         <div>
                                             <IconMapPin className='inline mr-2' color='#E18126' size={20} />
                                         </div>
-                                        <span className='text-white text-sm md:text-base'>Lodha Supremus, 504, Off Mahakali Caves Rd, Chakala Industrial Area (MIDC), Andheri East, Mumbai, Maharashtra 400093</span>
+                                        <span className='text-white text-sm md:text-base'>Lodha Supremus, 504-B, Off Mahakali Caves Rd, Chakala Industrial Area (MIDC), Andheri East, Mumbai, Maharashtra 400093</span>
                                     </div>
                                 </li>
                                 <li>

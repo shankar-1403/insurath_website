@@ -207,7 +207,7 @@ function ContactUs() {
                                         </div>
                                         <div>
                                             <h4 className='text-blue-950 text-base md:text-lg lg:text-xl font-bold mb-2'>Our Office Address</h4>
-                                            <p className='text-blue-950 text-sm md:text-base'>Lodha Supremus, 520, Off Mahakali Caves Rd, Chakala Industrial Area (MIDC), Andheri East, Mumbai, Maharashtra 400093</p>
+                                            <p className='text-blue-950 text-sm md:text-base'>Lodha Supremus, 504-B, Off Mahakali Caves Rd, Chakala Industrial Area (MIDC), Andheri East, Mumbai, Maharashtra 400093</p>
                                         </div>
                                     </div>
                                 </div>
