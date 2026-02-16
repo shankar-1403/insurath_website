@@ -193,7 +193,7 @@ function ContactUs() {
                                                 <p className='font-bold text-sm md:text-base text-blue-950'>Valid From :</p>
                                             </div>
                                             <div className='col-span-3'>
-                                                <p className='text-blue-950 text-sm md:text-base'>20 October 2024 | Valid Till: 20 October 2027</p>
+                                                <p className='text-blue-950 text-sm md:text-base'>21 October 2024 | Valid Till: 20 October 2027</p>
                                             </div>
                                         </div>
                                     </div>
@@ -247,9 +247,9 @@ function ContactUs() {
                                             </div>
                                         </div>
                                         <div>
-                                            <h5 className='text-blue-950 text-base md:text-lg lg:text-xl font-bold'>Hours</h5>
-                                            <p className='text-sm md:text-base text-blue-950 font-bold mb-1'>Mon-Fri: 9AM-6PM</p>
-                                            <p className='text-blue-950 text-sm md:text-base font-bold'>Sat: 10AM-4PM</p>
+                                            <h5 className='text-blue-950 text-base md:text-lg lg:text-xl font-bold'>Timings</h5>
+                                            <p className='text-sm text-gray-700 font-semibold mb-1'>Mon-Sat</p>
+                                            <p className='text-sm md:text-base text-blue-950 font-bold'>9AM-7PM</p>
                                         </div>
                                     </div>
                                 </div>
