@@ -35,6 +35,20 @@ function AboutUs() {
             answer: "We maintain a 98% customer satisfaction rate, which reflects our commitment to providing excellent service and support to all our clients."
         }
     ];
+
+    const team = [
+        {name:"Mr. Vijay Sharma",designation:"Founder",image:"/assets/team/vijay_sharma.webp"},
+        {name:"Mr. Shashank Chaudhari",designation:"Co-Founder",image:"/assets/team/shashank.webp"},
+        {name:"CA Pooja Dubey",designation:"Co-Founder",image:"/assets/team/pooja_dubey.webp"},
+        {name:"Mrs. Puja Sharma ",designation:"Promoter",image:"/assets/team/puja_sharma.webp"},
+        {name:"Mr. Sanjay Jhanwar",designation:"COO",image:"/assets/team/sanjay_jhanwar.webp"},
+        {name:"Mr. Sanam Bhatheja",designation:"Vice President",image:"/assets/team/sanam_batheja.webp"},
+        {name:"Mr. Amulya Agarwal",designation:"Assistant Vice President",image:"/assets/team/amulya_agarwal.webp"},
+        {name:"Mrs. Priyanka Chauhan",designation:"Corporate Advisor",image:"/assets/team/priyanka.webp"},
+        {name:"Mr. TakshilKumar Desai",designation:"Senior Partner",image:"/assets/team/takshilkumar_desai.webp"},
+        {name:"Mr. Pramod Asolkar",designation:"Senior Manager - Operations & Process",image:"/assets/team/pramod_asolkar.webp"},
+        {name:"Mrs. Sharon Rahatwal",designation:"Process Manager",image:"/assets/team/sharon.webp"},
+    ]
     return (
         <>
             <div className="bg-linear-to-br from-blue-950 via-[#1186B7] to-[#884001] pt-40 md:pt-40 lg:pt-50 pb-20">
@@ -250,7 +264,7 @@ function AboutUs() {
                     </div>
                 </div>
             </div>
-            {/* <div className="py-20 bg-white">
+            <div className="py-20">
                 <div className="max-w-340 mx-auto">
                     <div className="max-w-180 mx-auto">
                         <div className="flex flex-col justify-center gap-6 mb-6">
@@ -259,54 +273,27 @@ function AboutUs() {
                             <p className='text-lg text-center text-gray-700 leading-6 md:leading-8'>Our experienced team of insurance professionals is dedicated to helping you find the perfect coverage.</p>
                         </div>
                     </div>
-                    <div className="grid grid-cols-4 gap-6">
-                        <div className="col-span-1">
-                            <div className='w-full overflow-hidden'>
-                                <img src="/assets/travel_about.png" alt="Rajesh Kumar" className='w-full h-full'/>
-                            </div>
-                            <div>
-                                <h4 className='text-2xl text-blue-950 font-bold'>Rajesh Kumar</h4>
-                                <p className='text-[#E18126] text-sm font-bold'>Founder & CEO</p>
-                                <p className='text-gray-700 text-sm mb-2'>15+ years in Insurance</p>
-                                <p className='text-sm text-blue-950'>Expert in life and health insurance with a passion for helping families secure their future.</p>
-                            </div>
-                        </div>
-                        <div className="col-span-1">
-                            <div className='w-full overflow-hidden'>
-                                <img src="/assets/travel_about.png" alt="Priya Sharma" className='w-full h-full'/>
-                            </div>
-                            <div>
-                                <h4 className='text-2xl text-blue-950 font-bold'>Priya Sharma</h4>
-                                <p className='text-[#E18126] text-sm font-bold'>Head of Operations</p>
-                                <p className='text-gray-700 text-sm mb-2'>12+ years in Insurance</p>
-                                <p className='text-sm text-blue-950'>Specializes in motor insurance and has helped thousands of customers find the right coverage.</p>
-                            </div>
-                        </div>
-                        <div className="col-span-1">
-                            <div className='w-full overflow-hidden'>
-                                <img src="/assets/travel_about.png" alt="Amit Patel" className='w-full h-full'/>
-                            </div>
-                            <div>
-                                <h4 className='text-2xl text-blue-950 font-bold'>Amit Patel</h4>
-                                <p className='text-[#E18126] text-sm font-bold'>Senior Insurance Advisor</p>
-                                <p className='text-gray-700 text-sm mb-2'>10+ years in Insurance</p>
-                                <p className='text-sm text-blue-950'>Expert in business insurance and risk management for small and medium enterprises.</p>
-                            </div>
-                        </div>
-                        <div className="col-span-1">
-                            <div className='w-full overflow-hidden'>
-                                <img src="/assets/travel_about.png" alt="Sneha Reddy" className='w-full h-full'/>
-                            </div>
-                            <div>
-                                <h4 className='text-2xl text-blue-950 font-bold'>Sneha Reddy</h4>
-                                <p className='text-[#E18126] text-sm font-bold'>Customer Success Manager</p>
-                                <p className='text-gray-700 text-sm mb-2'>8+ years in Insurance</p>
-                                <p className='text-sm text-blue-950'>Dedicated to ensuring customer satisfaction and smooth claim processes.</p>
-                            </div>
-                        </div>
+                    <div className="grid grid-cols-4 gap-x-6 gap-y-38 mt-30">
+                        {team.map((data)=>(
+                            <>
+                                <div className="col-span-1">
+                                    <div className='p-4 bg-white shadow-xl h-100 rounded-4xl'>
+                                        <div className='bg-[#1185b720] border-2 border-[#E18126] rounded-4xl'>
+                                            <div className='flex justify-center'>
+                                                <img src={data.image} alt={data.name} className='h-120 -mt-40'/>
+                                            </div>
+                                        </div>
+                                        <div className='py-1'>
+                                            <h4 className='text-xl text-center text-blue-950 font-bold'>{data.name}</h4>
+                                            <p className='text-[#E18126] text-center text-sm font-bold'>{data.designation}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </>
+                        ))}
                     </div>
                 </div>
-            </div> */}
+            </div>
             <div className='bg-white'>
                 <div className="px-6 md:px-0 md:max-w-165 lg:max-w-340 mx-auto pt-20 pb-30 md:pb-40">
                     <div className="flex flex-col md:flex-row gap-6 md:gap-4">
