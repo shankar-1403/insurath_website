@@ -203,7 +203,7 @@ function AboutUs() {
                                 <div className="flex">
                                 <NumberTicker value={50000} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/><span className="text-white text-xl md:text-3xl lg:text-4xl font-bold">+</span>
                                 </div>
-                                <p className="text-white text-sm lg:text-base">Happy Customers</p>
+                                <p className="text-white text-xs md:text-base lg:text-base text-center">Happy Customers</p>
                             </div>
                         </div>
                         <div className="col-span-1 flex flex-col justify-center">
@@ -214,7 +214,7 @@ function AboutUs() {
                                 <div className="flex">
                                 <NumberTicker value={500} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/><span className="text-white text-xl md:text-2xl lg:text-4xl font-bold">+</span>
                                 </div>
-                                <p className="text-white text-sm lg:text-base">Claims Settled</p>
+                                <p className="text-white text-xs md:text-base lg:text-base text-center">Claims Settled</p>
                             </div>
                         </div>
                         <div className="col-span-1 flex flex-col justify-center">
@@ -225,7 +225,7 @@ function AboutUs() {
                                 <div className="flex">
                                 <NumberTicker value={25} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/><span className="text-white text-xl md:text-2xl lg:text-4xl font-bold">+</span>
                                 </div>
-                                <p className="text-white text-sm lg:text-base">Insurance Partners</p>
+                                <p className="text-white text-xs md:text-base lg:text-base text-center">Insurance Partners</p>
                             </div>
                         </div>
                         <div className="col-span-1 flex flex-col justify-center">
@@ -236,7 +236,7 @@ function AboutUs() {
                                 <div className="flex">
                                 <NumberTicker value={92} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/><span className="text-white text-xl md:text-2xl lg:text-4xl font-bold">%</span>
                                 </div>
-                                <p className="text-white text-sm lg:text-base">Claim Settlement Ratio</p>
+                                <p className="text-white text-xs md:text-base lg:text-base text-center">Claim Settlement Ratio</p>
                             </div>
                         </div>
                         <div className="col-span-1 flex flex-col justify-center">
@@ -247,7 +247,7 @@ function AboutUs() {
                                 <div className="flex">
                                 <NumberTicker value={24} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/><span className="text-white text-xl md:text-2xl lg:text-4xl font-bold">/</span><NumberTicker value={7} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/>
                                 </div>
-                                <p className="text-white text-sm lg:text-base">Customer Support</p>
+                                <p className="text-white text-xs md:text-base lg:text-base text-center">Customer Support</p>
                             </div>
                         </div>
                         <div className="col-span-1 flex flex-col justify-center">
@@ -258,37 +258,37 @@ function AboutUs() {
                                 <div className="flex">
                                 <NumberTicker value={4.8} decimalPlaces={1} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/><span className="text-white text-xl md:text-2xl lg:text-4xl font-bold">+</span>
                                 </div>
-                                <p className="text-white text-sm lg:text-base">Customer Rating</p>
+                                <p className="text-white text-xs md:text-base lg:text-base text-center">Customer Rating</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div className="py-20">
-                <div className="max-w-340 mx-auto">
-                    <div className="max-w-180 mx-auto">
+                <div className="px-6 md:px-0 md:max-w-165 lg:max-w-340 mx-auto">
+                    <div className="md:max-w-140 lg:max-w-180 mx-auto">
                         <div className="flex flex-col justify-center gap-6 mb-6">
                             <p className="uppercase font-bold text-gray-700 after:content-[''] after:inline-block after:w-6 after:h-1 after:bg-[#E18126] after:ml-5 after:align-middle after:rounded-xl text-center">Meet Our Team</p>
-                            <h3 className="text-5xl font-bold text-blue-950 text-center">The People Behind Insurath</h3>
-                            <p className='text-lg text-center text-gray-700 leading-6 md:leading-8'>Our experienced team of insurance professionals is dedicated to helping you find the perfect coverage.</p>
+                            <h3 className="text-2xl md:text-4xl lg:text-5xl font-bold text-blue-950 text-center">The People Behind Insurath</h3>
+                            <p className='text-sm md:text-base lg:text-lg text-center text-gray-700 leading-6 md:leading-8'>Our experienced team of insurance professionals is dedicated to helping you find the perfect coverage.</p>
                         </div>
                     </div>
-                    <div className="grid grid-cols-4 gap-x-6 gap-y-38 mt-30">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {team.map((data)=>(
                             <>
-                                <div className="col-span-1">
-                                    <div className='p-4 bg-white shadow-xl h-100 rounded-4xl'>
+                                <motion.div initial={{ y: 30, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 5, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="col-span-1">
+                                    <div className='p-4 bg-white shadow-xl rounded-4xl'>
                                         <div className='bg-[#1185b720] border-2 border-[#E18126] rounded-4xl'>
                                             <div className='flex justify-center'>
-                                                <img src={data.image} alt={data.name} className='h-120 -mt-40'/>
+                                                <img src={data.image} alt={data.name} className='h-60 md:h-full'/>
                                             </div>
                                         </div>
-                                        <div className='py-1'>
-                                            <h4 className='text-xl text-center text-blue-950 font-bold'>{data.name}</h4>
+                                        <div className='pt-1'>
+                                            <h4 className='text-base md:text-lg lg:text-xl text-center text-blue-950 font-bold'>{data.name}</h4>
                                             <p className='text-[#E18126] text-center text-sm font-bold'>{data.designation}</p>
                                         </div>
                                     </div>
-                                </div>
+                                </motion.div>
                             </>
                         ))}
                     </div>
@@ -298,7 +298,7 @@ function AboutUs() {
                 <div className="px-6 md:px-0 md:max-w-165 lg:max-w-340 mx-auto pt-20 pb-30 md:pb-40">
                     <div className="flex flex-col md:flex-row gap-6 md:gap-4">
                         <div className="w-full md:w-[50%] lg:w-[40%]">
-                            <div className="relative w-full h-130 rounded-4xl overflow-hidden">
+                            <div className="relative w-full h-80 md:h-100 lg:h-130 rounded-4xl overflow-hidden">
                                 {/* Image */}
                                 <img src="/assets/faq.png" alt="FAQs" className="w-full h-full object-cover" />
 

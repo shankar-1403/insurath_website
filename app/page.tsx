@@ -453,7 +453,7 @@ export default function Home() {
                 <div className="flex">
                   <NumberTicker value={50000} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/><span className="text-white text-xl md:text-3xl lg:text-4xl font-bold">+</span>
                 </div>
-                <p className="text-white text-sm lg:text-base">Happy Customers</p>
+                <p className="text-white text-xs md:text-base lg:text-base text-center">Happy Customers</p>
               </div>
             </div>
             <div className="col-span-1 flex flex-col justify-center">
@@ -464,7 +464,7 @@ export default function Home() {
                 <div className="flex">
                   <NumberTicker value={500} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/><span className="text-white text-xl md:text-2xl lg:text-4xl font-bold">+</span>
                 </div>
-                <p className="text-white text-sm lg:text-base">Claims Settled</p>
+                <p className="text-white text-xs md:text-base lg:text-base text-center">Claims Settled</p>
               </div>
             </div>
             <div className="col-span-1 flex flex-col justify-center">
@@ -475,7 +475,7 @@ export default function Home() {
                 <div className="flex">
                   <NumberTicker value={25} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/><span className="text-white text-xl md:text-2xl lg:text-4xl font-bold">+</span>
                 </div>
-                <p className="text-white text-sm lg:text-base">Insurance Partners</p>
+                <p className="text-white text-xs md:text-base lg:text-base text-center">Insurance Partners</p>
               </div>
             </div>
             <div className="col-span-1 flex flex-col justify-center">
@@ -486,7 +486,7 @@ export default function Home() {
                 <div className="flex">
                   <NumberTicker value={92} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/><span className="text-white text-xl md:text-2xl lg:text-4xl font-bold">%</span>
                 </div>
-                <p className="text-white text-sm lg:text-base">Claim Settlement Ratio</p>
+                <p className="text-white text-xs md:text-base lg:text-base text-center">Claim Settlement Ratio</p>
               </div>
             </div>
             <div className="col-span-1 flex flex-col justify-center">
@@ -497,7 +497,7 @@ export default function Home() {
                 <div className="flex">
                   <NumberTicker value={24} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/><span className="text-white text-xl md:text-2xl lg:text-4xl font-bold">/</span><NumberTicker value={7} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/>
                 </div>
-                <p className="text-white text-sm lg:text-base">Customer Support</p>
+                <p className="text-white text-xs md:text-base lg:text-base text-center">Customer Support</p>
               </div>
             </div>
             <div className="col-span-1 flex flex-col justify-center">
@@ -508,7 +508,7 @@ export default function Home() {
                 <div className="flex">
                   <NumberTicker value={4.8} decimalPlaces={1} className="text-white text-xl md:text-2xl lg:text-4xl font-bold"/><span className="text-white text-xl md:text-2xl lg:text-4xl font-bold">+</span>
                 </div>
-                <p className="text-white text-sm lg:text-base">Customer Rating</p>
+                <p className="text-white text-xs md:text-base lg:text-base text-center">Customer Rating</p>
               </div>
             </div>
           </div>
