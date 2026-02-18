@@ -107,7 +107,8 @@ function Footer() {
                         <div className='flex justify-start'>    
                             <img src='/assets/insurath.png' alt="Insurath Logo" className="h-30" />
                         </div>
-                        <p className='text-white text-sm md:text-base leading-8'>India&apos;s leading insurance aggregator, helping millions find the best insurance coverage at the most competitive prices with transparent processes.</p>
+                        <p className='text-white text-sm md:text-base leading-6 md:leading-8'>Insurath is an insurance advisory company powered by SIPANY SS Insurance Brokers LLP (License No. 773 | LLPIN: AAT-4069)</p>
+                        <p className='text-white text-sm md:text-base leading-6 md:leading-8'>Validity: 21 Oct 2024 – 20 Oct 2027</p>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-8 md:gap-0 w-full lg:w-[75%]">
                         <div className='col-span-1'>

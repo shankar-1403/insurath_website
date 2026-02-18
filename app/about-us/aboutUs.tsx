@@ -40,6 +40,7 @@ function AboutUs() {
         {name:"Mr. Vijay Sharma",designation:"Founder",image:"/assets/team/vijay_sharma.webp"},
         {name:"Mr. Shashank Chaudhari",designation:"Co-Founder",image:"/assets/team/shashank.webp"},
         {name:"CA Pooja Dubey",designation:"Co-Founder",image:"/assets/team/pooja_dubey.webp"},
+        {name:"Ms. Revha Sohani",designation:"Co-Founder",image:"/assets/team/revha.webp"},
         {name:"Mrs. Puja Sharma ",designation:"Promoter",image:"/assets/team/puja_sharma.webp"},
         {name:"Mr. Sanjay Jhanwar",designation:"COO",image:"/assets/team/sanjay_jhanwar.webp"},
         {name:"Mr. Sanam Bhatheja",designation:"Vice President",image:"/assets/team/sanam_batheja.webp"},

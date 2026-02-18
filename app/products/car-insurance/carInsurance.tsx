@@ -2,8 +2,7 @@
 
 import React,{useState, useEffect, useRef, FC} from 'react';
 import {motion} from 'motion/react';
-import { AnimatedShinyText } from '@/components/ui/animated-shiny-text';
-import { IconUserFilled,IconCar,IconRoad,IconShieldCheck,IconCash } from '@tabler/icons-react';
+import { IconUserFilled,IconCar,IconRoad,IconShieldCheck,IconCash,IconChecks } from '@tabler/icons-react';
 import axios from 'axios';
 import AccordionItem from '@/components/ui/accordion';
 import { PointerHighlight } from '@/components/ui/pointer-highlight';
@@ -261,6 +260,32 @@ function CarInsurance() {
                                     <h1 className="text-left text-white text-2xl md:text-4xl lg:text-7xl font-bold text-shadow-lg">Protect Your <span className="text-[#E18126]">Vehicle</span></h1>
                                     <p className="text-left text-white text-lg md:text-lg lg:text-2xl text-shadow-lg">Protect your vehicle with <span className="text-[#E18126]">comprehensive car insurance coverage</span> and expert guidance.</p>
                                 </div>
+                                <div className='flex flex-col lg:flex-row gap-4 w-full'>
+                                    <div className='flex items-center gap-2 bg-white/20 py-2 px-4 rounded-4xl'>
+                                        <div>
+                                            <IconChecks className='h-6 w-6' color='#E18126'/>
+                                        </div>
+                                        <div>
+                                            <span className='text-sm md:text-base lg:text-lg text-white'>Instant Policy</span>
+                                        </div>
+                                    </div>
+                                    <div className='flex items-center gap-2 bg-white/20 py-2 px-4 rounded-4xl'>
+                                        <div>
+                                            <IconChecks className='h-6 w-6' color='#E18126'/>
+                                        </div>
+                                        <div>
+                                            <span className='text-sm md:text-base lg:text-lg text-white'>Zero Depreciation</span>
+                                        </div>
+                                    </div>
+                                    <div className='flex items-center gap-2 bg-white/20 py-2 px-4 rounded-4xl'>
+                                        <div>
+                                            <IconChecks className='h-6 w-6' color='#E18126'/>
+                                        </div>
+                                        <div>
+                                            <span className='text-sm md:text-base lg:text-lg text-white'>Roadside Assistance</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </motion.div>
                         <motion.div initial={{ x: 30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 3, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="w-full md:w-[60%]">
@@ -505,7 +530,7 @@ function CarInsurance() {
                         <div className='col-span-1'>
                             <div className="bg-transparent rounded-tr-4xl rounded-bl-4xl p-1 border-x border-t-2 border-b-2">
                                 <div className="border-2 border-[#E18126] px-3 py-4 rounded-tr-3xl rounded-bl-3xl">
-                                    <h5 className='text-sm lg:text-base text-white text-center font-bold'>Consumables</h5>
+                                    <h5 className='text-sm lg:text-base text-white text-center font-bold'>Consumables<br/>cover</h5>
                                 </div>
                             </div>
                         </div>

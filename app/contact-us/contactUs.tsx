@@ -188,12 +188,22 @@ function ContactUs() {
                                                 <p className='text-blue-950 text-sm md:text-base'>Todi Mansion, 10th Floor, Room No - 1002A1, Lu Shun Sarani, Kolkata, West Bengal - 700073</p>
                                             </div>
                                         </div>
-                                        <div className="grid grid-cols-1 md:grid-cols-4 w-full">
-                                            <div className='col-span-1'>
-                                                <p className='font-bold text-sm md:text-base text-blue-950'>Valid From :</p>
+                                        <div className="grid grid-cols-1 gap-1 md:grid-cols-2 mt-1">
+                                            <div className="col-span-1 flex gap-2 w-full">
+                                                <div className='col-span-1'>
+                                                    <p className='font-bold text-sm md:text-base text-blue-950'>Valid From :</p>
+                                                </div>
+                                                <div className='col-span-3'>
+                                                    <p className='text-blue-950 text-sm md:text-base'>21 October 2024</p>
+                                                </div>
                                             </div>
-                                            <div className='col-span-3'>
-                                                <p className='text-blue-950 text-sm md:text-base'>21 October 2024 | Valid Till: 20 October 2027</p>
+                                            <div className="col-span-1 flex gap-2 w-full">
+                                                <div className='col-span-1'>
+                                                    <p className='font-bold text-sm md:text-base text-blue-950'>Valid Till :</p>
+                                                </div>
+                                                <div className='col-span-3'>
+                                                    <p className='text-blue-950 text-sm md:text-base'>20 October 2027</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
