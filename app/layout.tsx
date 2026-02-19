@@ -15,6 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Insurath - Your Trusted Insurance Partner",
+  icons:"/favicon.svg"
 };
 
 export default function RootLayout({

@@ -143,16 +143,13 @@ function Footer() {
                                 <li>    
                                     <Link className='text-white text-sm md:text-base' href={'/contact-us'}>Contact Us</Link>
                                 </li>
-                                <li>
-                                    <Link className='text-white text-sm md:text-base' href={'/'}>Help Center</Link>
-                                </li>
                             </ul>
                         </div>
                         <div className='col-span-1'>
                             <h5 className='text-lg md:text-xl text-white font-bold mb-4 md:mb-10'>Contact Info</h5>
                             <ul className='flex flex-col gap-3'>
                                 <li>
-                                    <Link className='text-white text-sm md:text-base' href={'tel:9876543210'}><IconPhone className='inline mr-2' color='#E18126' size={20} />+91-9876543210</Link>
+                                    <Link className='text-white text-sm md:text-base' href={'tel:2235120060'}><IconPhone className='inline mr-2' color='#E18126' size={20} />+91-2235120060</Link>
                                 </li>
                                 <li>
                                     <Link className='text-white text-sm md:text-base' href={'mailto:info@insurath.com'}><IconMail className='inline mr-2' color='#E18126' size={20} />info@insurath.com</Link>
@@ -186,8 +183,7 @@ function Footer() {
                     <div className='col-span-1 md:col-span-1 lg:col-span-1'>
                         <div className="flex gap-3 justify-between md:justify-end">
                             <Link href={'/privacy-policy'} className='text-white text-sm lg:text-base'>Privacy Policy</Link>
-                            <Link href={'/terms-of-service'} className='text-white text-sm lg:text-base'>Terms of Service</Link>
-                            <Link href={'/terms-of-service'} className='text-white text-sm lg:text-base'>IRDAI License</Link>
+                            <Link href={'/terms-and-conditions'} className='text-white text-sm lg:text-base'>Terms & Conditions</Link>
                         </div>
                     </div>
                 </div>

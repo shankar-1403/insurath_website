@@ -231,7 +231,7 @@ function ContactUs() {
                                         <div>
                                             <h4 className='text-blue-950 text-base md:text-lg lg:text-xl font-bold'>Phone</h4>
                                             <p className='text-sm text-gray-700 font-semibold mb-1'>Call us directly</p>
-                                            <Link href={'tel:9876543210'} className='text-blue-950 text-sm md:text-base font-bold'>+91-9876543210</Link>
+                                            <Link href={'tel:2235120060'} className='text-blue-950 text-sm md:text-base font-bold'>+91-2235120060</Link>
                                         </div>
                                     </div>
                                 </div>
@@ -273,7 +273,7 @@ function ContactUs() {
                                         <div>
                                             <h5 className='text-blue-950 text-base md:text-lg lg:text-xl font-bold'>WhatsApp</h5>
                                             <p className='text-sm text-gray-700 font-semibold mb-1'>24/7 Support</p>
-                                            <Link href={'mailto'} className='text-blue-950 text-sm md:text-base font-bold underline'>Chat Now</Link>
+                                            <Link href={"https://wa.me/8655916800"} target="_blank" className='text-blue-950 text-sm md:text-base font-bold underline'>Chat Now</Link>
                                         </div>
                                     </div>
                                 </div>
