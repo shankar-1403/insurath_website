@@ -23,7 +23,7 @@ export async function GET() {
 
       const cursor = BusinessInsurance.find()
         .select(
-          "company_name contact_person email_id phone_number business_type industry annual_revenue number_of_employees existing_business_insurance primary_coverage_type estimated_property_value liability_coverage_needs cyber_security_coverage priority_coverage_area -_id"
+          "company_name contact_person email_id phone_number business_type industry annual_revenue number_of_employees existing_business_insurance primary_coverage_type estimated_property_value liability_coverage_needs cyber_security_coverage priority_coverage_area createdAt -_id"
         )
         .cursor()
 

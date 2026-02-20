@@ -22,7 +22,7 @@ export async function GET() {
 
       const cursor = HealthInsurance.find()
         .select(
-          "full_name email_id phone_number age gender city coverage_type existing_health_insurance pre_existing_conditions desired_coverage_amount -_id"
+          "full_name email_id phone_number age gender city coverage_type existing_health_insurance pre_existing_conditions desired_coverage_amount createdAt -_id"
         )
         .cursor()
 

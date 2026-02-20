@@ -22,7 +22,7 @@ export async function GET() {
 
       const cursor = LifeInsurance.find()
         .select(
-          "full_name email_id phone_number age gender city family_size income_range exisitng_life_insurance health_condition desired_coverage_amount -_id"
+          "full_name email_id phone_number age gender city family_size income_range exisitng_life_insurance health_condition desired_coverage_amount createdAt -_id"
         )
         .cursor()
 

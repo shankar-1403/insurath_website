@@ -23,7 +23,7 @@ export async function GET() {
 
       const cursor = CarInsurance.find()
         .select(
-          "full_name email_id phone_number city vehicle_name vehicle_model manufacturing_year registration_year registration_number exisiting_car_insurance claim_history desired_coverage_type -_id"
+          "full_name email_id phone_number city vehicle_name vehicle_model manufacturing_year registration_year registration_number exisiting_car_insurance claim_history desired_coverage_type createdAt -_id"
         )
         .cursor()
 

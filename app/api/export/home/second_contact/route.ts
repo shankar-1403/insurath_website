@@ -22,7 +22,7 @@ export async function GET() {
 
       const cursor = Home.find()
         .select(
-          "full_name email_id phone_number insurance_type message -_id"
+          "full_name email_id phone_number insurance_type message createdAt -_id"
         )
         .cursor()
 

@@ -22,7 +22,7 @@ export async function GET() {
 
       const cursor = TravelInsurance.find()
         .select(
-          "full_name email_id phone_number age city -_id"
+          "full_name email_id phone_number age city createdAt -_id"
         )
         .cursor()
 
