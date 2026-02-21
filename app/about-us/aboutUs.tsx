@@ -1,7 +1,7 @@
 "use client";
 
 import React,{useState} from 'react';
-import {motion} from "motion/react";
+import {easeIn, easeInOut, motion} from "motion/react";
 import { NumberTicker } from '@/components/ui/number-ticker';
 import { IconTargetArrow,IconHeart, IconShield } from '@tabler/icons-react';
 import AccordionItem from '@/components/ui/accordion';
@@ -277,11 +277,11 @@ function AboutUs() {
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {team.map((data)=>(
                             <>
-                                <motion.div initial={{ y: 30, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 5, ease: [0.22, 1, 0.36, 1]}} viewport={{ once: true }} className="col-span-1">
+                                <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 2, ease: easeIn}} viewport={{ once: true }} className="col-span-1">
                                     <div className='p-4 bg-white shadow-xl rounded-4xl'>
                                         <div className='bg-[#1185b720] border-2 border-[#E18126] rounded-4xl'>
                                             <div className='flex justify-center'>
-                                                <img src={data.image} alt={data.name} className='h-60 md:h-full'/>
+                                                <img src={data.image} alt={data.name} className='h-60 md:h-full rounded-4xl'/>
                                             </div>
                                         </div>
                                         <div className='pt-1'>
