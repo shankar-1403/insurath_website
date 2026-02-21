@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 import { connectDB } from "@/lib/mongodb"
-import HomeContact from "@/src/models/Home"
+import ContactUs from "@/src/models/ContactUs"
 import { format } from "@fast-csv/format"
 
 export async function GET() {
@@ -28,7 +28,7 @@ export async function GET() {
 
       csvStream.on("end", () => controller.close())
 
-      const cursor = HomeContact.find()
+      const cursor = ContactUs.find()
         .select(
           "full_name email_id phone_number insurance_type subject message createdAt -_id"
         )
