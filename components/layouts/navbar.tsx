@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Navbar, NavBody, NavItems, NavbarLogo, MobileNav, MobileNavHeader, MobileNavMenu, MobileNavToggle} from "@/components/ui/resizable-navbar";
 import Link from "next/link";
-import { IconCaretDownFilled,IconCaretRightFilled, IconShield } from "@tabler/icons-react";
+import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
+import { IconCaretDownFilled, IconShield } from "@tabler/icons-react";
 
 const navItems = [
   { name: "Home", link: "/" },
@@ -16,8 +17,11 @@ const navItems = [
       { name: "Travel Insurance", link: "/products/travel-insurance" },
       { name: "Business Insurance", link: "/products/business-insurance" },
     ]
-   },
+  },
+  { name: "Make A Claim", link: "/" },
+  { name: "Pos Corner", link: "/" },
   { name: "About Us", link: "/about-us" },
+  { name: "Contact Us", link: "/contact-us" },
 ];
 
 const mobNavItems = [
@@ -32,36 +36,101 @@ const mobNavItems = [
       { name: "Business Insurance", link: "/products/business-insurance" },
     ]
    },
+  { name: "Make A Claim", link: "/" },
+  { name: "Pos Corner", link: "/" },
   { name: "About Us", link: "/about-us" },
   { name: "Contact Us", link: "/contact-us" },
 ];
 
+const items = [
+  {
+    name: "Login",
+    children: [
+      { name: "Admin Login", link: "/" },
+      { name: "Customer Login", link: "/" },
+      { name: "Employee Login", link: "/" },
+      { name: "HR Login", link: "/" },
+      { name: "POS Login", link: "/" },
+    ],
+  },
+];
+
 export default function MainNavbar() {
+  const ref = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [open, setOpen] = useState<number | null>(null);
+  const [visible, setVisible] = useState<boolean>(false);
   const [productsOpen, setProductsOpen] = useState(false);
+
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest: number) => {
+    if (latest > 100) {
+      setVisible(true);
+    } else {
+      setVisible(false);
+    }
+  });
   return (
     <>
-      <Navbar>
-        {/* Desktop Navbar */}
-        <NavBody>
-          <NavbarLogo />
-          <NavItems items={navItems} />
-          <div className="flex items-center z-60">
-            <Link href="/contact-us">
-              <button
-                  className="relative overflow-hidden px-6 py-3 bg-blue-950 text-blue-950 rounded-full group transition-colors duration-300 cursor-pointer flex items-center gap-3"
-                >
-                  {/* Animated background */}
-                  <span className="absolute inset-0 bg-[#E18126] scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
-                  {/* Text */}
-                  <span className="relative z-10 text-white group-hover:text-white transition-colors duration-300">
-                    Contact Us
-                  </span>
-                </button>
-            </Link>
-          </div>
-        </NavBody>
-      </Navbar>
+      <div ref={ref}>
+        <Navbar>
+          {/* Desktop Navbar */}
+          <NavBody>
+            <NavbarLogo />
+            <NavItems items={navItems} />
+            <div className="flex items-center gap-6 z-50">
+              <div>
+                {items.map((item,idx) => (
+                  <div
+                    key={item.name}
+                    className="relative"
+                    onMouseEnter={() => setOpen(idx)}
+                    onMouseLeave={() => setOpen(null)}
+                  >
+                    <div
+                      className={`px-4 py-2 text-lg font-bold cursor-pointer flex items-center gap-2 ${
+                        visible
+                          ? "text-blue-950 hover:text-[#E18126]"
+                          : "text-white hover:text-[#E18126]"
+                      }`}
+                    >
+                      <span className="group relative flex items-center gap-2">
+                        {item.name}
+                        <IconCaretDownFilled className="w-4 h-4" />
+
+                        <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-[#E18126] transition-all duration-300 group-hover:w-full"></span>
+                      </span>
+                    </div>
+
+                    <AnimatePresence>
+                      {item.children && open === idx && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 10 }}
+                          transition={{ duration: 0.2 }}
+                          className="absolute left-1 top-full mt-2 w-60 -translate-x-1/2 rounded-xl bg-white shadow-xl border overflow-hidden"
+                        >
+                          {item.children.map((child) => (
+                            <Link
+                              key={child.name}
+                              href={child.link}
+                              className="block px-4 py-3 text-lg hover:bg-neutral-100 hover:text-[#E18126] text-blue-950 font-bold"
+                            >
+                              {child.name}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </NavBody>
+        </Navbar>
+      </div>
       {/* Mobile Navbar */}
       <MobileNav>
         <MobileNavHeader>
