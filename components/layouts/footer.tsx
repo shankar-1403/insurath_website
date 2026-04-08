@@ -138,6 +138,12 @@ function Footer() {
                             <h5 className='text-lg md:text-xl text-white font-bold mb-4 md:mb-10'>Company</h5>
                             <ul className='flex flex-col gap-3'>
                                 <li>
+                                    <Link className='text-white text-sm md:text-base' href={'/'}>Make A Claim</Link>
+                                </li>
+                                <li>
+                                    <Link className='text-white text-sm md:text-base' href={'/'}>Pos Corner</Link>
+                                </li>
+                                <li>
                                     <Link className='text-white text-sm md:text-base' href={'/about-us'}>About Us</Link>
                                 </li>
                                 <li>    
