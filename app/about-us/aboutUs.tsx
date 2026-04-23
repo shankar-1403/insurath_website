@@ -265,7 +265,7 @@ function AboutUs() {
                     </div>
                 </div>
             </div>
-            <div className="py-20">
+            {/* <div className="py-20">
                 <div className="px-6 md:px-0 md:max-w-165 lg:max-w-340 mx-auto">
                     <div className="md:max-w-140 lg:max-w-180 mx-auto">
                         <div className="flex flex-col justify-center gap-6 mb-6">
@@ -294,7 +294,7 @@ function AboutUs() {
                         ))}
                     </div>
                 </div>
-            </div>
+            </div> */}
             <div className='bg-white'>
                 <div className="px-6 md:px-0 md:max-w-165 lg:max-w-340 mx-auto pt-20 pb-30 md:pb-40">
                     <div className="flex flex-col md:flex-row gap-6 md:gap-4">
